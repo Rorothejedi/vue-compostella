@@ -1,7 +1,7 @@
 import {
   createStore
 } from 'vuex'
-import album from './modules/album.js'
+import album from './album.js'
 
 export default createStore({
   modules: {

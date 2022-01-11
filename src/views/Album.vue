@@ -1,28 +1,67 @@
 <template>
   <div class="album">
     <div class="container">
-      <router-link to="/">Home</router-link> | <br /><br />
-      <h2>Album n. {{ $route.params.id }}</h2>
+      <br />
+      <router-link to="/">Retour</router-link>
+      <br />
+      <br />
+      <h3 v-if="loading">Loading...</h3>
+      <h2>
+        {{ album.id }} {{ album.departure_place }} → {{ album.arrival_place }}
+      </h2>
+      <br />
+      <KilometersLine v-if="!loading" :km="album.km" />
+      <br />
+      <h4>Text</h4>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto at
-        obcaecati suscipit quod aliquid adipisci officiis, fugiat a atque. Unde
-        optio itaque dolorum cumque sed odio molestias non nam reprehenderit!
+        {{ album.text }}
       </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam magnam
-        voluptatum vitae ipsam at magni unde. Dignissimos veniam impedit qui
-        dolore magni magnam modi nisi, aperiam libero distinctio dolorum
-        temporibus! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-        Explicabo nesciunt nisi quae optio quaerat laboriosam labore vel dolorum
-        ad, dignissimos ducimus assumenda reiciendis omnis possimus corrupti,
-        dolorem, ea voluptatibus at.
-      </p>
+      <br />
+      <br />
+      <Gallery :images="album.images" />
+      <hr />
+      <CommentList :comments="album.comments" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+import CommentList from "@/components/CommentList.vue";
+import Gallery from "@/components/Gallery.vue";
+import KilometersLine from "@/components/KilometersLine.vue";
+
 export default {
   name: "Album",
+  components: { KilometersLine, Gallery, CommentList },
+
+  data() {
+    return {
+      loading: false,
+    };
+  },
+
+  computed: {
+    ...mapState("album", ["album"]),
+  },
+
+  mounted() {
+    this.fetchAlbum();
+  },
+
+  unmounted() {
+    this.clearAlbum();
+  },
+
+  methods: {
+    ...mapActions("album", ["loadAlbum", "clearAlbum"]),
+
+    fetchAlbum() {
+      this.loading = true;
+      this.loadAlbum(this.$route.params.id).then(() => {
+        this.loading = false;
+      });
+    },
+  },
 };
 </script>

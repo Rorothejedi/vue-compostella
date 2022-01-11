@@ -4,12 +4,16 @@ export default {
     namespaced: true,
 
     state: {
-        albums: []
+        albums: [],
+        album: [],
     },
 
     mutations: {
         SET_ALBUMS(state, items) {
             state.albums = items
+        },
+        SET_ALBUM(state, items) {
+            state.album = items
         },
     },
 
@@ -21,8 +25,15 @@ export default {
                 })
         },
 
-        clearAlbums(store) {
-            store.commit('SET_ALBUMS', [])
-        }
+        loadAlbum(store, id) {
+            return axios.get(`${process.env.VUE_APP_BASE_URL}/api/album/${id}`)
+                .then(response => {
+                    store.commit('SET_ALBUM', response.data)
+                })
+        },
+
+        clearAlbum(store) {
+            store.commit('SET_ALBUM', [])
+        },
     },
 }

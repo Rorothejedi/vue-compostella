@@ -1,25 +1,20 @@
 <template>
   <div class="album">
     <div class="container">
+      <div class="header">
+        <router-link to="/" class="back">←</router-link>
+        <Divider />
+        <h2 class="places">
+          {{ album.departure_place }} → {{ album.arrival_place }}
+        </h2>
+      </div>
+
       <br />
-      <router-link to="/">Retour</router-link>
-      <br />
-      <br />
-      <h3 v-if="loading">Loading...</h3>
-      <h2>
-        {{ album.id }} {{ album.departure_place }} → {{ album.arrival_place }}
-      </h2>
-      <br />
-      <KilometersLine v-if="!loading" :km="album.km" />
-      <br />
-      <h4>Text</h4>
-      <p>
+      <KilometersLine :loading="loading" :km="album.km" />
+      <p class="story">
         {{ album.text }}
       </p>
-      <br />
-      <br />
       <Gallery :images="album.images" />
-      <hr />
       <CommentList :comments="album.comments" />
     </div>
   </div>
@@ -27,13 +22,14 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import CommentList from "@/components/CommentList.vue";
-import Gallery from "@/components/Gallery.vue";
-import KilometersLine from "@/components/KilometersLine.vue";
+import CommentList from "@/components/album/CommentList.vue";
+import Gallery from "@/components/album/Gallery.vue";
+import KilometersLine from "@/components/album/KilometersLine.vue";
+import Divider from "@/components/utils/Divider.vue";
 
 export default {
   name: "Album",
-  components: { KilometersLine, Gallery, CommentList },
+  components: { KilometersLine, Gallery, CommentList, Divider },
 
   data() {
     return {
@@ -65,3 +61,34 @@ export default {
   },
 };
 </script>
+
+//TODO
+// Trouver des icones pour les fléches (places / back / report)
+// Tester les retour à la ligne /n avec du texte
+// Tester les mots très looooong
+// Faire un loading stylé
+// Gérer la grid des images
+// Faire des transitions sympa entre les pages
+
+<style scoped>
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.back {
+  text-decoration: none;
+}
+.places {
+  font-family: var(--title-font-family-solid);
+  font-weight: 400;
+  font-size: 35px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.story {
+  font-size: 17px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+</style>

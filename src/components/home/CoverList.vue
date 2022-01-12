@@ -26,7 +26,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import gsap from "gsap";
-import Cover from "@/components/Cover.vue";
+import Cover from "@/components/home/Cover.vue";
 
 export default {
   name: "CoverList",
@@ -83,9 +83,7 @@ export default {
   align-content: center;
   overflow: hidden;
 
-  /** a voir */
-  /* max-width: 430px; */
-  /* min-width: 430px; */
+  height: 370px;
 }
 </style>
 

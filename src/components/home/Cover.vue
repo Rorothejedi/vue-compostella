@@ -97,7 +97,7 @@ img {
 /** text */
 
 .text {
-  margin-top: -60px;
+  margin-top: -55px;
   position: relative;
   color: white;
   display: flex;
@@ -108,16 +108,18 @@ img {
 
 .departure,
 .arrival {
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
 /* places */
 
 .places {
-  width: 230px;
+  width: 200px;
   text-align: left;
   font-family: "Londrina Solid", cursive;
-  font-size: 22px;
+  font-size: 20px;
   margin-left: 20px;
   transition: transform 0.3s ease-in-out;
 }
@@ -150,6 +152,7 @@ img {
 /** date */
 
 .date {
+  margin-top: 5px;
   font-size: 15px;
   font-style: italic;
   position: absolute;
@@ -157,6 +160,7 @@ img {
   opacity: 0;
   transition-delay: 0.3s;
   transform: translateX(-10px);
+  transition: all 0.3s ease-in-out 0.3s;
 }
 
 .box:hover .date {
@@ -169,17 +173,17 @@ img {
 
 .km-wrapper {
   font-family: "Londrina Shadow", cursive;
-  font-size: 70px;
-  margin-bottom: -25px;
-  transition: all 0.3s ease-in-out;
+  font-size: 60px;
+  margin-bottom: -20px;
+  transition: all 0.3s ease;
   position: relative;
 }
 .km-unit {
   margin-left: -10px;
-  font-size: 50px;
+  font-size: 40px;
 }
 .box:hover .km-wrapper {
-  transition: all 0.3s ease-out;
+  transition: all 0.3s ease;
   font-family: "Londrina Solid", cursive;
   color: white;
 }
@@ -187,21 +191,20 @@ img {
 .util {
   opacity: 0;
 }
-.km-main {
-  font-family: "Londrina Outline", cursive;
+.km-main,
+.km-secondary {
   position: absolute;
   top: 0;
   left: 0;
+  transition: opacity 0.3s ease;
+}
+.km-main {
+  font-family: "Londrina Outline", cursive;
   opacity: 1;
-  transition: opacity 0.3s ease-in;
 }
 .km-secondary {
   font-family: "Londrina Solid", cursive;
-  position: absolute;
-  top: 0;
-  left: 0;
   opacity: 0;
-  transition: opacity 0.3s ease-in;
 }
 .box:hover .km-main {
   opacity: 0;

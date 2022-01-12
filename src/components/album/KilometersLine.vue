@@ -3,15 +3,13 @@
     <div class="text">
       <div :class="{ min: min }">0</div>
       <div class="km" :style="`width: ${actualKmWidth}px`" v-if="!min && !max">
-        {{ km }}
+        {{ km }} km
       </div>
       <div :class="{ max: max }">{{ kmMax }}</div>
     </div>
-    <div class="line" ref="line"></div>
-    <!-- <div class="debug">
-      <p>line width: {{ lineWidth }}</p>
-      <p>actual km width : {{ actualKmWidth }}</p>
-    </div> -->
+    <div class="line" ref="line">
+      <div class="journey-line" :style="`width: ${actualKmWidth}px`"></div>
+    </div>
   </div>
 </template>
 
@@ -23,6 +21,10 @@ export default {
       type: Number,
       required: true,
       default: 0,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -45,6 +47,12 @@ export default {
     window.removeEventListener("resize", this.onLineWidthResize);
   },
 
+  watch: {
+    loading(value) {
+      if (!value) this.calculateActualKmWidth();
+    },
+  },
+
   methods: {
     onLineWidthResize() {
       this.lineWidth = this.$refs.line.clientWidth;
@@ -57,6 +65,9 @@ export default {
         this.min = true;
       } else if (this.actualKmWidth >= this.lineWidth) {
         this.max = true;
+      } else {
+        this.min = false;
+        this.max = false;
       }
     },
   },
@@ -68,22 +79,34 @@ export default {
   display: flex;
   justify-content: space-between;
   position: relative;
+  margin-bottom: 5px;
+  font-family: var(--subtitle-font-family);
 }
 
 .line {
   width: 100%;
   height: 3px;
-  background-color: lightcoral;
+  background-color: lightgray;
   border-radius: 5px;
+}
+
+.journey-line {
+  height: 3px;
+  background-color: var(--secondary-text-color);
+  transition: width 1.8s ease 0.5s;
 }
 
 .km {
   position: absolute;
   text-align: right;
+  font-size: large;
+  left: 0;
 }
 
 .min,
-.max {
-  color: red;
+.max,
+.km {
+  color: var(--secondary-text-color);
+  font-weight: bold;
 }
 </style>

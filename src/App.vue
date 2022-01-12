@@ -6,6 +6,14 @@
   </router-view>
 </template>
 
+//     testDarkTheme() {
+//       console.log("is dark", this.$attrs);
+//       document.body.style.backgroundColor = this.$attrs.darkTheme
+//         ? "red"
+//         : "black";
+//     },
+//   },
+
 <style>
 @import "./styles/normalize.css";
 @import "./styles/main.css";

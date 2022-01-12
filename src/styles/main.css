@@ -1,21 +1,29 @@
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,300&family=Hind+Madurai:wght@300&family=Londrina+Outline&family=Londrina+Solid&display=swap');
+
+/* Commons */
+body {
+    transition: background 0.3s ease;
+    --main-bg-color: white;
+    /* --secondary-bg-color: #a1a1a1; */
+    --dark-bg-color: #222;
+    --main-text-color: #3b3b3b;
+    --secondary-text-color: lightcoral;
+    --third-text-color: #cccccc;
+    --dark-text-color: #ccc;
+    --title-font-family-solid: 'Londrina Solid', cursive;
+    --title-font-family-outline: 'Londrina Outline', cursive;
+    --subtitle-font-family: 'Fira Sans', sans-serif;
+    --text-font-family: 'Hind Madurai', sans-serif;
+
+    color: var(--main-text-color);
+    background-color: var(--main-bg-color);
+    font-family: var(--text-font-family);
 }
 
-#nav {
-    padding: 30px;
-}
-
-#nav a {
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-    color: #42b983;
+.dark-mode {
+    color: var(--dark-text-color);
+    background-color: var(--dark-bg-color);
 }
 
 /* Route transition */
@@ -42,10 +50,6 @@
 }
 
 /* Container style */
-html {
-    margin: 0;
-}
-
 .container {
     width: 100%;
     padding-right: 15px;
@@ -73,14 +77,8 @@ html {
     }
 }
 
-@media (min-width: 1200px) and (max-width: 1399px) {
+@media (min-width: 1200px) {
     .container {
         width: 1140px;
-    }
-}
-
-@media (min-width: 1400px) {
-    .container {
-        width: 1320px;
     }
 }

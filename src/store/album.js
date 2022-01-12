@@ -4,16 +4,16 @@ export default {
     namespaced: true,
 
     state: {
-        albums: [],
-        album: [],
+        albums: {},
+        album: {},
     },
 
     mutations: {
-        SET_ALBUMS(state, items) {
-            state.albums = items
+        SET_ALBUMS(state, payload) {
+            state.albums = payload
         },
-        SET_ALBUM(state, items) {
-            state.album = items
+        SET_ALBUM(state, payload) {
+            state.album = payload
         },
     },
 

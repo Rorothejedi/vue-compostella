@@ -7,7 +7,7 @@
         <div class="departure">{{ departure }}</div>
         <div class="arrival">→ {{ arrival }}</div>
         <div class="date">
-          publié le
+          effectué le
           {{ formatted_date }}
         </div>
       </div>

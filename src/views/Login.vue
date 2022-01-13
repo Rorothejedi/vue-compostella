@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container dark-theme">
     <div class="header">
       <router-link to="/" class="back">←</router-link>
       <Divider />
@@ -7,15 +7,17 @@
     </div>
     <input v-model="email" placeholder="Email" type="email" />
     <input v-model="password" placeholder="Mot de passe" type="password" />
-    <button @click="submitLogin()">OK</button>
+    <button @click="submitLogin()">
+      OK <span v-if="loading">loading...</span>
+    </button>
     <p>token: {{ token }}</p>
   </div>
 </template>
 
 <script>
-import Divider from "@/components/utils/Divider.vue";
 import { mapState, mapActions } from "vuex";
 import axios from "axios";
+import Divider from "@/components/utils/Divider.vue";
 
 export default {
   name: "Login",
@@ -25,6 +27,7 @@ export default {
     return {
       email: "",
       password: "",
+      loading: false,
     };
   },
 
@@ -36,9 +39,15 @@ export default {
     ...mapActions("user", ["login"]),
 
     submitLogin() {
+      if (this.loading) return;
+
+      this.loading = true;
       this.login([this.email, this.password]).then(() => {
         axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
         this.$router.push("/dashboard");
+        this.loading = false;
+        this.email = "";
+        this.password = "";
       });
     },
   },

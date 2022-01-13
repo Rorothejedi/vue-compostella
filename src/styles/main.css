@@ -3,7 +3,7 @@
 
 /* Commons */
 body {
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
     --main-bg-color: white;
     /* --secondary-bg-color: #a1a1a1; */
     --dark-bg-color: #222;
@@ -19,11 +19,15 @@ body {
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
     font-family: var(--text-font-family);
+
+    overflow-x: hidden;
+
+    /* find other way*/
+    /* overflow-y: hidden; */
 }
 
-.dark-mode {
+.dark-theme {
     color: var(--dark-text-color);
-    background-color: var(--dark-bg-color);
 }
 
 /* Route transition */
@@ -51,7 +55,6 @@ body {
 
 /* Container style */
 .container {
-    width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;

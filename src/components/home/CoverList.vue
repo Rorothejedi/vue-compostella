@@ -14,8 +14,8 @@
       <Cover
         v-if="album.images.length > 0"
         :image="album.images[0].path"
-        :departure="album.departure_place"
-        :arrival="album.arrival_place"
+        :departure="album.place_departure"
+        :arrival="album.place_arrival"
         :date="album.created_at"
         :km="album.km"
       />
@@ -51,7 +51,12 @@ export default {
 
     fetchAlbums() {
       this.loading = true;
-      this.loadAlbums().then(() => {
+
+      const params = {
+        hide: 0,
+      };
+
+      this.loadAlbums(params).then(() => {
         this.loading = false;
       });
     },

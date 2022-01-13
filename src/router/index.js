@@ -7,6 +7,7 @@ import Home from '../views/Home.vue'
 import Album from '../views/Album.vue'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/private/Dashboard.vue'
+import AlbumEdit from '../views/private/AlbumEdit.vue'
 
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
@@ -74,9 +75,23 @@ const routes = [{
     path: '/dashboard',
     component: Dashboard,
     beforeEnter: ifNotAuthenticated,
+    meta: {
+      transition: 'slide-right'
+    },
     props: {
       darkTheme: true
-    }
+    },
+  },
+  {
+    path: '/album-edit/:id',
+    component: AlbumEdit,
+    beforeEnter: ifNotAuthenticated,
+    meta: {
+      transition: 'slide-right'
+    },
+    props: {
+      darkTheme: true
+    },
   }
 ]
 

@@ -2,6 +2,11 @@
   <div class="home">
     <div class="container">
       <h1 class="title">Sur les chemins de Compostelle</h1>
+      <!-- TODO Remove after dev-->
+      <router-link to="/dashboard">
+        <button>Dashboard admin</button>
+      </router-link>
+      <br /><br />
 
       <!-- <svg
         class="svg-line"
@@ -36,11 +41,6 @@
       <div class="wrapper">
         <CoverList />
       </div>
-      <br /><br />
-      <!-- TODO Remove after dev-->
-      <router-link to="/dashboard">
-        <button>Dashboard admin</button>
-      </router-link>
     </div>
   </div>
 </template>

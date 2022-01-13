@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>
-      <span>{{ title }}</span>
+      <span :class="{ dark: dark }">{{ title }}</span>
     </h2>
   </div>
 </template>
@@ -15,6 +15,11 @@ export default {
       type: String,
       required: true,
       default: "",
+    },
+
+    dark: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -30,9 +35,13 @@ h2 {
   font-family: var(--title-font-family-solid);
   font-weight: 400;
 }
-
-h2 > span {
-  background: var(--main-bg-color);
+span {
   padding: 0 30px;
+  background-color: var(--main-bg-color);
+}
+
+.dark {
+  background-color: var(--dark-bg-color);
+  transition: background-color 0.3s ease;
 }
 </style>

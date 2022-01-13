@@ -19,6 +19,14 @@ export default {
                 .then(response => {
                     store.commit('SET_REPORTED_COMMENTS', response.data)
                 })
-        }
+        },
+        resetReportedComment(store, id) {
+            return axios.patch(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}`, {
+                report: 0
+            })
+        },
+        deleteReportedComment(store, id) {
+            return axios.delete(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}`)
+        },
     },
 }

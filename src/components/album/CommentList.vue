@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TitleLine :title="lineTitleText" />
+    <TitleLine :title="formattedTitle" />
 
     <div v-for="(comment, key) in comments" :key="key" class="comment">
       <div class="comment-header">
@@ -17,10 +17,11 @@
 // TODO
 // Ajout du bouton de report
 // Ajout du bloc d'ajout de commentaire (avec nom / textarea / submit)
+// ajout d'un recaptcha
 
 <script>
 import moment from "moment";
-import TitleLine from "@/components/album/TitleLine.vue";
+import TitleLine from "@/components/utils/TitleLine.vue";
 
 export default {
   name: "CommentList",
@@ -37,7 +38,7 @@ export default {
     commentsCount() {
       return this.comments.length;
     },
-    lineTitleText() {
+    formattedTitle() {
       let text = "";
 
       if (this.commentsCount === 0) text = "Pas de commentaires";

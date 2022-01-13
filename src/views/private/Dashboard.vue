@@ -1,63 +1,55 @@
 <template>
-  <div class="container">
+  <div class="container dark-theme">
     <div>Dashboard</div>
 
-    <div v-if="!loadingComments">
-      <div v-for="comment in reportedComments" :key="comment.id">
-        <p>
-          Commentaire {{ comment.author }} de Rapporté {{ comment.report }} fois
-          <br />
-          Text: {{ comment.text }}
-        </p>
-      </div>
-    </div>
-    <div v-else>
-      <p>Loading comments ...</p>
-    </div>
-
     <div>
-      <button @click="fetchLogout()">Déconnexion</button>
-    </div>
-    <div>
-      <router-link to="/">
+      <router-link to="/" @click="clearAlbums()">
         <button>Home</button>
       </router-link>
+      <button @click="fetchLogout()">
+        Déconnexion <span v-if="loadingLogout">loading...</span>
+      </button>
     </div>
+
+    <!-- Comment for dev -->
+    <i>Liste de commentaires signalés fonctionnelle bloquée pour dev</i>
+    <ReportList />
+
+    <album-new />
+    <album-list />
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
+import ReportList from "@/components/dashboard/ReportList.vue";
+import AlbumNew from "@/components/dashboard/AlbumNew.vue";
+import AlbumList from "@/components/dashboard/AlbumList.vue";
+
 export default {
   name: "Dashboard",
+  components: {
+    ReportList,
+    AlbumNew,
+    AlbumList,
+  },
 
   data() {
     return {
-      loadingComments: false,
+      loadingLogout: false,
     };
   },
 
-  computed: {
-    ...mapState("comment", ["reportedComments"]),
-  },
-
-  mounted() {
-    this.fetchReportedComments();
-  },
-
   methods: {
-    ...mapActions("comment", ["loadReportedComments"]),
     ...mapActions("user", ["logout"]),
-
-    fetchReportedComments() {
-      this.loadingComments = true;
-      this.loadReportedComments().then(() => {
-        this.loadingComments = false;
-      });
-    },
+    ...mapActions("album", ["clearAlbums"]),
 
     fetchLogout() {
+      if (this.loadingLogout) return;
+
+      this.loadingLogout = true;
       this.logout().then(() => {
+        this.loadingLogout = false;
         this.$router.push("/admin");
       });
     },

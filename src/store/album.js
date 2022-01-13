@@ -18,12 +18,23 @@ export default {
     },
 
     actions: {
-        loadAlbums(store) {
-            return axios.get(`${process.env.VUE_APP_BASE_URL}/api/albums`)
+
+        /* ALBUMS */
+
+        loadAlbums(store, params = {}) {
+            return axios.get(`${process.env.VUE_APP_BASE_URL}/api/albums`, {
+                    params: params
+                })
                 .then(response => {
                     store.commit('SET_ALBUMS', response.data)
                 })
         },
+
+        clearAlbums(store) {
+            store.commit('SET_ALBUMS', [])
+        },
+
+        /* ALBUM */
 
         loadAlbum(store, id) {
             return axios.get(`${process.env.VUE_APP_BASE_URL}/api/album/${id}`)
@@ -35,5 +46,26 @@ export default {
         clearAlbum(store) {
             store.commit('SET_ALBUM', [])
         },
+
+        createAlbum(store, payload) {
+            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/album`, payload)
+                .catch(error => {
+                    console.log('Album creation failed: ', error)
+                })
+        },
+
+        editAlbum(store, [id, payload]) {
+            return axios.patch(`${process.env.VUE_APP_BASE_URL}/api/album/${id}`, payload)
+                .catch(error => {
+                    console.log('Album edition failed: ', error)
+                })
+        },
+
+        deleteAlbum(store, id) {
+            return axios.delete(`${process.env.VUE_APP_BASE_URL}/api/album/${id}`)
+                .catch(error => {
+                    console.log('Album deletion failed: ', error)
+                })
+        }
     },
 }

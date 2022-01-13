@@ -5,12 +5,12 @@
         <router-link to="/" class="back">←</router-link>
         <Divider />
         <h2 class="places">
-          {{ album.departure_place }} → {{ album.arrival_place }}
+          {{ album.place_departure }} → {{ album.place_arrival }}
         </h2>
       </div>
 
       <br />
-      <KilometersLine :loading="loading" :km="album.km" />
+      <KilometersLine :loading="loading" :km="album.km_total" />
       <p class="story">
         {{ album.text }}
       </p>
@@ -90,5 +90,6 @@ export default {
   font-size: 17px;
   margin-top: 40px;
   margin-bottom: 40px;
+  white-space: pre-wrap;
 }
 </style>

@@ -14,15 +14,11 @@
             Total: {{ album.km_total }} km / Etape: {{ album.km_step }} km
           </div>
 
-          <div>Date: {{ album.date }}</div>
+          <div>Le {{ formatDate(album.date) }}</div>
         </router-link>
         <div>
-          <button type="button" @click="switchVisible(album.id, !album.hide)">
-            👁 <span v-if="loadingVisible[album.id]">loading...</span>
-          </button>
-          <button type="button" @click="removeAlbum(album.id)">
-            ✖ <span v-if="loadingDelete[album.id]">loading...</span>
-          </button>
+          <switch-visibility-button :album="album" />
+          <delete-button :album="album" />
         </div>
       </div>
     </div>
@@ -30,27 +26,21 @@
   </div>
 </template>
 
-// TODO
-// gérer la pagination (10 albums par page)
-// gérer le order_by (sort) pour pouvoir trier
-
-// ajouter barre de recherche d'album
-// ajouter une confirmation de suppression
-// ajouter moment pour formater la date
-
 <script>
 import { mapActions, mapState } from "vuex";
+import date from "@/mixins/date.js";
 import TitleLine from "@/components/utils/TitleLine.vue";
+import SwitchVisibilityButton from "@/components/edit/SwitchVisibilityButton.vue";
+import DeleteButton from "@/components/edit/DeleteButton.vue";
 
 export default {
   name: "AlbumList",
-  components: { TitleLine },
+  components: { TitleLine, SwitchVisibilityButton, DeleteButton },
+  mixins: [date],
 
   data() {
     return {
       loading: false,
-      loadingDelete: [],
-      loadingVisible: [],
       page: 1,
     };
   },
@@ -64,39 +54,12 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["loadAlbums", "deleteAlbum", "editAlbum"]),
+    ...mapActions("album", ["loadAlbums"]),
 
     fetchAlbums() {
       this.loading = true;
       this.loadAlbums().then(() => {
         this.loading = false;
-      });
-    },
-
-    removeAlbum(id) {
-      if (this.loadingDelete[id]) return;
-
-      this.loadingDelete[id] = true;
-      this.deleteAlbum(id).then(() => {
-        this.loadAlbums().then(() => {
-          this.loadingDelete[id] = false;
-        });
-      });
-    },
-
-    switchVisible(id, to) {
-      if (this.loadingVisible[id]) return;
-
-      this.loadingVisible[id] = true;
-
-      const params = {
-        hide: to,
-      };
-
-      this.editAlbum([id, params]).then(() => {
-        this.loadAlbums().then(() => {
-          this.loadingVisible[id] = false;
-        });
       });
     },
   },

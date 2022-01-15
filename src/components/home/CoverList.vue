@@ -79,8 +79,6 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Shadow&family=Londrina+Solid&display=swap");
-
 .box {
   text-decoration: none;
   color: inherit;

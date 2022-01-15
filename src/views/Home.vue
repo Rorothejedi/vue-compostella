@@ -4,7 +4,7 @@
       <h1 class="title">Sur les chemins de Compostelle</h1>
       <!-- TODO Remove after dev-->
       <router-link to="/dashboard">
-        <button>Dashboard admin</button>
+        <button @click="clearAlbums()">Dashboard admin</button>
       </router-link>
       <br /><br />
 
@@ -45,15 +45,17 @@
   </div>
 </template>
 
-// TODO
-// Faire une pagination avec lazy load
-
 <script>
 import CoverList from "@/components/home/CoverList.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "Home",
   components: { CoverList },
+
+  methods: {
+    ...mapActions("album", ["clearAlbums"]),
+  },
 };
 </script>
 

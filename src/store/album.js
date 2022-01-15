@@ -26,7 +26,7 @@ export default {
                     params: params
                 })
                 .then(response => {
-                    store.commit('SET_ALBUMS', response.data)
+                    store.commit('SET_ALBUMS', response.data.data)
                 })
         },
 
@@ -56,6 +56,9 @@ export default {
 
         editAlbum(store, [id, payload]) {
             return axios.patch(`${process.env.VUE_APP_BASE_URL}/api/album/${id}`, payload)
+                .then(response => {
+                    store.commit('SET_ALBUM', response.data)
+                })
                 .catch(error => {
                     console.log('Album edition failed: ', error)
                 })

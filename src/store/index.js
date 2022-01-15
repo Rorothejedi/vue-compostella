@@ -5,13 +5,14 @@ import createPersistedState from "vuex-persistedstate"
 import album from './album.js'
 import user from './user.js'
 import comment from './comment.js'
+import image from './image.js'
 
 export default createStore({
   getters: {
     token(state) {
       return state.user.token
     },
-    isAuthenticated: state => !!state.user.token,
+    isAuthenticated: state => !!state.user.token
   },
 
   plugins: [
@@ -23,5 +24,6 @@ export default createStore({
     album,
     user,
     comment,
+    image,
   }
 })

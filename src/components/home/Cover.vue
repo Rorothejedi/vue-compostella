@@ -8,7 +8,7 @@
         <div class="arrival">→ {{ arrival }}</div>
         <div class="date">
           effectué le
-          {{ formatted_date }}
+          {{ formatDate(date) }}
         </div>
       </div>
       <div class="km-wrapper">
@@ -24,10 +24,12 @@
 </template>
 
 <script>
-import moment from "moment";
+import date from "@/mixins/date.js";
 
 export default {
   name: "Cover",
+  mixins: [date],
+
   props: {
     image: {
       type: String,
@@ -57,18 +59,8 @@ export default {
     };
   },
 
-  computed: {
-    formatted_date() {
-      return this.moment(this.date).locale("fr").format("LL");
-    },
-  },
-
   mounted() {
     this.host = process.env.VUE_APP_BASE_URL;
-  },
-
-  created() {
-    this.moment = moment;
   },
 };
 </script>

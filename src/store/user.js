@@ -11,12 +11,12 @@ export default {
         LOGIN_SUCCESS(state, payload) {
             state.token = payload
         },
-        LOGIN_FAILED(state) {
-            state.token = null
-        },
         LOGOUT_SUCCESS(state) {
             state.token = null
-        }
+        },
+        LOG_ERROR(state) {
+            state.token = null
+        },
     },
 
     actions: {
@@ -29,7 +29,7 @@ export default {
                     store.commit('LOGIN_SUCCESS', response.data.token)
                 })
                 .catch(error => {
-                    store.commit('LOGIN_FAILED')
+                    store.commit('LOG_ERROR')
                     console.log('Login failed: ', error)
                 })
         },
@@ -39,6 +39,7 @@ export default {
                     store.commit('LOGOUT_SUCCESS')
                 })
                 .catch(error => {
+                    store.commit('LOG_ERROR')
                     console.log('Logout failed: ', error)
                 })
         }

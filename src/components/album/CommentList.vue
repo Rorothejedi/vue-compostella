@@ -5,7 +5,7 @@
     <div v-for="(comment, key) in comments" :key="key" class="comment">
       <div class="comment-header">
         <span class="author">{{ comment.author }}</span>
-        <span class="date"> le {{ formatDate(comment.created_at) }}</span>
+        <span class="date"> le {{ formatDatetime(comment.created_at) }}</span>
       </div>
       <div>
         {{ comment.text }}
@@ -14,18 +14,14 @@
   </div>
 </template>
 
-// TODO
-// Ajout du bouton de report
-// Ajout du bloc d'ajout de commentaire (avec nom / textarea / submit)
-// ajout d'un recaptcha
-
 <script>
-import moment from "moment";
+import date from "@/mixins/date.js";
 import TitleLine from "@/components/utils/TitleLine.vue";
 
 export default {
   name: "CommentList",
   components: { TitleLine },
+  mixins: [date],
   props: {
     comments: {
       type: Array,
@@ -46,16 +42,6 @@ export default {
       if (this.commentsCount > 1) text += "s";
 
       return text;
-    },
-  },
-
-  created() {
-    this.moment = moment;
-  },
-
-  methods: {
-    formatDate(date) {
-      return this.moment(date).locale("fr").format("LL");
     },
   },
 };

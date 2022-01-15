@@ -1,69 +1,88 @@
 <template>
   <div>
-    <p>Ajout d'un nouvel album</p>
-    <ul>
-      <li>depart ✔</li>
-      <li>arrivé ✔</li>
-      <li>date</li>
-      <li>km total</li>
-      <li>km étape</li>
-      <li>texte ✔</li>
-      <li>caché par défaut ✔</li>
-      <li>photo principale</li>
-      <li>les photos</li>
-    </ul>
+    <TitleLine title="Nouvel album" dark />
 
     <form>
-      <input v-model="date" type="date" />
-      <br />
-      <input
-        v-model="place_departure"
-        type="text"
-        placeholder="Ville de départ"
-        required
-      />
-      <input
-        v-model="place_arrival"
-        type="text"
-        placeholder="Ville d'arrivé"
-        required
-      />
-      <br />
-      <input
-        v-model="km_step"
-        type="number"
-        placeholder="Kilomètres de l'étape"
-        min="0"
-        max="100"
-        required
-      />
-      <input
-        v-model="km_total"
-        type="number"
-        placeholder="Kilomètres totals"
-        min="0"
-        max="2000"
-        disabled
-      />
-      <br />
-      <textarea v-model="text" type="text" placeholder="Texte" required />
-      <br />
-      <button
-        type="button"
-        @click="addAlbum()"
-        :disabled="this.albums[0] === undefined"
-      >
-        Ajouter <span v-if="loading">loading...</span>
-      </button>
+      <fieldset>
+        <label for="date">Date : </label>
+        <input v-model="date" id="date" type="date" />
+
+        <br /><br />
+
+        <label for="place_departure">Ville de départ : </label>
+        <input
+          v-model="place_departure"
+          id="place_departure"
+          type="text"
+          placeholder="ex: Toulon"
+          required
+        />
+
+        <br />
+
+        <label for="place_arrival">Ville d'arrivé : </label>
+        <input
+          v-model="place_arrival"
+          id="place_arrival"
+          type="text"
+          placeholder="ex: Cahors"
+          required
+        />
+
+        <br /><br />
+
+        <label for="km_step">Km étape : </label>
+        <input
+          v-model="km_step"
+          id="km_step"
+          type="number"
+          placeholder="Kilomètres de l'étape"
+          min="0"
+          max="100"
+          required
+        />
+
+        <br />
+
+        <span>
+          Km total parcouru jusqu'a cette étape:
+          <strong v-if="albums.length > 0">
+            {{ albums[0].km_total_max + km_step }} km
+          </strong>
+        </span>
+
+        <br /><br />
+
+        <label for="text">Texte : </label>
+        <br />
+        <textarea
+          v-model="text"
+          id="text"
+          type="text"
+          placeholder="ex: blabla"
+        />
+
+        <p>Ajouter aussi les photos dont photo principale</p>
+
+        <button
+          type="button"
+          @click="addAlbum()"
+          :disabled="this.albums[0] === undefined"
+        >
+          Ajouter <span v-if="loading">loading...</span>
+        </button>
+      </fieldset>
     </form>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import TitleLine from "@/components/utils/TitleLine.vue";
 
 export default {
   name: "AlbumNew",
+  components: { TitleLine },
 
   data() {
     return {
@@ -94,14 +113,14 @@ export default {
         this;
 
       if (
-        !text ||
         !date ||
         !place_departure ||
         !place_arrival ||
-        !km_step ||
+        km_step < 0 ||
         !km_total
       ) {
         console.log("All data are needed");
+        this.resetLocalState();
         return;
       }
 
@@ -120,16 +139,18 @@ export default {
 
       this.createAlbum(params).then(() => {
         this.loadAlbums().then(() => {
-          console.log("OK");
-
-          this.text = "";
-          this.date = null;
-          this.place_departure = "";
-          this.place_arrival = "";
-          this.km_step = 0;
+          this.resetLocalState();
           this.loading = false;
         });
       });
+    },
+
+    resetLocalState() {
+      this.text = "";
+      this.date = null;
+      this.place_departure = "";
+      this.place_arrival = "";
+      this.km_step = 0;
     },
   },
 };

@@ -62,14 +62,6 @@ export default {
 };
 </script>
 
-//TODO
-// Trouver des icones pour les fléches (places / back / report)
-// Tester les retour à la ligne /n avec du texte
-// Tester les mots très looooong
-// Faire un loading stylé
-// Gérer la grid des images
-// Faire des transitions sympa entre les pages
-
 <style scoped>
 .header {
   display: flex;

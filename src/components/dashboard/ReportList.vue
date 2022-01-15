@@ -48,11 +48,6 @@
   </div>
 </template>
 
-// TODO
-// Faire un loading correct
-// Ajouter une icone cross pour la suppression
-// Intégrer de vrais boutons
-
 <script>
 import { mapState, mapActions } from "vuex";
 import TitleLine from "@/components/utils/TitleLine.vue";
@@ -95,6 +90,8 @@ export default {
     ]),
 
     fetchReportedComments() {
+      if (this.reportedComments.length > 0) return;
+
       this.loadingComments = true;
       this.loadReportedComments().then(() => {
         this.loadingComments = false;

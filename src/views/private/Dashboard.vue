@@ -11,8 +11,6 @@
       </button>
     </div>
 
-    <!-- Comment for dev -->
-    <i>Liste de commentaires signalés fonctionnelle bloquée pour dev</i>
     <ReportList />
 
     <album-new />

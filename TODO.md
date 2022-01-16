@@ -2,9 +2,10 @@ TODO
 
 Fonctionnel
 
-- Ajouter un ordre aux images dans un album
-- Gérer la modification des images sur un album
 - Quand un album est supprimer, supprimer les files images également
+- Ajouter le bouton de suppresion sur les images d'un album
+- Faire une modal de confirmation
+- Améliorer le composant modal
 - Faire une pagination avec lazy load sur les albums (10 albums par page)
 - gérer le order_by (sort) pour pouvoir trier les albums
 - ajouter barre de recherche d'album (dashboard)
@@ -24,7 +25,7 @@ Design
     - visible (eye)
 - Faire un loading stylé (home) avec skeleton loader ?
 - Faire un loading stylé (album) avec transitions ?
-- Gérer la grid des images
+- Gérer la grid des images (justified gallery)
 - Faire des transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les covers (responsive)
 - Styliser les bas de page
@@ -48,6 +49,14 @@ Fonctionnel
 - VisibilityButton sur la view edit
 - DeleteButton sur la view edit
 - Gérer l'ajout des images sur un album
+- Retirer une image de la preview au click
+- Créer un composant modal
+- Supprimer une image d'un album
+- Enregistrer la width / height de chaque image dans la db
+- Modifier les data d'une image (main, text)
+- Ajouter un ordre aux images dans un album
+- Ajouter les boutons de changements d'ordre sur les images d'un album
+- Ajouter un icon sur les images d'un album qui indique s'il y a un texte non null dessus
 
 Design
 

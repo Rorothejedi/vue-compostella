@@ -165,7 +165,7 @@ export default {
 
       const { date, place_departure, place_arrival, km_step, text } = this;
 
-      if (!date || !place_departure || !place_arrival || !km_step) {
+      if (!date || !place_departure || !place_arrival || km_step < 0) {
         console.log("All data are needed");
         this.setLocalStateWithStore();
         return;
@@ -176,9 +176,7 @@ export default {
       const params = { date, place_departure, place_arrival, km_step, text };
 
       this.editAlbum([this.$route.params.id, params]).then(() => {
-        this.loadAlbums().then(() => {
-          this.loading_update = false;
-        });
+        this.loading_update = false;
       });
     },
 

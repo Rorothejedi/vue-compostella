@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div v-if="!loadingComments">
-      <TitleLine :title="formattedCommentTitle" dark />
+  <div class="container dark-theme">
+    <div v-if="!loading">
+      <title-line :title="formattedCommentTitle" dark />
 
       <div
         v-for="comment in reportedComments"
@@ -14,7 +14,7 @@
               ID:
               <span class="bold">{{ comment.id }}</span>
             </div>
-            <Divider smallMargin />
+            <divider smallMargin />
             <div>
               Report:
               <span class="bold">{{ comment.report }}</span>
@@ -23,10 +23,10 @@
 
           <div>
             <button @click="resetReport(comment.id)">
-              ✔ <span v-if="loadingReset[comment.id]">loading...</span>
+              ✔ <span v-if="loading_reset[comment.id]">loading...</span>
             </button>
             <button @click="deleteComment(comment.id)">
-              ✖ <span v-if="loadingDelete[comment.id]">loading...</span>
+              ✖ <span v-if="loading_delete[comment.id]">loading...</span>
             </button>
           </div>
         </div>
@@ -54,14 +54,13 @@ import TitleLine from "@/components/utils/TitleLine.vue";
 import Divider from "@/components/utils/Divider.vue";
 
 export default {
-  name: "ReportList",
+  name: "CommentsReport",
   components: { TitleLine, Divider },
 
   data() {
     return {
-      loadingComments: false,
-      loadingReset: [],
-      loadingDelete: [],
+      loading_reset: [],
+      loading_delete: [],
     };
   },
 
@@ -76,42 +75,35 @@ export default {
       if (this.commentsCount === 0) return "Pas de commentaires signalés";
       return this.commentsCount + " commentaires signalés";
     },
-  },
 
-  mounted() {
-    this.fetchReportedComments();
+    loading() {
+      return this.reportedComments.constructor === Object;
+    },
   },
 
   methods: {
     ...mapActions("comment", [
-      "loadReportedComments",
       "resetReportedComment",
       "deleteReportedComment",
+      "loadReportedComments",
     ]),
 
-    fetchReportedComments() {
-      if (this.reportedComments.length > 0) return;
-
-      this.loadingComments = true;
-      this.loadReportedComments().then(() => {
-        this.loadingComments = false;
-      });
-    },
-
     resetReport(id) {
-      this.loadingReset[id] = true;
+      this.loading_reset[id] = true;
+
       this.resetReportedComment(id).then(() => {
         this.loadReportedComments().then(() => {
-          this.loadingReset[id] = false;
+          this.loading_reset[id] = false;
         });
       });
     },
 
     deleteComment(id) {
-      this.loadingDelete[id] = true;
+      this.loading_delete[id] = true;
+
       this.deleteReportedComment(id).then(() => {
         this.loadReportedComments().then(() => {
-          this.loadingDelete[id] = false;
+          this.loading_delete[id] = false;
         });
       });
     },
@@ -139,9 +131,6 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.bold {
-  font-weight: bold;
-}
 
 .text {
   margin-top: 10px;
@@ -150,5 +139,6 @@ export default {
 .text {
   overflow-wrap: break-word;
   font-style: italic;
+  white-space: pre-wrap;
 }
 </style>

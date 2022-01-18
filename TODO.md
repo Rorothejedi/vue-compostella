@@ -2,20 +2,23 @@ TODO
 
 Fonctionnel
 
-- Quand un album est supprimer, supprimer les files images également
-- Ajouter le bouton de suppresion sur les images d'un album
+- Terminer la POC sur kinesis
+- Mettre l'ajout d'album dans une modal
+- Sortir les images trier par album_order côté serveur
 - Faire une modal de confirmation
 - Améliorer le composant modal
+- Ajouter des alertes pour confirmer les actions
 - Faire une pagination avec lazy load sur les albums (10 albums par page)
 - gérer le order_by (sort) pour pouvoir trier les albums
 - ajouter barre de recherche d'album (dashboard)
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
 - Ajouter le bouton de report côté public (et empécher qu'une seule personne puisse spam 1 signalement (localhost ?))
 - Gérer l'ajout de commentaire côté public
-- Ajouter un recpatcha pour l'ajout de commentaire
+- Ajouter un recaptcha pour l'ajout de commentaire
 
 Design
 
+- Faire des boutons sympa
 - Trouver des icones sympa pour : 
     - les flèches (retour et destination)
     - position
@@ -30,7 +33,7 @@ Design
 - Uniformiser les covers (responsive)
 - Styliser les bas de page
 - Ajouter les mentions légales
-- Gérer au niveau du front un trux pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
+- Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 
 Options
 
@@ -57,6 +60,14 @@ Fonctionnel
 - Ajouter un ordre aux images dans un album
 - Ajouter les boutons de changements d'ordre sur les images d'un album
 - Ajouter un icon sur les images d'un album qui indique s'il y a un texte non null dessus
+- Quand un album est supprimer, supprimer les files images également
+
+- Ajouter le bouton de suppresion sur les images d'un album
+- Refacto Dashboard et ImageManage
+- Faire une page dédié pour les commentaires signalés
+- Faire une barre admin (en haut de l'écran)
+- Faire un count des commentaire signalé
+- Ajouter le nombre de commentaire signalé dans la barre d'admin (sur le bouton pour accéder aux reports)
 
 Design
 

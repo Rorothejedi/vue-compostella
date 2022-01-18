@@ -6,6 +6,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VuePictureSwipe from 'vue-picture-swipe';
+import VueKinesis from "vue-kinesis";
 
 const token = store.getters.token
 
@@ -13,8 +14,10 @@ if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
 
-createApp(App)
-    .use(store)
-    .use(router)
-    .component('vue-picture-swipe', VuePictureSwipe)
-    .mount('#app')
+const app = createApp(App)
+
+app.use(store)
+app.use(router)
+app.use(VueKinesis)
+app.component('vue-picture-swipe', VuePictureSwipe)
+app.mount('#app')

@@ -9,10 +9,9 @@ import image from './image.js'
 
 export default createStore({
   getters: {
-    token(state) {
-      return state.user.token
-    },
-    isAuthenticated: state => !!state.user.token
+    token: state => state.user.token,
+    isAuthenticated: state => !!state.user.token,
+    host: () => process.env.VUE_APP_BASE_URL,
   },
 
   plugins: [
@@ -20,6 +19,7 @@ export default createStore({
       paths: ['user']
     })
   ],
+
   modules: {
     album,
     user,

@@ -1,4 +1,24 @@
 <template>
+  <div class="admin-navbar" v-if="isAuthenticated">
+    <div class="container admin-navbar-content">
+      <div>
+        <router-link to="/">
+          <button @click="clearAlbums()">Accueil</button>
+        </router-link>
+        <router-link to="/albums-manage">
+          <button @click="clearAlbums()">Gérer les albums</button>
+        </router-link>
+        <router-link to="/comments-report">
+          <button>Signalements ({{ reportedComments.length }})</button>
+        </router-link>
+      </div>
+
+      <router-link to="/">
+        <button @click="logout()">Déconnexion</button>
+      </router-link>
+    </div>
+  </div>
+
   <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition || 'fade'" mode="out-in">
       <component :is="Component" />
@@ -10,14 +30,27 @@
 import axios from "axios";
 import store from "./store";
 import router from "./router";
+import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   created() {
-    this.logoutForUnauthenticatedResponse();
+    this.logoutWhenUnauthenticatedResponse();
+    this.loadReportedComments();
+  },
+
+  computed: {
+    ...mapGetters(["isAuthenticated"]),
+    ...mapState("comment", ["reportedComments"]),
   },
 
   methods: {
-    logoutForUnauthenticatedResponse() {
+    ...mapActions("album", ["clearAlbums"]),
+    ...mapActions("user", ["logout"]),
+    ...mapActions("comment", ["loadReportedComments"]),
+
+    /* Auth methods */
+
+    logoutWhenUnauthenticatedResponse() {
       axios.interceptors.response.use(
         function (response) {
           return response;
@@ -38,4 +71,22 @@ export default {
 <style>
 @import "./styles/normalize.css";
 @import "./styles/main.css";
+</style>
+
+<style scoped>
+.admin-navbar {
+  width: 100%;
+  min-height: 50px;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: var(--dark-top-color);
+  display: flex;
+  align-items: center;
+}
+.admin-navbar-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0px;
+}
 </style>

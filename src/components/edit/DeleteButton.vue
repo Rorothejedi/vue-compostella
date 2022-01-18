@@ -28,6 +28,7 @@ export default {
       if (this.loading) return;
 
       this.loading = true;
+
       this.deleteAlbum(this.album.id).then(() => {
         this.loadAlbums().then(() => {
           this.loading = false;

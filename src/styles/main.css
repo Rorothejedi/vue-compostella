@@ -1,36 +1,44 @@
 /* Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,300&family=Hind+Madurai:wght@300&family=Londrina+Outline&family=Londrina+Solid&display=swap');
 
 /* Commons */
+
 body {
-    transition: background-color 0.3s ease;
     --main-bg-color: white;
-    /* --secondary-bg-color: #a1a1a1; */
-    --dark-bg-color: #222;
     --main-text-color: #3b3b3b;
     --secondary-text-color: lightcoral;
     --third-text-color: #cccccc;
+
+    --dark-bg-color: #222;
+    --dark-top-color: #111;
     --dark-text-color: #ccc;
+
     --title-font-family-solid: 'Londrina Solid', cursive;
     --title-font-family-outline: 'Londrina Outline', cursive;
     --subtitle-font-family: 'Fira Sans', sans-serif;
     --text-font-family: 'Hind Madurai', sans-serif;
 
+    transition: background-color 0.3s ease;
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
     font-family: var(--text-font-family);
 
-    overflow-x: hidden;
-
-    /* find other way*/
-    /* overflow-y: hidden; */
+    /* overflow-x: hidden; */
 }
 
 .dark-theme {
     color: var(--dark-text-color);
 }
 
+/* Helpers */
+
+.bold {
+    font-weight: bold;
+}
+
 /* Route transition */
+
 .slide-right-enter-from,
 .slide-left-leave-to {
     opacity: 0;
@@ -59,7 +67,7 @@ body {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
 }
 
 @media (min-width: 576px) and (max-width: 767px) {

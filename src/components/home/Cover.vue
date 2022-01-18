@@ -25,6 +25,7 @@
 
 <script>
 import date from "@/mixins/date.js";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Cover",
@@ -53,14 +54,8 @@ export default {
     },
   },
 
-  data() {
-    return {
-      host: "",
-    };
-  },
-
-  mounted() {
-    this.host = process.env.VUE_APP_BASE_URL;
+  computed: {
+    ...mapGetters(["host"]),
   },
 };
 </script>
@@ -86,7 +81,7 @@ img {
   transform: scale(1.05);
 }
 
-/** text */
+/* text */
 
 .text {
   margin-top: -55px;
@@ -121,7 +116,7 @@ img {
   transition: transform 0.3s ease-in-out;
 }
 
-/** mask */
+/* mask */
 
 .mask {
   width: 100%;
@@ -141,7 +136,7 @@ img {
   transition: all 0.3s ease-in-out;
 }
 
-/** date */
+/* date */
 
 .date {
   margin-top: 5px;
@@ -164,20 +159,14 @@ img {
 /* kilometers */
 
 .km-wrapper {
-  font-family: "Londrina Shadow", cursive;
+  font-family: "Londrina Outline", cursive;
   font-size: 60px;
   margin-bottom: -20px;
-  transition: all 0.3s ease;
   position: relative;
 }
 .km-unit {
   margin-left: -10px;
   font-size: 40px;
-}
-.box:hover .km-wrapper {
-  transition: all 0.3s ease;
-  font-family: "Londrina Solid", cursive;
-  color: white;
 }
 
 .util {

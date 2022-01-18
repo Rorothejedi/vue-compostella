@@ -16,8 +16,8 @@
         :image="album.images[0].path"
         :departure="album.place_departure"
         :arrival="album.place_arrival"
-        :date="album.created_at"
-        :km="album.km"
+        :date="album.date"
+        :km="album.km_total"
       />
     </router-link>
   </transition-group>

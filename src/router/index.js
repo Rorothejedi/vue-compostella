@@ -6,12 +6,14 @@ import store from '../store'
 import Home from '../views/Home.vue'
 import Album from '../views/Album.vue'
 import Login from '../views/Login.vue'
-import Dashboard from '../views/private/Dashboard.vue'
+import AlbumsManage from '../views/private/AlbumsManage.vue'
 import AlbumEdit from '../views/private/AlbumEdit.vue'
+import CommentsReport from '@/views/private/CommentsReport.vue'
+import Test from '@/views/Test.vue'
 
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
-    next('/dashboard')
+    next('/')
 
     return
   }
@@ -50,6 +52,17 @@ const routes = [{
       darkTheme: false
     }
   },
+  /** test */
+  {
+    path: '/test',
+    component: Test,
+    meta: {
+      transition: 'slide-right'
+    },
+    props: {
+      darkTheme: false
+    }
+  },
   {
     path: '/album/:id',
     component: Album,
@@ -72,8 +85,8 @@ const routes = [{
     }
   },
   {
-    path: '/dashboard',
-    component: Dashboard,
+    path: '/albums-manage',
+    component: AlbumsManage,
     beforeEnter: ifNotAuthenticated,
     meta: {
       transition: 'slide-right'
@@ -85,6 +98,17 @@ const routes = [{
   {
     path: '/album-edit/:id',
     component: AlbumEdit,
+    beforeEnter: ifNotAuthenticated,
+    meta: {
+      transition: 'slide-right'
+    },
+    props: {
+      darkTheme: true
+    },
+  },
+  {
+    path: '/comments-report/',
+    component: CommentsReport,
     beforeEnter: ifNotAuthenticated,
     meta: {
       transition: 'slide-right'

@@ -27,6 +27,8 @@ body {
     /* overflow-x: hidden; */
 }
 
+/* Dark theme */
+
 .dark-theme {
     color: var(--dark-text-color);
 }
@@ -35,6 +37,17 @@ body {
 
 .bold {
     font-weight: bold;
+}
+
+/* Selected */
+::-moz-selection {
+    color: var(--main-bg-color);
+    background: var(--secondary-text-color);
+}
+
+::selection {
+    color: var(--main-bg-color);
+    background: var(--secondary-text-color);
 }
 
 /* Route transition */

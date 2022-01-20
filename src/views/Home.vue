@@ -1,20 +1,22 @@
 <template>
-  <div class="home">
-    <div class="container">
-      <h1 class="title">Sur les chemins de Compostelle</h1>
-      <div class="wrapper">
-        <cover-list />
-      </div>
+  <kinesis-background>
+    <h1 class="title">Sur les chemins de Compostelle</h1>
+    <div class="wrapper">
+      <cover-list />
     </div>
-  </div>
+  </kinesis-background>
 </template>
 
 <script>
 import CoverList from "@/components/home/CoverList.vue";
+import KinesisBackground from "@/components/home/KinesisBackground.vue";
 
 export default {
   name: "Home",
-  components: { CoverList },
+  components: {
+    KinesisBackground,
+    CoverList,
+  },
 };
 </script>
 

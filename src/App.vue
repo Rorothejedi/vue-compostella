@@ -33,14 +33,17 @@ import router from "./router";
 import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
-  created() {
-    this.logoutWhenUnauthenticatedResponse();
-    this.loadReportedComments();
-  },
-
   computed: {
     ...mapGetters(["isAuthenticated"]),
     ...mapState("comment", ["reportedComments"]),
+  },
+
+  created() {
+    this.logoutWhenUnauthenticatedResponse();
+  },
+
+  mounted() {
+    if (this.isAuthenticated) this.loadReportedComments();
   },
 
   methods: {

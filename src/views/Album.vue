@@ -3,33 +3,35 @@
     <div class="container">
       <div class="header">
         <router-link to="/" class="back">←</router-link>
-        <Divider />
+        <divider />
         <h2 class="places">
           {{ album.place_departure }} → {{ album.place_arrival }}
         </h2>
       </div>
 
       <br />
-      <KilometersLine :loading="loading" :km="album.km_total" />
+      <kilometers-line :loading="loading" :km="album.km_total" />
       <p class="story">
         {{ album.text }}
       </p>
-      <Gallery :images="album.images" />
-      <CommentList :comments="album.comments" />
+      <gallery :images="album.images" />
+      <comment-list :comments="album.comments" />
+      <comment-new />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import CommentList from "@/components/album/CommentList.vue";
-import Gallery from "@/components/album/Gallery.vue";
-import KilometersLine from "@/components/album/KilometersLine.vue";
 import Divider from "@/components/utils/Divider.vue";
+import KilometersLine from "@/components/album/KilometersLine.vue";
+import Gallery from "@/components/album/Gallery.vue";
+import CommentList from "@/components/album/CommentList.vue";
+import CommentNew from "@/components/album/CommentNew.vue";
 
 export default {
   name: "Album",
-  components: { KilometersLine, Gallery, CommentList, Divider },
+  components: { Divider, KilometersLine, Gallery, CommentList, CommentNew },
 
   data() {
     return {

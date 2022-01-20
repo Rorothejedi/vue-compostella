@@ -9,7 +9,7 @@ import Login from '../views/Login.vue'
 import AlbumsManage from '../views/private/AlbumsManage.vue'
 import AlbumEdit from '../views/private/AlbumEdit.vue'
 import CommentsReport from '@/views/private/CommentsReport.vue'
-import Test from '@/views/Test.vue'
+import KinesisBackground from '@/components/home/KinesisBackground.vue'
 
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
@@ -55,7 +55,7 @@ const routes = [{
   /** test */
   {
     path: '/test',
-    component: Test,
+    component: KinesisBackground,
     meta: {
       transition: 'slide-right'
     },

@@ -2,7 +2,7 @@
   <div class="container dark-theme">
     <div class="header">
       <router-link to="/" class="back">←</router-link>
-      <Divider />
+      <divider />
       <h2 class="places">Espace admin</h2>
     </div>
     <input v-model="email" placeholder="Email" type="email" />
@@ -10,7 +10,6 @@
     <button @click="submitLogin()">
       OK <span v-if="loading">loading...</span>
     </button>
-    <p>token: {{ token }}</p>
   </div>
 </template>
 
@@ -37,14 +36,17 @@ export default {
 
   methods: {
     ...mapActions("user", ["login"]),
+    ...mapActions("comment", ["loadReportedComments"]),
 
     submitLogin() {
       if (this.loading) return;
 
       this.loading = true;
+
       this.login([this.email, this.password]).then(() => {
         axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
-        this.$router.push("/dashboard");
+        this.loadReportedComments();
+        this.$router.push("/");
         this.loading = false;
         this.email = "";
         this.password = "";

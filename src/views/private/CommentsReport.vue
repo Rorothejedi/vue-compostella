@@ -25,7 +25,7 @@
             <button @click="resetReport(comment.id)">
               ✔ <span v-if="loading_reset[comment.id]">loading...</span>
             </button>
-            <button @click="deleteComment(comment.id)">
+            <button @click="removeComment(comment.id)">
               ✖ <span v-if="loading_delete[comment.id]">loading...</span>
             </button>
           </div>
@@ -84,8 +84,8 @@ export default {
   methods: {
     ...mapActions("comment", [
       "resetReportedComment",
-      "deleteReportedComment",
       "loadReportedComments",
+      "deleteComment",
     ]),
 
     resetReport(id) {
@@ -98,10 +98,10 @@ export default {
       });
     },
 
-    deleteComment(id) {
+    removeComment(id) {
       this.loading_delete[id] = true;
 
-      this.deleteReportedComment(id).then(() => {
+      this.deleteComment(id).then(() => {
         this.loadReportedComments().then(() => {
           this.loading_delete[id] = false;
         });

@@ -9,7 +9,7 @@ import Login from '@/views/Login.vue'
 import AlbumsManage from '@/views/private/AlbumsManage.vue'
 import AlbumEdit from '@/views/private/AlbumEdit.vue'
 import CommentsReport from '@/views/private/CommentsReport.vue'
-import KinesisBackground from '@/components/home/KinesisBackground.vue'
+// import KinesisBackground from '@/components/home/KinesisBackground.vue'
 
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
@@ -42,27 +42,17 @@ const routes = [{
       darkTheme: false
     }
   },
-  {
-    path: '/album',
-    component: Album,
-    meta: {
-      transition: 'slide-right'
-    },
-    props: {
-      darkTheme: false
-    }
-  },
-  /** test */
-  {
-    path: '/test',
-    component: KinesisBackground,
-    meta: {
-      transition: 'slide-right'
-    },
-    props: {
-      darkTheme: false
-    }
-  },
+  /** Test POC Kinesis */
+  // {
+  //   path: '/test',
+  //   component: KinesisBackground,
+  //   meta: {
+  //     transition: 'slide-right'
+  //   },
+  //   props: {
+  //     darkTheme: false
+  //   }
+  // },
   {
     path: '/album/:id',
     component: Album,

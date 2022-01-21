@@ -1,13 +1,8 @@
 <template>
-  <!-- <kinesis-background> -->
   <div class="container">
-    <router-link to="/album/23">test</router-link>
-
     <h1 class="title">Sur les chemins de Compostelle</h1>
     <cover-list />
   </div>
-
-  <!-- </kinesis-background> -->
 </template>
 
 <script>

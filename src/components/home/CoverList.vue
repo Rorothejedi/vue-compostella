@@ -1,26 +1,34 @@
 <template>
-  <transition-group
-    name="staggered-fade"
-    @before-enter="beforeEnter"
-    @enter="enter"
-  >
-    <router-link
-      :to="`/album/${album.id}`"
-      class="box"
-      v-for="(album, key) in albums"
-      :key="album.id"
-      :data-index="key"
+  <div class="wrapper">
+    <transition-group
+      name="staggered-fade"
+      @before-enter="beforeEnter"
+      @enter="enter"
     >
-      <Cover
-        v-if="album.images.length > 0"
-        :image="album.images[0].path"
-        :departure="album.place_departure"
-        :arrival="album.place_arrival"
-        :date="album.date"
-        :km="album.km_total"
-      />
-    </router-link>
-  </transition-group>
+      <router-link
+        v-for="(album, key) in albums_infinite"
+        :key="album.id"
+        :to="`/album/${album.id}`"
+        :data-index="key"
+        class="box"
+      >
+        <Cover
+          v-if="album.images.length > 0"
+          :image="album.images[0].path"
+          :departure="album.place_departure"
+          :arrival="album.place_arrival"
+          :date="album.date"
+          :km="album.km_total"
+        />
+      </router-link>
+    </transition-group>
+  </div>
+  <div class="see-more">
+    <p v-if="albums_meta.current_page < albums_meta.last_page">
+      {{ loading ? "loading..." : "Voir plus" }}
+    </p>
+    <div v-else class="see-more-spacer"></div>
+  </div>
 </template>
 
 <script>
@@ -35,30 +43,58 @@ export default {
   data() {
     return {
       loading: false,
+      page: 1,
     };
   },
 
   computed: {
-    ...mapState("album", ["albums"]),
+    ...mapState("album", ["albums_infinite", "albums_meta"]),
   },
 
-  mounted() {
+  beforeMount() {
     this.fetchAlbums();
   },
 
+  mounted() {
+    this.getNextAlbums();
+  },
+
   methods: {
-    ...mapActions("album", ["loadAlbums"]),
+    ...mapActions("album", ["loadAlbumsInfinite"]),
 
     fetchAlbums() {
+      if (this.loading) return;
+
       this.loading = true;
 
       const params = {
         hide: 0,
+        page: this.page,
       };
 
-      this.loadAlbums(params).then(() => {
+      this.loadAlbumsInfinite(params).then(() => {
         this.loading = false;
       });
+    },
+
+    /* infinite scroll */
+
+    getNextAlbums() {
+      window.onscroll = () => {
+        const window_bottom =
+          document.documentElement.scrollTop + window.innerHeight ===
+          document.documentElement.offsetHeight;
+
+        if (
+          !window_bottom ||
+          this.loading ||
+          this.albums_meta.current_page === this.albums_meta.last_page
+        )
+          return;
+
+        this.page++;
+        this.fetchAlbums();
+      };
     },
 
     // enter box transition
@@ -87,6 +123,34 @@ export default {
   overflow: hidden;
 
   height: 370px;
+}
+
+/*wrapper */
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.see-more {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+.see-more-spacer {
+  width: 100%;
+  height: 50px;
 }
 </style>
 

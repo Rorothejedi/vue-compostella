@@ -2,17 +2,16 @@ TODO
 
 Fonctionnel
 
-- Ajouter des alertes pour confirmer les actions (ajout, suppression, edit, report, etc)
-- Mettre l'ajout d'album dans une modal
-- Gérer les thumbnails côté serveur (pour les main et celles d'un album)
+- Faire une pagination avec lazy load sur les albums (10 albums par page)
 
-- Terminer la POC sur kinesis (WIP)
+- gérer le order_by (sort) pour pouvoir trier les albums
+- ajouter barre de recherche d'album (dashboard)
+
+- Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
+- Gérer les thumbnails côté serveur (pour les main et celles d'un album)
 - Sortir les images trier par album_order côté serveur
 - Faire une modal de confirmation
 - Améliorer le composant modal
-- Faire une pagination avec lazy load sur les albums (10 albums par page)
-- gérer le order_by (sort) pour pouvoir trier les albums
-- ajouter barre de recherche d'album (dashboard)
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
 - Ajouter un recaptcha pour l'ajout de commentaire
 
@@ -20,6 +19,7 @@ Design
 
 - Gérer la grid des images (justified gallery)
 
+- Terminer la POC sur kinesis (WIP)
 - Faire des boutons sympa
 - Trouver des icones sympa pour : 
     - les flèches (retour et destination)
@@ -66,9 +66,10 @@ DONE
 - Faire une barre admin (en haut de l'écran)
 - Faire un count des commentaire signalé
 - Ajouter le nombre de commentaire signalé dans la barre d'admin (sur le bouton pour accéder aux reports)
-
 - Gérer l'ajout de commentaire côté public
 - Faire un bouton de suppression de commentaire côté public si on est authentifié
 - Ajouter le bouton de report côté public
 - Ajouter un bouton de like sur les commentaires
 - Empêcher que le bouton de report et de like puisse être spam (localstorage)
+
+- Mettre l'ajout d'album dans une modal

@@ -1,23 +1,21 @@
 <template>
-  <div class="album">
-    <div class="container">
-      <div class="header">
-        <router-link to="/" class="back">←</router-link>
-        <divider />
-        <h2 class="places">
-          {{ album.place_departure }} → {{ album.place_arrival }}
-        </h2>
-      </div>
-
-      <br />
-      <kilometers-line :loading="loading" :km="album.km_total" />
-      <p class="story">
-        {{ album.text }}
-      </p>
-      <gallery :images="album.images" />
-      <comment-list :comments="album.comments" />
-      <comment-new />
+  <div class="container">
+    <div class="header">
+      <router-link to="/" class="back">←</router-link>
+      <divider />
+      <h2 class="places">
+        {{ album.place_departure }} → {{ album.place_arrival }}
+      </h2>
     </div>
+
+    <br />
+    <kilometers-line :loading="loading" :km="album.km_total" />
+    <p class="story">
+      {{ album.text }}
+    </p>
+    <gallery :images="album.images" />
+    <comment-list :comments="album.comments" />
+    <comment-new />
   </div>
 </template>
 
@@ -56,6 +54,7 @@ export default {
 
     fetchAlbum() {
       this.loading = true;
+
       this.loadAlbum(this.$route.params.id).then(() => {
         this.loading = false;
       });

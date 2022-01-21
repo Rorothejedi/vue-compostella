@@ -4,7 +4,7 @@
       <div class="modal-container">
         <header class="modal-header">
           <div class="modal-header-slot">
-            <slot name="header"></slot>
+            {{ title }}
           </div>
           <button class="modal-default-button" @click="close()">Fermer</button>
         </header>
@@ -32,6 +32,10 @@ export default {
     modelValue: {
       type: Boolean,
       default: false,
+    },
+    title: {
+      type: String,
+      default: "",
     },
   },
   emits: ["update:modelValue"],
@@ -75,6 +79,9 @@ export default {
 .modal-header-slot {
   display: flex;
   align-items: center;
+  font-family: var(--subtitle-font-family);
+  font-weight: bold;
+  font-size: large;
 }
 
 .modal-body {

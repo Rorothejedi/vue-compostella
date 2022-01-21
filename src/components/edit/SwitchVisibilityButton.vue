@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "SwitchVisibilityButton",
   props: {
@@ -21,6 +21,10 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState("album", ["albums_meta"]),
+  },
+
   methods: {
     ...mapActions("album", ["loadAlbums", "editAlbum"]),
 
@@ -34,7 +38,7 @@ export default {
       };
 
       this.editAlbum([this.album.id, params]).then(() => {
-        this.loadAlbums().then(() => {
+        this.loadAlbums({ page: this.albums_meta.current_page }).then(() => {
           this.loading = false;
         });
       });

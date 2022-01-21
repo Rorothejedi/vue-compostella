@@ -1,7 +1,5 @@
 <template>
   <div>
-    <TitleLine title="Liste des albums" dark />
-
     <div v-if="!loading">
       <div v-for="album in albums" :key="album.id" class="album">
         <router-link
@@ -21,6 +19,23 @@
           <delete-button :album="album" />
         </div>
       </div>
+
+      <div class="pagination-buttons">
+        <div>
+          <button @click="previousPage()" v-if="albums_meta.current_page > 1">
+            Précédent
+          </button>
+        </div>
+
+        <div>
+          <button
+            @click="nextPage()"
+            v-if="albums_meta.current_page < albums_meta.last_page"
+          >
+            Suivant
+          </button>
+        </div>
+      </div>
     </div>
     <div v-else>Loading...</div>
   </div>
@@ -29,13 +44,12 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import date from "@/mixins/date.js";
-import TitleLine from "@/components/utils/TitleLine.vue";
 import SwitchVisibilityButton from "@/components/edit/SwitchVisibilityButton.vue";
 import DeleteButton from "@/components/edit/DeleteButton.vue";
 
 export default {
   name: "AlbumList",
-  components: { TitleLine, SwitchVisibilityButton, DeleteButton },
+  components: { SwitchVisibilityButton, DeleteButton },
   mixins: [date],
 
   data() {
@@ -46,7 +60,7 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["albums"]),
+    ...mapState("album", ["albums", "albums_meta"]),
   },
 
   mounted() {
@@ -57,10 +71,32 @@ export default {
     ...mapActions("album", ["loadAlbums"]),
 
     fetchAlbums() {
+      if (this.loading) return;
+
       this.loading = true;
-      this.loadAlbums().then(() => {
+
+      const params = {
+        page: this.page,
+      };
+
+      this.loadAlbums(params).then(() => {
+        this.page = this.albums_meta.current_page;
         this.loading = false;
       });
+    },
+
+    previousPage() {
+      if (this.loading) return;
+
+      this.page--;
+      this.fetchAlbums();
+    },
+
+    nextPage() {
+      if (this.loading) return;
+
+      this.page++;
+      this.fetchAlbums();
     },
   },
 };
@@ -91,5 +127,13 @@ export default {
 }
 button {
   cursor: pointer;
+}
+
+.pagination-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: white solid 1px;
 }
 </style>

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "DeleteButton",
   props: {
@@ -21,6 +21,10 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState("album", ["albums_meta"]),
+  },
+
   methods: {
     ...mapActions("album", ["loadAlbums", "deleteAlbum"]),
 
@@ -30,9 +34,9 @@ export default {
       this.loading = true;
 
       this.deleteAlbum(this.album.id).then(() => {
-        this.loadAlbums().then(() => {
+        this.loadAlbums({ page: this.albums_meta.current_page }).then(() => {
           this.loading = false;
-          this.$router.push("/dashboard");
+          this.$router.push("/albums-manage");
         });
       });
     },

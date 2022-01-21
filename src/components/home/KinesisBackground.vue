@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="test">
     <kinesis-container class="kinesis-container">
       <div class="slot-container container">
         <slot></slot>
@@ -267,12 +267,16 @@ export default {
 </script>
 
 <style scoped>
+.test {
+  height: 100%;
+}
+
 .kinesis-container {
   z-index: -1;
   position: fixed;
   width: 100%;
   height: 100%;
-  /* overflow: auto; */
+  overflow: auto;
 }
 .slot-container {
   z-index: 0;
@@ -281,7 +285,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 /** test */

@@ -23,8 +23,6 @@ body {
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
     font-family: var(--text-font-family);
-
-    /* overflow-x: hidden; */
 }
 
 /* Dark theme */
@@ -80,7 +78,7 @@ body {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 100px;
+    padding-bottom: 150px;
 }
 
 @media (min-width: 576px) and (max-width: 767px) {

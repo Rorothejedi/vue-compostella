@@ -2,12 +2,12 @@ import {
   createRouter,
   createWebHistory
 } from 'vue-router'
-import store from '../store'
-import Home from '../views/Home.vue'
-import Album from '../views/Album.vue'
-import Login from '../views/Login.vue'
-import AlbumsManage from '../views/private/AlbumsManage.vue'
-import AlbumEdit from '../views/private/AlbumEdit.vue'
+import store from '@/store'
+import Home from '@/views/Home.vue'
+import Album from '@/views/Album.vue'
+import Login from '@/views/Login.vue'
+import AlbumsManage from '@/views/private/AlbumsManage.vue'
+import AlbumEdit from '@/views/private/AlbumEdit.vue'
 import CommentsReport from '@/views/private/CommentsReport.vue'
 import KinesisBackground from '@/components/home/KinesisBackground.vue'
 
@@ -121,7 +121,7 @@ const routes = [{
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
 })
 
 router.afterEach((to) => {

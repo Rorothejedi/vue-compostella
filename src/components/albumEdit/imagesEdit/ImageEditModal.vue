@@ -1,11 +1,9 @@
 <template>
   <div>
-    <modal v-model="modal">
-      <template v-slot:header>
-        ID : {{ image_to_edit.id }} <divider smallMargin /> Image :
-        {{ image_to_edit.path }}
-      </template>
-
+    <modal
+      v-model="modal"
+      :title="`ID : ${image_to_edit.id} | Image : ${image_to_edit.path}`"
+    >
       <template v-slot:default>
         <p class="modal-date">
           Créer le {{ formatDatetime(image_to_edit.created_at) }} <br />
@@ -50,13 +48,12 @@
 
 <script>
 import Modal from "@/components/utils/Modal.vue";
-import Divider from "@/components/utils/Divider.vue";
 import date from "@/mixins/date";
 import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   name: "ImageEditModal",
-  components: { Modal, Divider },
+  components: { Modal },
   mixins: [date],
 
   props: {

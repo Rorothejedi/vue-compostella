@@ -2,7 +2,7 @@
   <div class="container dark-theme">
     <br />
 
-    <router-link to="/dashboard" @click="clearAlbum()">
+    <router-link to="/albums-manage" @click="clearAlbum()">
       <button>Retour</button>
     </router-link>
 

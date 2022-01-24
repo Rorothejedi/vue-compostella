@@ -34,7 +34,8 @@ export default {
         let params = {};
 
         params.src = process.env.VUE_APP_BASE_URL + "/" + image.path;
-        params.thumbnail = "http://via.placeholder.com/200x200";
+        params.thumbnail =
+          process.env.VUE_APP_BASE_URL + "/" + image.thumbnail_path;
         params.w = image.width;
         params.h = image.height;
 

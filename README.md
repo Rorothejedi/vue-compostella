@@ -2,13 +2,12 @@ TODO
 
 Fonctionnel
 
-- Faire une pagination avec lazy load sur les albums (10 albums par page)
+- Débug le lazy load de l'accueil depuis les autres pages
 
 - gérer le order_by (sort) pour pouvoir trier les albums
 - ajouter barre de recherche d'album (dashboard)
 
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
-- Gérer les thumbnails côté serveur (pour les main et celles d'un album)
 - Sortir les images trier par album_order côté serveur
 - Faire une modal de confirmation
 - Améliorer le composant modal
@@ -71,5 +70,8 @@ DONE
 - Ajouter le bouton de report côté public
 - Ajouter un bouton de like sur les commentaires
 - Empêcher que le bouton de report et de like puisse être spam (localstorage)
-
 - Mettre l'ajout d'album dans une modal
+- Faire une pagination avec lazy load sur les albums (10 albums par page)
+
+- Gérer l'optimisation des images côté serveur
+- Gérer les thumbnails côté serveur (pour les main et celles d'un album)

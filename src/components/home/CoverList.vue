@@ -14,7 +14,7 @@
       >
         <Cover
           v-if="album.images.length > 0"
-          :image="album.images[0].path"
+          :image="album.images[0].cover_path"
           :departure="album.place_departure"
           :arrival="album.place_arrival"
           :date="album.date"

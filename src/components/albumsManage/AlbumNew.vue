@@ -136,7 +136,7 @@ export default {
       };
 
       this.createAlbum(params).then(() => {
-        this.loadAlbums().then(() => {
+        this.loadAlbums({ per_page: 15 }).then(() => {
           this.resetLocalState();
           this.loading = false;
         });

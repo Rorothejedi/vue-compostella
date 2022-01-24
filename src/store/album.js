@@ -6,7 +6,9 @@ export default {
     state: {
         albums: {},
         albums_meta: {},
+
         albums_infinite: [],
+        albums_infinite_meta: {},
 
         album: {},
     },
@@ -18,11 +20,15 @@ export default {
         SET_ALBUMS_META(state, payload) {
             state.albums_meta = payload
         },
+
         SET_ALBUMS_INFINITE(state, payload) {
             state.albums_infinite = [
                 ...state.albums_infinite,
                 ...payload
             ]
+        },
+        SET_ALBUMS_INFINITE_META(state, payload) {
+            state.albums_infinite_meta = payload
         },
 
         SET_ALBUM(state, payload) {
@@ -44,19 +50,21 @@ export default {
                 })
         },
 
+        clearAlbums(store) {
+            store.commit('SET_ALBUMS', [])
+            store.commit('SET_ALBUMS_META', [])
+        },
+
+        /* ALBUMS INFINITE SCROLL */
+
         loadAlbumsInfinite(store, params = {}) {
             return axios.get(`${process.env.VUE_APP_BASE_URL}/api/albums`, {
                     params: params
                 })
                 .then(response => {
                     store.commit('SET_ALBUMS_INFINITE', response.data.data)
-                    store.commit('SET_ALBUMS_META', response.data.meta)
+                    store.commit('SET_ALBUMS_INFINITE_META', response.data.meta)
                 })
-        },
-
-        clearAlbums(store) {
-            store.commit('SET_ALBUMS', [])
-            store.commit('SET_ALBUMS_META', [])
         },
 
         /* ALBUM */

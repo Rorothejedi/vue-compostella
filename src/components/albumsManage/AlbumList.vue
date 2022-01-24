@@ -77,6 +77,7 @@ export default {
 
       const params = {
         page: this.page,
+        per_page: 15,
       };
 
       this.loadAlbums(params).then(() => {

@@ -24,7 +24,9 @@
     </transition-group>
   </div>
   <div class="see-more">
-    <p v-if="albums_meta.current_page < albums_meta.last_page">
+    <p
+      v-if="albums_infinite_meta.current_page < albums_infinite_meta.last_page"
+    >
       {{ loading ? "loading..." : "Voir plus" }}
     </p>
     <div v-else class="see-more-spacer"></div>
@@ -48,11 +50,11 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["albums_infinite", "albums_meta"]),
+    ...mapState("album", ["albums_infinite", "albums_infinite_meta"]),
   },
 
   beforeMount() {
-    this.fetchAlbums();
+    if (this.albums_infinite.length === 0) this.fetchAlbums();
   },
 
   mounted() {
@@ -77,7 +79,7 @@ export default {
       });
     },
 
-    /* infinite scroll */
+    /* Infinite scroll */
 
     getNextAlbums() {
       window.onscroll = () => {
@@ -88,7 +90,8 @@ export default {
         if (
           !window_bottom ||
           this.loading ||
-          this.albums_meta.current_page === this.albums_meta.last_page
+          this.albums_infinite_meta.current_page ===
+            this.albums_infinite_meta.last_page
         )
           return;
 

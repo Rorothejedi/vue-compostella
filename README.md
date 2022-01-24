@@ -2,7 +2,6 @@ TODO
 
 Fonctionnel
 
-- Débug le lazy load de l'accueil depuis les autres pages
 
 - gérer le order_by (sort) pour pouvoir trier les albums
 - ajouter barre de recherche d'album (dashboard)
@@ -75,3 +74,4 @@ DONE
 
 - Gérer l'optimisation des images côté serveur
 - Gérer les thumbnails côté serveur (pour les main et celles d'un album)
+- Débug le lazy load de l'accueil depuis les autres pages

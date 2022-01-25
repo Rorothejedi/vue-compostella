@@ -11,7 +11,7 @@
           {{ formatDate(date) }}
         </div>
       </div>
-      <div class="km-wrapper" title="Kilomètres totaux">
+      <div class="km-wrapper" title="Kilomètres totaux parcourus">
         <span class="util">{{ km }} <span class="km-unit">KM</span></span>
         <span class="km-main">{{ km }} <span class="km-unit">KM</span></span>
         <span class="km-secondary"

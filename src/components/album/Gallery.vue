@@ -25,6 +25,7 @@ export default {
     return {
       options: {
         shareEl: false,
+        history: false,
       },
     };
   },

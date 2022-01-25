@@ -41,7 +41,7 @@
             <div class="pswp__counter"></div>
             <button
               class="pswp__button pswp__button--close"
-              title="Close (Esc)"
+              title="Fermer (echap)"
             ></button>
 
             <button
@@ -67,11 +67,11 @@
             ></button>
             <button
               class="pswp__button pswp__button--fs"
-              title="Toggle fullscreen"
+              title="Basculer en plein écran"
             ></button>
             <button
               class="pswp__button pswp__button--zoom"
-              title="Zoom in/out"
+              title="Zoom avant/arrière"
             ></button>
             <div class="pswp__preloader">
               <div class="pswp__preloader__icn">
@@ -88,12 +88,12 @@
           </div>
           <button
             class="pswp__button pswp__button--arrow--left"
-            title="Previous (arrow left)"
+            title="Précédent (flèche gauche)"
             @click="resetAngle"
           ></button>
           <button
             class="pswp__button pswp__button--arrow--right"
-            title="Next (arrow right)"
+            title="Suivant (flèche droite)"
             @click="resetAngle"
           ></button>
           <div class="pswp__caption">
@@ -144,6 +144,10 @@ export default {
     items_loaded: {
       handler(value) {
         if (value.length === this.items.length && !this.is_justified) {
+          for (let i = 0; i < this.items.length; i++) {
+            if (!value[i]) return;
+          }
+
           this.justified();
           this.is_justified = true;
         }
@@ -418,7 +422,6 @@ export default {
 
     justified() {
       // 2 (a refresh en cas de resize)
-      console.log("in justified");
       const container_width =
         document.querySelector(".container").clientWidth - 30;
       const gallery_div = document.querySelector(".my-gallery");
@@ -427,18 +430,18 @@ export default {
       let line_width = 0;
 
       for (let i = 0; i < this.items.length; i++) {
-        const image = document.querySelectorAll(".gallery-thumbnail a img")[i];
         const image_figcaption =
           document.querySelectorAll(".gallery-thumbnail")[i];
         let line_images_number = line_width > 0 ? line_images_number + 1 : 1;
 
         // create line
         gallery_div.insertBefore(new_div, image_figcaption);
+        new_div.classList.add("thumbnail_div");
 
         // insert into line
         new_div.appendChild(image_figcaption);
 
-        line_width += image.offsetWidth;
+        line_width += image_figcaption.offsetWidth;
 
         if (line_width >= container_width) {
           while (new_div.offsetWidth > container_width) {
@@ -446,9 +449,6 @@ export default {
             new_div.style.height = `${new_div.offsetHeight - 1}px`;
             new_div.style.display = "inline-flex";
           }
-
-          new_div.style.display = "flex";
-          new_div.style.justifyContent = "space-between";
 
           new_div = document.createElement("div");
           line_width = 0;
@@ -475,23 +475,14 @@ export default {
 .pswp__button--rotate--right {
   background-position: -26px 10px;
 }
+.thumbnail_div {
+  display: flex;
+  justify-content: space-between;
+}
 .gallery-thumbnail {
-  display: inline;
   margin: 3px;
 }
-
-.gallery-thumbnail {
-  overflow: hidden;
-  /* background-color: black; */
-}
-
 .gallery-thumbnail a img {
   height: -webkit-fill-available;
-  /* transition: all 0.3s ease; */
 }
-/* .gallery-thumbnail a img:hover { */
-/* opacity: 0.9; */
-/* transform: scale(1.05); */
-/* transition: all 0.3s ease; */
-/* } */
 </style>

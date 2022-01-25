@@ -2,8 +2,6 @@ TODO
 
 Fonctionnel
 
-- Resoudre bug avec trop de photo inline (justified trop rapide ?)
-
 - Sortir les images trier par album_order côté serveur
 - gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
@@ -14,6 +12,7 @@ Fonctionnel
 
 Design
 
+- Gérer l'apparition des images fade
 - Gérer le resize de la grid d'image au redimentionement de la fenetre
 
 - Faire des boutons sympa
@@ -36,6 +35,8 @@ Design
 Options
 
 - Système de réponses aux commentaires
+- Ne pas montrer au public un commentaire ayant été signalé plus de 3 ou 5 fois
+- Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
 
 --------------------------------------------------------
 
@@ -79,3 +80,4 @@ DONE
 - Faire un bouton "gérer l'album" sur le côté public avec isAuthenticated
 - Resoudre bug (2nd click sur "gérer les album fait planter") 
 - Gérer l'affichage de la grid justified dès le mounted du composant
+- Resoudre bug avec trop de photo inline

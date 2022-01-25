@@ -3,13 +3,27 @@
     <div class="container admin-navbar-content">
       <div>
         <router-link to="/">
-          <button @click="clearAlbums()">Accueil</button>
+          <button @click="clearAlbums()">
+            <unicon name="estate" fill="royalblue" />
+          </button>
         </router-link>
         <router-link to="/albums-manage">
-          <button @click="clearAlbums()">Gérer les albums</button>
+          <button
+            @click="$route.path === '/albums-manage' ? '' : clearAlbums()"
+          >
+            <unicon name="list-ul" fill="royalblue" />
+            Gérer les albums
+          </button>
         </router-link>
         <router-link to="/comments-report">
-          <button>Signalements ({{ reportedComments.length }})</button>
+          <button>
+            <!-- TODO -->
+            <!-- Refacto buttons -->
+            <div class="icon-cart">
+              <unicon name="comment-exclamation" fill="royalblue" />
+              <div class="count">{{ reportedComments.length }}</div>
+            </div>
+          </button>
         </router-link>
       </div>
 
@@ -91,5 +105,28 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-bottom: 0px;
+}
+</style>
+
+<style>
+.icon-cart {
+  display: inline-block;
+  position: relative;
+}
+.icon-cart .count {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 100px;
+  left: 10px;
+  bottom: 0px;
+
+  color: #fff;
+  font-size: 11px;
 }
 </style>

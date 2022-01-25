@@ -112,7 +112,8 @@ export default {
 
 <style scoped>
 .comment-new {
-  background-color: var(--third-text-color);
-  padding: 20px;
+  background-color: whitesmoke;
+  padding: 25px;
+  border-radius: 3px;
 }
 </style>

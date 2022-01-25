@@ -1,11 +1,21 @@
 <template>
   <div class="container">
     <div class="header">
-      <router-link to="/" class="back">←</router-link>
-      <divider />
-      <h2 class="places">
-        {{ album.place_departure }} → {{ album.place_arrival }}
-      </h2>
+      <div>
+        <router-link to="/" class="back">←</router-link>
+        <divider />
+        <h2 class="places">
+          {{ album.place_departure }} → {{ album.place_arrival }}
+        </h2>
+      </div>
+      <div>
+        <router-link
+          v-if="this.isAuthenticated"
+          :to="`/album-edit/${album.id}`"
+        >
+          <button>Gérer l'album</button>
+        </router-link>
+      </div>
     </div>
 
     <br />
@@ -20,7 +30,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import Divider from "@/components/utils/Divider.vue";
 import KilometersLine from "@/components/album/KilometersLine.vue";
 import Gallery from "@/components/album/Gallery.vue";
@@ -38,6 +48,7 @@ export default {
   },
 
   computed: {
+    ...mapGetters(["isAuthenticated"]),
     ...mapState("album", ["album"]),
   },
 
@@ -66,6 +77,11 @@ export default {
 <style scoped>
 .header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header div:first-child {
+  display: flex;
   justify-content: flex-start;
   align-items: center;
 }
@@ -80,9 +96,16 @@ export default {
   margin-bottom: 20px;
 }
 .story {
-  font-size: 17px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.3px;
+  margin-top: 70px;
+  margin-bottom: 70px;
   white-space: pre-wrap;
+}
+.story::first-letter {
+  text-transform: uppercase;
+  font-size: 2.5em;
+  font-weight: bold;
 }
 </style>

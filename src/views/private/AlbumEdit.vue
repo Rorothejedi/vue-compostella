@@ -2,9 +2,14 @@
   <div class="container dark-theme">
     <br />
 
-    <router-link to="/albums-manage" @click="clearAlbum()">
-      <button>Retour</button>
-    </router-link>
+    <div>
+      <router-link to="/albums-manage" @click="clearAlbum()">
+        <button>Retour</button>
+      </router-link>
+      <router-link :to="`/album/${$route.params.id}`">
+        <button>Voir album public</button>
+      </router-link>
+    </div>
 
     <br /><br />
 

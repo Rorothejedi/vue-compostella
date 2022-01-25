@@ -2,12 +2,11 @@ TODO
 
 Fonctionnel
 
+- Resoudre bug avec trop de photo inline (justified trop rapide ?)
 
-- gérer le order_by (sort) pour pouvoir trier les albums
-- ajouter barre de recherche d'album (dashboard)
-
-- Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Sortir les images trier par album_order côté serveur
+- gérer le order_by (sort) pour pouvoir trier les albums
+- Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Faire une modal de confirmation
 - Améliorer le composant modal
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
@@ -15,10 +14,10 @@ Fonctionnel
 
 Design
 
-- Gérer la grid des images (justified gallery)
+- Gérer le resize de la grid d'image au redimentionement de la fenetre
 
-- Terminer la POC sur kinesis (WIP)
 - Faire des boutons sympa
+- Terminer la POC sur kinesis (WIP)
 - Trouver des icones sympa pour : 
     - les flèches (retour et destination)
     - position
@@ -36,7 +35,7 @@ Design
 
 Options
 
-- Bouton like sur les commentaires ?
+- Système de réponses aux commentaires
 
 --------------------------------------------------------
 
@@ -71,7 +70,12 @@ DONE
 - Empêcher que le bouton de report et de like puisse être spam (localstorage)
 - Mettre l'ajout d'album dans une modal
 - Faire une pagination avec lazy load sur les albums (10 albums par page)
-
 - Gérer l'optimisation des images côté serveur
 - Gérer les thumbnails côté serveur (pour les main et celles d'un album)
 - Débug le lazy load de l'accueil depuis les autres pages
+
+- Gérer la grid des images (justified gallery)
+- Résoudre les soucis avec le vue-picture-wipe
+- Faire un bouton "gérer l'album" sur le côté public avec isAuthenticated
+- Resoudre bug (2nd click sur "gérer les album fait planter") 
+- Gérer l'affichage de la grid justified dès le mounted du composant

@@ -8,8 +8,11 @@
 </template>
 
 <script>
+import VuePictureSwipe from "@/components/utils/VuePictureSwipe.vue";
+
 export default {
   name: "Gallery",
+  components: { VuePictureSwipe },
   props: {
     images: {
       type: Array,
@@ -47,8 +50,16 @@ export default {
       return items;
     },
   },
+
+  methods: {},
 };
 </script>
 
 <style scoped>
+</style>
+
+<style>
+.my-gallery div {
+  display: inline-flex;
+}
 </style>

@@ -50,7 +50,6 @@ export default {
     },
 
     removeImage(image_id) {
-      console.log(image_id);
       if (this.loading_delete[image_id]) return;
 
       this.loading_delete[image_id] = true;

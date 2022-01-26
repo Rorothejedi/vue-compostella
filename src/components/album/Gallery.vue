@@ -55,6 +55,7 @@ export default {
   },
 
   mounted() {
+    this.width = document.body.offsetWidth;
     window.addEventListener("resize", this.resizeJustifiedGallery);
   },
 
@@ -64,7 +65,7 @@ export default {
 
   methods: {
     resizeJustifiedGallery() {
-      this.width = document.body.clientWidth;
+      this.width = document.body.offsetWidth;
     },
   },
 };

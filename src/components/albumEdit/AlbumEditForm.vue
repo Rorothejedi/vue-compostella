@@ -25,10 +25,10 @@
 
         <br />
 
-        <label for="place_arrival">Ville d'arrivé : </label>
+        <label for="place_arrival">Ville d'arrivée : </label>
         <input
           v-model="place_arrival"
-          placeholder="Ville d'arrivé"
+          placeholder="Ville d'arrivée"
           id="place_arrival"
           type="text"
           :disabled="loading"

@@ -48,6 +48,19 @@ body {
     background: var(--secondary-text-color);
 }
 
+/* Scrollbar */
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
 /* Route transition */
 
 .slide-right-enter-from,
@@ -70,6 +83,39 @@ body {
 .slide-right-leave-active,
 .slide-left-leave-active {
     transition: all 0.3s ease-in;
+}
+
+/**/
+
+.fade-enter-from,
+.fade-1-enter-from,
+.fade-2-enter-from {
+    opacity: 0;
+}
+
+.fade-leave-to,
+.fade-1-leave-to,
+.fade-2-leave-to {
+    opacity: 1;
+}
+
+.fade-leave-active,
+.fade-enter-active,
+.fade-1-leave-active,
+.fade-1-enter-active,
+.fade-2-leave-active,
+.fade-2-enter-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-1-leave-active,
+.fade-1-enter-active {
+    transition-delay: 0.5s;
+}
+
+.fade-2-leave-active,
+.fade-2-enter-active {
+    transition-delay: 1s;
 }
 
 /* Container style */

@@ -1,25 +1,39 @@
 <template>
   <div class="kilometers-line">
     <div class="header">
-      <div class="place">{{ album.place_departure }}</div>
+      <div class="place">
+        <transition name="slide-right">
+          <span v-if="!loading">{{ album.place_departure }}</span>
+        </transition>
+      </div>
 
       <div class="hiker-wrapper">
         <img src="@/assets/hiker.gif" alt="Pélerin animé" class="hiker" />
       </div>
 
-      <div class="place">{{ album.place_arrival }}</div>
+      <div class="place">
+        <transition name="fade">
+          <span v-if="!loading">{{ album.place_arrival }}</span>
+        </transition>
+      </div>
     </div>
     <div class="line"></div>
 
-    <div class="footer">
-      <div>{{ start_km }}<small>km</small></div>
-      <div>
-        <small>
-          Étape de <span class="bold">{{ album.km_step }}km</span>
-        </small>
+    <transition name="fade">
+      <div class="footer" v-if="!loading">
+        <div title="Kilomètres parcourus au départ de l'étape">
+          {{ start_km }}<small>km</small>
+        </div>
+        <div>
+          <small>
+            Étape de <span class="bold">{{ album.km_step }}km</span>
+          </small>
+        </div>
+        <div title="Kilomètres parcourus à la fin de l'étape">
+          {{ album.km_total }}<small>km</small>
+        </div>
       </div>
-      <div>{{ album.km_total }}<small>km</small></div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -52,7 +66,7 @@ export default {
 
 <style scoped>
 .kilometers-line {
-  margin-top: 70px;
+  padding-top: 70px;
   margin-bottom: 40px;
 }
 /* Text */
@@ -69,19 +83,23 @@ export default {
   display: flex;
   justify-content: center;
   position: relative;
-  width: 100px;
+  width: 200px;
   height: 20px;
 }
 .hiker {
   position: absolute;
   bottom: -10px;
-  left: 0;
   width: 100px;
   filter: grayscale(70%);
 }
 .place {
   font-family: var(--title-font-family-solid);
   font-size: 1.7rem;
+  height: 30px;
+  width: 100%;
+}
+.place:last-child {
+  text-align: right;
 }
 
 /* Line */
@@ -99,6 +117,6 @@ export default {
 }
 
 /* Footer text */
-.footer {
-}
+/* .footer {
+} */
 </style>

@@ -25,7 +25,7 @@
           </div>
 
           <div class="flex-form-input mt-1">
-            <label for="place_arrival">Ville d'arrivé : </label>
+            <label for="place_arrival">Ville d'arrivée : </label>
             <input
               v-model="place_arrival"
               id="place_arrival"

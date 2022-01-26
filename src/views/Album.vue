@@ -3,10 +3,12 @@
     <div class="header">
       <div>
         <router-link to="/" class="back">←</router-link>
-        <divider />
-        <h2 class="places">
-          {{ album.place_departure }} → {{ album.place_arrival }}
-        </h2>
+        <transition-group name="fade">
+          <divider v-if="!loading" />
+          <h2 v-if="!loading" class="places">
+            Etape du {{ formatDate(album.date) }}
+          </h2>
+        </transition-group>
       </div>
       <div>
         <router-link
@@ -18,22 +20,24 @@
       </div>
     </div>
 
-    <br />
-    <kilometers-line
-      v-if="album.km_step !== 0"
-      :loading="loading"
-      :album="album"
-    />
-    <p class="story">
-      {{ album.text }}
-    </p>
-    <gallery :images="album.images" />
-    <comment-list :comments="album.comments" />
-    <comment-new />
+    <kilometers-line :loading="loading" :album="album" />
+
+    <transition name="fade-1">
+      <p class="story" v-if="!loading">
+        {{ album.text }}
+      </p>
+    </transition>
+
+    <transition-group name="fade-2">
+      <gallery :images="album.images" v-if="!loading" />
+      <comment-list :comments="album.comments" v-if="!loading" />
+      <comment-new v-if="!loading" />
+    </transition-group>
   </div>
 </template>
 
 <script>
+import date from "@/mixins/date.js";
 import { mapActions, mapGetters, mapState } from "vuex";
 import Divider from "@/components/utils/Divider.vue";
 import KilometersLine from "@/components/album/KilometersLine.vue";
@@ -50,10 +54,11 @@ export default {
     CommentList,
     CommentNew,
   },
+  mixins: [date],
 
   data() {
     return {
-      loading: false,
+      loading: true,
     };
   },
 
@@ -89,6 +94,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
 }
 .header div:first-child {
   display: flex;
@@ -99,9 +105,9 @@ export default {
   text-decoration: none;
 }
 .places {
-  font-family: var(--title-font-family-solid);
+  font-family: var(--subtitle-font-family);
   font-weight: 400;
-  font-size: 35px;
+  font-size: 25px;
   margin-top: 20px;
   margin-bottom: 20px;
 }

@@ -147,9 +147,7 @@ export default {
           for (let i = 0; i < this.items.length; i++) {
             if (!value[i]) return;
           }
-
           this.justified();
-          this.is_justified = true;
         }
       },
       deep: true,
@@ -435,7 +433,6 @@ export default {
 
         // create line
         gallery_div.insertBefore(new_div, image_figcaption);
-        new_div.classList.add("thumbnail_div");
 
         // insert into line
         new_div.appendChild(image_figcaption);
@@ -443,16 +440,25 @@ export default {
         line_width += image_figcaption.offsetWidth;
 
         if (line_width >= container_width) {
+          let height = new_div.offsetHeight;
+
           while (new_div.offsetWidth > container_width) {
             new_div.style.display = "flex";
-            new_div.style.height = `${new_div.offsetHeight - 1}px`;
+            new_div.style.height = `${--height}px`;
+            // eslint-disable-next-line no-unused-vars
+            const unused_variable = new_div.offsetHeight;
             new_div.style.display = "inline-flex";
           }
+
+          new_div.style.display = "flex";
+          new_div.style.justifyContent = "space-between";
 
           new_div = document.createElement("div");
           line_width = 0;
         }
       }
+
+      this.is_justified = true;
     },
   },
 };
@@ -474,14 +480,16 @@ export default {
 .pswp__button--rotate--right {
   background-position: -26px 10px;
 }
-.thumbnail_div {
-  display: flex;
-  justify-content: space-between;
-}
 .gallery-thumbnail {
   margin: 3px;
 }
 .gallery-thumbnail a img {
   height: -webkit-fill-available;
+}
+</style>
+
+<style>
+.my-gallery div {
+  display: inline-flex;
 }
 </style>

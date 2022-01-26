@@ -2,6 +2,8 @@ TODO
 
 Fonctionnel
 
+- Résoudre bug "plein écran" sur la gallery
+
 - Sortir les images trier par album_order côté serveur
 - gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
@@ -11,6 +13,8 @@ Fonctionnel
 - Ajouter un recaptcha pour l'ajout de commentaire
 
 Design
+
+- Finaliser le composant KilometersLine
 
 - Faire des boutons sympa
 - Terminer la POC sur kinesis (WIP)

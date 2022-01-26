@@ -72,9 +72,3 @@ export default {
 
 <style scoped>
 </style>
-
-<style>
-.my-gallery div {
-  display: inline-flex;
-}
-</style>

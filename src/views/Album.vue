@@ -19,7 +19,11 @@
     </div>
 
     <br />
-    <kilometers-line :loading="loading" :km="album.km_total" />
+    <kilometers-line
+      v-if="album.km_step !== 0"
+      :loading="loading"
+      :album="album"
+    />
     <p class="story">
       {{ album.text }}
     </p>
@@ -39,7 +43,13 @@ import CommentNew from "@/components/album/CommentNew.vue";
 
 export default {
   name: "Album",
-  components: { Divider, KilometersLine, Gallery, CommentList, CommentNew },
+  components: {
+    Divider,
+    KilometersLine,
+    Gallery,
+    CommentList,
+    CommentNew,
+  },
 
   data() {
     return {

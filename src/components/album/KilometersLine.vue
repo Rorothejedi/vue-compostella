@@ -1,14 +1,24 @@
 <template>
-  <div>
-    <div class="text">
-      <div :class="{ min: min }">0</div>
-      <div class="km" :style="`width: ${actualKmWidth}px`" v-if="!min && !max">
-        {{ km }} km
+  <div class="kilometers-line">
+    <div class="header">
+      <div class="place">{{ album.place_departure }}</div>
+
+      <div class="hiker-wrapper">
+        <img src="@/assets/hiker.gif" alt="Pélerin animé" class="hiker" />
       </div>
-      <div :class="{ max: max }">{{ kmMax }}</div>
+
+      <div class="place">{{ album.place_arrival }}</div>
     </div>
-    <div class="line" ref="line">
-      <div class="journey-line" :style="`width: ${actualKmWidth}px`"></div>
+    <div class="line"></div>
+
+    <div class="footer">
+      <div>{{ start_km }}<small>km</small></div>
+      <div>
+        <small>
+          Étape de <span class="bold">{{ album.km_step }}km</span>
+        </small>
+      </div>
+      <div>{{ album.km_total }}<small>km</small></div>
     </div>
   </div>
 </template>
@@ -17,10 +27,10 @@
 export default {
   name: "KilometersLine",
   props: {
-    km: {
-      type: Number,
+    album: {
+      type: Object,
       required: true,
-      default: 0,
+      default: () => {},
     },
     loading: {
       type: Boolean,
@@ -29,84 +39,66 @@ export default {
   },
 
   data() {
-    return {
-      lineWidth: 0,
-      kmMax: 1550,
-      actualKmWidth: 0,
-      min: false,
-      max: false,
-    };
+    return {};
   },
 
-  mounted() {
-    this.onLineWidthResize();
-    window.addEventListener("resize", this.onLineWidthResize);
-  },
-
-  beforeUnmount() {
-    window.removeEventListener("resize", this.onLineWidthResize);
-  },
-
-  watch: {
-    loading(value) {
-      if (!value) this.calculateActualKmWidth();
-    },
-  },
-
-  methods: {
-    onLineWidthResize() {
-      this.lineWidth = this.$refs.line.clientWidth;
-      this.calculateActualKmWidth();
-    },
-
-    calculateActualKmWidth() {
-      this.actualKmWidth = (this.km * this.lineWidth) / this.kmMax;
-      if (this.actualKmWidth <= 0) {
-        this.min = true;
-      } else if (this.actualKmWidth >= this.lineWidth) {
-        this.max = true;
-      } else {
-        this.min = false;
-        this.max = false;
-      }
+  computed: {
+    start_km() {
+      return this.album.km_total - this.album.km_step;
     },
   },
 };
 </script>
 
 <style scoped>
-.text {
+.kilometers-line {
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+/* Text */
+.header,
+.footer {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   position: relative;
   margin-bottom: 5px;
   font-family: var(--subtitle-font-family);
 }
-
-.line {
-  width: 100%;
-  height: 3px;
-  background-color: lightgray;
-  border-radius: 5px;
+.hiker-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100px;
+  height: 20px;
 }
-
-.journey-line {
-  height: 3px;
-  background-color: var(--secondary-text-color);
-  transition: width 1.8s ease 0.5s;
-}
-
-.km {
+.hiker {
   position: absolute;
-  text-align: right;
-  font-size: large;
+  bottom: -10px;
   left: 0;
+  width: 100px;
+  filter: grayscale(70%);
+}
+.place {
+  font-family: var(--title-font-family-solid);
+  font-size: 1.7rem;
 }
 
-.min,
-.max,
-.km {
-  color: var(--secondary-text-color);
-  font-weight: bold;
+/* Line */
+.line {
+  height: 5px;
+  width: 100%;
+  opacity: 0.3;
+  border-top: 4px dotted;
+  animation: stream 0.5s infinite linear;
+}
+@keyframes stream {
+  100% {
+    transform: translateX(-8px);
+  }
+}
+
+/* Footer text */
+.footer {
 }
 </style>

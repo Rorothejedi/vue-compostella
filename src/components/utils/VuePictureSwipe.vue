@@ -421,7 +421,6 @@ export default {
     },
 
     justified() {
-      // 2 (a refresh en cas de resize)
       const container_width =
         document.querySelector(".container").clientWidth - 30;
       const gallery_div = document.querySelector(".my-gallery");

@@ -12,9 +12,6 @@ Fonctionnel
 
 Design
 
-- Gérer l'apparition des images fade
-- Gérer le resize de la grid d'image au redimentionement de la fenetre
-
 - Faire des boutons sympa
 - Terminer la POC sur kinesis (WIP)
 - Trouver des icones sympa pour : 
@@ -74,10 +71,11 @@ DONE
 - Gérer l'optimisation des images côté serveur
 - Gérer les thumbnails côté serveur (pour les main et celles d'un album)
 - Débug le lazy load de l'accueil depuis les autres pages
-
 - Gérer la grid des images (justified gallery)
 - Résoudre les soucis avec le vue-picture-wipe
 - Faire un bouton "gérer l'album" sur le côté public avec isAuthenticated
 - Resoudre bug (2nd click sur "gérer les album fait planter") 
 - Gérer l'affichage de la grid justified dès le mounted du composant
 - Resoudre bug avec trop de photo inline
+
+- Gérer le resize de la grid d'image au redimentionement de la fenetre

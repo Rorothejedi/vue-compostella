@@ -3,6 +3,7 @@
     <vue-picture-swipe
       :items="formattedItems"
       :options="options"
+      :key="width"
     ></vue-picture-swipe>
   </div>
 </template>
@@ -27,6 +28,7 @@ export default {
         shareEl: false,
         history: false,
       },
+      width: 0,
     };
   },
 
@@ -52,7 +54,19 @@ export default {
     },
   },
 
-  methods: {},
+  mounted() {
+    window.addEventListener("resize", this.resizeJustifiedGallery);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.resizeJustifiedGallery);
+  },
+
+  methods: {
+    resizeJustifiedGallery() {
+      this.width = document.body.clientWidth;
+    },
+  },
 };
 </script>
 

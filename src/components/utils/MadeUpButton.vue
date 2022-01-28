@@ -4,11 +4,13 @@
     :class="{
       flat: flat,
       large: large,
+      small: small,
       icon: icon,
       loading: loading,
       disabled: disabled,
     }"
     :disabled="disabled"
+    :style="color ? `color: ${color}` : ''"
   >
     <span v-if="!loading">
       <slot></slot>
@@ -36,6 +38,11 @@ export default {
       required: false,
       default: false,
     },
+    small: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     icon: {
       type: Boolean,
       required: false,
@@ -50,6 +57,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    color: {
+      type: String,
+      required: false,
+      default: "",
     },
   },
 };
@@ -98,6 +110,17 @@ button:active:not(.loading):not(.disabled) {
 .large.icon {
   height: 44px;
   width: 44px;
+}
+
+/* Small size */
+.small {
+  height: 28px;
+  min-width: 50px;
+  padding: 0 12.4444444444px;
+}
+.small.icon {
+  height: 28px;
+  width: 28px;
 }
 
 /* Loading */

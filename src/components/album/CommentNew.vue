@@ -5,8 +5,11 @@
       v-model="author"
       id="author"
       type="text"
+      maxlength="30"
       :placeholder="`ex: ${randomAuthorName}`"
     />
+    <br />
+    <small>{{ 30 - author.length }} restant</small>
 
     <br /><br />
 

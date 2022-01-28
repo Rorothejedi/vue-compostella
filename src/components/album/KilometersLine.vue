@@ -74,7 +74,7 @@ export default {
 
 <style scoped>
 .kilometers-line {
-  padding-top: 70px;
+  padding-top: 75px;
   margin-bottom: 40px;
 }
 /* Text */

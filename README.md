@@ -2,6 +2,8 @@ TODO
 
 Fonctionnel
 
+- Trier les commentaires par nombre de like
+
 - Séparer les commentaires du reste du chargement de la page
 - Charger les commetaires quand l'utilisateur arrive vers le bas de page
 - Sortir les images trier par album_order côté serveur
@@ -14,7 +16,9 @@ Fonctionnel
 
 Design
 
-- Trouver des icones sympa pour : 
+- Faire le responsive des commentaires
+
+- Implémenter des icones sympa pour : 
     - les flèches (retour et destination)
     - position
     - signalement commentaire (flag)
@@ -33,6 +37,8 @@ Design
 - Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 
+- Uniformiser les varibales de font et de couleur
+
 Options
 
 - Voir pour tooltip (title importants (kilomètes parcourus))
@@ -40,6 +46,8 @@ Options
 - Système de réponses aux commentaires
 - Ne pas montrer au public un commentaire ayant été signalé plus de 3 ou 5 fois
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
+- Ajouter une option admin de desactivation des commentaires
+- Faire un dark theme publique
 
 --------------------------------------------------------
 
@@ -90,3 +98,4 @@ DONE
 - Ajouter les icons material design des fonts google
 - Ajouter icones (place) au début des kilomètres sur le composant KilometersLine
 - Faire composant bouton (adaptatif - loading/icon/disable)
+- Faire le loveButton dans un composant séparé

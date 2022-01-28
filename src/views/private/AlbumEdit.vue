@@ -43,8 +43,8 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import date from "@/mixins/date.js";
-import SwitchVisibilityButton from "@/components/edit/SwitchVisibilityButton.vue";
-import DeleteButton from "@/components/edit/DeleteButton.vue";
+import SwitchVisibilityButton from "@/components/buttons/SwitchVisibilityButton.vue";
+import DeleteButton from "@/components/buttons/DeleteButton.vue";
 import AlbumEditForm from "@/components/albumEdit/AlbumEditForm.vue";
 import ImageNew from "@/components/albumEdit/ImageNew.vue";
 import ImagesEdit from "@/components/albumEdit/ImagesEdit.vue";

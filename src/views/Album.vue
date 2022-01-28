@@ -33,7 +33,7 @@
     </transition>
 
     <transition-group name="fade-2">
-      <gallery :images="album.images" v-if="!loading" />
+      <!-- <gallery :images="album.images" v-if="!loading" /> -->
       <comment-list :comments="album.comments" v-if="!loading" />
       <comment-new v-if="!loading" />
     </transition-group>
@@ -47,7 +47,7 @@ import date from "@/mixins/date.js";
 import { mapActions, mapGetters, mapState } from "vuex";
 import Divider from "@/components/utils/Divider.vue";
 import KilometersLine from "@/components/album/KilometersLine.vue";
-import Gallery from "@/components/album/Gallery.vue";
+// import Gallery from "@/components/album/Gallery.vue";
 import CommentList from "@/components/album/CommentList.vue";
 import CommentNew from "@/components/album/CommentNew.vue";
 
@@ -58,7 +58,7 @@ export default {
     ArrowLeftIcon,
     Divider,
     KilometersLine,
-    Gallery,
+    // Gallery,
     CommentList,
     CommentNew,
   },

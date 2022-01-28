@@ -44,8 +44,8 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import date from "@/mixins/date.js";
-import SwitchVisibilityButton from "@/components/edit/SwitchVisibilityButton.vue";
-import DeleteButton from "@/components/edit/DeleteButton.vue";
+import SwitchVisibilityButton from "@/components/buttons/SwitchVisibilityButton.vue";
+import DeleteButton from "@/components/buttons/DeleteButton.vue";
 
 export default {
   name: "AlbumList",

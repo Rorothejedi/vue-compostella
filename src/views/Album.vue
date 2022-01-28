@@ -19,7 +19,9 @@
           v-if="this.isAuthenticated"
           :to="`/album-edit/${album.id}`"
         >
-          <button>Gérer l'album</button>
+          <made-up-button icon title="Gérer l'album">
+            <pencil-icon />
+          </made-up-button>
         </router-link>
       </div>
     </div>
@@ -33,7 +35,7 @@
     </transition>
 
     <transition-group name="fade-2">
-      <!-- <gallery :images="album.images" v-if="!loading" /> -->
+      <gallery :images="album.images" v-if="!loading" />
       <comment-list :comments="album.comments" v-if="!loading" />
       <comment-new v-if="!loading" />
     </transition-group>
@@ -43,11 +45,12 @@
 <script>
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
+import PencilIcon from "vue-material-design-icons/Pencil.vue";
 import date from "@/mixins/date.js";
 import { mapActions, mapGetters, mapState } from "vuex";
 import Divider from "@/components/utils/Divider.vue";
 import KilometersLine from "@/components/album/KilometersLine.vue";
-// import Gallery from "@/components/album/Gallery.vue";
+import Gallery from "@/components/album/Gallery.vue";
 import CommentList from "@/components/album/CommentList.vue";
 import CommentNew from "@/components/album/CommentNew.vue";
 
@@ -56,9 +59,10 @@ export default {
   components: {
     MadeUpButton,
     ArrowLeftIcon,
+    PencilIcon,
     Divider,
     KilometersLine,
-    // Gallery,
+    Gallery,
     CommentList,
     CommentNew,
   },

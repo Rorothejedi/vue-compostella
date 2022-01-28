@@ -23,11 +23,10 @@
             class="action-delete"
             icon
             :loading="loading_delete[comment.id]"
-            color="grey"
             @click="removeComment(comment.id)"
             title="Supprimer ce commentaire"
           >
-            <close-icon fillColor="grey" />
+            <close-icon />
           </made-up-button>
         </div>
       </div>

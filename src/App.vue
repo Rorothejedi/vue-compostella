@@ -3,29 +3,29 @@
     <div class="container admin-navbar-content">
       <div>
         <router-link to="/">
-          <button @click="clearAlbums()">Accueil</button>
+          <made-up-button @click="clearAlbums()" title="Accueil">
+            <home-icon />
+          </made-up-button>
         </router-link>
-        <router-link to="/albums-manage">
-          <button
+        <router-link to="/albums-manage" class="space">
+          <made-up-button
             @click="$route.path === '/albums-manage' ? '' : clearAlbums()"
           >
             Gérer les albums
-          </button>
+          </made-up-button>
         </router-link>
-        <router-link to="/comments-report">
-          <button>
-            <!-- TODO -->
-            <!-- Refacto buttons -->
-            <div class="icon-cart">
-              Commentaires signalés
-              <div class="count">{{ reportedComments.length }}</div>
-            </div>
-          </button>
+        <router-link to="/comments-report" class="space">
+          <made-up-button title="Commentaires signalés" class="icon-cart">
+            <comment-alert-icon />
+            <span class="count">{{ reportedComments.length }}</span>
+          </made-up-button>
         </router-link>
       </div>
 
       <router-link to="/">
-        <button @click="logout()">Déconnexion</button>
+        <made-up-button icon @click="logout()" title="Déconnexion">
+          <power-icon />
+        </made-up-button>
       </router-link>
     </div>
   </div>
@@ -42,8 +42,18 @@ import axios from "axios";
 import store from "./store";
 import router from "./router";
 import { mapActions, mapGetters, mapState } from "vuex";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import HomeIcon from "vue-material-design-icons/Home.vue";
+import PowerIcon from "vue-material-design-icons/Power.vue";
+import CommentAlertIcon from "vue-material-design-icons/CommentAlert.vue";
 
 export default {
+  components: {
+    MadeUpButton,
+    HomeIcon,
+    CommentAlertIcon,
+    PowerIcon,
+  },
   computed: {
     ...mapGetters(["isAuthenticated"]),
     ...mapState("comment", ["reportedComments"]),
@@ -103,6 +113,9 @@ export default {
   justify-content: space-between;
   padding-bottom: 0px;
 }
+.space {
+  margin-left: 5px;
+}
 </style>
 
 <style>
@@ -116,12 +129,12 @@ export default {
   align-items: center;
   justify-content: center;
 
-  min-width: 20px;
-  height: 20px;
-  background-color: red;
+  min-width: 15px;
+  height: 15px;
+  background-color: var(--secondary-text-color);
   border-radius: 100px;
-  left: 10px;
-  bottom: 0px;
+  left: 35px;
+  bottom: 2px;
 
   color: #fff;
   font-size: 11px;

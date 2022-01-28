@@ -85,6 +85,7 @@ button {
   height: 36px;
   min-width: 64px;
   padding: 0 16px;
+  color: var(--main-text-color);
   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.6, 1);
 }
 button:hover:not(.loading):not(.disabled) {

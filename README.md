@@ -16,16 +16,7 @@ Fonctionnel
 
 Design
 
-- Faire le responsive des commentaires
-
-- Implémenter des icones sympa pour : 
-    - les flèches (retour et destination)
-    - position
-    - signalement commentaire (flag)
-    - loading
-    - Validation / suppression
-    - visible (eye)
-
+- Design pour les boutons de la barre d'admin
 - Faire un composant sympa pour les inputs 
 - Adapation responsive pour le composant KilometersLine
 - Terminer la POC sur kinesis (WIP)
@@ -99,3 +90,5 @@ DONE
 - Ajouter icones (place) au début des kilomètres sur le composant KilometersLine
 - Faire composant bouton (adaptatif - loading/icon/disable)
 - Faire le loveButton dans un composant séparé
+- Faire le responsive des commentaires
+- Design pour le bouton gérer l'album

@@ -3,15 +3,12 @@
     <div class="container admin-navbar-content">
       <div>
         <router-link to="/">
-          <button @click="clearAlbums()">
-            <unicon name="estate" fill="royalblue" />
-          </button>
+          <button @click="clearAlbums()">Accueil</button>
         </router-link>
         <router-link to="/albums-manage">
           <button
             @click="$route.path === '/albums-manage' ? '' : clearAlbums()"
           >
-            <unicon name="list-ul" fill="royalblue" />
             Gérer les albums
           </button>
         </router-link>
@@ -20,7 +17,7 @@
             <!-- TODO -->
             <!-- Refacto buttons -->
             <div class="icon-cart">
-              <unicon name="comment-exclamation" fill="royalblue" />
+              Commentaires signalés
               <div class="count">{{ reportedComments.length }}</div>
             </div>
           </button>

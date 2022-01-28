@@ -21,7 +21,11 @@
 
     <transition name="fade">
       <div class="footer" v-if="!loading">
-        <div title="Kilomètres parcourus au départ de l'étape">
+        <div
+          class="footer-km"
+          title="Kilomètres parcourus au départ de l'étape"
+        >
+          <map-marker-outline-icon />
           {{ start_km }}<small>km</small>
         </div>
         <div>
@@ -29,8 +33,9 @@
             Étape de <span class="bold">{{ album.km_step }}km</span>
           </small>
         </div>
-        <div title="Kilomètres parcourus à la fin de l'étape">
+        <div class="footer-km" title="Kilomètres parcourus à la fin de l'étape">
           {{ album.km_total }}<small>km</small>
+          <map-marker-outline-icon />
         </div>
       </div>
     </transition>
@@ -38,8 +43,11 @@
 </template>
 
 <script>
+import MapMarkerOutlineIcon from "vue-material-design-icons/MapMarkerOutline.vue";
+
 export default {
   name: "KilometersLine",
+  components: { MapMarkerOutlineIcon },
   props: {
     album: {
       type: Object,
@@ -117,6 +125,8 @@ export default {
 }
 
 /* Footer text */
-/* .footer {
-} */
+.footer-km {
+  display: flex;
+  align-items: center;
+}
 </style>

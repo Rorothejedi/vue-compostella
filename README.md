@@ -2,7 +2,8 @@ TODO
 
 Fonctionnel
 
-
+- Séparer les commentaires du reste du chargement de la page
+- Charger les commetaires quand l'utilisateur arrive vers le bas de page
 - Sortir les images trier par album_order côté serveur
 - gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
@@ -13,11 +14,6 @@ Fonctionnel
 
 Design
 
-- Ajouter icones (place) au début des kilomètres sur le composant KilometersLine
-
-- Adapation responsive pour le composant KilometersLine
-- Faire des boutons sympa
-- Terminer la POC sur kinesis (WIP)
 - Trouver des icones sympa pour : 
     - les flèches (retour et destination)
     - position
@@ -25,6 +21,10 @@ Design
     - loading
     - Validation / suppression
     - visible (eye)
+
+- Faire un composant sympa pour les inputs 
+- Adapation responsive pour le composant KilometersLine
+- Terminer la POC sur kinesis (WIP)
 - Faire un loading stylé (home) avec skeleton loader ?
 - Faire un loading stylé (album) avec transitions ?
 - Faire des transitions sympa entre les pages (dont arrivé sur le site)
@@ -35,11 +35,11 @@ Design
 
 Options
 
+- Voir pour tooltip (title importants (kilomètes parcourus))
+- Inclure une (ou plusieurs) vidéo aux albums
 - Système de réponses aux commentaires
 - Ne pas montrer au public un commentaire ayant été signalé plus de 3 ou 5 fois
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
-- Inclure une (ou plusieurs) vidéo aux albums
-- Voir pour tooltip (title importants (kilomètes parcourus))
 
 --------------------------------------------------------
 
@@ -83,7 +83,10 @@ DONE
 - Resoudre bug (2nd click sur "gérer les album fait planter") 
 - Gérer l'affichage de la grid justified dès le mounted du composant
 - Resoudre bug avec trop de photo inline
-
 - Gérer le resize de la grid d'image au redimentionement de la fenetre
 - Résoudre bug "plein écran" sur la gallery
 - Gérer le composant KilometersLine
+
+- Ajouter les icons material design des fonts google
+- Ajouter icones (place) au début des kilomètres sur le composant KilometersLine
+- Faire composant bouton (adaptatif - loading/icon/disable)

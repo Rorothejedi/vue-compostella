@@ -2,7 +2,11 @@
   <div class="container">
     <div class="header">
       <div>
-        <router-link to="/" class="back">←</router-link>
+        <router-link to="/" class="back">
+          <made-up-button icon large>
+            <arrow-left-icon />
+          </made-up-button>
+        </router-link>
         <transition-group name="fade">
           <divider v-if="!loading" />
           <h2 v-if="!loading" class="places">
@@ -37,6 +41,8 @@
 </template>
 
 <script>
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
 import date from "@/mixins/date.js";
 import { mapActions, mapGetters, mapState } from "vuex";
 import Divider from "@/components/utils/Divider.vue";
@@ -48,6 +54,8 @@ import CommentNew from "@/components/album/CommentNew.vue";
 export default {
   name: "Album",
   components: {
+    MadeUpButton,
+    ArrowLeftIcon,
     Divider,
     KilometersLine,
     Gallery,

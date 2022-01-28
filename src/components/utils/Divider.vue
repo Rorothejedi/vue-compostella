@@ -5,11 +5,11 @@
 <script>
 export default {
   name: "Divider",
-
   props: {
     smallMargin: {
       type: Boolean,
       default: false,
+      required: false,
     },
   },
 };

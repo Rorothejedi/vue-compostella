@@ -419,9 +419,8 @@ export default {
     },
 
     justified() {
-      const container_width =
-        document.querySelector(".container").clientWidth - 30;
       const gallery_div = document.querySelector(".my-gallery");
+      const gallery_width = gallery_div.clientWidth;
 
       let new_div = document.createElement("div");
       let line_width = 0;
@@ -429,7 +428,6 @@ export default {
       for (let i = 0; i < this.items.length; i++) {
         const image_figcaption =
           document.querySelectorAll(".gallery-thumbnail")[i];
-        let line_images_number = line_width > 0 ? line_images_number + 1 : 1;
 
         // create line
         gallery_div.insertBefore(new_div, image_figcaption);
@@ -439,10 +437,10 @@ export default {
 
         line_width += image_figcaption.offsetWidth;
 
-        if (line_width >= container_width) {
+        if (line_width >= gallery_width) {
           let height = new_div.offsetHeight;
 
-          while (new_div.offsetWidth > container_width) {
+          while (new_div.offsetWidth > gallery_width) {
             new_div.style.display = "flex";
             new_div.style.height = `${--height}px`;
             // eslint-disable-next-line no-unused-vars

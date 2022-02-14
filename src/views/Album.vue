@@ -37,7 +37,9 @@
     <transition-group name="fade-2">
       <gallery :images="album.images" v-if="!loading" />
 
-      <video-player v-if="!loading" />
+      <div v-for="video in album.videos" :key="video.id">
+        <video-player :video="video" v-if="!loading" />
+      </div>
 
       <comment-list :comments="album.comments" v-if="!loading" />
       <comment-new v-if="!loading" />

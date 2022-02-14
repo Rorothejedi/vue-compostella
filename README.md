@@ -3,7 +3,6 @@ TODO
 Fonctionnel
 
 - Trier les commentaires par nombre de like
-
 - Sortir les images trier par album_order côté serveur
 - gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
@@ -13,7 +12,6 @@ Fonctionnel
 
 Design
 
-- Styliser les vidéos youtube (title font, margin, etc)
 - Design pour les boutons de la barre d'admin
 - Faire un composant sympa pour les inputs 
 - Adapation responsive pour le composant KilometersLine

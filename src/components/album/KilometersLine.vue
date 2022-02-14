@@ -7,7 +7,7 @@
         </transition>
       </div>
 
-      <div class="hiker-wrapper">
+      <div class="hiker-wrapper" title="Ça use, ça use !">
         <img src="@/assets/hiker.gif" alt="Pélerin animé" class="hiker" />
       </div>
 

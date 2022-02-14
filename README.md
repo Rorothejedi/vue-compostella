@@ -3,23 +3,21 @@ TODO
 Fonctionnel
 
 - Trier les commentaires par nombre de like
-- Séparer les commentaires du reste du chargement de la page
-- Charger les commetaires quand l'utilisateur arrive vers le bas de page
+
 - Sortir les images trier par album_order côté serveur
 - gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Faire une modal de confirmation
-- Améliorer le composant modal
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
 - Ajouter un recaptcha pour l'ajout de commentaire
 
 Design
 
-- Styliser les vidéo youtube
+- Styliser les vidéos youtube (title font, margin, etc)
 - Design pour les boutons de la barre d'admin
 - Faire un composant sympa pour les inputs 
 - Adapation responsive pour le composant KilometersLine
-- Terminer la POC sur kinesis (WIP)
+- Terminer la POC sur kinesis (WIP) ou supprimer
 - Faire un loading stylé (home) avec skeleton loader ?
 - Faire un loading stylé (album) avec transitions ?
 - Faire des transitions sympa entre les pages (dont arrivé sur le site)
@@ -27,16 +25,16 @@ Design
 - Styliser les bas de page
 - Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
+- Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
 
 - Uniformiser les variables de font et de couleur
 
 Options
 
+- Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
 - Voir pour tooltip (title importants (kilomètes parcourus))
 - Système de réponses aux commentaires
-- Ne pas montrer au public un commentaire ayant été signalé plus de 3 ou 5 fois
-- Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
-- Ajouter une option admin de desactivation des commentaires
+- Ajouter une option admin de desactivation des commentaires pour l'album
 - Faire un dark theme publique
 
 --------------------------------------------------------
@@ -90,5 +88,4 @@ DONE
 - Faire le loveButton dans un composant séparé
 - Faire le responsive des commentaires
 - Design pour le bouton gérer l'album
-
 - Ajouter crud pour video youtube

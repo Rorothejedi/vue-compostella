@@ -36,6 +36,9 @@
 
     <transition-group name="fade-2">
       <gallery :images="album.images" v-if="!loading" />
+
+      <video-player v-if="!loading" />
+
       <comment-list :comments="album.comments" v-if="!loading" />
       <comment-new v-if="!loading" />
     </transition-group>
@@ -53,6 +56,7 @@ import KilometersLine from "@/components/album/KilometersLine.vue";
 import Gallery from "@/components/album/Gallery.vue";
 import CommentList from "@/components/album/CommentList.vue";
 import CommentNew from "@/components/album/CommentNew.vue";
+import VideoPlayer from "@/components/utils/VideoPlayer.vue";
 
 export default {
   name: "Album",
@@ -65,6 +69,7 @@ export default {
     Gallery,
     CommentList,
     CommentNew,
+    VideoPlayer,
   },
   mixins: [date],
 
@@ -75,7 +80,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isAuthenticated"]),
+    ...mapGetters(["isAuthenticated", "host"]),
     ...mapState("album", ["album"]),
   },
 

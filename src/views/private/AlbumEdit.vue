@@ -35,6 +35,9 @@
       <images-edit />
     </div>
 
+    <video-new :loading="loading" />
+    <video-edit />
+
     <br />
     <p v-if="loading">Loading...</p>
   </div>
@@ -48,6 +51,8 @@ import DeleteButton from "@/components/buttons/DeleteButton.vue";
 import AlbumEditForm from "@/components/albumEdit/AlbumEditForm.vue";
 import ImageNew from "@/components/albumEdit/ImageNew.vue";
 import ImagesEdit from "@/components/albumEdit/ImagesEdit.vue";
+import VideoNew from "@/components/albumEdit/VideoNew.vue";
+import VideoEdit from "@/components/albumEdit/VideoEdit.vue";
 
 export default {
   name: "AlbumEdit",
@@ -57,6 +62,8 @@ export default {
     ImageNew,
     ImagesEdit,
     AlbumEditForm,
+    VideoNew,
+    VideoEdit,
   },
   mixins: [date],
 

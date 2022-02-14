@@ -151,6 +151,7 @@ export default {
   white-space: pre-wrap;
   line-height: 21px;
   letter-spacing: 0.2px;
+  text-align: justify;
 }
 
 /* date and loveButton backline for mobile */

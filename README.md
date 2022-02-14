@@ -3,7 +3,6 @@ TODO
 Fonctionnel
 
 - Trier les commentaires par nombre de like
-
 - Séparer les commentaires du reste du chargement de la page
 - Charger les commetaires quand l'utilisateur arrive vers le bas de page
 - Sortir les images trier par album_order côté serveur
@@ -16,6 +15,7 @@ Fonctionnel
 
 Design
 
+- Styliser les vidéo youtube
 - Design pour les boutons de la barre d'admin
 - Faire un composant sympa pour les inputs 
 - Adapation responsive pour le composant KilometersLine
@@ -28,12 +28,11 @@ Design
 - Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 
-- Uniformiser les varibales de font et de couleur
+- Uniformiser les variables de font et de couleur
 
 Options
 
 - Voir pour tooltip (title importants (kilomètes parcourus))
-- Inclure une (ou plusieurs) vidéo aux albums
 - Système de réponses aux commentaires
 - Ne pas montrer au public un commentaire ayant été signalé plus de 3 ou 5 fois
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
@@ -85,10 +84,11 @@ DONE
 - Gérer le resize de la grid d'image au redimentionement de la fenetre
 - Résoudre bug "plein écran" sur la gallery
 - Gérer le composant KilometersLine
-
 - Ajouter les icons material design des fonts google
 - Ajouter icones (place) au début des kilomètres sur le composant KilometersLine
 - Faire composant bouton (adaptatif - loading/icon/disable)
 - Faire le loveButton dans un composant séparé
 - Faire le responsive des commentaires
 - Design pour le bouton gérer l'album
+
+- Ajouter crud pour video youtube

@@ -6,6 +6,7 @@ import album from './album.js'
 import user from './user.js'
 import comment from './comment.js'
 import image from './image.js'
+import video from './video.js'
 
 export default createStore({
   getters: {
@@ -25,5 +26,6 @@ export default createStore({
     user,
     comment,
     image,
+    video,
   }
 })

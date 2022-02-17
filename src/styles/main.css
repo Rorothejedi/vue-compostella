@@ -11,7 +11,7 @@ body {
     --third-text-color: #cccccc;
 
     --dark-bg-color: #222;
-    --dark-top-color: #111;
+    --dark-top-color: var(--main-text-color);
     --dark-text-color: #ccc;
 
     --title-font-family-solid: 'Londrina Solid', cursive;
@@ -125,6 +125,7 @@ html {
     margin-right: auto;
     margin-left: auto;
     padding-bottom: 150px;
+    width: inherit;
 }
 
 @media (min-width: 576px) and (max-width: 767px) {

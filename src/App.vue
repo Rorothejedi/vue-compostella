@@ -3,19 +3,20 @@
     <div class="container admin-navbar-content">
       <div>
         <router-link to="/">
-          <made-up-button @click="clearAlbums()" title="Accueil">
+          <made-up-button @click="clearAlbums()" title="Accueil" small>
             <home-icon />
           </made-up-button>
         </router-link>
         <router-link to="/albums-manage" class="space">
           <made-up-button
             @click="$route.path === '/albums-manage' ? '' : clearAlbums()"
+            small
           >
             Gérer les albums
           </made-up-button>
         </router-link>
         <router-link to="/comments-report" class="space">
-          <made-up-button title="Commentaires signalés" class="icon-cart">
+          <made-up-button title="Commentaires signalés" class="icon-cart" small>
             <comment-alert-icon />
             <span class="count">{{ reportedComments.length }}</span>
           </made-up-button>
@@ -23,7 +24,7 @@
       </div>
 
       <router-link to="/">
-        <made-up-button icon @click="logout()" title="Déconnexion">
+        <made-up-button icon @click="logout()" title="Déconnexion" small>
           <power-icon />
         </made-up-button>
       </router-link>
@@ -100,7 +101,7 @@ export default {
 <style scoped>
 .admin-navbar {
   width: 100%;
-  min-height: 50px;
+  min-height: 30px;
   height: auto;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -133,7 +134,7 @@ export default {
   height: 15px;
   background-color: var(--secondary-text-color);
   border-radius: 100px;
-  left: 35px;
+  left: 30px;
   bottom: 2px;
 
   color: #fff;

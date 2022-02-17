@@ -3,6 +3,7 @@ TODO
 Fonctionnel
 
 - Trier les commentaires par nombre de like
+
 - Sortir les images trier par album_order côté serveur
 - gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
@@ -12,7 +13,6 @@ Fonctionnel
 
 Design
 
-- Design pour les boutons de la barre d'admin
 - Faire un composant sympa pour les inputs 
 - Adapation responsive pour le composant KilometersLine
 - Terminer la POC sur kinesis (WIP) ou supprimer
@@ -87,3 +87,5 @@ DONE
 - Faire le responsive des commentaires
 - Design pour le bouton gérer l'album
 - Ajouter crud pour video youtube
+
+- Design pour les boutons de la barre d'admin

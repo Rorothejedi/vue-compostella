@@ -2,9 +2,8 @@ TODO
 
 Fonctionnel
 
-- Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
+- gérer le order_by (sort) pour pouvoir trier les albums (infinite)
 
-- gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Faire une modal de confirmation
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
@@ -88,3 +87,5 @@ DONE
 
 - Design pour les boutons de la barre d'admin
 - Trier les images par album_order côté serveur
+- Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
+- gérer le order_by (sort) pour pouvoir trier les albums

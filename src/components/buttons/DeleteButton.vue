@@ -1,13 +1,27 @@
 <template>
-  <button type="button" @click="removeAlbum()">
-    ✖ <span v-if="loading">loading...</span>
-  </button>
+  <made-up-button
+    @click="removeAlbum()"
+    :loading="loading"
+    circle
+    small
+    title="Supprimer"
+  >
+    <close-icon :size="18" />
+  </made-up-button>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
+
 export default {
   name: "DeleteButton",
+  components: {
+    MadeUpButton,
+    CloseIcon,
+  },
+
   props: {
     album: {
       type: Object,

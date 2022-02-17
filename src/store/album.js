@@ -6,9 +6,11 @@ export default {
     state: {
         albums: {},
         albums_meta: {},
+        albums_sort: 'desc',
 
         albums_infinite: [],
         albums_infinite_meta: {},
+        albums_infinite_sort: 'desc',
 
         album: {},
     },
@@ -19,6 +21,9 @@ export default {
         },
         SET_ALBUMS_META(state, payload) {
             state.albums_meta = payload
+        },
+        SET_ALBUMS_SORT(state) {
+            state.albums_sort = (state.albums_sort === 'desc') ? 'asc' : 'desc'
         },
 
         SET_ALBUMS_INFINITE(state, payload) {

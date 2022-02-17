@@ -6,6 +6,7 @@
       large: large,
       small: small,
       icon: icon,
+      circle: circle,
       loading: loading,
       disabled: disabled,
     }"
@@ -44,6 +45,11 @@ export default {
       default: false,
     },
     icon: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    circle: {
       type: Boolean,
       required: false,
       default: false,
@@ -124,6 +130,20 @@ button:active:not(.loading):not(.disabled) {
   width: 28px;
 }
 
+/* Circle */
+.circle {
+  height: 36px;
+  width: 36px;
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+.circle.small {
+  height: 28px;
+  width: 28px;
+}
+
 /* Loading */
 .loading {
   cursor: initial;
@@ -162,5 +182,12 @@ button:active:not(.loading):not(.disabled) {
 .disabled {
   cursor: initial;
   color: rgba(3, 3, 3, 0.35);
+}
+</style>
+
+<style>
+/* Fix material deign icons */
+button span .material-design-icon {
+  display: flex;
 }
 </style>

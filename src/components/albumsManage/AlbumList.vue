@@ -7,7 +7,11 @@
           class="album-link"
           :class="{ 'album-hide': album.hide }"
         >
-          <div>{{ album.place_departure }} → {{ album.place_arrival }}</div>
+          <div>
+            {{ album.place_departure }}
+            <arrow-right-icon :size="12" />
+            {{ album.place_arrival }}
+          </div>
           <div>
             Total: {{ album.km_total }} km / Etape: {{ album.km_step }} km
           </div>
@@ -15,26 +19,29 @@
           <div>Le {{ formatDate(album.date) }}</div>
         </router-link>
         <div>
-          <switch-visibility-button :album="album" />
+          <switch-visibility-button :album="album" class="action-button" />
           <delete-button :album="album" />
         </div>
       </div>
 
       <div class="pagination-buttons">
-        <div>
-          <button @click="previousPage()" v-if="albums_meta.current_page > 1">
-            Précédent
-          </button>
-        </div>
+        <made-up-button
+          @click="previousPage()"
+          :disabled="albums_meta.current_page <= 1"
+        >
+          Précédent
+        </made-up-button>
 
         <div>
-          <button
-            @click="nextPage()"
-            v-if="albums_meta.current_page < albums_meta.last_page"
-          >
-            Suivant
-          </button>
+          {{ albums_meta.current_page }}
         </div>
+
+        <made-up-button
+          @click="nextPage()"
+          :disabled="albums_meta.current_page >= albums_meta.last_page"
+        >
+          Suivant
+        </made-up-button>
       </div>
     </div>
     <div v-else>Loading...</div>
@@ -46,10 +53,17 @@ import { mapActions, mapState } from "vuex";
 import date from "@/mixins/date.js";
 import SwitchVisibilityButton from "@/components/buttons/SwitchVisibilityButton.vue";
 import DeleteButton from "@/components/buttons/DeleteButton.vue";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import ArrowRightIcon from "vue-material-design-icons/ArrowRight.vue";
 
 export default {
   name: "AlbumList",
-  components: { SwitchVisibilityButton, DeleteButton },
+  components: {
+    SwitchVisibilityButton,
+    DeleteButton,
+    MadeUpButton,
+    ArrowRightIcon,
+  },
   mixins: [date],
 
   data() {
@@ -60,7 +74,7 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["albums", "albums_meta"]),
+    ...mapState("album", ["albums", "albums_meta", "albums_sort"]),
   },
 
   mounted() {
@@ -77,7 +91,8 @@ export default {
 
       const params = {
         page: this.page,
-        per_page: 15,
+        per_page: 10,
+        sort_by: this.albums_sort,
       };
 
       this.loadAlbums(params).then(() => {
@@ -126,14 +141,15 @@ export default {
 .header {
   display: flex;
 }
-button {
-  cursor: pointer;
+
+.action-button {
+  margin-right: 3px;
 }
 
 .pagination-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  align-items: center;
   padding-top: 30px;
   border-top: white solid 1px;
 }

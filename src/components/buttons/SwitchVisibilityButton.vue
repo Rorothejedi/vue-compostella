@@ -1,13 +1,26 @@
 <template>
-  <button type="button" @click="switchVisible()">
-    👁 <span v-if="loading">loading...</span>
-  </button>
+  <made-up-button
+    @click="switchVisible()"
+    :loading="loading"
+    circle
+    small
+    :title="isHide ? 'Dévoiler ' : 'Cacher'"
+  >
+    <eye-icon v-if="isHide" :size="18" />
+    <eye-off-icon v-else :size="18" />
+  </made-up-button>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import EyeIcon from "vue-material-design-icons/Eye.vue";
+import EyeOffIcon from "vue-material-design-icons/EyeOff.vue";
+
 export default {
   name: "SwitchVisibilityButton",
+  components: { MadeUpButton, EyeIcon, EyeOffIcon },
+
   props: {
     album: {
       type: Object,
@@ -23,6 +36,10 @@ export default {
 
   computed: {
     ...mapState("album", ["albums_meta"]),
+
+    isHide() {
+      return this.album.hide !== 0;
+    },
   },
 
   methods: {
@@ -46,6 +63,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-</style>

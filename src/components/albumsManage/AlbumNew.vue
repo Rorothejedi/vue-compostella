@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="create-button">
-      <button @click="show_modal = true">Créer un album</button>
-    </div>
+    <made-up-button @click="show_modal = true">Créer un album</made-up-button>
 
     <!-- Modal : Album create -->
 
@@ -85,10 +83,11 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import Modal from "@/components/utils/Modal.vue";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 
 export default {
   name: "AlbumNew",
-  components: { Modal },
+  components: { Modal, MadeUpButton },
 
   data() {
     return {
@@ -156,12 +155,6 @@ export default {
 </script>
 
 <style scoped>
-.create-button {
-  display: flex;
-  flex-direction: row-reverse;
-  margin-top: 25px;
-}
-
 /* Modal content */
 .form-input {
   margin-bottom: 20px;

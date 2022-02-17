@@ -4,12 +4,14 @@
       name="staggered-fade"
       @before-enter="beforeEnter"
       @enter="enter"
+      @leave="leave"
     >
       <router-link
         v-for="(album, key) in albums_infinite"
         :key="album.id"
         :to="`/album/${album.id}`"
-        :data-index="key"
+        :data-index-asc="key"
+        :data-index-desc="albums_infinite.length - key - 1"
         class="box"
       >
         <Cover
@@ -24,12 +26,17 @@
     </transition-group>
   </div>
   <div class="see-more">
-    <p
-      v-if="albums_infinite_meta.current_page < albums_infinite_meta.last_page"
-    >
-      {{ loading ? "loading..." : "Voir plus" }}
-    </p>
-    <div v-else class="see-more-spacer"></div>
+    <div class="loading">
+      <transition name="fade-loader">
+        <sync-icon
+          class="loading-icon"
+          v-if="loading && !first_view"
+          :size="35"
+        />
+      </transition>
+    </div>
+
+    <div v-if="!loading" class="see-more-spacer"></div>
   </div>
 </template>
 
@@ -37,10 +44,12 @@
 import { mapActions, mapState } from "vuex";
 import gsap from "gsap";
 import Cover from "@/components/home/Cover.vue";
+import SyncIcon from "vue-material-design-icons/Sync.vue";
+import store from "../../store";
 
 export default {
   name: "CoverList",
-  components: { Cover },
+  components: { Cover, SyncIcon },
 
   data() {
     return {
@@ -50,7 +59,12 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["albums_infinite", "albums_infinite_meta"]),
+    ...mapState("album", [
+      "albums_infinite",
+      "albums_infinite_meta",
+      "albums_infinite_sort",
+    ]),
+    ...mapState("nav", ["first_view"]),
   },
 
   beforeMount() {
@@ -72,6 +86,7 @@ export default {
       const params = {
         hide: 0,
         page: this.page,
+        sort_by: this.albums_infinite_sort,
       };
 
       this.loadAlbumsInfinite(params).then(() => {
@@ -84,8 +99,8 @@ export default {
     getNextAlbums() {
       window.onscroll = () => {
         const window_bottom =
-          document.documentElement.scrollTop + window.innerHeight ===
-          document.documentElement.offsetHeight;
+          document.documentElement.scrollTop + window.innerHeight >=
+          document.documentElement.offsetHeight - 500;
 
         if (
           !window_bottom ||
@@ -95,21 +110,35 @@ export default {
         )
           return;
 
+        if (this.first_view) store.commit("nav/FIRST_VIEW_SEEN");
+
         this.page++;
         this.fetchAlbums();
       };
     },
 
-    // enter box transition
+    // enter and leave box transition
 
     beforeEnter(el) {
       el.style.opacity = 0;
     },
 
     enter(el, done) {
+      let calc_delay =
+        parseInt(el.dataset.indexAsc) - (this.albums_infinite_meta.from - 1);
+
       gsap.to(el, {
         opacity: 1,
-        delay: el.dataset.index * 0.15,
+        delay: calc_delay * 0.15,
+        onComplete: done,
+      });
+    },
+
+    leave(el, done) {
+      gsap.to(el, {
+        opacity: 0,
+        delay:
+          parseInt(el.dataset.indexAsc) < 12 ? el.dataset.indexDesc * 0.08 : 0,
         onComplete: done,
       });
     },
@@ -132,7 +161,7 @@ export default {
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
+  grid-gap: 10px;
 }
 
 @media (max-width: 767px) {
@@ -149,11 +178,18 @@ export default {
 .see-more {
   display: flex;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 100px;
 }
 .see-more-spacer {
   width: 100%;
-  height: 50px;
+  height: 40px;
+}
+
+.loading {
+  animation: spin 2s infinite linear;
+}
+.loading-icon {
+  display: flex;
 }
 </style>
 

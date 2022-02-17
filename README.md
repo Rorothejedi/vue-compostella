@@ -2,7 +2,7 @@ TODO
 
 Fonctionnel
 
-- gérer le order_by (sort) pour pouvoir trier les albums (infinite)
+- Faire un bouton pour revenir en haut de page (home)
 
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Faire une modal de confirmation
@@ -89,3 +89,4 @@ DONE
 - Trier les images par album_order côté serveur
 - Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
 - gérer le order_by (sort) pour pouvoir trier les albums
+- gérer le order_by (sort) pour pouvoir trier les albums (infinite)

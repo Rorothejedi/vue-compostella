@@ -23,28 +23,33 @@
           <delete-button :album="album" />
         </div>
       </div>
+    </div>
 
-      <div class="pagination-buttons">
-        <made-up-button
-          @click="previousPage()"
-          :disabled="albums_meta.current_page <= 1"
-        >
-          Précédent
-        </made-up-button>
-
-        <div>
-          {{ albums_meta.current_page }}
-        </div>
-
-        <made-up-button
-          @click="nextPage()"
-          :disabled="albums_meta.current_page >= albums_meta.last_page"
-        >
-          Suivant
-        </made-up-button>
+    <div class="loading-list" v-else>
+      <div class="loading">
+        <sync-icon class="loading-icon" />
       </div>
     </div>
-    <div v-else>Loading...</div>
+
+    <div class="pagination-buttons">
+      <made-up-button
+        @click="previousPage()"
+        :disabled="albums_meta.current_page <= 1"
+      >
+        Précédent
+      </made-up-button>
+
+      <div>
+        {{ albums_meta.current_page }}
+      </div>
+
+      <made-up-button
+        @click="nextPage()"
+        :disabled="albums_meta.current_page >= albums_meta.last_page"
+      >
+        Suivant
+      </made-up-button>
+    </div>
   </div>
 </template>
 
@@ -55,6 +60,7 @@ import SwitchVisibilityButton from "@/components/buttons/SwitchVisibilityButton.
 import DeleteButton from "@/components/buttons/DeleteButton.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import ArrowRightIcon from "vue-material-design-icons/ArrowRight.vue";
+import SyncIcon from "vue-material-design-icons/Sync.vue";
 
 export default {
   name: "AlbumList",
@@ -63,6 +69,7 @@ export default {
     DeleteButton,
     MadeUpButton,
     ArrowRightIcon,
+    SyncIcon,
   },
   mixins: [date],
 
@@ -152,5 +159,19 @@ export default {
   align-items: center;
   padding-top: 30px;
   border-top: white solid 1px;
+}
+
+.loading-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+.loading {
+  animation: spin 2s infinite linear;
+}
+.loading-icon {
+  display: flex;
 }
 </style>

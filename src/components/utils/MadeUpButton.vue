@@ -155,15 +155,6 @@ button:active:not(.loading):not(.disabled) {
   display: flex;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
 /* Icon */
 .icon {
   height: 36px;

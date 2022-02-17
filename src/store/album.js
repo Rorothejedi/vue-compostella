@@ -35,6 +35,12 @@ export default {
         SET_ALBUMS_INFINITE_META(state, payload) {
             state.albums_infinite_meta = payload
         },
+        SET_ALBUMS_INFINITE_SORT(state) {
+            state.albums_infinite_sort = (state.albums_infinite_sort === 'desc') ? 'asc' : 'desc'
+        },
+        CLEAR_ALBUMS_INFINITE(state) {
+            state.albums_infinite = []
+        },
 
         SET_ALBUM(state, payload) {
             state.album = payload
@@ -70,6 +76,12 @@ export default {
                     store.commit('SET_ALBUMS_INFINITE', response.data.data)
                     store.commit('SET_ALBUMS_INFINITE_META', response.data.meta)
                 })
+        },
+
+        sortAlbumsInfinite(store) {
+            store.commit('CLEAR_ALBUMS_INFINITE')
+            store.commit('SET_ALBUMS_INFINITE_META', {})
+            store.commit('SET_ALBUMS_INFINITE_SORT')
         },
 
         /* ALBUM */

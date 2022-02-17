@@ -89,13 +89,17 @@ html {
 
 .fade-enter-from,
 .fade-1-enter-from,
-.fade-2-enter-from {
+.fade-2-enter-from,
+.fade-3-enter-from,
+.fade-loader-enter-from {
     opacity: 0;
 }
 
 .fade-leave-to,
 .fade-1-leave-to,
-.fade-2-leave-to {
+.fade-2-leave-to,
+.fade-3-leave-to,
+.fade-loader-leave-to {
     opacity: 1;
 }
 
@@ -104,7 +108,11 @@ html {
 .fade-1-leave-active,
 .fade-1-enter-active,
 .fade-2-leave-active,
-.fade-2-enter-active {
+.fade-2-enter-active,
+.fade-3-leave-active,
+.fade-3-enter-active,
+.fade-loader-leave-active,
+.fade-loader-enter-active {
     transition: opacity 0.3s ease;
 }
 
@@ -116,6 +124,23 @@ html {
 .fade-2-leave-active,
 .fade-2-enter-active {
     transition-delay: 1s;
+}
+
+.fade-3-leave-active,
+.fade-3-enter-active,
+.fade-loader-enter-active {
+    transition-delay: 1.5s;
+}
+
+/* Animation for spin loading */
+@keyframes spin {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
 }
 
 /* Container style */

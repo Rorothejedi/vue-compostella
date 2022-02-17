@@ -7,6 +7,7 @@ import user from './user.js'
 import comment from './comment.js'
 import image from './image.js'
 import video from './video.js'
+import nav from './nav.js'
 
 export default createStore({
   getters: {
@@ -27,5 +28,6 @@ export default createStore({
     comment,
     image,
     video,
+    nav,
   }
 })

@@ -2,16 +2,16 @@
   <div class="container dark-theme">
     <br />
 
-    <div>
+    <div class="buttons-wrapper">
       <router-link to="/albums-manage" @click="clearAlbum()">
-        <button>Retour</button>
+        <made-up-button icon large>
+          <arrow-left-icon />
+        </made-up-button>
       </router-link>
       <router-link :to="`/album/${$route.params.id}`">
-        <button>Voir album public</button>
+        <made-up-button> Voir album public </made-up-button>
       </router-link>
     </div>
-
-    <br /><br />
 
     <div v-if="!loading">
       <p v-if="album.created_at !== album.updated_at">
@@ -46,6 +46,8 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import date from "@/mixins/date.js";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
 import SwitchVisibilityButton from "@/components/buttons/SwitchVisibilityButton.vue";
 import DeleteButton from "@/components/buttons/DeleteButton.vue";
 import AlbumEditForm from "@/components/albumEdit/AlbumEditForm.vue";
@@ -57,6 +59,8 @@ import VideoEdit from "@/components/albumEdit/VideoEdit.vue";
 export default {
   name: "AlbumEdit",
   components: {
+    MadeUpButton,
+    ArrowLeftIcon,
     SwitchVisibilityButton,
     DeleteButton,
     ImageNew,
@@ -96,4 +100,8 @@ export default {
 </script>
 
 <style scoped>
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

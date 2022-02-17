@@ -2,9 +2,8 @@ TODO
 
 Fonctionnel
 
-- Trier les commentaires par nombre de like
+- Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
 
-- Sortir les images trier par album_order côté serveur
 - gérer le order_by (sort) pour pouvoir trier les albums
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Faire une modal de confirmation
@@ -23,7 +22,6 @@ Design
 - Styliser les bas de page
 - Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
-- Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
 
 - Uniformiser les variables de font et de couleur
 
@@ -89,3 +87,4 @@ DONE
 - Ajouter crud pour video youtube
 
 - Design pour les boutons de la barre d'admin
+- Trier les images par album_order côté serveur

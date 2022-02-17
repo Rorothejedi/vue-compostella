@@ -1,6 +1,6 @@
 <template>
   <div class="image-box">
-    <div v-for="(image, key) in imagesByOrder" :key="key" class="image-content">
+    <div v-for="(image, key) in album.images" :key="key" class="image-content">
       <img
         :src="`${host}/${image.path}`"
         class="images"
@@ -15,7 +15,7 @@
         ← <span v-if="loading_move_left[image.id]">loading...</span>
       </span>
       <span
-        v-if="key !== imagesByOrder.length - 1"
+        v-if="key !== album.images.length - 1"
         class="arrow-right"
         @click="moveImageToRight(image.id, key)"
       >
@@ -62,14 +62,6 @@ export default {
   computed: {
     ...mapGetters(["host"]),
     ...mapState("album", ["album"]),
-
-    imagesByOrder() {
-      let images = this.album.images;
-
-      if (images === undefined) return {};
-
-      return images.sort((a, b) => a.album_order - b.album_order);
-    },
   },
 
   methods: {

@@ -156,14 +156,20 @@ export default {
   align-content: center;
   overflow: hidden;
 
-  /* height: 370px; */
+  height: 374px;
+}
+
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .box {
+    height: 314px;
+  }
 }
 
 /*wrapper */
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-gap: 9px;
 }
 
 @media (max-width: 576px) {

@@ -4,7 +4,6 @@ TODO
 
 A faire (priorité haute)
 
-- Terminer les covers de l'accueil
 - Uniformiser les covers (responsive)
 
 ------------
@@ -30,6 +29,7 @@ A faire (priorité moyenne)
 
 A faire (priorité basse)
 
+- Gérer le cas où il n'y a pas encore d'album
 - Gérer correctement les jours de repos
 - Uniformiser les variables de font et de couleur
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
@@ -53,6 +53,7 @@ Optionnel
 - Voir pour tooltip (title importants (kilomètes parcourus))
 - Faire un dark theme publique
 - Intégrer un coeur pour les likes comme ceux de twitter
+- Faire une intégration du konami code
 
 --------------------------------------------------------
 
@@ -113,7 +114,6 @@ DONE
 - gérer le order_by (sort) pour pouvoir trier les albums (infinite)
 
 - Supprimer la POC sur kinesis
-
 - Faire le PathLine
     - Centrer les points en hover
     - Gérer les icons sur le côté
@@ -121,4 +121,4 @@ DONE
     - Gérer le resize de la fenetre (height)
     - Faire un WS pour avoir les données depuis serveur
     - Gérer le responsive pour les grand écran
-
+- Terminer les covers de l'accueil (grande taille)

@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="path-line-wrapper">
-      <div class="path-line">
+      <div
+        class="path-line"
+        :style="`top: ${isAuthenticated ? '20px' : '50px'}`"
+      >
         <path-line />
       </div>
     </div>
@@ -48,7 +51,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import CoverList from "@/components/home/CoverList.vue";
 import PathLine from "@/components/home/PathLine.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
@@ -77,6 +80,7 @@ export default {
   computed: {
     ...mapState("nav", ["first_view"]),
     ...mapState("album", ["albums_infinite_sort"]),
+    ...mapGetters(["isAuthenticated"]),
   },
 
   mounted() {
@@ -126,7 +130,6 @@ export default {
 
 .path-line {
   position: relative;
-  top: 50px;
 }
 .path-line-wrapper {
   position: fixed;

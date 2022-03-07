@@ -5,12 +5,9 @@ TODO
 A faire (priorité haute)
 
 - Faire le PathLine
-    - Empêcher la superposition des points
-    - Gérer le resize de la fenetre
-    - Faire un bouton pour fade toggle le tout
+    - Faire un WS pour avoir les données depuis serveur
     - Gérer le responsive pour les grand écran
     - Faire un ecran dédié pour les petits ecrans
-    - Faire un WS pour avoir les données depuis serveur
 
 ------------
 
@@ -35,6 +32,7 @@ A faire (priorité basse)
 
 - Uniformiser les variables de font et de couleur
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
+- Test avec des données réel (étapes prévue en france et espagne)
 
 ------------
 
@@ -109,3 +107,5 @@ DONE
 - Faire le PathLine
     - Centrer les points en hover
     - Gérer les icons sur le côté
+    - Empêcher la superposition des points
+    - Gérer le resize de la fenetre (height)

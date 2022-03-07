@@ -1,29 +1,25 @@
 <template>
-  <div class="wrapper">
-    <div class="sub-wrapper">
-      <div id="line">
-        <router-link
-          v-for="(km, index) in all_kms"
-          :key="km.km_total"
-          :to="`/album/${km.id}`"
-          class="point-wrapper"
-        >
-          <map-marker-outline-icon
-            class="departure-icon"
-            fillColor="#aaa"
-            v-if="index === 0"
-          />
-          <map-marker-check-icon
-            class="arrival-icon"
-            fillColor="#aaa"
-            :style="`margin-top: ${line_height}px`"
-            v-if="index === all_kms.length - 1"
-          />
-          <div class="point"></div>
-          <div class="text">{{ km.km_total }} km</div>
-        </router-link>
-      </div>
-    </div>
+  <div id="line">
+    <router-link
+      v-for="(km, i) in all_kms"
+      :key="km.km_total"
+      :to="`/album/${km.id}`"
+      class="point-wrapper"
+    >
+      <map-marker-outline-icon
+        class="departure-icon"
+        fillColor="#aaa"
+        v-if="i === 0"
+      />
+      <map-marker-check-icon
+        class="arrival-icon"
+        fillColor="#aaa"
+        :style="`margin-top: ${line_height}px`"
+        v-if="i === all_kms.length - 1"
+      />
+      <div class="point"></div>
+      <div class="text">{{ km.km_total }} km</div>
+    </router-link>
   </div>
 </template>
 
@@ -48,135 +44,163 @@ export default {
         },
         {
           id: 25,
-          km_total: 18,
+          km_total: 24,
         },
         {
           id: 25,
-          km_total: 39,
+          km_total: 44,
         },
         {
           id: 25,
-          km_total: 61,
+          km_total: 63,
         },
         {
           id: 25,
-          km_total: 66,
+          km_total: 91,
         },
         {
           id: 25,
-          km_total: 89,
+          km_total: 117,
         },
         {
           id: 25,
-          km_total: 114,
+          km_total: 133,
         },
         {
           id: 25,
-          km_total: 146,
+          km_total: 155,
+        },
+        {
+          id: 25,
+          km_total: 168,
+        },
+        {
+          id: 25,
+          km_total: 182,
+        },
+        {
+          id: 25,
+          km_total: 203,
+        },
+        {
+          id: 25,
+          km_total: 227,
+        },
+        {
+          id: 25,
+          km_total: 251,
+        },
+        {
+          id: 25,
+          km_total: 282,
+        },
+        {
+          id: 25,
+          km_total: 300,
+        },
+        {
+          id: 25,
+          km_total: 328,
+        },
+        {
+          id: 25,
+          km_total: 347,
+        },
+        {
+          id: 25,
+          km_total: 361,
+        },
+        {
+          id: 25,
+          km_total: 393,
+        },
+        {
+          id: 25,
+          km_total: 408,
+        },
+        {
+          km_total: 435,
+        },
+        {
+          id: 25,
+          km_total: 454,
+        },
+        {
+          id: 25,
+          km_total: 476,
+        },
+        {
+          id: 25,
+          km_total: 487,
+        },
+        {
+          id: 25,
+          km_total: 519,
+        },
+        {
+          id: 25,
+          km_total: 552,
+        },
+        {
+          id: 25,
+          km_total: 573,
+        },
+        {
+          id: 25,
+          km_total: 601,
+        },
+        {
+          id: 25,
+          km_total: 635,
+        },
+        {
+          id: 25,
+          km_total: 665,
+        },
+        {
+          id: 25,
+          km_total: 696,
+        },
+        {
+          id: 25,
+          km_total: 716,
+        },
+        {
+          id: 25,
+          km_total: 738,
+        },
+        {
+          id: 25,
+          km_total: 761,
         },
         // {
         //   id: 25,
-        //   km_total: 181,
+        //   km_total: 780,
         // },
         // {
         //   id: 25,
-        //   km_total: 205,
+        //   km_total: 805,
         // },
         // {
         //   id: 25,
-        //   km_total: 232,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 239,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 279,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 339,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 370,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 412,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 475,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 539,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 600,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 658,
-        // },
-        // {
-        //   km_total: 729,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 858,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 973,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1003,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1083,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1125,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1242,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1292,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1333,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1433,
-        // },
-        // {
-        //   id: 25,
-        //   km_total: 1520,
+        //   km_total: 1525,
         // },
       ],
     };
   },
 
   mounted() {
-    this.init();
+    this.initLine();
+    window.addEventListener("resize", this.initLine);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.initLine);
   },
 
   methods: {
-    init() {
-      let get_line_length = document.getElementById("line").clientHeight;
-      this.line_height = get_line_length;
+    initLine() {
+      this.line_height = document.getElementById("line").clientHeight;
 
       const points = document.getElementsByClassName("point");
       const texts = document.getElementsByClassName("text");
@@ -184,10 +208,19 @@ export default {
       const max = this.all_kms[this.all_kms.length - 1].km_total;
 
       [...points].forEach((element, i) => {
-        let margin = (get_line_length / max) * this.all_kms[i].km_total + "px";
-        element.style.top = margin;
+        let margin = (this.line_height / max) * this.all_kms[i].km_total + "px";
 
+        element.style.top = margin;
         texts[i].style.marginTop = margin;
+
+        /* A partir de 35 points, seulement 1 point sur 4 est affiché directement */
+        if (
+          i !== 0 &&
+          i !== points.length - 1 &&
+          i % 4 !== 0 &&
+          points.length > 35
+        )
+          texts[i].style.opacity = 0;
       });
     },
   },
@@ -195,22 +228,9 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  position: fixed;
-  top: 50px;
-  left: 8vw;
-}
-.sub-wrapper {
-  display: flex;
-  justify-content: center;
-  height: calc(100vh - 100px);
-}
-
 #line {
-  /* width: 2px; */
-  /* background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='95' ry='95' stroke='grey' stroke-width='4' stroke-dasharray='15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"); */
+  height: calc(100vh - 100px);
   border-left: 1px dashed lightgray;
-  /* position: relative; */
 }
 
 /** ------- points ----- */
@@ -233,7 +253,7 @@ export default {
   margin-top: -5px;
   padding: 8px;
   background-color: white;
-  border: 2px solid lightcoral;
+  border: 2px solid var(--secondary-text-color);
   transition: all 0.3s;
 }
 
@@ -245,7 +265,8 @@ export default {
 
 .point-wrapper:hover .text {
   width: 80px;
-  transition: width 0.3s ease;
+  opacity: 1 !important;
+  transition: width 0.3s ease, opacity 0.3s ease;
 }
 
 .text {
@@ -254,8 +275,7 @@ export default {
   position: absolute;
   font-size: 0.8rem;
   text-align: center;
-
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, opacity 0.3s ease;
 }
 
 .departure-icon,

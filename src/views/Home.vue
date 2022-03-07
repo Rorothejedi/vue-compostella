@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="test">
+    <div class="path-line">
       <path-line />
     </div>
 
@@ -120,7 +120,9 @@ export default {
   margin-right: 3px;
 }
 
-/* .test { */
-
-/* } */
+.path-line {
+  position: fixed;
+  top: 50px;
+  left: 8vw;
+}
 </style>

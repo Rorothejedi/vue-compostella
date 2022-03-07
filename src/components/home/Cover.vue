@@ -2,7 +2,7 @@
   <span>
     <img :src="`${host}/${image}`" alt="" />
 
-    <div class="text">
+    <!-- <div class="text">
       <div class="places">
         <div class="departure">{{ departure }}</div>
         <div class="arrival">→ {{ arrival }}</div>
@@ -19,7 +19,7 @@
         >
       </div>
     </div>
-    <div class="mask"></div>
+    <div class="mask"></div> -->
   </span>
 </template>
 

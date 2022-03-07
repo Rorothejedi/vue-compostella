@@ -1,6 +1,20 @@
 TODO
 
-Fonctionnel
+------------
+
+A faire (priorité haute)
+
+- Faire le PathLine
+    - Empêcher la superposition des points
+    - Gérer le resize de la fenetre
+    - Faire un bouton pour fade toggle le tout
+    - Gérer le responsive pour les grand écran
+    - Faire un ecran dédié pour les petits ecrans
+    - Faire un WS pour avoir les données depuis serveur
+
+------------
+
+A faire (priorité moyenne)
 
 - Faire un bouton pour revenir en haut de page (home)
 
@@ -9,28 +23,28 @@ Fonctionnel
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
 - Ajouter un recaptcha pour l'ajout de commentaire
 
-Design
-
-- Faire un composant sympa pour les inputs 
-- Adapation responsive pour le composant KilometersLine
-- Terminer la POC sur kinesis (WIP) ou supprimer
-- Faire un loading stylé (home) avec skeleton loader ?
-- Faire un loading stylé (album) avec transitions ?
-- Faire des transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les covers (responsive)
-- Styliser les bas de page
+- Adapation responsive pour le composant KilometersLine
+- Faire un composant sympa pour les inputs 
 - Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 
+------------
+
+A faire (priorité basse)
+
 - Uniformiser les variables de font et de couleur
+- Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 
-Options
+------------
 
+Optionnel
+
+- Ajouter une option admin de desactivation des commentaires pour l'album
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
 - Voir pour tooltip (title importants (kilomètes parcourus))
-- Système de réponses aux commentaires
-- Ajouter une option admin de desactivation des commentaires pour l'album
 - Faire un dark theme publique
+- Intégrer un coeur pour les likes comme ceux de twitter
 
 --------------------------------------------------------
 
@@ -84,9 +98,14 @@ DONE
 - Faire le responsive des commentaires
 - Design pour le bouton gérer l'album
 - Ajouter crud pour video youtube
-
 - Design pour les boutons de la barre d'admin
 - Trier les images par album_order côté serveur
 - Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
 - gérer le order_by (sort) pour pouvoir trier les albums
 - gérer le order_by (sort) pour pouvoir trier les albums (infinite)
+
+- Supprimer la POC sur kinesis
+
+- Faire le PathLine
+    - Centrer les points en hover
+    - Gérer les icons sur le côté

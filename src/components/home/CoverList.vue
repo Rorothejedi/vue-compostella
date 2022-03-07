@@ -55,6 +55,8 @@ export default {
     return {
       loading: false,
       page: 1,
+
+      el_by_row: 3,
     };
   },
 
@@ -154,7 +156,7 @@ export default {
   align-content: center;
   overflow: hidden;
 
-  height: 370px;
+  /* height: 370px; */
 }
 
 /*wrapper */
@@ -164,12 +166,12 @@ export default {
   grid-gap: 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 576px) {
   .wrapper {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 576px) and (max-width: 991px) {
   .wrapper {
     grid-template-columns: repeat(2, 1fr);
   }

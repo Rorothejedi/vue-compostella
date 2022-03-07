@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div class="path-line">
-      <path-line />
+    <div class="path-line-wrapper">
+      <div class="path-line">
+        <path-line />
+      </div>
     </div>
 
     <div class="container">
@@ -120,9 +122,40 @@ export default {
   margin-right: 3px;
 }
 
+/* Path line container behaviour */
+
 .path-line {
-  position: fixed;
+  position: relative;
   top: 50px;
-  left: 8vw;
+}
+.path-line-wrapper {
+  position: fixed;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .path-line-wrapper {
+    width: calc(50vw - 270px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .path-line-wrapper {
+    width: calc(50vw - 360px);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1600px) {
+  .path-line-wrapper {
+    width: calc(50vw - 480px);
+  }
+}
+
+@media (min-width: 1601px) {
+  .path-line-wrapper {
+    width: calc(50vw - 570px);
+  }
 }
 </style>

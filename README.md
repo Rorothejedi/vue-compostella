@@ -4,14 +4,15 @@ TODO
 
 A faire (priorité haute)
 
-- Faire le PathLine
-    - Faire un WS pour avoir les données depuis serveur
-    - Gérer le responsive pour les grand écran
-    - Faire un ecran dédié pour les petits ecrans
+- Terminer les covers de l'accueil
+- Uniformiser les covers (responsive)
 
 ------------
 
 A faire (priorité moyenne)
+
+- Faire le PathLine
+    - Faire un ecran dédié pour les petits ecrans
 
 - Faire un bouton pour revenir en haut de page (home)
 
@@ -20,7 +21,6 @@ A faire (priorité moyenne)
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
 - Ajouter un recaptcha pour l'ajout de commentaire
 
-- Uniformiser les covers (responsive)
 - Adapation responsive pour le composant KilometersLine
 - Faire un composant sympa pour les inputs 
 - Ajouter les mentions légales
@@ -30,14 +30,24 @@ A faire (priorité moyenne)
 
 A faire (priorité basse)
 
+- Gérer correctement les jours de repos
 - Uniformiser les variables de font et de couleur
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Test avec des données réel (étapes prévue en france et espagne)
 
 ------------
 
+A la fin
+
+- Mettre la collection postman sur github
+- Mise en ligne de l'api
+- Mise en ligne du build vue
+
+------------
+
 Optionnel
 
+- Voir pour les étapes avec kilometres avec des virgules
 - Ajouter une option admin de desactivation des commentaires pour l'album
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
 - Voir pour tooltip (title importants (kilomètes parcourus))
@@ -109,3 +119,6 @@ DONE
     - Gérer les icons sur le côté
     - Empêcher la superposition des points
     - Gérer le resize de la fenetre (height)
+    - Faire un WS pour avoir les données depuis serveur
+    - Gérer le responsive pour les grand écran
+

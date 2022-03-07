@@ -12,6 +12,8 @@ export default {
         albums_infinite_meta: {},
         albums_infinite_sort: 'desc',
 
+        albums_simple: [],
+
         album: {},
     },
 
@@ -40,6 +42,10 @@ export default {
         },
         CLEAR_ALBUMS_INFINITE(state) {
             state.albums_infinite = []
+        },
+
+        SET_ALBUMS_SIMPLE(state, payload) {
+            state.albums_simple = payload
         },
 
         SET_ALBUM(state, payload) {
@@ -82,6 +88,15 @@ export default {
             store.commit('CLEAR_ALBUMS_INFINITE')
             store.commit('SET_ALBUMS_INFINITE_META', {})
             store.commit('SET_ALBUMS_INFINITE_SORT')
+        },
+
+        /* ALBUMS SIMPLE */
+
+        loadAlbumsSimple(store) {
+            return axios.get(`${process.env.VUE_APP_BASE_URL}/api/albums-simple`)
+                .then(response => {
+                    store.commit('SET_ALBUMS_SIMPLE', response.data)
+                })
         },
 
         /* ALBUM */

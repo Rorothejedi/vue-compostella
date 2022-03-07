@@ -5,7 +5,6 @@ import axios from 'axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// import VuePictureSwipe from 'vue-picture-swipe'
 
 const token = store.getters.token
 
@@ -17,5 +16,4 @@ const app = createApp(App)
 
 app.use(store)
 app.use(router)
-// app.component('vue-picture-swipe', VuePictureSwipe)
 app.mount('#app')

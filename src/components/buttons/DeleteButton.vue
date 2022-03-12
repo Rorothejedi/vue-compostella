@@ -1,6 +1,6 @@
 <template>
   <made-up-button
-    @click="removeAlbum()"
+    @click="confirmRemove()"
     :loading="loading"
     circle
     small
@@ -12,11 +12,13 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import alert from "@/mixins/alert.js";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
 
 export default {
   name: "DeleteButton",
+  mixins: [alert],
   components: {
     MadeUpButton,
     CloseIcon,
@@ -42,9 +44,22 @@ export default {
   methods: {
     ...mapActions("album", ["loadAlbums", "deleteAlbum"]),
 
-    removeAlbum() {
+    confirmRemove() {
       if (this.loading) return;
 
+      let options = {
+        icon: "warning",
+        html:
+          `Voulez-vous supprimer l'album ${this.album.id} ?<br />` +
+          `De <strong>${this.album.place_departure}</strong><br />` +
+          `à <strong> ${this.album.place_arrival}</strong><br />`,
+        confirmButtonText: "Supprimer",
+      };
+
+      this.confirm(this.removeAlbum, options);
+    },
+
+    removeAlbum() {
       this.loading = true;
 
       const load_params = {

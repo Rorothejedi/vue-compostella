@@ -103,7 +103,7 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["albums"]),
+    ...mapState("album", ["albums", "albums_meta"]),
 
     km_total() {
       if (this.albums[0] === undefined) return 0;
@@ -135,7 +135,7 @@ export default {
       };
 
       this.createAlbum(params).then(() => {
-        this.loadAlbums({ per_page: 15 }).then(() => {
+        this.loadAlbums({ per_page: this.albums_meta.per_page }).then(() => {
           this.resetLocalState();
           this.loading = false;
         });

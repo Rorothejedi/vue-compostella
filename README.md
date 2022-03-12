@@ -4,6 +4,11 @@ TODO
 
 A faire (priorité haute)
 
+- Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
+- Mettre la confirmation sur
+    - Suppression de commentaire signalé
+    - Signalement de commentaire
+    - Suppression de commentaires (page album public)
 
 ------------
 
@@ -14,8 +19,6 @@ A faire (priorité moyenne)
 
 - Gérer les smartphones (responsive) pour l'accueil
 
-- Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
-- Faire une modal de confirmation
 - Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
 - Ajouter un recaptcha pour l'ajout de commentaire
 
@@ -47,11 +50,12 @@ A la fin
 Optionnel
 
 - Voir pour les étapes avec kilometres avec des virgules
+- Intégrer un coeur pour les likes comme ceux de twitter
+
 - Ajouter une option admin de desactivation des commentaires pour l'album
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
 - Voir pour tooltip (title importants (kilomètes parcourus))
 - Faire un dark theme publique
-- Intégrer un coeur pour les likes comme ceux de twitter
 - Faire une intégration du konami code
 
 --------------------------------------------------------

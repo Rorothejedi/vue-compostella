@@ -96,6 +96,7 @@ export default {
 <style>
 @import "./styles/normalize.css";
 @import "./styles/main.css";
+@import "./styles/alert.css";
 </style>
 
 <style scoped>

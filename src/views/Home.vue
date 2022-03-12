@@ -47,6 +47,8 @@
 
       <cover-list ref="cover_list" />
     </div>
+
+    <back-to-top-button />
   </div>
 </template>
 
@@ -54,6 +56,7 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 import CoverList from "@/components/home/CoverList.vue";
 import PathLine from "@/components/home/PathLine.vue";
+import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import SortAscendingIcon from "vue-material-design-icons/SortAscending.vue";
 import SortDescendingIcon from "vue-material-design-icons/SortDescending.vue";
@@ -65,6 +68,7 @@ export default {
   components: {
     CoverList,
     PathLine,
+    BackToTopButton,
     MadeUpButton,
     SortAscendingIcon,
     SortDescendingIcon,
@@ -136,29 +140,24 @@ export default {
   height: 100%;
   display: flex;
   justify-content: center;
+  width: calc(50vw - 570px);
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
+@media (max-width: 991px) {
   .path-line-wrapper {
-    width: calc(50vw - 270px);
+    display: none;
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 992px) and (max-width: 1199px) {
   .path-line-wrapper {
     width: calc(50vw - 360px);
   }
 }
 
-@media (min-width: 992px) and (max-width: 1600px) {
+@media (min-width: 1200px) and (max-width: 1600px) {
   .path-line-wrapper {
     width: calc(50vw - 480px);
-  }
-}
-
-@media (min-width: 1601px) {
-  .path-line-wrapper {
-    width: calc(50vw - 570px);
   }
 }
 </style>

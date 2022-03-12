@@ -4,9 +4,9 @@
 
     <div class="text">
       <div class="places">
-        <div class="departure">{{ departure }}</div>
-        <div class="arrival">
-          <arrow-right-bottom-icon size="15" /> {{ arrival }}
+        <div class="departure" :title="departure">{{ departure }}</div>
+        <div class="arrival" :title="arrival">
+          <arrow-right-bottom-icon :size="15" /> {{ arrival }}
         </div>
         <div class="date">
           le
@@ -102,9 +102,9 @@ img {
 /* places */
 
 .places {
-  width: 200px;
+  width: 195px;
   text-align: left;
-  font-family: "Londrina Solid", cursive;
+  font-family: var(--title-font-family-solid);
   font-size: 20px;
   margin-left: 15px;
   transition: transform 0.3s ease-in-out;
@@ -195,6 +195,23 @@ img {
 }
 
 /* Responsive */
+@media (max-width: 767px) {
+  .km-wrapper {
+    font-size: 45px;
+    margin-top: 10px;
+  }
+  .km-unit {
+    font-size: 30px;
+    margin-left: -8px;
+  }
+  .places {
+    width: 135px;
+    font-size: 18px;
+  }
+  .text {
+    margin-top: -50px;
+  }
+}
 @media (min-width: 1200px) and (max-width: 1600px) {
   .km-wrapper {
     font-size: 45px;

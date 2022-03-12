@@ -103,8 +103,8 @@ html {
     opacity: 1;
 }
 
-.fade-leave-active,
 .fade-enter-active,
+.fade-leave-active,
 .fade-1-leave-active,
 .fade-1-enter-active,
 .fade-2-leave-active,
@@ -167,7 +167,7 @@ html {
 
 @media (min-width: 992px) and (max-width: 1199px) {
     .container {
-        width: 960px;
+        width: 720px;
     }
 }
 

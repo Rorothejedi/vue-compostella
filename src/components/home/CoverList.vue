@@ -159,6 +159,16 @@ export default {
   height: 374px;
 }
 
+@media (max-width: 767px) {
+  .box {
+    height: 265px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .box {
+    height: 355px;
+  }
+}
 @media (min-width: 1200px) and (max-width: 1600px) {
   .box {
     height: 314px;
@@ -171,15 +181,10 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 9px;
 }
-
-@media (max-width: 576px) {
+@media (max-width: 1199px) {
   .wrapper {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 576px) and (max-width: 991px) {
-  .wrapper {
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
   }
 }
 

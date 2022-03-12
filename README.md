@@ -4,7 +4,6 @@ TODO
 
 A faire (priorité haute)
 
-- Uniformiser les covers (responsive)
 
 ------------
 
@@ -13,7 +12,7 @@ A faire (priorité moyenne)
 - Faire le PathLine
     - Faire un ecran dédié pour les petits ecrans
 
-- Faire un bouton pour revenir en haut de page (home)
+- Gérer les smartphones (responsive) pour l'accueil
 
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Faire une modal de confirmation
@@ -112,7 +111,6 @@ DONE
 - Ne pas montrer au public un commentaire ayant été signalé plus de 3 fois
 - gérer le order_by (sort) pour pouvoir trier les albums
 - gérer le order_by (sort) pour pouvoir trier les albums (infinite)
-
 - Supprimer la POC sur kinesis
 - Faire le PathLine
     - Centrer les points en hover
@@ -122,3 +120,6 @@ DONE
     - Faire un WS pour avoir les données depuis serveur
     - Gérer le responsive pour les grand écran
 - Terminer les covers de l'accueil (grande taille)
+
+- Uniformiser les covers (responsive)
+- Faire un bouton pour revenir en haut de page (home)

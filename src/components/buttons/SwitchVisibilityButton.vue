@@ -35,7 +35,7 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["albums_meta"]),
+    ...mapState("album", ["albums_meta", "albums_sort"]),
 
     isHide() {
       return this.album.hide !== 0;
@@ -50,12 +50,17 @@ export default {
 
       this.loading = true;
 
-      const params = {
+      const edit_params = {
         hide: !this.album.hide,
       };
+      const load_params = {
+        page: this.albums_meta.current_page,
+        per_page: this.albums_meta.per_page,
+        sort_by: this.albums_sort,
+      };
 
-      this.editAlbum([this.album.id, params]).then(() => {
-        this.loadAlbums({ page: this.albums_meta.current_page }).then(() => {
+      this.editAlbum([this.album.id, edit_params]).then(() => {
+        this.loadAlbums(load_params).then(() => {
           this.loading = false;
         });
       });

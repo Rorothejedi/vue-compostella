@@ -5,7 +5,11 @@ export default {
 
     state: {
         albums: {},
-        albums_meta: {},
+        albums_meta: {
+            current_page: 1,
+            last_page: 1,
+            per_page: 10,
+        },
         albums_sort: 'desc',
 
         albums_infinite: [],

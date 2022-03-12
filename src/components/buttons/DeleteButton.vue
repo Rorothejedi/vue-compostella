@@ -36,7 +36,7 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["albums_meta"]),
+    ...mapState("album", ["albums_meta", "albums_sort"]),
   },
 
   methods: {
@@ -47,8 +47,14 @@ export default {
 
       this.loading = true;
 
+      const load_params = {
+        page: this.albums_meta.current_page,
+        per_page: this.albums_meta.per_page,
+        sort_by: this.albums_sort,
+      };
+
       this.deleteAlbum(this.album.id).then(() => {
-        this.loadAlbums({ page: this.albums_meta.current_page }).then(() => {
+        this.loadAlbums(load_params).then(() => {
           this.loading = false;
           this.$router.push("/albums-manage");
         });

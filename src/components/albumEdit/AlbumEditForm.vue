@@ -107,7 +107,7 @@ export default {
   },
 
   computed: {
-    ...mapState("album", ["album"]),
+    ...mapState("album", ["album", "albums_meta", "albums_sort"]),
   },
 
   watch: {
@@ -117,7 +117,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["editAlbum"]),
+    ...mapActions("album", ["editAlbum", "loadAlbums"]),
 
     updateAlbum() {
       if (this.loading_update) return;
@@ -132,10 +132,23 @@ export default {
 
       this.loading_update = true;
 
-      const params = { date, place_departure, place_arrival, km_step, text };
+      const edit_params = {
+        date,
+        place_departure,
+        place_arrival,
+        km_step,
+        text,
+      };
+      const load_params = {
+        page: this.albums_meta.current_page,
+        per_page: this.albums_meta.per_page,
+        sort_by: this.albums_sort,
+      };
 
-      this.editAlbum([this.$route.params.id, params]).then(() => {
-        this.loading_update = false;
+      this.editAlbum([this.$route.params.id, edit_params]).then(() => {
+        this.loadAlbums(load_params).then(() => {
+          this.loading_update = false;
+        });
       });
     },
 

@@ -2,7 +2,8 @@
   <div>
     <made-up-button
       @click="sortAlbums()"
-      :loading="loading"
+      :loading="loading_sort || loading_per_page"
+      :disabled="loading_per_page"
       icon
       small
       title="Trier"
@@ -10,6 +11,18 @@
       <sort-ascending-icon v-if="albums_sort === 'asc'" :size="18" />
       <sort-descending-icon v-else :size="18" />
     </made-up-button>
+
+    <select
+      v-model="per_page"
+      class="per-page-select"
+      @change="perPageAlbums()"
+      :disabled="loading_sort || loading_per_page"
+    >
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="-1">Tous</option>
+    </select>
   </div>
 </template>
 
@@ -30,7 +43,9 @@ export default {
 
   data() {
     return {
-      loading: false,
+      loading_sort: false,
+      loading_per_page: false,
+      per_page: "10",
     };
   },
 
@@ -38,13 +53,17 @@ export default {
     ...mapState("album", ["albums", "albums_meta", "albums_sort"]),
   },
 
+  mounted() {
+    this.per_page = this.albums_meta.per_page;
+  },
+
   methods: {
     ...mapActions("album", ["loadAlbums"]),
 
     sortAlbums() {
-      if (this.loading) return;
+      if (this.loading_sort || this.loading_per_page) return;
 
-      this.loading = true;
+      this.loading_sort = true;
 
       store.commit("album/SET_ALBUMS_SORT");
 
@@ -55,9 +74,36 @@ export default {
       };
 
       this.loadAlbums(params).then(() => {
-        this.loading = false;
+        this.loading_sort = false;
+      });
+    },
+
+    perPageAlbums() {
+      if (this.loading_sort || this.loading_per_page) return;
+
+      this.loading_per_page = true;
+
+      const params = {
+        page: this.albums_meta.current_page,
+        per_page: this.per_page,
+        sort_by: this.albums_sort,
+      };
+
+      this.loadAlbums(params).then(() => {
+        this.loading_per_page = false;
       });
     },
   },
 };
 </script>
+
+<style scoped>
+.per-page-select {
+  margin-left: 10px;
+  padding-left: 5px;
+  height: 28px;
+  border-radius: 4px;
+  border-style: none;
+  color: var(--main-text-color);
+}
+</style>

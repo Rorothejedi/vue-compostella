@@ -91,16 +91,13 @@ html {
 .fade-1-enter-from,
 .fade-2-enter-from,
 .fade-3-enter-from,
-.fade-loader-enter-from {
-    opacity: 0;
-}
-
+.fade-loader-enter-from,
 .fade-leave-to,
 .fade-1-leave-to,
 .fade-2-leave-to,
 .fade-3-leave-to,
 .fade-loader-leave-to {
-    opacity: 1;
+    opacity: 0;
 }
 
 .fade-enter-active,

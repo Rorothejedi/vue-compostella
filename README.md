@@ -123,3 +123,4 @@ DONE
 
 - Uniformiser les covers (responsive)
 - Faire un bouton pour revenir en haut de page (home)
+- Refacto sur la gestion de l'edit d'album

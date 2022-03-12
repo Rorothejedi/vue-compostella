@@ -23,32 +23,32 @@
           <delete-button :album="album" />
         </div>
       </div>
+
+      <div class="pagination-buttons">
+        <made-up-button
+          @click="previousPage()"
+          :disabled="albums_meta.current_page <= 1"
+        >
+          Précédent
+        </made-up-button>
+
+        <div>
+          {{ albums_meta.current_page }}
+        </div>
+
+        <made-up-button
+          @click="nextPage()"
+          :disabled="albums_meta.current_page >= albums_meta.last_page"
+        >
+          Suivant
+        </made-up-button>
+      </div>
     </div>
 
     <div class="loading-list" v-else>
       <div class="loading">
         <sync-icon class="loading-icon" />
       </div>
-    </div>
-
-    <div class="pagination-buttons">
-      <made-up-button
-        @click="previousPage()"
-        :disabled="albums_meta.current_page <= 1"
-      >
-        Précédent
-      </made-up-button>
-
-      <div>
-        {{ albums_meta.current_page }}
-      </div>
-
-      <made-up-button
-        @click="nextPage()"
-        :disabled="albums_meta.current_page >= albums_meta.last_page"
-      >
-        Suivant
-      </made-up-button>
     </div>
   </div>
 </template>
@@ -98,7 +98,7 @@ export default {
 
       const params = {
         page: this.page,
-        per_page: 10,
+        per_page: this.albums_meta.per_page,
         sort_by: this.albums_sort,
       };
 
@@ -157,8 +157,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
-  border-top: white solid 1px;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: grey dashed 1px;
 }
 
 .loading-list {

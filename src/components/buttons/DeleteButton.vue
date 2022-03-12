@@ -56,7 +56,7 @@ export default {
         confirmButtonText: "Supprimer",
       };
 
-      this.confirm(this.removeAlbum, options);
+      this.confirm(options, this.removeAlbum);
     },
 
     removeAlbum() {

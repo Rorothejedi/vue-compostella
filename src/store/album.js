@@ -8,7 +8,7 @@ export default {
         albums_meta: {
             current_page: 1,
             last_page: 1,
-            per_page: 10,
+            per_page: '10',
         },
         albums_sort: 'desc',
 
@@ -73,7 +73,11 @@ export default {
 
         clearAlbums(store) {
             store.commit('SET_ALBUMS', [])
-            store.commit('SET_ALBUMS_META', [])
+            store.commit('SET_ALBUMS_META', {
+                current_page: 1,
+                last_page: 1,
+                per_page: '10',
+            })
         },
 
         /* ALBUMS INFINITE SCROLL */

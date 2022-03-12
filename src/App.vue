@@ -3,17 +3,12 @@
     <div class="container admin-navbar-content">
       <div>
         <router-link to="/">
-          <made-up-button @click="clearAlbums()" title="Accueil" small>
+          <made-up-button title="Accueil" small>
             <home-icon />
           </made-up-button>
         </router-link>
         <router-link to="/albums-manage" class="space">
-          <made-up-button
-            @click="$route.path === '/albums-manage' ? '' : clearAlbums()"
-            small
-          >
-            Gérer les albums
-          </made-up-button>
+          <made-up-button small> Gérer les albums </made-up-button>
         </router-link>
         <router-link to="/comments-report" class="space">
           <made-up-button title="Commentaires signalés" class="icon-cart" small>
@@ -69,7 +64,6 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["clearAlbums"]),
     ...mapActions("user", ["logout"]),
     ...mapActions("comment", ["loadReportedComments"]),
 

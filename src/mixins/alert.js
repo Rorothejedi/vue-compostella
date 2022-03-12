@@ -2,7 +2,7 @@ export default {
 
     methods: {
 
-        confirm(callback, options) {
+        confirm(options, callback, callback_params = null) {
             const full_options = {
                 ...options,
                 cancelButtonText: "Annuler",
@@ -22,7 +22,7 @@ export default {
             this.$swal(full_options).then((result) => {
                 if (!result.isConfirmed) return;
 
-                callback()
+                callback(callback_params)
             })
         }
     }

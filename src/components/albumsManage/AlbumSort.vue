@@ -54,6 +54,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.albums_meta.per_page);
     this.per_page = this.albums_meta.per_page;
   },
 

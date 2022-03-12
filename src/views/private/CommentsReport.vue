@@ -22,12 +22,26 @@
           </div>
 
           <div>
-            <button @click="resetReport(comment.id)">
-              ✔ <span v-if="loading_reset[comment.id]">loading...</span>
-            </button>
-            <button @click="removeComment(comment.id)">
-              ✖ <span v-if="loading_delete[comment.id]">loading...</span>
-            </button>
+            <made-up-button
+              @click="confirmResetReport(comment.id)"
+              icon
+              small
+              :loading="loading_reset[comment.id]"
+              class="reset-button"
+              title="Valider ce commentaire"
+            >
+              <check-icon />
+            </made-up-button>
+
+            <made-up-button
+              @click="confirmRemoveComment(comment.id)"
+              icon
+              small
+              :loading="loading_delete[comment.id]"
+              title="Supprimer ce commentaire"
+            >
+              <close-icon />
+            </made-up-button>
           </div>
         </div>
 
@@ -50,12 +64,17 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import alert from "@/mixins/alert.js";
 import TitleLine from "@/components/utils/TitleLine.vue";
 import Divider from "@/components/utils/Divider.vue";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import CheckIcon from "vue-material-design-icons/Check.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
 
 export default {
   name: "CommentsReport",
-  components: { TitleLine, Divider },
+  mixins: [alert],
+  components: { TitleLine, Divider, MadeUpButton, CheckIcon, CloseIcon },
 
   data() {
     return {
@@ -88,6 +107,18 @@ export default {
       "deleteComment",
     ]),
 
+    confirmResetReport(id) {
+      if (this.loading_reset[id]) return;
+
+      let options = {
+        icon: "question",
+        html: `Voulez-vous valider le commentaire ${id} ?<br />`,
+        confirmButtonText: "Valider",
+      };
+
+      this.confirm(options, this.resetReport, id);
+    },
+
     resetReport(id) {
       this.loading_reset[id] = true;
 
@@ -96,6 +127,18 @@ export default {
           this.loading_reset[id] = false;
         });
       });
+    },
+
+    confirmRemoveComment(id) {
+      if (this.loading_delete[id]) return;
+
+      let options = {
+        icon: "warning",
+        html: `Voulez-vous supprimer le commentaire ${id} ?<br />`,
+        confirmButtonText: "Supprimer",
+      };
+
+      this.confirm(options, this.resetReport, id);
     },
 
     removeComment(id) {
@@ -141,5 +184,9 @@ export default {
   overflow-wrap: break-word;
   font-style: italic;
   white-space: pre-wrap;
+}
+
+.reset-button {
+  margin-right: 3px;
 }
 </style>

@@ -4,26 +4,26 @@ TODO
 
 A faire (priorité haute)
 
-- Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Mettre la confirmation sur
-    - Suppression de commentaire signalé
-    - Signalement de commentaire
-    - Suppression de commentaires (page album public)
+    - Signalement de commentaire (warning)
+    - Suppression de commentaires (page album public) (warning)
+    - Message posté (success)
+    - Edit album contenu
 
 ------------
 
 A faire (priorité moyenne)
+
+- Faire un composant sympa pour les inputs 
+- Adapation responsive pour le composant KilometersLine
 
 - Faire le PathLine
     - Faire un ecran dédié pour les petits ecrans
 
 - Gérer les smartphones (responsive) pour l'accueil
 
-- Ajouter des confirmations (modal) sur tous les changements d'état (suppression, visible, ok)
 - Ajouter un recaptcha pour l'ajout de commentaire
 
-- Adapation responsive pour le composant KilometersLine
-- Faire un composant sympa pour les inputs 
 - Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 
@@ -50,12 +50,14 @@ A la fin
 Optionnel
 
 - Voir pour les étapes avec kilometres avec des virgules
+- Refacto row du tableau pour la page album-manage
 - Intégrer un coeur pour les likes comme ceux de twitter
 
 - Ajouter une option admin de desactivation des commentaires pour l'album
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
 - Voir pour tooltip (title importants (kilomètes parcourus))
 - Faire un dark theme publique
+- Faire des onglets (infos, photos, videos) pour album manage
 - Faire une intégration du konami code
 
 --------------------------------------------------------
@@ -128,3 +130,6 @@ DONE
 - Uniformiser les covers (responsive)
 - Faire un bouton pour revenir en haut de page (home)
 - Refacto sur la gestion de l'edit d'album
+- Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
+- Mettre la confirmation sur
+    - Suppression de commentaire signalé

@@ -1,19 +1,13 @@
-TODO
+TODO (priorité haute)
+
+- Adapation responsive pour le composant KilometersLine
 
 ------------
 
-A faire (priorité haute)
-
-- Ajouter un recaptcha pour l'ajout de commentaire
+TODO (priorité moyenne)
 
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
-
-------------
-
-A faire (priorité moyenne)
-
-- Adapation responsive pour le composant KilometersLine
 
 - Faire le PathLine
     - Faire un ecran dédié pour les petits ecrans
@@ -25,7 +19,7 @@ A faire (priorité moyenne)
 
 ------------
 
-A faire (priorité basse)
+TODO (priorité basse)
 
 - Gérer le cas où il n'y a pas encore d'album
 - Gérer correctement les jours de repos
@@ -35,7 +29,7 @@ A faire (priorité basse)
 
 ------------
 
-A la fin
+TODO - A la fin
 
 - Mettre la collection postman sur github
 - Mise en ligne de l'api
@@ -138,3 +132,4 @@ DONE
     - Signalement de commentaire (page album public)(warning)
     - Suppression de commentaires (page album public)(warning)
     - Message posté (success)
+- Ajouter un recaptcha pour l'ajout de commentaire

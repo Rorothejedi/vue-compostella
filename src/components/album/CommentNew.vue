@@ -66,6 +66,7 @@ export default {
       loading: false,
       author: "",
       text: "",
+      recaptcha_token: "",
       authorPlaceholder: "",
     };
   },
@@ -88,18 +89,39 @@ export default {
     ...mapActions("comment", ["createComment"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    postComment() {
+    async recaptcha() {
+      await this.$recaptchaLoaded();
+
+      this.recaptcha_token = await this.$recaptcha("login");
+    },
+
+    async postComment() {
       if (this.loading) return;
 
       this.loading = true;
+
+      await this.recaptcha();
 
       const params = {
         album_id: this.$route.params.id,
         author: this.author,
         text: this.text,
+        "g-recaptcha-response": this.recaptcha_token,
       };
 
-      this.createComment(params).then(() => {
+      this.createComment(params).then((result) => {
+        if (result === undefined) {
+          this.valid(
+            {
+              icon: "error",
+              html: "Une erreur s'est produite...<br />Merci de vérifier que les informations sont correctement remplies.<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
+            },
+            6000
+          );
+          this.loading = false;
+          return;
+        }
+
         this.loadAlbum(this.$route.params.id).then(() => {
           this.valid({
             icon: "success",

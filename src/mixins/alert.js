@@ -27,7 +27,7 @@ export default {
             })
         },
 
-        valid(options) {
+        valid(options, delay = 4000) {
             const full_options = {
                 ...options, // icon, html or text
                 showClass: {
@@ -36,7 +36,7 @@ export default {
                 hideClass: {
                     popup: "animated fade-out",
                 },
-                timer: 3000,
+                timer: delay,
                 timerProgressBar: true,
                 showConfirmButton: false,
             }

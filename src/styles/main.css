@@ -9,10 +9,11 @@ body {
     --main-text-color: #3b3b3b;
     --secondary-text-color: lightcoral;
     --third-text-color: #cccccc;
+    --grey-color: #efefef;
 
     --dark-bg-color: #222;
     --dark-top-color: var(--main-text-color);
-    --dark-text-color: #ccc;
+    --dark-text-color: var(--third-text-color);
 
     --title-font-family-solid: 'Londrina Solid', cursive;
     --title-font-family-outline: 'Londrina Outline', cursive;

@@ -23,7 +23,6 @@ export default {
     MadeUpButton,
     CloseIcon,
   },
-
   props: {
     album: {
       type: Object,

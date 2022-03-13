@@ -4,25 +4,21 @@ TODO
 
 A faire (priorité haute)
 
-- Mettre la confirmation sur
-    - Signalement de commentaire (warning)
-    - Suppression de commentaires (page album public) (warning)
-    - Message posté (success)
-    - Edit album contenu
+- Ajouter un recaptcha pour l'ajout de commentaire
+
+- Intégrer les composant d'input partout
+- Intégrer le composant de bouton partout
 
 ------------
 
 A faire (priorité moyenne)
 
-- Faire un composant sympa pour les inputs 
 - Adapation responsive pour le composant KilometersLine
 
 - Faire le PathLine
     - Faire un ecran dédié pour les petits ecrans
 
 - Gérer les smartphones (responsive) pour l'accueil
-
-- Ajouter un recaptcha pour l'ajout de commentaire
 
 - Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
@@ -52,6 +48,12 @@ Optionnel
 - Voir pour les étapes avec kilometres avec des virgules
 - Refacto row du tableau pour la page album-manage
 - Intégrer un coeur pour les likes comme ceux de twitter
+- Mettre la confirmation sur
+    - Edit album contenu
+    - Suppression photo
+    - Modification photo
+    - Suppression lien vidéo
+    - Modification lien vidéo
 
 - Ajouter une option admin de desactivation des commentaires pour l'album
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
@@ -126,10 +128,13 @@ DONE
     - Faire un WS pour avoir les données depuis serveur
     - Gérer le responsive pour les grand écran
 - Terminer les covers de l'accueil (grande taille)
-
 - Uniformiser les covers (responsive)
 - Faire un bouton pour revenir en haut de page (home)
 - Refacto sur la gestion de l'edit d'album
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Mettre la confirmation sur
     - Suppression de commentaire signalé
+
+    - Signalement de commentaire (page album public)(warning)
+    - Suppression de commentaires (page album public)(warning)
+    - Message posté (success)

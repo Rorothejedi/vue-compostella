@@ -165,8 +165,8 @@ button:active:not(.loading):not(.disabled) {
   border-radius: 50%;
 }
 .icon span {
-  writing-mode: vertical-lr;
-  -webkit-writing-mode: vertical-lr;
+  display: flex;
+  justify-content: center;
 }
 
 /* Disabled */

@@ -11,7 +11,7 @@
         : 'Signaler ce commentaire'
     "
     color="#aaa"
-    @click="reportsComment()"
+    @click="confirmReportsComment()"
   >
     <alert-circle-check-outline-icon
       v-if="isReported()"
@@ -23,13 +23,15 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import alert from "@/mixins/alert.js";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import AlertCircleOutlineIcon from "vue-material-design-icons/AlertCircleOutline.vue";
 import AlertCircleCheckOutlineIcon from "vue-material-design-icons/AlertCircleCheckOutline.vue";
-import { mapActions } from "vuex";
 
 export default {
   name: "ReportButton",
+  mixins: [alert],
   components: {
     MadeUpButton,
     AlertCircleOutlineIcon,
@@ -57,11 +59,25 @@ export default {
     ...mapActions("comment", ["reportComment"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    reportsComment() {
+    confirmReportsComment() {
       if (this.loading) return;
 
-      this.loading = true;
+      let options = {
+        icon: "question",
+        html: `Voulez-vous vraiment signaler ce commentaire posté par <strong>${this.comment.author}</strong> ?<br />`,
+        confirmButtonText: "Signaler",
+      };
 
+      let options_alert_after = {
+        icon: "success",
+        text: `Merci pour votre signalement et votre vigilance !`,
+      };
+
+      this.confirm(options, this.reportsComment, null, options_alert_after);
+    },
+
+    reportsComment() {
+      this.loading = true;
       this.reportComment(this.comment.id).then(() => {
         this.addCommentsReported(this.comment.id);
         this.loading = false;

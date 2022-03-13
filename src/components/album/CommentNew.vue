@@ -1,47 +1,120 @@
 <template>
-  <div class="comment-new">
-    <label for="author">Votre nom *</label><br />
-    <input
-      v-model="author"
-      id="author"
-      type="text"
-      maxlength="30"
-      :placeholder="`ex: ${randomAuthorName}`"
-    />
-    <br />
-    <small>{{ 30 - author.length }} restant</small>
+  <div>
+    <title-line title="Poster un commentaire" />
 
-    <br /><br />
+    <div class="comment-new">
+      <label for="author">Votre nom</label><br />
+      <made-up-input-text
+        v-model="author"
+        id="author"
+        :placeholder="`ex: ${authorPlaceholder}`"
+        :disabled="loading"
+        maxlength="30"
+      />
 
-    <label for="text">Votre commentaire *</label><br />
-    <textarea v-model="text" id="text"></textarea>
+      <br />
+      <small>{{ 30 - author.length }} restant</small>
 
-    <br /><br />
+      <br /><br />
 
-    <button type="button" :disabled="!canPublished" @click="postComment()">
-      Envoyer <span v-if="loading">loading...</span>
-    </button>
+      <label for="text">Votre commentaire</label><br />
+      <made-up-textarea
+        v-model="text"
+        id="text"
+        placeholder="ex: blabla"
+        :disabled="loading"
+      />
+
+      <br /><br />
+
+      <made-up-button
+        :loading="loading"
+        :disabled="!canPublished"
+        @click="postComment()"
+        :title="
+          !canPublished
+            ? 'Vous devez remplir les champs ci-dessus pour pouvoir poster un commentaire'
+            : ''
+        "
+      >
+        Poster le commentaire
+      </made-up-button>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import alert from "@/mixins/alert.js";
+import TitleLine from "@/components/utils/TitleLine.vue";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import MadeUpInputText from "@/components/utils/MadeUpInputText.vue";
+import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
+
 export default {
   name: "CommentNew",
+  mixins: [alert],
+  components: {
+    TitleLine,
+    MadeUpButton,
+    MadeUpInputText,
+    MadeUpTextarea,
+  },
 
   data() {
     return {
       loading: false,
       author: "",
       text: "",
+      authorPlaceholder: "",
     };
   },
 
   computed: {
     canPublished() {
-      return this.author !== "" && this.text !== "" && !this.loading;
+      const regexp = /^\s+$/; // without only spaces
+
+      if (regexp.test(this.author) || regexp.test(this.text)) return false;
+
+      return this.author !== "" && this.text !== "";
     },
-    randomAuthorName() {
+  },
+
+  mounted() {
+    this.randomAuthorPlaceholder();
+  },
+
+  methods: {
+    ...mapActions("comment", ["createComment"]),
+    ...mapActions("album", ["loadAlbum"]),
+
+    postComment() {
+      if (this.loading) return;
+
+      this.loading = true;
+
+      const params = {
+        album_id: this.$route.params.id,
+        author: this.author,
+        text: this.text,
+      };
+
+      this.createComment(params).then(() => {
+        this.loadAlbum(this.$route.params.id).then(() => {
+          this.valid({
+            icon: "success",
+            html: "Votre commentaire a été posté avec succès !<br />Merci de votre participation !",
+          });
+
+          this.author = "";
+          this.text = "";
+          this.loading = false;
+          this.randomAuthorPlaceholder();
+        });
+      });
+    },
+
+    randomAuthorPlaceholder() {
       const famous_characters = [
         "Katniss Everdeen",
         "Beatrix Kiddo",
@@ -80,34 +153,9 @@ export default {
         "Thomas Anderson",
       ];
 
-      return famous_characters[
-        Math.floor(Math.random() * famous_characters.length)
-      ];
-    },
-  },
+      const random_index = Math.floor(Math.random() * famous_characters.length);
 
-  methods: {
-    ...mapActions("comment", ["createComment"]),
-    ...mapActions("album", ["loadAlbum"]),
-
-    postComment() {
-      if (this.loading) return;
-
-      this.loading = true;
-
-      const params = {
-        album_id: this.$route.params.id,
-        author: this.author,
-        text: this.text,
-      };
-
-      this.createComment(params).then(() => {
-        this.loadAlbum(this.$route.params.id).then(() => {
-          this.author = "";
-          this.text = "";
-          this.loading = false;
-        });
-      });
+      this.authorPlaceholder = famous_characters[random_index];
     },
   },
 };
@@ -115,8 +163,18 @@ export default {
 
 <style scoped>
 .comment-new {
-  background-color: whitesmoke;
+  margin-top: 60px;
   padding: 25px;
-  border-radius: 3px;
+  border-radius: 4px;
+  border: 1px dashed var(--third-text-color);
+}
+
+label {
+  font-family: var(--subtitle-font-family);
+}
+
+#author,
+#text {
+  margin-top: 10px;
 }
 </style>

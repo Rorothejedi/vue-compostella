@@ -23,10 +23,10 @@
             class="action-delete"
             icon
             :loading="loading_delete[comment.id]"
-            @click="removeComment(comment.id)"
+            @click="confirmRemoveComment(comment.id)"
             title="Supprimer ce commentaire"
           >
-            <close-icon />
+            <close-icon fillColor="gray" />
           </made-up-button>
         </div>
       </div>
@@ -38,9 +38,10 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+import alert from "@/mixins/alert.js";
 import date from "@/mixins/date.js";
 import TitleLine from "@/components/utils/TitleLine.vue";
-import { mapActions, mapGetters } from "vuex";
 import LoveButton from "@/components/buttons/LoveButton.vue";
 import ReportButton from "@/components/buttons/ReportButton.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
@@ -48,6 +49,7 @@ import CloseIcon from "vue-material-design-icons/Close.vue";
 
 export default {
   name: "CommentList",
+  mixins: [date, alert],
   components: {
     TitleLine,
     LoveButton,
@@ -55,8 +57,6 @@ export default {
     MadeUpButton,
     CloseIcon,
   },
-  mixins: [date],
-
   props: {
     comments: {
       type: Array,
@@ -80,7 +80,7 @@ export default {
     formattedTitle() {
       let text = "";
 
-      if (this.commentsCount === 0) text = "Pas de commentaires";
+      if (this.commentsCount === 0) return "Pas de commentaires";
       if (this.commentsCount >= 1) text = this.commentsCount + " commentaire";
       if (this.commentsCount > 1) text += "s";
 
@@ -92,9 +92,19 @@ export default {
     ...mapActions("comment", ["reportComment", "deleteComment"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    removeComment(comment_id) {
+    confirmRemoveComment(comment_id) {
       if (this.loading_delete[comment_id]) return;
 
+      let options = {
+        icon: "warning",
+        html: `Voulez-vous supprimer le commentaire n°<strong>${comment_id}</strong> ?<br />`,
+        confirmButtonText: "Signaler",
+      };
+
+      this.confirm(options, this.removeComment, comment_id);
+    },
+
+    removeComment(comment_id) {
       this.loading_delete[comment_id] = true;
 
       this.deleteComment(comment_id).then(() => {
@@ -109,7 +119,7 @@ export default {
 
 <style scoped>
 .comment {
-  padding: 15px;
+  padding: 20px 15px 20px 15px;
   margin: 10px 0px;
   border-radius: 2px;
   transition: background-color 0.3s ease;

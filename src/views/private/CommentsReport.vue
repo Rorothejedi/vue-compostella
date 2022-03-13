@@ -112,7 +112,7 @@ export default {
 
       let options = {
         icon: "question",
-        html: `Voulez-vous valider le commentaire ${id} ?<br />`,
+        html: `Voulez-vous valider le commentaire n°<strong>${id}</strong> ?<br />`,
         confirmButtonText: "Valider",
       };
 
@@ -134,7 +134,7 @@ export default {
 
       let options = {
         icon: "warning",
-        html: `Voulez-vous supprimer le commentaire ${id} ?<br />`,
+        html: `Voulez-vous supprimer le commentaire n°<strong>${id}</strong> ?<br />`,
         confirmButtonText: "Supprimer",
       };
 

@@ -2,7 +2,7 @@ export default {
 
     methods: {
 
-        confirm(options, callback, callback_params = null) {
+        confirm(options, callback, callback_params = null, options_alert_after = null) {
             const full_options = {
                 ...options,
                 cancelButtonText: "Annuler",
@@ -21,9 +21,27 @@ export default {
 
             this.$swal(full_options).then((result) => {
                 if (!result.isConfirmed) return;
+                if (options_alert_after) this.valid(options_alert_after);
 
-                callback(callback_params)
+                callback(callback_params);
             })
-        }
+        },
+
+        valid(options) {
+            const full_options = {
+                ...options, // icon, html or text
+                showClass: {
+                    popup: "animated fade-in",
+                },
+                hideClass: {
+                    popup: "animated fade-out",
+                },
+                timer: 3000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+            }
+
+            this.$swal(full_options)
+        },
     }
 }

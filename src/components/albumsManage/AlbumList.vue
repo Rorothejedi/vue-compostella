@@ -85,7 +85,6 @@ export default {
   },
 
   mounted() {
-    console.log(Object.values(this.albums).length);
     if (Object.values(this.albums).length === 0) this.fetchAlbums();
   },
 

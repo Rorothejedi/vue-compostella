@@ -35,7 +35,7 @@
         </div>
         <div class="footer-km" title="Kilomètres parcourus à la fin de l'étape">
           {{ album.km_total }}<small>km</small>
-          <map-marker-outline-icon />
+          <map-marker-check-icon />
         </div>
       </div>
     </transition>
@@ -44,10 +44,11 @@
 
 <script>
 import MapMarkerOutlineIcon from "vue-material-design-icons/MapMarkerOutline.vue";
+import MapMarkerCheckIcon from "vue-material-design-icons/MapMarkerCheck.vue";
 
 export default {
   name: "KilometersLine",
-  components: { MapMarkerOutlineIcon },
+  components: { MapMarkerOutlineIcon, MapMarkerCheckIcon },
   props: {
     album: {
       type: Object,

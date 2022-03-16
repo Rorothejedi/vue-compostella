@@ -6,7 +6,9 @@ TODO (priorité haute)
 
 TODO (priorité moyenne)
 
-- Fix l'apparition des images sur l'acceuil (pop après coup)
+- Clear albums infinite quand on ajoute, supprime ou rend visible un album (manage)
+
+- Ajouter un bas de page sur home (pour marquer la fin du infinite)
 
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
@@ -56,6 +58,7 @@ Optionnel
 - Voir pour tooltip (title importants (kilomètes parcourus))
 - Faire un dark theme publique
 - Faire des onglets (infos, photos, videos) pour album manage
+- Faire un skelton loader pour les covers
 - Faire une intégration du konami code
 
 --------------------------------------------------------
@@ -142,3 +145,4 @@ DONE
 - Redesign login page
 - Mettre le recaptcha sur le login (pour l'admin)
 - Mettre un loading sur le bouton de déconnexion
+- Fix l'apparition des images sur l'accueil (pop après coup) & loader home

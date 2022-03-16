@@ -15,48 +15,57 @@
         class="box"
       >
         <Cover
-          v-if="album.images.length > 0"
-          :image="album.images[0].cover_path"
+          :image="album.images.length > 0 ? album.images[0].cover_path : ''"
           :departure="album.place_departure"
           :arrival="album.place_arrival"
           :date="album.date"
           :km="album.km_total"
+          @img-load="img_load++"
+          @img-unload="img_load--"
         />
       </router-link>
     </transition-group>
   </div>
-  <div class="see-more">
-    <div class="loading">
-      <transition name="fade-loader">
-        <sync-icon
-          class="loading-icon"
-          v-if="loading && !first_view"
-          :size="35"
-        />
+  <div
+    :class="
+      albums_infinite.length === 0 ? 'see-more-wrapper' : 'see-more-wrapper-bis'
+    "
+  >
+    <div class="see-more">
+      <transition
+        :name="albums_infinite.length === 0 ? 'fade-loader' : 'fade-loader-bis'"
+      >
+        <div class="loading" v-if="!isImagesLoaded && test">
+          <sync-icon class="loading-icon" :size="35" />
+        </div>
       </transition>
-    </div>
 
-    <div v-if="!loading" class="see-more-spacer"></div>
+      <div v-if="isImagesLoaded" class="see-more-spacer"></div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import store from "../../store";
 import gsap from "gsap";
+import utils from "@/mixins/utils.js";
 import Cover from "@/components/home/Cover.vue";
 import SyncIcon from "vue-material-design-icons/Sync.vue";
-import store from "../../store";
 
 export default {
   name: "CoverList",
+  mixins: [utils],
   components: { Cover, SyncIcon },
 
   data() {
     return {
       loading: false,
       page: 1,
-
       el_by_row: 3,
+
+      img_load: 0,
+      test: false,
     };
   },
 
@@ -67,6 +76,14 @@ export default {
       "albums_infinite_sort",
     ]),
     ...mapState("nav", ["first_view"]),
+
+    isImagesLoaded() {
+      return (
+        this.albums_infinite.length === this.img_load &&
+        this.img_load !== 0 &&
+        !this.loading
+      );
+    },
   },
 
   beforeMount() {
@@ -75,6 +92,7 @@ export default {
 
   mounted() {
     this.getNextAlbums();
+    this.test = true;
   },
 
   methods: {
@@ -119,21 +137,27 @@ export default {
       };
     },
 
-    // enter and leave box transition
+    /* Enter and leave box transition */
 
     beforeEnter(el) {
       el.style.opacity = 0;
     },
 
-    enter(el, done) {
-      let calc_delay =
-        parseInt(el.dataset.indexAsc) - (this.albums_infinite_meta.from - 1);
+    async enter(el, done) {
+      if (!this.isImagesLoaded) {
+        await this.sleep(200);
 
-      gsap.to(el, {
-        opacity: 1,
-        delay: calc_delay * 0.15,
-        onComplete: done,
-      });
+        this.enter(el, done);
+      } else {
+        let calc_delay =
+          parseInt(el.dataset.indexAsc) - (this.albums_infinite_meta.from - 1);
+
+        gsap.to(el, {
+          opacity: 1,
+          delay: calc_delay * 0.15,
+          onComplete: done,
+        });
+      }
     },
 
     leave(el, done) {
@@ -188,21 +212,59 @@ export default {
   }
 }
 
+/* See more */
+
+.see-more-wrapper,
+.see-more-wrapper-bis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.see-more-wrapper {
+  height: -webkit-fill-available;
+}
+.see-more-wrapper-bis {
+  height: 250px;
+}
 .see-more {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
 }
 .see-more-spacer {
   width: 100%;
   height: 40px;
 }
-
 .loading {
   animation: spin 2s infinite linear;
 }
 .loading-icon {
   display: flex;
+}
+
+/* Loader transitions */
+.fade-loader-enter-from,
+.fade-loader-bis-enter-from {
+  opacity: 0;
+}
+.fade-loader-leave-to,
+.fade-loader-bis-leave-to {
+  opacity: 0;
+}
+
+.fade-loader-enter-active,
+.fade-loader-bis-enter-active {
+  transition: opacity 0.3s ease-in;
+}
+.fade-loader-leave-active,
+.fade-loader-bis-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.fade-loader-enter-active {
+  transition-delay: 3s;
+}
+.fade-loader-bis-enter-active {
+  transition-delay: 0.5s;
 }
 </style>
 

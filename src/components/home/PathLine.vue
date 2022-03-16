@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition name="slide-left">
     <div id="line" v-show="!loading">
       <router-link
         v-for="(km, index) in albums_simple"

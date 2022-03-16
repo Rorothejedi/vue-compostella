@@ -86,18 +86,16 @@ html {
     transition: all 0.3s ease-in;
 }
 
-/**/
+/* All transitions */
 
 .fade-enter-from,
 .fade-1-enter-from,
 .fade-2-enter-from,
 .fade-3-enter-from,
-.fade-loader-enter-from,
 .fade-leave-to,
 .fade-1-leave-to,
 .fade-2-leave-to,
-.fade-3-leave-to,
-.fade-loader-leave-to {
+.fade-3-leave-to {
     opacity: 0;
 }
 
@@ -108,9 +106,7 @@ html {
 .fade-2-leave-active,
 .fade-2-enter-active,
 .fade-3-leave-active,
-.fade-3-enter-active,
-.fade-loader-leave-active,
-.fade-loader-enter-active {
+.fade-3-enter-active {
     transition: opacity 0.3s ease;
 }
 
@@ -125,8 +121,7 @@ html {
 }
 
 .fade-3-leave-active,
-.fade-3-enter-active,
-.fade-loader-enter-active {
+.fade-3-enter-active {
     transition-delay: 1.5s;
 }
 

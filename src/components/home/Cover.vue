@@ -1,6 +1,13 @@
 <template>
   <span>
-    <img :src="`${host}/${image}`" alt="" />
+    <img
+      :src="
+        image ? `${host}/${image}` : 'https://picsum.photos/100?grayscale&blur'
+      "
+      alt=""
+      @load="$emit('img-load')"
+      rel="preload"
+    />
 
     <div class="text">
       <div class="places">
@@ -39,7 +46,7 @@ export default {
   props: {
     image: {
       type: String,
-      required: true,
+      required: false,
     },
     departure: {
       type: String,
@@ -61,6 +68,10 @@ export default {
 
   computed: {
     ...mapGetters(["host"]),
+  },
+
+  beforeUnmount() {
+    this.$emit("img-unload");
   },
 };
 </script>

@@ -9,9 +9,9 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container home-container">
       <div class="header">
-        <div></div>
+        <div class="spacer"></div>
 
         <transition :name="first_view ? 'fade-1' : 'none'">
           <h1 class="title" v-if="isMount">Sur les chemins de Compostelle</h1>
@@ -130,6 +130,9 @@ export default {
 </script>
 
 <style scoped>
+.home-container {
+  height: 70vh;
+}
 .header {
   display: flex;
   justify-content: space-between;

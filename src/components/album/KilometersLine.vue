@@ -25,7 +25,7 @@
       <div class="footer" v-if="!loading">
         <div
           class="footer-km"
-          title="Kilomètres parcourus au départ de l'étape"
+          v-tooltip.bottom="'Kilomètres parcourus au départ de l\'étape'"
         >
           <map-marker-outline-icon />
           {{ start_km }}<small>km</small>
@@ -35,7 +35,10 @@
             Étape de <span class="bold">{{ album.km_step }}km</span>
           </small>
         </div>
-        <div class="footer-km" title="Kilomètres parcourus à la fin de l'étape">
+        <div
+          class="footer-km"
+          v-tooltip.bottom="'Kilomètres parcourus à la fin de l\'étape'"
+        >
           {{ album.km_total }}<small>km</small>
           <map-marker-check-icon />
         </div>
@@ -105,7 +108,6 @@ export default {
   font-family: var(--title-font-family-solid);
   font-size: 1.7rem;
   width: 100%;
-  /* height: 30px; */
   min-height: 31px;
   height: auto;
   text-overflow: ellipsis;

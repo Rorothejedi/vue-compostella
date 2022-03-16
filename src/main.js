@@ -5,6 +5,9 @@ import axios from 'axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import {
+    VTooltip
+} from 'floating-vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import {
@@ -32,6 +35,7 @@ if (token) {
 
 const app = createApp(App)
 
+app.directive('tooltip', VTooltip)
 app.use(store)
 app.use(router)
 app.use(VueSweetalert2)

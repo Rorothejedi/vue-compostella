@@ -5,6 +5,7 @@ import {
 import store from '@/store'
 import Home from '@/views/Home.vue'
 import Album from '@/views/Album.vue'
+import Legal from '@/views/Legal.vue'
 import Login from '@/views/Login.vue'
 import AlbumsManage from '@/views/private/AlbumsManage.vue'
 import AlbumEdit from '@/views/private/AlbumEdit.vue'
@@ -44,6 +45,16 @@ const routes = [{
   {
     path: '/album/:id',
     component: Album,
+    meta: {
+      transition: 'slide-right'
+    },
+    props: {
+      darkTheme: false
+    }
+  },
+  {
+    path: '/legal',
+    component: Legal,
     meta: {
       transition: 'slide-right'
     },

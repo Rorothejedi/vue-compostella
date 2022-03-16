@@ -43,6 +43,8 @@ import HomeIcon from "vue-material-design-icons/Home.vue";
 import PowerIcon from "vue-material-design-icons/Power.vue";
 import CommentAlertIcon from "vue-material-design-icons/CommentAlert.vue";
 
+import "floating-vue/dist/style.css";
+
 export default {
   components: {
     MadeUpButton,

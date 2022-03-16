@@ -1,26 +1,28 @@
 <template>
-  <div id="line">
-    <router-link
-      v-for="(km, i) in albums_simple"
-      :key="km.km_total"
-      :to="`/album/${km.id}`"
-      class="point-wrapper"
-    >
-      <map-marker-outline-icon
-        class="departure-icon"
-        fillColor="#aaa"
-        v-if="i === 0"
-      />
-      <map-marker-check-icon
-        class="arrival-icon"
-        fillColor="#aaa"
-        :style="`margin-top: ${line_height}px`"
-        v-if="i === albums_simple.length - 1"
-      />
-      <div class="point"></div>
-      <div class="text">{{ km.km_total }} km</div>
-    </router-link>
-  </div>
+  <transition name="fade">
+    <div id="line" v-show="!loading">
+      <router-link
+        v-for="(km, index) in albums_simple"
+        :key="km.km_total"
+        :to="`/album/${km.id}`"
+        class="point-wrapper"
+      >
+        <map-marker-outline-icon
+          class="departure-icon"
+          fillColor="#aaa"
+          v-if="index === 0"
+        />
+        <map-marker-check-icon
+          class="arrival-icon"
+          fillColor="#aaa"
+          :style="`margin-top: ${line_height}px`"
+          v-if="index === albums_simple.length - 1"
+        />
+        <div class="point"></div>
+        <div class="text">{{ km.km_total }} km</div>
+      </router-link>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -196,7 +198,11 @@ export default {
   },
 
   mounted() {
-    this.fetchAlbumsSimple();
+    if (this.albums_simple.length === 0) {
+      this.fetchAlbumsSimple();
+    } else {
+      this.initLine();
+    }
   },
 
   beforeUnmount() {
@@ -230,16 +236,19 @@ export default {
         )
           texts[i].style.opacity = 0;
       });
+
+      window.addEventListener("resize", this.initLine);
     },
 
     fetchAlbumsSimple() {
       this.loading = true;
 
       this.loadAlbumsSimple().then(() => {
-        this.initLine();
-        window.addEventListener("resize", this.initLine);
-
         this.loading = false;
+
+        this.$nextTick().then(() => {
+          this.initLine();
+        });
       });
     },
   },

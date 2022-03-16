@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header">
       <div>
-        <router-link to="/" class="back">
+        <router-link to="/" class="back" title="Retour à l'accueil">
           <made-up-button icon large>
             <arrow-left-icon />
           </made-up-button>
@@ -44,6 +44,8 @@
       <comment-list :comments="album.comments" v-if="!loading" />
       <comment-new v-if="!loading" />
     </transition-group>
+
+    <back-to-top-button />
   </div>
 </template>
 
@@ -59,6 +61,7 @@ import Gallery from "@/components/album/Gallery.vue";
 import CommentList from "@/components/album/CommentList.vue";
 import CommentNew from "@/components/album/CommentNew.vue";
 import VideoPlayer from "@/components/utils/VideoPlayer.vue";
+import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
 
 export default {
   name: "Album",
@@ -72,6 +75,7 @@ export default {
     CommentList,
     CommentNew,
     VideoPlayer,
+    BackToTopButton,
   },
   mixins: [date],
 

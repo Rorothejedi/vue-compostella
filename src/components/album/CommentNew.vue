@@ -42,7 +42,7 @@
         </made-up-button>
         <shield-check-icon
           class="shield-icon"
-          title="Formulaire protégé par Google reCAPTCHA v3"
+          v-tooltip.right="'Protégé avec Google reCAPTCHA v3'"
           fillColor="#aaa"
         />
       </div>

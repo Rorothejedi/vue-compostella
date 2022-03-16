@@ -23,8 +23,8 @@
               <made-up-button
                 @click="sortAlbums()"
                 icon
-                title="Trier les albums"
                 class="button"
+                v-tooltip="'Trier les étapes'"
               >
                 <sort-ascending-icon
                   v-if="albums_infinite_sort === 'asc'"
@@ -37,9 +37,24 @@
 
           <transition :name="first_view ? 'fade-3' : 'none'">
             <div v-if="isMount">
-              <made-up-button @click="switchTheme()" title="Theme sombre" icon>
+              <made-up-button
+                @click="switchTheme()"
+                icon
+                class="button"
+                v-tooltip="'Thème sombre'"
+              >
                 <theme-light-dark-icon />
               </made-up-button>
+            </div>
+          </transition>
+
+          <transition :name="first_view ? 'fade-3' : 'none'">
+            <div v-if="isMount">
+              <router-link :to="'/legal'">
+                <made-up-button icon v-tooltip="'Mentions légales'">
+                  <scale-balance-icon />
+                </made-up-button>
+              </router-link>
             </div>
           </transition>
         </div>
@@ -61,6 +76,7 @@ import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import SortAscendingIcon from "vue-material-design-icons/SortAscending.vue";
 import SortDescendingIcon from "vue-material-design-icons/SortDescending.vue";
 import ThemeLightDarkIcon from "vue-material-design-icons/ThemeLightDark.vue";
+import ScaleBalanceIcon from "vue-material-design-icons/ScaleBalance.vue";
 import store from "../store";
 
 export default {
@@ -73,6 +89,7 @@ export default {
     SortAscendingIcon,
     SortDescendingIcon,
     ThemeLightDarkIcon,
+    ScaleBalanceIcon,
   },
 
   data() {

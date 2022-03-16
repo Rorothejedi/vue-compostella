@@ -1,9 +1,13 @@
 TODO (priorité haute)
 
+- Mettre le recaptcha sur le login (pour l'admin)
+- Redesign login page
 
 ------------
 
 TODO (priorité moyenne)
+
+- Fix l'apparition des images sur l'acceuil (pop après coup)
 
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
@@ -13,7 +17,6 @@ TODO (priorité moyenne)
 
 - Gérer les smartphones (responsive) pour l'accueil
 
-- Ajouter les mentions légales
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 
 ------------
@@ -41,7 +44,6 @@ Optionnel
 
 - Voir pour les étapes avec kilometres avec des virgules
 - Refacto row du tableau pour la page album-manage
-- Mettre des tooltips pour les titles important (recaptcha, kilometers line, etc)
 - Intégrer un coeur pour les likes comme ceux de twitter
 - Mettre la confirmation sur
     - Edit album contenu
@@ -135,3 +137,6 @@ DONE
 - Ajouter un recaptcha pour l'ajout de commentaire
 
 - Adapation responsive pour le composant KilometersLine
+- Mettre des tooltips pour les titles important
+- Ajouter les mentions légales
+- Ajouter le bouton backToTop sur les pages album et legal

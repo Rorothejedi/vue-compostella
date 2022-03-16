@@ -4,25 +4,28 @@
 
     <div class="login-wrapper">
       <div>
-        <made-up-input-text
-          v-model="email"
-          placeholder="Email"
-          :disabled="loading"
-          type="email"
-          fullWidthMobile
-        />
+        <div class="input-wrapper">
+          <made-up-input
+            v-model="email"
+            placeholder="Email"
+            :disabled="loading"
+            type="email"
+            fullWidthMobile
+            large
+          />
+        </div>
 
-        <br />
+        <div class="input-wrapper">
+          <made-up-input
+            v-model="password"
+            placeholder="Mot de passe"
+            :disabled="loading"
+            type="password"
+            fullWidthMobile
+            large
+          />
+        </div>
 
-        <made-up-input-text
-          v-model="password"
-          placeholder="Mot de passe"
-          :disabled="loading"
-          type="password"
-          fullWidthMobile
-        />
-
-        <br />
         <br />
 
         <div class="comment-submit-wrapper">
@@ -52,7 +55,7 @@
 import { mapState, mapActions } from "vuex";
 import axios from "axios";
 import BackToHomeHeader from "@/components/utils/BackToHomeHeader.vue";
-import MadeUpInputText from "@/components/utils/MadeUpInputText.vue";
+import MadeUpInput from "@/components/utils/MadeUpInput.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import ShieldCheckIcon from "vue-material-design-icons/ShieldCheck.vue";
 
@@ -60,7 +63,7 @@ export default {
   name: "Login",
   components: {
     BackToHomeHeader,
-    MadeUpInputText,
+    MadeUpInput,
     MadeUpButton,
     ShieldCheckIcon,
   },
@@ -131,7 +134,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
+.input-wrapper {
+  margin-top: 10px;
+}
 .comment-submit-wrapper {
   display: flex;
   align-items: center;

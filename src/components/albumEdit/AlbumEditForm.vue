@@ -1,91 +1,97 @@
 <template>
-  <div>
-    <form>
-      <fieldset>
-        <label for="date">Date : </label>
-        <input
-          v-model="date"
-          id="date"
-          type="date"
-          :disabled="loading"
-          required
-        />
+  <div class="wrapper">
+    <div class="wrapper-input">
+      <label for="date">Date : </label>
+      <made-up-input v-model="date" type="date" id="date" :disabled="loading" />
+    </div>
 
-        <br /><br />
+    <br />
 
-        <label for="place_departure">Ville de départ : </label>
-        <input
-          v-model="place_departure"
-          placeholder="Ville de départ"
-          id="place_departure"
-          type="text"
-          :disabled="loading"
-          required
-        />
+    <div class="wrapper-input">
+      <label for="place_departure">Ville de départ : </label>
+      <made-up-input
+        v-model="place_departure"
+        placeholder="Ville de départ"
+        id="place_departure"
+        :disabled="loading"
+      />
+    </div>
 
-        <br />
+    <div class="wrapper-input">
+      <label for="place_arrival">Ville d'arrivée : </label>
+      <made-up-input
+        v-model="place_arrival"
+        placeholder="Ville d'arrivée"
+        id="place_arrival"
+        :disabled="loading"
+      />
+    </div>
 
-        <label for="place_arrival">Ville d'arrivée : </label>
-        <input
-          v-model="place_arrival"
-          placeholder="Ville d'arrivée"
-          id="place_arrival"
-          type="text"
-          :disabled="loading"
-          required
-        />
+    <br />
 
-        <br /><br />
+    <div class="wrapper-input">
+      <label for="km_step">Km étape : </label>
+      <made-up-input-number
+        v-model="km_step"
+        placeholder="Kilomètres de l'étape"
+        id="km_step"
+        :disabled="loading"
+        :min="0"
+        :max="100"
+      />
+    </div>
 
-        <label for="km_step">Km étape : </label>
-        <input
-          v-model="km_step"
-          placeholder="Kilomètres de l'étape"
-          min="0"
-          max="100"
-          id="km_step"
-          type="number"
-          :disabled="loading"
-          required
-        />
+    <div class="wrapper-input">
+      <div class="km-total-label">Km total parcouru :</div>
+      <div>
+        <strong v-if="!loading" class="km-total">
+          {{ album.km_total - album.km_step + this.km_step }} km
+        </strong>
+      </div>
+    </div>
 
-        <br />
+    <br />
 
-        <span>
-          Km total parcouru :
-          <strong v-if="!loading">
-            {{ album.km_total - album.km_step + this.km_step }} km
-          </strong>
-        </span>
+    <div>
+      <label for="text">Texte : </label>
+      <made-up-textarea
+        v-model="text"
+        placeholder="ex: blabla"
+        id="text"
+        :disabled="loading"
+        :height="300"
+      />
+    </div>
 
-        <br /><br />
+    <br />
 
-        <label for="text">Texte : </label>
-        <br />
-        <textarea
-          v-model="text"
-          placeholder="Texte"
-          id="text"
-          :disabled="loading"
-          cols="50"
-          rows="10"
-        ></textarea>
-
-        <br /><br />
-
-        <button type="button" :disabled="loading" @click="updateAlbum()">
-          Modifier <span v-if="loading_update">loading...</span>
-        </button>
-      </fieldset>
-    </form>
+    <div>
+      <made-up-button
+        :disabled="loading"
+        @click="updateAlbum()"
+        :loading="loading_update"
+      >
+        Modifier
+      </made-up-button>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import MadeUpInput from "@/components/utils/MadeUpInput.vue";
+import MadeUpInputNumber from "@/components/utils/MadeUpInputNumber.vue";
+import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+
 export default {
   name: "AlbumEditForm",
-
+  components: {
+    MadeUpInput,
+    MadeUpInputNumber,
+    MadeUpTextarea,
+    MadeUpButton,
+  },
   props: {
     loading: {
       type: Boolean,
@@ -116,6 +122,17 @@ export default {
     },
   },
 
+  mounted() {
+    if (
+      !this.loading &&
+      (this.place_departure === "" ||
+        this.place_arrival === "" ||
+        this.date === "" ||
+        this.km_step === 0)
+    )
+      this.setAlbumValues();
+  },
+
   methods: {
     ...mapActions("album", ["editAlbum", "loadAlbums", "clearAlbumsInfinite"]),
 
@@ -124,12 +141,6 @@ export default {
 
       const { date, place_departure, place_arrival, km_step, text } = this;
 
-      if (!date) this.error = "Le champ 'date' est requis";
-      if (!place_departure)
-        this.error = "Le champ 'ville de départ' est requis";
-      if (!place_arrival) this.error = "Le champ 'ville d'arrivé' est requis";
-      if (km_step < 0)
-        this.error = "Le champ 'km étape' doit être supérieur ou égal à 0";
       if (!date || !place_departure || !place_arrival || km_step < 0) {
         this.setAlbumValues();
         return;
@@ -172,4 +183,27 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  border: 1px dashed grey;
+  border-radius: 4px;
+  padding: 20px;
+}
+.wrapper-input {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+label {
+  width: 300px;
+}
+.km-total-label {
+  width: 500px;
+}
+
+.km-total {
+  font-family: var(--subtitle-font-family);
+  border-bottom: 1px solid grey;
+}
 </style>

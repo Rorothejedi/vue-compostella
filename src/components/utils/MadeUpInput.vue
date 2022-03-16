@@ -2,21 +2,24 @@
   <input
     :value="modelValue"
     @input="(event) => $emit('update:modelValue', event.target.value)"
-    type="text"
     :maxlength="maxLength"
     :placeholder="placeholder"
     :disabled="disabled"
-    :class="!fullWidthMobile ? 'calculated-width-mobile' : ''"
+    :style="`width: ${width}px`"
+    :class="{
+      large: large,
+      'calculated-width-mobile': !fullWidthMobile,
+    }"
   />
 </template>
 
 <script>
 export default {
-  name: "MadeUpInputText",
+  name: "MadeUpInput",
   props: {
     modelValue: {
       type: String,
-      required: true,
+      required: false,
     },
     maxLength: {
       type: Number,
@@ -36,16 +39,23 @@ export default {
       required: false,
       default: false,
     },
+    width: {
+      type: Number,
+      required: false,
+      default: 300,
+    },
+    large: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 };
 </script>
 
 <style scoped>
 input {
-  margin-top: 10px;
-
-  width: 300px;
-  height: 25px;
+  height: 20px;
   border: 0px;
   border-radius: 2px;
   padding: 5px 10px;
@@ -57,11 +67,18 @@ input:focus {
   background-color: rgb(235, 217, 217);
   transition: background-color 0.3s ease;
 }
+input:disabled {
+  background-color: #acacac;
+}
+
+.large {
+  height: 25px;
+}
 
 /* Responsive for mobile */
 @media (max-width: 480px) {
   .calculated-width-mobile {
-    width: calc(100% - 20px);
+    width: calc(100% - 20px) !important;
   }
 }
 </style>

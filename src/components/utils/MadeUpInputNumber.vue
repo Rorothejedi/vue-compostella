@@ -1,20 +1,31 @@
 <template>
-  <textarea
+  <input
+    type="number"
     :value="modelValue"
-    @input="(event) => $emit('update:modelValue', event.target.value)"
+    @input="(event) => $emit('update:modelValue', parseInt(event.target.value))"
     :placeholder="placeholder"
     :disabled="disabled"
-    :style="`min-height: ${height}px`"
-  ></textarea>
+    :min="min"
+    :max="max"
+    :style="`width: ${width}px`"
+  />
 </template>
 
 <script>
 export default {
-  name: "MadeUpTextarea",
+  name: "MadeUpInputNumber",
   props: {
     modelValue: {
-      type: String,
-      // required: true,
+      type: Number,
+      required: false,
+    },
+    min: {
+      type: Number,
+      required: false,
+    },
+    max: {
+      type: Number,
+      required: false,
     },
     placeholder: {
       type: String,
@@ -25,31 +36,30 @@ export default {
       required: false,
       default: false,
     },
-    height: {
+    width: {
       type: Number,
       required: false,
-      default: 200,
+      default: 160,
     },
   },
 };
 </script>
 
 <style scoped>
-textarea {
-  width: calc(100% - 20px);
-  resize: vertical;
-  padding: 10px 10px;
-  background-color: var(--grey-color);
+input {
+  height: 20px;
   border: 0px;
   border-radius: 2px;
+  padding: 5px 10px;
+  background-color: var(--grey-color);
   outline: none;
   transition: background-color 0.3s ease;
 }
-textarea:focus {
+input:focus {
   background-color: rgb(235, 217, 217);
   transition: background-color 0.3s ease;
 }
-textarea:disabled {
+input:disabled {
   background-color: #acacac;
 }
 </style>

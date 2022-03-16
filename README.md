@@ -1,16 +1,17 @@
 TODO (priorité haute)
 
+- Intégrer les composant d'input partout
+- Intégrer le composant de bouton partout
 
 ------------
 
 TODO (priorité moyenne)
 
+- mettre des alertes sur les inputs (error) et des alertes pour la modif d'album
+
 - Gérer le cas où il n'y a pas encore d'album
 
 - Ajouter un bas de page sur home (pour marquer la fin du infinite)
-
-- Intégrer les composant d'input partout
-- Intégrer le composant de bouton partout
 
 - Faire le PathLine
     - Faire un ecran dédié pour les petits ecrans

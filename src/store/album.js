@@ -98,7 +98,8 @@ export default {
         },
 
         sortAlbumsInfinite(store) {
-            this.clearAlbumsInfinite(store)
+            store.commit('CLEAR_ALBUMS_INFINITE')
+            store.commit('SET_ALBUMS_INFINITE_META', {})
             store.commit('SET_ALBUMS_INFINITE_SORT')
         },
 

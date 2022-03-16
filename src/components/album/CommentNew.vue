@@ -4,12 +4,14 @@
 
     <div class="comment-new">
       <label for="author">Votre nom</label><br />
-      <made-up-input-text
+      <made-up-input
         v-model="author"
+        type="text"
         id="author"
         :placeholder="`ex: ${authorPlaceholder}`"
         :disabled="loading"
         maxlength="30"
+        large
       />
 
       <br />
@@ -55,7 +57,7 @@ import { mapActions } from "vuex";
 import alert from "@/mixins/alert.js";
 import TitleLine from "@/components/utils/TitleLine.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
-import MadeUpInputText from "@/components/utils/MadeUpInputText.vue";
+import MadeUpInput from "@/components/utils/MadeUpInput.vue";
 import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
 import ShieldCheckIcon from "vue-material-design-icons/ShieldCheck.vue";
 
@@ -65,7 +67,7 @@ export default {
   components: {
     TitleLine,
     MadeUpButton,
-    MadeUpInputText,
+    MadeUpInput,
     MadeUpTextarea,
     ShieldCheckIcon,
   },

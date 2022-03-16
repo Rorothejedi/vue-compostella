@@ -6,6 +6,7 @@
     :maxlength="maxLength"
     :placeholder="placeholder"
     :disabled="disabled"
+    :class="!fullWidthMobile ? 'calculated-width-mobile' : ''"
   />
 </template>
 
@@ -26,6 +27,11 @@ export default {
       required: false,
     },
     disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    fullWidthMobile: {
       type: Boolean,
       required: false,
       default: false,
@@ -54,7 +60,7 @@ input:focus {
 
 /* Responsive for mobile */
 @media (max-width: 480px) {
-  input {
+  .calculated-width-mobile {
     width: calc(100% - 20px);
   }
 }

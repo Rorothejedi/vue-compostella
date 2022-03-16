@@ -1,14 +1,6 @@
 <template>
   <div class="container">
-    <div class="header">
-      <router-link to="/" class="back" title="Retour à l'accueil">
-        <made-up-button icon large>
-          <arrow-left-icon />
-        </made-up-button>
-      </router-link>
-      <divider />
-      <span class="title"> Mentions légales </span>
-    </div>
+    <back-to-home-header title="Mentions légales" />
 
     <div class="legal-notice">
       <h2>Définitions</h2>
@@ -611,17 +603,13 @@
 </template>
 
 <script>
-import MadeUpButton from "@/components/utils/MadeUpButton.vue";
-import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
-import Divider from "@/components/utils/Divider.vue";
+import BackToHomeHeader from "@/components/utils/BackToHomeHeader.vue";
 import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
 
 export default {
   name: "Legal",
   components: {
-    MadeUpButton,
-    ArrowLeftIcon,
-    Divider,
+    BackToHomeHeader,
     BackToTopButton,
   },
 
@@ -634,22 +622,6 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 80px;
-}
-.title {
-  font-family: var(--subtitle-font-family);
-  font-weight: 400;
-  font-size: 25px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-/* Legals */
-
 h2 {
   font-family: var(--subtitle-font-family);
 }

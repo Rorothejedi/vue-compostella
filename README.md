@@ -1,7 +1,6 @@
 TODO (priorité haute)
 
-- Mettre le recaptcha sur le login (pour l'admin)
-- Redesign login page
+- Gérer le cas où il n'y a pas encore d'album
 
 ------------
 
@@ -23,7 +22,6 @@ TODO (priorité moyenne)
 
 TODO (priorité basse)
 
-- Gérer le cas où il n'y a pas encore d'album
 - Gérer correctement les jours de repos
 - Gérer le cas ou je ne ferais pas d'album pour toutes les étapes (possibilité de sauté une étape ?) (a réfléchir)
 - Uniformiser les variables de font et de couleur
@@ -37,6 +35,7 @@ TODO - A la fin
 - Mettre la collection postman sur github
 - Mise en ligne de l'api
 - Mise en ligne du build vue
+- Gérer les clés recaptcha sur l'hébergement final
 
 ------------
 
@@ -140,3 +139,6 @@ DONE
 - Mettre des tooltips pour les titles important
 - Ajouter les mentions légales
 - Ajouter le bouton backToTop sur les pages album et legal
+- Redesign login page
+- Mettre le recaptcha sur le login (pour l'admin)
+- Mettre un loading sur le bouton de déconnexion

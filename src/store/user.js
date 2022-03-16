@@ -20,11 +20,8 @@ export default {
     },
 
     actions: {
-        login(store, [email, password]) {
-            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/login`, {
-                    email,
-                    password
-                })
+        login(store, payload) {
+            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/login`, payload)
                 .then(response => {
                     store.commit('LOGIN_SUCCESS', response.data.token)
                 })

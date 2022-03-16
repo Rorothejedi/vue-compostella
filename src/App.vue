@@ -19,7 +19,13 @@
       </div>
 
       <router-link to="/">
-        <made-up-button icon @click="logout()" title="Déconnexion" small>
+        <made-up-button
+          @click="logoutWithLoading()"
+          :loading="loading_logout"
+          title="Déconnexion"
+          icon
+          small
+        >
           <power-icon />
         </made-up-button>
       </router-link>
@@ -52,6 +58,13 @@ export default {
     CommentAlertIcon,
     PowerIcon,
   },
+
+  data() {
+    return {
+      loading_logout: false,
+    };
+  },
+
   computed: {
     ...mapGetters(["isAuthenticated"]),
     ...mapState("comment", ["reportedComments"]),
@@ -70,6 +83,14 @@ export default {
     ...mapActions("comment", ["loadReportedComments"]),
 
     /* Auth methods */
+
+    logoutWithLoading() {
+      this.loading_logout = true;
+
+      this.logout().then(() => {
+        this.loading_logout = false;
+      });
+    },
 
     logoutWhenUnauthenticatedResponse() {
       axios.interceptors.response.use(

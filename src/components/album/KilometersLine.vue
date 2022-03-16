@@ -1,8 +1,8 @@
 <template>
   <div class="kilometers-line">
     <div class="header">
-      <div class="place">
-        <transition name="slide-right">
+      <div class="place" :title="album.place_departure">
+        <transition name="fade">
           <span v-if="!loading">{{ album.place_departure }}</span>
         </transition>
       </div>
@@ -11,9 +11,11 @@
         <img src="@/assets/hiker.gif" alt="Pélerin animé" class="hiker" />
       </div>
 
-      <div class="place">
+      <div class="place" :title="album.place_arrival">
         <transition name="fade">
-          <span v-if="!loading">{{ album.place_arrival }}</span>
+          <span v-if="!loading">
+            {{ album.place_arrival }}
+          </span>
         </transition>
       </div>
     </div>
@@ -76,7 +78,6 @@ export default {
 <style scoped>
 .kilometers-line {
   padding-top: 75px;
-  margin-bottom: 40px;
 }
 /* Text */
 .header,
@@ -92,8 +93,7 @@ export default {
   display: flex;
   justify-content: center;
   position: relative;
-  width: 200px;
-  height: 20px;
+  width: 100%;
 }
 .hiker {
   position: absolute;
@@ -104,8 +104,12 @@ export default {
 .place {
   font-family: var(--title-font-family-solid);
   font-size: 1.7rem;
-  height: 30px;
   width: 100%;
+  /* height: 30px; */
+  min-height: 31px;
+  height: auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .place:last-child {
   text-align: right;

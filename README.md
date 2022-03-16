@@ -1,6 +1,5 @@
 TODO (priorité haute)
 
-- Adapation responsive pour le composant KilometersLine
 
 ------------
 
@@ -23,6 +22,7 @@ TODO (priorité basse)
 
 - Gérer le cas où il n'y a pas encore d'album
 - Gérer correctement les jours de repos
+- Gérer le cas ou je ne ferais pas d'album pour toutes les étapes (possibilité de sauté une étape ?) (a réfléchir)
 - Uniformiser les variables de font et de couleur
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Test avec des données réel (étapes prévue en france et espagne)
@@ -41,6 +41,7 @@ Optionnel
 
 - Voir pour les étapes avec kilometres avec des virgules
 - Refacto row du tableau pour la page album-manage
+- Mettre des tooltips pour les titles important (recaptcha, kilometers line, etc)
 - Intégrer un coeur pour les likes comme ceux de twitter
 - Mettre la confirmation sur
     - Edit album contenu
@@ -128,8 +129,9 @@ DONE
 - Ajouter des notifications pour confirmer les actions (ajout, suppression, edit, report, etc)
 - Mettre la confirmation sur
     - Suppression de commentaire signalé
-
     - Signalement de commentaire (page album public)(warning)
     - Suppression de commentaires (page album public)(warning)
     - Message posté (success)
 - Ajouter un recaptcha pour l'ajout de commentaire
+
+- Adapation responsive pour le composant KilometersLine

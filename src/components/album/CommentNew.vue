@@ -27,18 +27,25 @@
 
       <br /><br />
 
-      <made-up-button
-        :loading="loading"
-        :disabled="!canPublished"
-        @click="postComment()"
-        :title="
-          !canPublished
-            ? 'Vous devez remplir les champs ci-dessus pour pouvoir poster un commentaire'
-            : ''
-        "
-      >
-        Poster le commentaire
-      </made-up-button>
+      <div class="comment-submit-wrapper">
+        <made-up-button
+          :loading="loading"
+          :disabled="!canPublished"
+          @click="postComment()"
+          :title="
+            !canPublished
+              ? 'Vous devez remplir les champs ci-dessus pour pouvoir poster un commentaire'
+              : ''
+          "
+        >
+          Poster le commentaire
+        </made-up-button>
+        <shield-check-icon
+          class="shield-icon"
+          title="Formulaire protégé par Google reCAPTCHA v3"
+          fillColor="#aaa"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -50,6 +57,7 @@ import TitleLine from "@/components/utils/TitleLine.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import MadeUpInputText from "@/components/utils/MadeUpInputText.vue";
 import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
+import ShieldCheckIcon from "vue-material-design-icons/ShieldCheck.vue";
 
 export default {
   name: "CommentNew",
@@ -59,6 +67,7 @@ export default {
     MadeUpButton,
     MadeUpInputText,
     MadeUpTextarea,
+    ShieldCheckIcon,
   },
 
   data() {
@@ -198,5 +207,14 @@ label {
 #author,
 #text {
   margin-top: 10px;
+}
+
+.comment-submit-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.shield-icon {
+  margin-left: 10px;
 }
 </style>

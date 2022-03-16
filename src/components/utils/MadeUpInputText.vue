@@ -51,4 +51,11 @@ input:focus {
   background-color: rgb(235, 217, 217);
   transition: background-color 0.3s ease;
 }
+
+/* Responsive for mobile */
+@media (max-width: 480px) {
+  input {
+    width: calc(100% - 20px);
+  }
+}
 </style>

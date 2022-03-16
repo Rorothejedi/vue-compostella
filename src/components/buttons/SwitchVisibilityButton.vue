@@ -43,9 +43,9 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["loadAlbums", "editAlbum"]),
+    ...mapActions("album", ["loadAlbums", "editAlbum", "clearAlbumsInfinite"]),
 
-    switchVisible() {
+    async switchVisible() {
       if (this.loading) return;
 
       this.loading = true;
@@ -59,11 +59,11 @@ export default {
         sort_by: this.albums_sort,
       };
 
-      this.editAlbum([this.album.id, edit_params]).then(() => {
-        this.loadAlbums(load_params).then(() => {
-          this.loading = false;
-        });
-      });
+      await this.editAlbum([this.album.id, edit_params]);
+      await this.loadAlbums(load_params);
+      await this.clearAlbumsInfinite();
+
+      this.loading = false;
     },
   },
 };

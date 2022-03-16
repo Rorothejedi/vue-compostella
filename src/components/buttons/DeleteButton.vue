@@ -41,7 +41,11 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["loadAlbums", "deleteAlbum"]),
+    ...mapActions("album", [
+      "loadAlbums",
+      "deleteAlbum",
+      "clearAlbumsInfinite",
+    ]),
 
     confirmRemove() {
       if (this.loading) return;
@@ -58,7 +62,7 @@ export default {
       this.confirm(options, this.removeAlbum);
     },
 
-    removeAlbum() {
+    async removeAlbum() {
       this.loading = true;
 
       const load_params = {
@@ -67,12 +71,15 @@ export default {
         sort_by: this.albums_sort,
       };
 
-      this.deleteAlbum(this.album.id).then(() => {
-        this.loadAlbums(load_params).then(() => {
-          this.loading = false;
-          this.$router.push("/albums-manage");
-        });
-      });
+      const isHide = this.album.hide;
+
+      await this.deleteAlbum(this.album.id);
+      await this.loadAlbums(load_params);
+
+      if (!isHide) await this.clearAlbumsInfinite();
+
+      this.loading = false;
+      this.$router.push("/albums-manage");
     },
   },
 };

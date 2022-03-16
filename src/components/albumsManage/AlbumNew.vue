@@ -63,6 +63,10 @@
             placeholder="ex: blabla"
           />
         </div>
+
+        <div class="error">
+          {{ error }}
+        </div>
       </template>
       <template v-slot:footer>
         <div class="footer-buttons">
@@ -96,6 +100,7 @@ export default {
       place_departure: "",
       place_arrival: "",
       km_step: 0,
+      error: null,
 
       loading: false,
       show_modal: false,
@@ -114,17 +119,30 @@ export default {
   methods: {
     ...mapActions("album", ["createAlbum", "loadAlbums"]),
 
-    addAlbum() {
+    async addAlbum() {
+      if (this.loading) return;
+
       const { text, date, place_departure, place_arrival, km_step } = this;
 
-      if (!date || !place_departure || !place_arrival || km_step < 0) {
-        console.log("All data are needed");
+      if (!date) {
+        this.error = "Le champ 'date' est requis";
+        return;
+      }
+      if (!place_departure) {
+        this.error = "Le champ 'ville de départ' est requis";
+        return;
+      }
+      if (!place_arrival) {
+        this.error = "Le champ 'ville d'arrivé' est requis";
+        return;
+      }
+      if (km_step < 0) {
+        this.error = "Le champ 'km étape' doit être supérieur ou égal à 0";
         return;
       }
 
-      if (this.loading) return;
-
       this.loading = true;
+      this.error = null;
 
       const params = {
         text,
@@ -134,12 +152,11 @@ export default {
         km_step,
       };
 
-      this.createAlbum(params).then(() => {
-        this.loadAlbums({ per_page: this.albums_meta.per_page }).then(() => {
-          this.resetLocalState();
-          this.loading = false;
-        });
-      });
+      await this.createAlbum(params);
+      await this.loadAlbums({ per_page: this.albums_meta.per_page });
+
+      this.resetLocalState();
+      this.loading = false;
     },
 
     resetLocalState() {
@@ -148,6 +165,7 @@ export default {
       this.place_departure = "";
       this.place_arrival = "";
       this.km_step = 0;
+      this.error = null;
       this.show_modal = false;
     },
   },
@@ -170,6 +188,10 @@ export default {
 textarea {
   width: 98.5%;
   height: 100px;
+  resize: vertical;
+}
+.error {
+  color: var(--secondary-text-color);
 }
 
 /* Modal footer */

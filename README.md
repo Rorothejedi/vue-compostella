@@ -1,12 +1,11 @@
 TODO (priorité haute)
 
-- Gérer le cas où il n'y a pas encore d'album
 
 ------------
 
 TODO (priorité moyenne)
 
-- Clear albums infinite quand on ajoute, supprime ou rend visible un album (manage)
+- Gérer le cas où il n'y a pas encore d'album
 
 - Ajouter un bas de page sur home (pour marquer la fin du infinite)
 
@@ -146,3 +145,4 @@ DONE
 - Mettre le recaptcha sur le login (pour l'admin)
 - Mettre un loading sur le bouton de déconnexion
 - Fix l'apparition des images sur l'accueil (pop après coup) & loader home
+- Clear albums infinite quand on modifie, supprime ou rend visible un album

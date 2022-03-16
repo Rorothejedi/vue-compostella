@@ -213,6 +213,8 @@ export default {
     ...mapActions("album", ["loadAlbumsSimple"]),
 
     initLine() {
+      if (this.albums_simple.length <= 0) return;
+
       this.line_height = document.getElementById("line").clientHeight;
 
       const points = document.getElementsByClassName("point");

@@ -117,15 +117,20 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["editAlbum", "loadAlbums"]),
+    ...mapActions("album", ["editAlbum", "loadAlbums", "clearAlbumsInfinite"]),
 
-    updateAlbum() {
+    async updateAlbum() {
       if (this.loading_update) return;
 
       const { date, place_departure, place_arrival, km_step, text } = this;
 
+      if (!date) this.error = "Le champ 'date' est requis";
+      if (!place_departure)
+        this.error = "Le champ 'ville de départ' est requis";
+      if (!place_arrival) this.error = "Le champ 'ville d'arrivé' est requis";
+      if (km_step < 0)
+        this.error = "Le champ 'km étape' doit être supérieur ou égal à 0";
       if (!date || !place_departure || !place_arrival || km_step < 0) {
-        console.log("All data are needed");
         this.setAlbumValues();
         return;
       }
@@ -145,11 +150,14 @@ export default {
         sort_by: this.albums_sort,
       };
 
-      this.editAlbum([this.$route.params.id, edit_params]).then(() => {
-        this.loadAlbums(load_params).then(() => {
-          this.loading_update = false;
-        });
-      });
+      const isHide = this.album.hide;
+
+      await this.editAlbum([this.$route.params.id, edit_params]);
+      await this.loadAlbums(load_params);
+
+      if (!isHide) await this.clearAlbumsInfinite();
+
+      this.loading_update = false;
     },
 
     setAlbumValues() {

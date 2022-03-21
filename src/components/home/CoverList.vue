@@ -34,19 +34,26 @@
   </div>
   <div
     :class="
-      albums_infinite.length === 0 ? 'see-more-wrapper' : 'see-more-wrapper-bis'
+      albums_infinite.length === 0
+        ? 'see-more-wrapper-start'
+        : !isEndOfInfinite
+        ? 'see-more-wrapper'
+        : 'see-more-wrapper-end'
     "
   >
     <div class="see-more">
       <transition
         :name="albums_infinite.length === 0 ? 'fade-loader' : 'fade-loader-bis'"
       >
-        <div class="loading" v-if="!isImagesLoaded && is_mounted">
+        <div
+          :class="{ loading: !isEndOfInfinite }"
+          v-if="loading && is_mounted"
+        >
           <sync-icon class="loading-icon" :size="35" />
         </div>
       </transition>
 
-      <div v-if="isImagesLoaded" class="see-more-spacer"></div>
+      <div v-if="loading" class="see-more-spacer"></div>
     </div>
   </div>
 </template>
@@ -90,6 +97,10 @@ export default {
         this.img_load !== 0 &&
         !this.loading
       );
+    },
+
+    isEndOfInfinite() {
+      return this.albums_infinite_meta.to === this.albums_infinite_meta.total;
     },
   },
 
@@ -244,7 +255,7 @@ export default {
     font-size: 0.75rem;
     font-style: oblique;
   }
-  .see-more-wrapper-bis {
+  .see-more-wrapper-end {
     height: 0px !important;
   }
 }
@@ -286,21 +297,20 @@ export default {
 
 /* See more */
 
-.see-more-wrapper,
-.see-more-wrapper-bis {
+.see-more-wrapper-start,
+.see-more-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.see-more-wrapper {
+.see-more-wrapper-start {
   height: -webkit-fill-available;
 }
-.see-more-wrapper-bis {
+.see-more-wrapper {
   height: 250px;
 }
-.see-more {
-  display: flex;
-  justify-content: center;
+.see-more-wrapper-end {
+  height: 50px;
 }
 .see-more-spacer {
   width: 100%;

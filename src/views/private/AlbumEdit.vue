@@ -121,6 +121,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+.date :first-child {
+  width: 250px;
 }
 .main-data {
   font-family: var(--subtitle-font-family);
@@ -132,5 +137,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 </style>

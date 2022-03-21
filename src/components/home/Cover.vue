@@ -15,12 +15,12 @@
         <div class="arrival" :title="arrival">
           <arrow-right-bottom-icon :size="15" /> {{ arrival }}
         </div>
-        <div class="date">
+        <div class="date mobile-hidden">
           le
           {{ formatDate(date) }}
         </div>
       </div>
-      <div class="km-wrapper" title="Kilomètres totaux parcourus">
+      <div class="km-wrapper mobile-hidden" title="Kilomètres totaux parcourus">
         <span class="util">{{ km }} <span class="km-unit">KM</span></span>
         <span class="km-main">{{ km }} <span class="km-unit">KM</span></span>
         <span class="km-secondary">
@@ -29,7 +29,7 @@
         </span>
       </div>
     </div>
-    <div class="mask"></div>
+    <div class="mask mobile-hidden"></div>
   </span>
 </template>
 
@@ -80,16 +80,26 @@ export default {
 img {
   width: 100%;
   height: auto;
+  min-width: 205px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 0px;
 }
 
-.box:hover img {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 0.8;
-  transform: scale(1.05);
+@media screen and (max-width: 576px) {
+  img {
+    border-radius: 4px;
+  }
+}
+
+@media (min-width: 991px) {
+  .box:hover img {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
 }
 
 /* text */
@@ -121,9 +131,11 @@ img {
   transition: transform 0.3s ease-in-out;
 }
 
-.box:hover .places {
-  transform: translateY(-24px);
-  transition: transform 0.3s ease-in-out;
+@media (min-width: 991px) {
+  .box:hover .places {
+    transform: translateY(-24px);
+    transition: transform 0.3s ease-in-out;
+  }
 }
 
 /* mask */
@@ -238,6 +250,17 @@ img {
   }
   .text {
     margin-top: -50px;
+  }
+}
+
+/* Helper responsive */
+.mobile-hidden {
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .mobile-hidden {
+    display: none;
   }
 }
 </style>

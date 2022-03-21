@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="overlay-resp-wrapper" :class="{ 'overlay-resp-active': test }">
+    <div
+      class="overlay-resp-wrapper"
+      :class="{ 'overlay-resp-active': resp_menu }"
+    >
       <div class="overlay-resp-menu">
         <made-up-button
           @click="switchTheme()"
@@ -19,10 +22,10 @@
         </router-link>
       </div>
       <div class="path-line">
-        <path-line v-if="test" />
+        <path-line v-if="resp_menu" />
       </div>
       <div class="overlay-resp-close-button">
-        <made-up-button icon large @click="test = false">
+        <made-up-button icon large @click="resp_menu = false">
           <close-icon />
         </made-up-button>
       </div>
@@ -33,11 +36,11 @@
         class="path-line"
         :style="`top: ${isAuthenticated ? '20px' : '50px'}`"
       >
-        <path-line v-if="!test" />
+        <path-line v-if="!resp_menu" />
       </div>
     </div>
 
-    <div class="container home-container" v-if="!test">
+    <div class="container home-container" v-if="!resp_menu">
       <div class="header">
         <div class="spacer"></div>
 
@@ -148,8 +151,7 @@ export default {
   data() {
     return {
       isMount: false,
-
-      test: false,
+      resp_menu: false,
     };
   },
 
@@ -182,7 +184,7 @@ export default {
     },
 
     switchRespMenu() {
-      this.test = !this.test;
+      this.resp_menu = !this.resp_menu;
     },
   },
 };
@@ -286,5 +288,24 @@ export default {
 }
 .overlay-resp-menu-button {
   margin-bottom: 10px;
+}
+
+/* Helper responsive */
+.mobile-hidden {
+  display: block;
+}
+
+.desktop-hidden {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .mobile-hidden {
+    display: none;
+  }
+
+  .desktop-hidden {
+    display: block;
+  }
 }
 </style>

@@ -14,6 +14,11 @@
         :data-index-desc="albums_infinite.length - key - 1"
         class="box"
       >
+        <div class="resp-point"></div>
+        <div class="resp-text">
+          <div class="km">{{ album.km_total }} km</div>
+          <div class="date">le {{ formatDate(album.date) }}</div>
+        </div>
         <Cover
           :image="album.images.length > 0 ? album.images[0].cover_path : ''"
           :departure="album.place_departure"
@@ -22,6 +27,7 @@
           :km="album.km_total"
           @img-load="img_load++"
           @img-unload="img_load--"
+          class="cover"
         />
       </router-link>
     </transition-group>
@@ -35,7 +41,7 @@
       <transition
         :name="albums_infinite.length === 0 ? 'fade-loader' : 'fade-loader-bis'"
       >
-        <div class="loading" v-if="!isImagesLoaded && test">
+        <div class="loading" v-if="!isImagesLoaded && is_mounted">
           <sync-icon class="loading-icon" :size="35" />
         </div>
       </transition>
@@ -50,12 +56,13 @@ import { mapActions, mapState } from "vuex";
 import store from "../../store";
 import gsap from "gsap";
 import utils from "@/mixins/utils.js";
+import date from "@/mixins/date.js";
 import Cover from "@/components/home/Cover.vue";
 import SyncIcon from "vue-material-design-icons/Sync.vue";
 
 export default {
   name: "CoverList",
-  mixins: [utils],
+  mixins: [utils, date],
   components: { Cover, SyncIcon },
 
   data() {
@@ -65,7 +72,7 @@ export default {
       el_by_row: 3,
 
       img_load: 0,
-      test: false,
+      is_mounted: false,
     };
   },
 
@@ -92,7 +99,7 @@ export default {
 
   mounted() {
     this.getNextAlbums();
-    this.test = true;
+    this.is_mounted = true;
   },
 
   methods: {
@@ -179,11 +186,70 @@ export default {
   background-color: black;
   align-content: center;
   overflow: hidden;
-
   height: 374px;
 }
 
-@media (max-width: 767px) {
+.resp-text,
+.resp-point {
+  display: none;
+}
+
+@media screen and (max-width: 576px) {
+  .box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    color: var(--main-text-color);
+    position: relative;
+    background-color: white;
+    height: auto;
+    overflow: initial;
+    margin-left: 2vw;
+  }
+  .box:first-child::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50%;
+    border-left: 1px dashed grey;
+  }
+  .box:not(.box:first-child) {
+    border-left: 1px dashed grey;
+  }
+  .cover {
+    width: 220px;
+  }
+  .resp-text {
+    display: block;
+  }
+  .resp-point {
+    display: block;
+    position: absolute;
+    margin-top: 5px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--secondary-text-color);
+    border-radius: 50%;
+  }
+  .km {
+    font-family: var(--title-font-family-solid);
+    font-size: 25px;
+  }
+  .date {
+    font-size: 0.75rem;
+    font-style: oblique;
+  }
+  .see-more-wrapper-bis {
+    height: 0px !important;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 767px) {
   .box {
     height: 265px;
   }
@@ -199,13 +265,19 @@ export default {
   }
 }
 
-/*wrapper */
+/* Wrapper */
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 9px;
 }
-@media (max-width: 1199px) {
+@media (max-width: 576px) {
+  .wrapper {
+    grid-template-columns: none;
+    grid-gap: 0px;
+  }
+}
+@media (min-width: 577px) and (max-width: 1199px) {
   .wrapper {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;

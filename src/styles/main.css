@@ -24,6 +24,11 @@ body {
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
     font-family: var(--text-font-family);
+
+
+    --sm-portrait-size: 576px;
+    --sm-landscape-size: 768px;
+
 }
 
 /* Dark theme */
@@ -173,24 +178,5 @@ html {
 @media (min-width: 1601px) {
     .container {
         width: 1140px;
-    }
-}
-
-/* Helper responsive */
-.mobile-hidden {
-    display: block;
-}
-
-.desktop-hidden {
-    display: none;
-}
-
-@media (max-width: 991px) {
-    .mobile-hidden {
-        display: none;
-    }
-
-    .desktop-hidden {
-        display: block;
     }
 }

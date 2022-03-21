@@ -1,6 +1,8 @@
 TODO (priorité haute)
 
-- Gérer les smartphones (responsive) pour l'accueil
+- mettre des alertes sur les inputs (error) et des alertes 
+    - pour la modif d'album
+    - pour le login
 
 ------------
 
@@ -9,7 +11,6 @@ TODO (priorité moyenne)
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
 
-- mettre des alertes sur les inputs (error) et des alertes pour la modif d'album
 
 - Gérer le cas où il n'y a pas encore d'album
 
@@ -146,3 +147,4 @@ DONE
 
 - Faire le PathLine
     - Faire un ecran dédié pour les petits ecrans
+- Gérer les smartphones (responsive) pour l'accueil

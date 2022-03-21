@@ -1,30 +1,37 @@
 <template>
   <made-up-button
-    @click="switchVisible()"
+    @click="confirmSwitchVisible()"
     :loading="loading"
-    circle
-    small
+    v-bind="$props"
     :title="isHide ? 'Dévoiler ' : 'Cacher'"
   >
-    <eye-icon v-if="isHide" :size="18" />
+    <span v-if="full">Changer la visibilité</span>
+    <eye-icon v-else-if="isHide" :size="18" />
     <eye-off-icon v-else :size="18" />
   </made-up-button>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import alert from "@/mixins/alert.js";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import EyeIcon from "vue-material-design-icons/Eye.vue";
 import EyeOffIcon from "vue-material-design-icons/EyeOff.vue";
 
 export default {
   name: "SwitchVisibilityButton",
+  mixins: [alert],
   components: { MadeUpButton, EyeIcon, EyeOffIcon },
 
   props: {
     album: {
       type: Object,
       required: true,
+    },
+    full: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 
@@ -45,9 +52,19 @@ export default {
   methods: {
     ...mapActions("album", ["loadAlbums", "editAlbum", "clearAlbumsInfinite"]),
 
-    async switchVisible() {
+    confirmSwitchVisible() {
       if (this.loading) return;
 
+      let options = {
+        icon: "warning",
+        html: `Voulez-vous changer la visibilité de l'album n°<strong>${this.album.id}</strong> ?<br />`,
+        confirmButtonText: "Changer visibilité",
+      };
+
+      this.confirm(options, this.switchVisible);
+    },
+
+    async switchVisible() {
       this.loading = true;
 
       const edit_params = {

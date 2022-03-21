@@ -19,8 +19,13 @@
           <div>Le {{ formatDate(album.date) }}</div>
         </router-link>
         <div>
-          <switch-visibility-button :album="album" class="action-button" />
-          <delete-button :album="album" />
+          <switch-visibility-button
+            :album="album"
+            class="action-button"
+            small
+            circle
+          />
+          <delete-button :album="album" small circle />
         </div>
       </div>
 

@@ -2,11 +2,11 @@
   <made-up-button
     @click="confirmRemove()"
     :loading="loading"
-    circle
-    small
+    v-bind="$props"
     title="Supprimer"
   >
-    <close-icon :size="18" />
+    <span v-if="full">Supprimer l'album</span>
+    <close-icon v-else :size="18" />
   </made-up-button>
 </template>
 
@@ -27,6 +27,11 @@ export default {
     album: {
       type: Object,
       required: true,
+    },
+    full: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 

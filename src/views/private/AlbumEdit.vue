@@ -13,19 +13,24 @@
       </router-link>
     </div>
 
-    <div v-if="!loading">
-      <p v-if="album.created_at !== album.updated_at">
-        Dernière modification le {{ formatDatetime(album.updated_at) }}
-      </p>
-      <p>Créer le {{ formatDatetime(album.created_at) }}</p>
-      <p>
-        Visible: <strong>{{ album.hide ? "Non " : "Oui " }}</strong>
-        <switch-visibility-button :album="album" />
-      </p>
-      <p>
-        Supprimer :
-        <delete-button :album="album" />
-      </p>
+    <div v-if="!loading" class="main-data-wrapper">
+      <div v-if="album.created_at !== album.updated_at" class="date">
+        <div>Dernière modification :</div>
+        <div class="main-data">{{ formatDatetime(album.updated_at) }}</div>
+      </div>
+      <div class="date">
+        <div>Date de création :</div>
+        <div class="main-data">{{ formatDatetime(album.created_at) }}</div>
+      </div>
+      <div class="button">
+        <switch-visibility-button :album="album" full />
+        <div class="main-data">
+          {{ album.hide ? "Caché " : "Visible " }}
+        </div>
+      </div>
+      <div class="button">
+        <delete-button :album="album" full />
+      </div>
     </div>
 
     <album-edit-form :loading="loading" />
@@ -103,5 +108,29 @@ export default {
 .buttons-wrapper {
   display: flex;
   justify-content: space-between;
+}
+
+.main-data-wrapper {
+  border: 1px dashed grey;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-data {
+  font-family: var(--subtitle-font-family);
+  border-bottom: 1px solid grey;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 </style>

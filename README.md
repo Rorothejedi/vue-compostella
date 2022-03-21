@@ -1,11 +1,11 @@
 TODO (priorité haute)
 
+- Intégrer les composant d'input partout
+- Intégrer le composant de bouton partout
+
 ------------
 
 TODO (priorité moyenne)
-
-- Intégrer les composant d'input partout
-- Intégrer le composant de bouton partout
 
 - Fix le loading sur l'accueil
 
@@ -19,6 +19,7 @@ TODO (priorité moyenne)
 
 TODO (priorité basse)
 
+- Modifier la couleur du disabled (made-up-input) et onclick (made-up-button)
 - Gérer correctement les jours de repos
 - Gérer le cas ou je ne ferais pas d'album pour toutes les étapes (possibilité de sauté une étape ?) (a réfléchir)
 - Uniformiser les variables de font et de couleur
@@ -42,7 +43,6 @@ Optionnel
 - Refacto row du tableau pour la page album-manage
 - Intégrer un coeur pour les likes comme ceux de twitter
 - Mettre la confirmation sur
-    - Edit album contenu
     - Suppression photo
     - Modification photo
     - Suppression lien vidéo

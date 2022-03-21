@@ -218,6 +218,19 @@ img {
 }
 
 /* Responsive */
+.mobile-hidden {
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .mobile-hidden {
+    display: none;
+  }
+  .places {
+    font-size: 20px !important;
+    width: 200px !important;
+  }
+}
 @media (max-width: 767px) {
   .km-wrapper {
     font-size: 45px;
@@ -250,17 +263,6 @@ img {
   }
   .text {
     margin-top: -50px;
-  }
-}
-
-/* Helper responsive */
-.mobile-hidden {
-  display: block;
-}
-
-@media (max-width: 576px) {
-  .mobile-hidden {
-    display: none;
   }
 }
 </style>

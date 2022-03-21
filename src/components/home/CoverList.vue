@@ -46,7 +46,10 @@
         :name="albums_infinite.length === 0 ? 'fade-loader' : 'fade-loader-bis'"
       >
         <div
-          :class="{ loading: !isEndOfInfinite }"
+          :class="{
+            loading:
+              loading && (!isEndOfInfinite || albums_infinite.length === 0),
+          }"
           v-if="loading && is_mounted"
         >
           <sync-icon class="loading-icon" :size="35" />
@@ -210,7 +213,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     padding-left: 10px;
     color: var(--main-text-color);
     position: relative;
@@ -337,13 +340,9 @@ export default {
 .fade-loader-bis-enter-active {
   transition: opacity 0.3s ease-in;
 }
-.fade-loader-leave-active,
-.fade-loader-bis-leave-active {
-  transition: all 0.3s ease-out;
-}
 
 .fade-loader-enter-active {
-  transition-delay: 3s;
+  transition-delay: 4s;
 }
 .fade-loader-bis-enter-active {
   transition-delay: 0.5s;

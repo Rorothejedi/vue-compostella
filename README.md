@@ -6,6 +6,8 @@ TODO (priorité haute)
 
 TODO (priorité moyenne)
 
+- Gérer les cas où il n'y a pas de texte, pas de vidéos ou pas d'images (mise en forme et sécurité)
+
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
 

@@ -12,6 +12,7 @@
             type="email"
             fullWidthMobile
             large
+            ref="email"
           />
         </div>
 
@@ -42,10 +43,6 @@
             fillColor="#aaa"
           />
         </div>
-
-        <div class="error-wrapper">
-          {{ error }}
-        </div>
       </div>
     </div>
   </div>
@@ -54,6 +51,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import axios from "axios";
+import alert from "@/mixins/alert.js";
 import BackToHomeHeader from "@/components/utils/BackToHomeHeader.vue";
 import MadeUpInput from "@/components/utils/MadeUpInput.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
@@ -61,6 +59,7 @@ import ShieldCheckIcon from "vue-material-design-icons/ShieldCheck.vue";
 
 export default {
   name: "Login",
+  mixins: [alert],
   components: {
     BackToHomeHeader,
     MadeUpInput,
@@ -74,7 +73,6 @@ export default {
       password: "",
       recaptcha_token: "",
       loading: false,
-      error: null,
     };
   },
 
@@ -106,10 +104,8 @@ export default {
       };
 
       this.login(params).then(() => {
-        if (this.token === null) {
-          this.resetForm("Identifiants incorrects");
-          return;
-        }
+        if (this.token === null) return this.errorLogin();
+
         axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
         this.loadReportedComments();
         this.$router.push("/");
@@ -117,8 +113,21 @@ export default {
       });
     },
 
-    resetForm(error = null) {
-      this.error = error;
+    errorLogin() {
+      this.valid(
+        {
+          icon: "error",
+          html: "Identifiants incorrects...<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
+        },
+        5000
+      );
+      this.resetForm();
+      this.$nextTick(() => this.$refs.email.$el.focus());
+
+      return;
+    },
+
+    resetForm() {
       this.loading = false;
       this.email = "";
       this.password = "";
@@ -143,11 +152,5 @@ export default {
 }
 .shield-icon {
   margin-left: 10px;
-}
-
-.error-wrapper {
-  margin-top: 15px;
-  height: 20px;
-  color: var(--secondary-text-color);
 }
 </style>

@@ -68,7 +68,7 @@
     <div>
       <made-up-button
         :disabled="loading"
-        @click="updateAlbum()"
+        @click="confirmUpdateAlbum()"
         :loading="loading_update"
       >
         Modifier
@@ -79,6 +79,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import alert from "@/mixins/alert.js";
 import MadeUpInput from "@/components/utils/MadeUpInput.vue";
 import MadeUpInputNumber from "@/components/utils/MadeUpInputNumber.vue";
 import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
@@ -86,6 +87,7 @@ import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 
 export default {
   name: "AlbumEditForm",
+  mixins: [alert],
   components: {
     MadeUpInput,
     MadeUpInputNumber,
@@ -136,12 +138,26 @@ export default {
   methods: {
     ...mapActions("album", ["editAlbum", "loadAlbums", "clearAlbumsInfinite"]),
 
-    async updateAlbum() {
+    confirmUpdateAlbum() {
       if (this.loading_update) return;
 
+      let options = {
+        icon: "warning",
+        html: `Voulez-vous modifier les informations de l'album ?`,
+        confirmButtonText: "Modifier",
+      };
+
+      this.confirm(options, this.updateAlbum);
+    },
+
+    async updateAlbum() {
       const { date, place_departure, place_arrival, km_step, text } = this;
 
       if (!date || !place_departure || !place_arrival || km_step < 0) {
+        this.valid({
+          icon: "error",
+          html: "Les informations renseignées sont incorrects.",
+        });
         this.setAlbumValues();
         return;
       }
@@ -167,6 +183,11 @@ export default {
       await this.loadAlbums(load_params);
 
       if (!isHide) await this.clearAlbumsInfinite();
+
+      this.valid({
+        icon: "success",
+        html: "Les informations de l'album ont été mises à jour avec succès !",
+      });
 
       this.loading_update = false;
     },

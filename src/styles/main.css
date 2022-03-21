@@ -175,3 +175,22 @@ html {
         width: 1140px;
     }
 }
+
+/* Helper responsive */
+.mobile-hidden {
+    display: block;
+}
+
+.desktop-hidden {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .mobile-hidden {
+        display: none;
+    }
+
+    .desktop-hidden {
+        display: block;
+    }
+}

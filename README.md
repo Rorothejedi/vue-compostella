@@ -1,22 +1,19 @@
 TODO (priorité haute)
 
-- Intégrer les composant d'input partout
-- Intégrer le composant de bouton partout
+- Gérer les smartphones (responsive) pour l'accueil
 
 ------------
 
 TODO (priorité moyenne)
+
+- Intégrer les composant d'input partout
+- Intégrer le composant de bouton partout
 
 - mettre des alertes sur les inputs (error) et des alertes pour la modif d'album
 
 - Gérer le cas où il n'y a pas encore d'album
 
 - Ajouter un bas de page sur home (pour marquer la fin du infinite)
-
-- Faire le PathLine
-    - Faire un ecran dédié pour les petits ecrans
-
-- Gérer les smartphones (responsive) pour l'accueil
 
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 
@@ -137,7 +134,6 @@ DONE
     - Suppression de commentaires (page album public)(warning)
     - Message posté (success)
 - Ajouter un recaptcha pour l'ajout de commentaire
-
 - Adapation responsive pour le composant KilometersLine
 - Mettre des tooltips pour les titles important
 - Ajouter les mentions légales
@@ -147,3 +143,6 @@ DONE
 - Mettre un loading sur le bouton de déconnexion
 - Fix l'apparition des images sur l'accueil (pop après coup) & loader home
 - Clear albums infinite quand on modifie, supprime ou rend visible un album
+
+- Faire le PathLine
+    - Faire un ecran dédié pour les petits ecrans

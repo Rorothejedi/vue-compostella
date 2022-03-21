@@ -1,15 +1,43 @@
 <template>
   <div>
+    <div class="overlay-resp-wrapper" :class="{ 'overlay-resp-active': test }">
+      <div class="overlay-resp-menu">
+        <made-up-button
+          @click="switchTheme()"
+          icon
+          large
+          v-tooltip="'Thème sombre'"
+          class="overlay-resp-menu-button"
+        >
+          <theme-light-dark-icon />
+        </made-up-button>
+
+        <router-link :to="'/legal'">
+          <made-up-button icon large v-tooltip="'Mentions légales'">
+            <scale-balance-icon />
+          </made-up-button>
+        </router-link>
+      </div>
+      <div class="path-line">
+        <path-line v-if="test" />
+      </div>
+      <div class="overlay-resp-close-button">
+        <made-up-button icon large @click="test = false">
+          <close-icon />
+        </made-up-button>
+      </div>
+    </div>
+
     <div class="path-line-wrapper">
       <div
         class="path-line"
         :style="`top: ${isAuthenticated ? '20px' : '50px'}`"
       >
-        <path-line />
+        <path-line v-if="!test" />
       </div>
     </div>
 
-    <div class="container home-container">
+    <div class="container home-container" v-if="!test">
       <div class="header">
         <div class="spacer"></div>
 
@@ -35,7 +63,10 @@
             </div>
           </transition>
 
-          <transition :name="first_view ? 'fade-3' : 'none'">
+          <transition
+            :name="first_view ? 'fade-3' : 'none'"
+            class="mobile-hidden"
+          >
             <div v-if="isMount">
               <made-up-button
                 @click="switchTheme()"
@@ -48,13 +79,31 @@
             </div>
           </transition>
 
-          <transition :name="first_view ? 'fade-3' : 'none'">
+          <transition
+            :name="first_view ? 'fade-3' : 'none'"
+            class="mobile-hidden"
+          >
             <div v-if="isMount">
               <router-link :to="'/legal'">
-                <made-up-button icon v-tooltip="'Mentions légales'">
+                <made-up-button
+                  icon
+                  v-tooltip="'Mentions légales'"
+                  class="button"
+                >
                   <scale-balance-icon />
                 </made-up-button>
               </router-link>
+            </div>
+          </transition>
+
+          <transition
+            :name="first_view ? 'fade-3' : 'none'"
+            class="desktop-hidden"
+          >
+            <div v-if="isMount">
+              <made-up-button icon v-tooltip="'Menu'" @click="switchRespMenu()">
+                <menu-icon />
+              </made-up-button>
             </div>
           </transition>
         </div>
@@ -77,6 +126,8 @@ import SortAscendingIcon from "vue-material-design-icons/SortAscending.vue";
 import SortDescendingIcon from "vue-material-design-icons/SortDescending.vue";
 import ThemeLightDarkIcon from "vue-material-design-icons/ThemeLightDark.vue";
 import ScaleBalanceIcon from "vue-material-design-icons/ScaleBalance.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
+import MenuIcon from "vue-material-design-icons/Menu.vue";
 import store from "../store";
 
 export default {
@@ -90,11 +141,15 @@ export default {
     SortDescendingIcon,
     ThemeLightDarkIcon,
     ScaleBalanceIcon,
+    MenuIcon,
+    CloseIcon,
   },
 
   data() {
     return {
       isMount: false,
+
+      test: false,
     };
   },
 
@@ -124,6 +179,10 @@ export default {
 
     switchTheme() {
       alert("switch theme");
+    },
+
+    switchRespMenu() {
+      this.test = !this.test;
     },
   },
 };
@@ -163,9 +222,21 @@ export default {
   width: calc(50vw - 570px);
 }
 
+@media (max-width: 449px) {
+  .buttons-wrapper {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 991px) {
   .path-line-wrapper {
     display: none;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .button {
+    margin-bottom: 5px;
   }
 }
 
@@ -179,5 +250,41 @@ export default {
   .path-line-wrapper {
     width: calc(50vw - 480px);
   }
+}
+
+/* With full Pathline */
+
+.overlay-resp-wrapper {
+  padding-top: 40px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: -1;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+.overlay-resp-active {
+  opacity: 1;
+  z-index: 2;
+  transition: all 0.5s ease;
+}
+
+.overlay-resp-close-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.overlay-resp-menu {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.overlay-resp-menu-button {
+  margin-bottom: 10px;
 }
 </style>

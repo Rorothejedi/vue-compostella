@@ -60,6 +60,9 @@ input:focus {
   transition: background-color 0.3s ease;
 }
 input:disabled {
-  background-color: #acacac;
+  background-color: rgb(250, 250, 250);
+}
+input:disabled::placeholder {
+  color: rgba(3, 3, 3, 0.35);
 }
 </style>

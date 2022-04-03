@@ -100,7 +100,7 @@ button:hover:not(.loading):not(.disabled) {
 }
 button:active:not(.loading):not(.disabled) {
   transition: background-color 0.05s cubic-bezier(0.4, 0, 0.6, 1);
-  background-color: rgb(161, 161, 161);
+  background-color: rgb(209, 209, 209);
 }
 
 /* Flat (no background) */

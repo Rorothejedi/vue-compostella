@@ -81,6 +81,7 @@ export default {
 <style scoped>
 .kilometers-line {
   padding-top: 75px;
+  padding-bottom: 60px;
 }
 /* Text */
 .header,

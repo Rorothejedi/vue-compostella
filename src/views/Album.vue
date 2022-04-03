@@ -29,7 +29,7 @@
     <kilometers-line :loading="loading" :album="album" />
 
     <transition name="fade-1">
-      <p class="story" v-if="!loading">
+      <p class="story" v-if="!loading && album.text !== null">
         {{ album.text }}
       </p>
     </transition>
@@ -138,8 +138,9 @@ export default {
   font-size: 18px;
   line-height: 30px;
   letter-spacing: 0.3px;
-  margin-top: 70px;
-  margin-bottom: 70px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
   white-space: pre-wrap;
 }
 .story::first-letter {

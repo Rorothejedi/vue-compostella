@@ -98,20 +98,19 @@ export default {
       let options = {
         icon: "warning",
         html: `Voulez-vous supprimer le commentaire n°<strong>${comment_id}</strong> ?<br />`,
-        confirmButtonText: "Signaler",
+        confirmButtonText: "Supprimer",
       };
 
       this.confirm(options, this.removeComment, comment_id);
     },
 
-    removeComment(comment_id) {
+    async removeComment(comment_id) {
       this.loading_delete[comment_id] = true;
 
-      this.deleteComment(comment_id).then(() => {
-        this.loadAlbum(this.$route.params.id).then(() => {
-          this.loading_delete[comment_id] = false;
-        });
-      });
+      await this.deleteComment(comment_id);
+      await this.loadAlbum(this.$route.params.id);
+
+      this.loading_delete[comment_id] = false;
     },
   },
 };

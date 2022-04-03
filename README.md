@@ -1,12 +1,10 @@
 TODO (priorité haute)
 
-- Modifier la couleur du disabled (made-up-input) et onclick (made-up-button) (même couleur que le button)
+- Voir pour les étapes avec kilometres avec des virgules
 
 ------------
 
 TODO (priorité moyenne)
-
-- Gérer les cas où il n'y a pas de texte, pas de vidéos ou pas d'images (mise en forme et sécurité)
 
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
@@ -21,7 +19,6 @@ TODO (priorité moyenne)
 
 TODO (priorité basse)
 
-- Voir pour les étapes avec kilometres avec des virgules
 - Uniformiser les variables de font et de couleur
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Test avec des données réel (étapes prévue en france et espagne)
@@ -148,3 +145,5 @@ DONE
 - Fix le loading sur l'accueil
 
 - Intégrer recaptcha pour les likes et les signalements public (avec mixin)
+- Modifier la couleur du disabled (made-up-input) et onclick (made-up-button) (même couleur que le button)
+- Gérer les cas où il n'y a pas de texte, pas de vidéos ou pas d'images (mise en forme et sécurité)

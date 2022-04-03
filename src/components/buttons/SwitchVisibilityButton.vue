@@ -50,7 +50,12 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["loadAlbums", "editAlbum", "clearAlbumsInfinite"]),
+    ...mapActions("album", [
+      "loadAlbums",
+      "editAlbum",
+      "clearAlbumsInfinite",
+      "clearAlbumsSimple",
+    ]),
 
     confirmSwitchVisible() {
       if (this.loading) return;
@@ -79,6 +84,7 @@ export default {
       await this.editAlbum([this.album.id, edit_params]);
       await this.loadAlbums(load_params);
       await this.clearAlbumsInfinite();
+      await this.clearAlbumsSimple();
 
       this.loading = false;
     },

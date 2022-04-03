@@ -157,7 +157,7 @@ export default {
 
   computed: {
     ...mapState("nav", ["first_view"]),
-    ...mapState("album", ["albums_infinite_sort"]),
+    ...mapState("album", ["albums_infinite", "albums_infinite_sort"]),
     ...mapGetters(["isAuthenticated"]),
   },
 

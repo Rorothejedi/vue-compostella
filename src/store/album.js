@@ -112,6 +112,10 @@ export default {
                 })
         },
 
+        clearAlbumsSimple(store) {
+            store.commit('SET_ALBUMS_SIMPLE', [])
+        },
+
         /* ALBUM */
 
         loadAlbum(store, id) {

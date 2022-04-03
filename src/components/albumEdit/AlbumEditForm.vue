@@ -146,7 +146,12 @@ export default {
   },
 
   methods: {
-    ...mapActions("album", ["editAlbum", "loadAlbums", "clearAlbumsInfinite"]),
+    ...mapActions("album", [
+      "editAlbum",
+      "loadAlbums",
+      "clearAlbumsInfinite",
+      "clearAlbumsSimple",
+    ]),
 
     confirmUpdateAlbum() {
       if (this.loading_update) return;
@@ -193,6 +198,7 @@ export default {
       await this.loadAlbums(load_params);
 
       if (!isHide) await this.clearAlbumsInfinite();
+      if (!isHide) await this.clearAlbumsSimple();
 
       this.valid({
         icon: "success",

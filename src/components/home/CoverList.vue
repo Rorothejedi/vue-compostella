@@ -58,6 +58,17 @@
 
       <div v-if="loading" class="see-more-spacer"></div>
     </div>
+
+    <transition name="fade">
+      <div v-if="!loading && albums_infinite.length === 0" class="empty-home">
+        <p>
+          Vous êtes un peu en avance, je n'ai rien à vous montrer pour le moment
+          !
+          <br /><br />
+          Revenez plus tard !
+        </p>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -194,6 +205,10 @@ export default {
 </script>
 
 <style scoped>
+.empty-home {
+  text-align: center;
+  font-family: var(--subtitle-font-family);
+}
 .box {
   text-decoration: none;
   color: inherit;

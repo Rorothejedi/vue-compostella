@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-left">
-    <div id="line" v-show="!loading">
+    <div id="line" v-show="!loading && albums_simple.length > 1">
       <router-link
         v-for="(km, index) in albums_simple"
         :key="km.km_total"
@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       loading: false,
+      is_mounted: false,
       line_height: 0,
     };
   },
@@ -94,6 +95,8 @@ export default {
     },
 
     async fetchAlbumsSimple() {
+      if (this.loading) return;
+
       this.loading = true;
 
       await this.loadAlbumsSimple();

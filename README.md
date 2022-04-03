@@ -1,17 +1,15 @@
 TODO (priorité haute)
 
-- Gérer le cas où il n'y a pas encore d'album (avec responsive)
+- Gérer le cas ou je ne ferais pas d'album pour toutes les étapes (possibilité de sauté une étape ?) (a réfléchir)
 
 ------------
 
 TODO (priorité moyenne)
 
+- Gérer correctement les jours de repos
+
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
-
-- Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
-- Gérer le cas ou je ne ferais pas d'album pour toutes les étapes (possibilité de sauté une étape ?) (a réfléchir)
-- Gérer correctement les jours de repos
 
 ------------
 
@@ -29,24 +27,27 @@ TODO - A la fin
 - Mise en ligne de l'api
 - Mise en ligne du build vue
 - Gérer les clés recaptcha sur l'hébergement final
+- Changer les mots de passe (admin et bdd)
 
 ------------
 
 Optionnel
 
-- Refacto row du tableau pour la page album-manage
-- Intégrer un coeur pour les likes comme ceux de twitter
+- Faire un dark theme publique
 - Mettre la confirmation sur
     - Suppression photo
     - Modification photo
     - Suppression lien vidéo
     - Modification lien vidéo
-
-- Ajouter une option admin de desactivation des commentaires pour l'album
+- Refacto row du tableau pour la page album-manage
+- Intégrer un coeur pour les likes comme ceux de twitter
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
-- Voir pour tooltip (title importants (kilomètes parcourus))
-- Faire un dark theme publique
 - Faire des onglets (infos, photos, videos) pour album manage
+
+------------
+
+Full bonus
+
 - Faire une intégration du konami code
 
 --------------------------------------------------------
@@ -146,3 +147,4 @@ DONE
 - Modifier la couleur du disabled (made-up-input) et onclick (made-up-button) (même couleur que le button)
 - Gérer les cas où il n'y a pas de texte, pas de vidéos ou pas d'images (mise en forme et sécurité)
 - Voir pour les étapes avec kilometres avec des virgules
+- Gérer le cas où il n'y a pas encore d'album (avec responsive)

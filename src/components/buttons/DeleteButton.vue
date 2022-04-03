@@ -50,6 +50,7 @@ export default {
       "loadAlbums",
       "deleteAlbum",
       "clearAlbumsInfinite",
+      "clearAlbumsSimple",
     ]),
 
     confirmRemove() {
@@ -82,6 +83,7 @@ export default {
       await this.loadAlbums(load_params);
 
       if (!isHide) await this.clearAlbumsInfinite();
+      if (!isHide) await this.clearAlbumsSimple();
 
       this.loading = false;
       this.$router.push("/albums-manage");

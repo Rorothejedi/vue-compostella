@@ -21,11 +21,13 @@
 
 <script>
 import { mapActions } from "vuex";
+import recaptcha from "@/mixins/recaptcha.js";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import HeartIcon from "vue-material-design-icons/Heart.vue";
 
 export default {
   name: "LoveButton",
+  mixins: [recaptcha],
   components: {
     MadeUpButton,
     HeartIcon,
@@ -40,7 +42,6 @@ export default {
   data() {
     return {
       loading: false,
-
       comments_liked: [],
     };
   },
@@ -53,30 +54,40 @@ export default {
     ...mapActions("comment", ["loveComment", "unloveComment"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    likeComment(comment_id) {
+    async likeComment(comment_id) {
       if (this.loading) return;
 
       this.loading = true;
 
-      this.loveComment(comment_id).then(() => {
-        this.loadAlbum(this.$route.params.id).then(() => {
-          this.addCommentsLiked(comment_id);
-          this.loading = false;
-        });
-      });
+      await this.recaptcha();
+
+      const params = {
+        "g-recaptcha-response": this.recaptcha_token,
+      };
+
+      await this.loveComment([comment_id, params]);
+      await this.loadAlbum(this.$route.params.id);
+      this.addCommentsLiked(comment_id);
+
+      this.loading = false;
     },
 
-    unlikeComment(comment_id) {
+    async unlikeComment(comment_id) {
       if (this.loading) return;
 
       this.loading = true;
 
-      this.unloveComment(comment_id).then(() => {
-        this.loadAlbum(this.$route.params.id).then(() => {
-          this.removeCommentsLiked(comment_id);
-          this.loading = false;
-        });
-      });
+      await this.recaptcha();
+
+      const params = {
+        "g-recaptcha-response": this.recaptcha_token,
+      };
+
+      await this.unloveComment([comment_id, params]);
+      await this.loadAlbum(this.$route.params.id);
+      this.removeCommentsLiked(comment_id);
+
+      this.loading = false;
     },
 
     /* LocalStorage for comments_liked */
@@ -94,10 +105,14 @@ export default {
     },
 
     addCommentsLiked(comment_id) {
+      this.getCommentsLiked();
+
       this.comments_liked.push(comment_id);
       this.saveCommentsLiked();
     },
     removeCommentsLiked(comment_id) {
+      this.getCommentsLiked();
+
       let index = this.comments_liked.indexOf(comment_id);
 
       this.comments_liked.splice(index, 1);
@@ -105,6 +120,7 @@ export default {
     },
     saveCommentsLiked() {
       const parsed = JSON.stringify(this.comments_liked);
+
       localStorage.setItem("comments_liked", parsed);
     },
 

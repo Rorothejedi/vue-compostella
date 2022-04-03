@@ -55,6 +55,7 @@
 <script>
 import { mapActions } from "vuex";
 import alert from "@/mixins/alert.js";
+import recaptcha from "@/mixins/recaptcha.js";
 import TitleLine from "@/components/utils/TitleLine.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import MadeUpInput from "@/components/utils/MadeUpInput.vue";
@@ -63,7 +64,7 @@ import ShieldCheckIcon from "vue-material-design-icons/ShieldCheck.vue";
 
 export default {
   name: "CommentNew",
-  mixins: [alert],
+  mixins: [alert, recaptcha],
   components: {
     TitleLine,
     MadeUpButton,
@@ -77,7 +78,6 @@ export default {
       loading: false,
       author: "",
       text: "",
-      recaptcha_token: "",
       authorPlaceholder: "",
     };
   },
@@ -99,12 +99,6 @@ export default {
   methods: {
     ...mapActions("comment", ["createComment"]),
     ...mapActions("album", ["loadAlbum"]),
-
-    async recaptcha() {
-      await this.$recaptchaLoaded();
-
-      this.recaptcha_token = await this.$recaptcha("login");
-    },
 
     async postComment() {
       if (this.loading) return;

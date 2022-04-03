@@ -25,13 +25,14 @@
 <script>
 import { mapActions } from "vuex";
 import alert from "@/mixins/alert.js";
+import recaptcha from "@/mixins/recaptcha.js";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import AlertCircleOutlineIcon from "vue-material-design-icons/AlertCircleOutline.vue";
 import AlertCircleCheckOutlineIcon from "vue-material-design-icons/AlertCircleCheckOutline.vue";
 
 export default {
   name: "ReportButton",
-  mixins: [alert],
+  mixins: [alert, recaptcha],
   components: {
     MadeUpButton,
     AlertCircleOutlineIcon,
@@ -76,12 +77,19 @@ export default {
       this.confirm(options, this.reportsComment, null, options_alert_after);
     },
 
-    reportsComment() {
+    async reportsComment() {
       this.loading = true;
-      this.reportComment(this.comment.id).then(() => {
-        this.addCommentsReported(this.comment.id);
-        this.loading = false;
-      });
+
+      await this.recaptcha();
+
+      const params = {
+        "g-recaptcha-response": this.recaptcha_token,
+      };
+
+      await this.reportComment([this.comment.id, params]);
+      this.addCommentsReported(this.comment.id);
+
+      this.loading = false;
     },
 
     /* LocalStorage for comments_reported */

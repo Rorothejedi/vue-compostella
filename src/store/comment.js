@@ -28,20 +28,20 @@ export default {
                     console.log('Comment edition failed: ', error)
                 })
         },
-        reportComment(store, id) {
-            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/report`)
+        reportComment(store, [id, payload]) {
+            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/report`, payload)
                 .catch(error => {
                     console.log('Comment report failed: ', error)
                 })
         },
-        loveComment(store, id) {
-            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/love`)
+        loveComment(store, [id, payload]) {
+            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/love`, payload)
                 .catch(error => {
                     console.log('Comment love failed: ', error)
                 })
         },
-        unloveComment(store, id) {
-            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/unlove`)
+        unloveComment(store, [id, payload]) {
+            return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/unlove`, payload)
                 .catch(error => {
                     console.log('Comment unlove failed: ', error)
                 })

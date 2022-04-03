@@ -52,6 +52,7 @@
 import { mapState, mapActions } from "vuex";
 import axios from "axios";
 import alert from "@/mixins/alert.js";
+import recaptcha from "@/mixins/recaptcha.js";
 import BackToHomeHeader from "@/components/utils/BackToHomeHeader.vue";
 import MadeUpInput from "@/components/utils/MadeUpInput.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
@@ -59,7 +60,7 @@ import ShieldCheckIcon from "vue-material-design-icons/ShieldCheck.vue";
 
 export default {
   name: "Login",
-  mixins: [alert],
+  mixins: [alert, recaptcha],
   components: {
     BackToHomeHeader,
     MadeUpInput,
@@ -71,7 +72,6 @@ export default {
     return {
       email: "",
       password: "",
-      recaptcha_token: "",
       loading: false,
     };
   },
@@ -83,12 +83,6 @@ export default {
   methods: {
     ...mapActions("user", ["login"]),
     ...mapActions("comment", ["loadReportedComments"]),
-
-    async recaptcha() {
-      await this.$recaptchaLoaded();
-
-      this.recaptcha_token = await this.$recaptcha("login");
-    },
 
     async submitLogin() {
       if (this.loading) return;

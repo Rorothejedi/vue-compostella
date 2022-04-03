@@ -1,6 +1,6 @@
 TODO (priorité haute)
 
-- Intégrer recaptcha pour les likes et les signalements public (voir pour une mixin)
+- Modifier la couleur du disabled (made-up-input) et onclick (made-up-button) (même couleur que le button)
 
 ------------
 
@@ -21,7 +21,7 @@ TODO (priorité moyenne)
 
 TODO (priorité basse)
 
-- Modifier la couleur du disabled (made-up-input) et onclick (made-up-button)
+- Voir pour les étapes avec kilometres avec des virgules
 - Uniformiser les variables de font et de couleur
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Test avec des données réel (étapes prévue en france et espagne)
@@ -39,7 +39,6 @@ TODO - A la fin
 
 Optionnel
 
-- Voir pour les étapes avec kilometres avec des virgules
 - Refacto row du tableau pour la page album-manage
 - Intégrer un coeur pour les likes comme ceux de twitter
 - Mettre la confirmation sur
@@ -53,7 +52,6 @@ Optionnel
 - Voir pour tooltip (title importants (kilomètes parcourus))
 - Faire un dark theme publique
 - Faire des onglets (infos, photos, videos) pour album manage
-- Faire un skelton loader pour les covers
 - Faire une intégration du konami code
 
 --------------------------------------------------------
@@ -141,7 +139,6 @@ DONE
 - Mettre un loading sur le bouton de déconnexion
 - Fix l'apparition des images sur l'accueil (pop après coup) & loader home
 - Clear albums infinite quand on modifie, supprime ou rend visible un album
-
 - Faire le PathLine
     - Faire un ecran dédié pour les petits ecrans
 - Gérer les smartphones (responsive) pour l'accueil
@@ -149,3 +146,5 @@ DONE
     - pour le login
     - pour la modif d'album
 - Fix le loading sur l'accueil
+
+- Intégrer recaptcha pour les likes et les signalements public (avec mixin)

@@ -19,7 +19,7 @@
           v-if="index === albums_simple.length - 1"
         />
         <div class="point"></div>
-        <div class="text">{{ km.km_total }} km</div>
+        <div class="text">{{ Math.round(km.km_total) }} km</div>
       </router-link>
     </div>
   </transition>
@@ -39,157 +39,8 @@ export default {
 
   data() {
     return {
-      line_height: 0,
       loading: false,
-      // all_kms: [
-      //   {
-      //     id: 25,
-      //     km_total: 0,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 24,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 44,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 63,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 91,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 117,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 133,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 155,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 168,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 182,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 203,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 227,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 251,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 282,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 300,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 328,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 347,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 361,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 393,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 408,
-      //   },
-      //   {
-      //     km_total: 435,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 454,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 476,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 487,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 519,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 552,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 573,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 601,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 635,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 665,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 696,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 716,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 738,
-      //   },
-      //   {
-      //     id: 25,
-      //     km_total: 761,
-      //   },
-      //   // {
-      //   //   id: 25,
-      //   //   km_total: 780,
-      //   // },
-      //   // {
-      //   //   id: 25,
-      //   //   km_total: 805,
-      //   // },
-      //   // {
-      //   //   id: 25,
-      //   //   km_total: 1525,
-      //   // },
-      // ],
+      line_height: 0,
     };
   },
 
@@ -242,16 +93,16 @@ export default {
       window.addEventListener("resize", this.initLine);
     },
 
-    fetchAlbumsSimple() {
+    async fetchAlbumsSimple() {
       this.loading = true;
 
-      this.loadAlbumsSimple().then(() => {
-        this.loading = false;
+      await this.loadAlbumsSimple();
 
-        this.$nextTick().then(() => {
-          this.initLine();
-        });
-      });
+      this.loading = false;
+
+      await this.$nextTick();
+
+      this.initLine();
     },
   },
 };

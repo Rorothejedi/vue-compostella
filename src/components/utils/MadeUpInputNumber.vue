@@ -2,12 +2,15 @@
   <input
     type="number"
     :value="modelValue"
-    @input="(event) => $emit('update:modelValue', parseInt(event.target.value))"
+    @input="
+      (event) => $emit('update:modelValue', parseFloat(event.target.value))
+    "
     :placeholder="placeholder"
     :disabled="disabled"
     :min="min"
     :max="max"
     :style="`width: ${width}px`"
+    :step="step"
   />
 </template>
 
@@ -18,6 +21,7 @@ export default {
     modelValue: {
       type: Number,
       required: false,
+      default: 0,
     },
     min: {
       type: Number,
@@ -40,6 +44,11 @@ export default {
       type: Number,
       required: false,
       default: 160,
+    },
+    step: {
+      type: String,
+      required: false,
+      default: "0.1",
     },
   },
 };

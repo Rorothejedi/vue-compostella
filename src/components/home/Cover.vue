@@ -21,10 +21,12 @@
         </div>
       </div>
       <div class="km-wrapper mobile-hidden" title="Kilomètres totaux parcourus">
-        <span class="util">{{ km }} <span class="km-unit">KM</span></span>
-        <span class="km-main">{{ km }} <span class="km-unit">KM</span></span>
+        <span class="util">{{ km_round }} <span class="km-unit">KM</span></span>
+        <span class="km-main"
+          >{{ km_round }} <span class="km-unit">KM</span></span
+        >
         <span class="km-secondary">
-          {{ km }}
+          {{ km_round }}
           <span class="km-unit">KM</span>
         </span>
       </div>
@@ -68,6 +70,11 @@ export default {
 
   computed: {
     ...mapGetters(["host"]),
+
+    km_round() {
+      if (this.km === 0) return 0;
+      return Math.round(this.km);
+    },
   },
 
   beforeUnmount() {

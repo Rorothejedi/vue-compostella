@@ -45,7 +45,8 @@
       <div class="km-total-label">Km total parcouru :</div>
       <div>
         <strong v-if="!loading" class="km-total">
-          {{ album.km_total - album.km_step + this.km_step }} km
+          {{ total_km_traveled }}
+          km
         </strong>
       </div>
     </div>
@@ -116,6 +117,15 @@ export default {
 
   computed: {
     ...mapState("album", ["album", "albums_meta", "albums_sort"]),
+
+    total_km_traveled() {
+      const result =
+        parseFloat(this.album.km_total) -
+        parseFloat(this.album.km_step) +
+        parseFloat(this.km_step);
+
+      return Math.round(result * 10) / 10;
+    },
   },
 
   watch: {
@@ -208,6 +218,7 @@ export default {
   border: 1px dashed grey;
   border-radius: 4px;
   padding: 20px;
+  margin-top: 10px;
 }
 .wrapper-input {
   margin-bottom: 5px;

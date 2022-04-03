@@ -28,7 +28,8 @@
           v-tooltip.bottom="'Kilomètres parcourus au départ de l\'étape'"
         >
           <map-marker-outline-icon />
-          {{ start_km }}<small>km</small>
+          {{ Math.round(start_km) }}
+          <small>km</small>
         </div>
         <div>
           <small>
@@ -39,7 +40,8 @@
           class="footer-km"
           v-tooltip.bottom="'Kilomètres parcourus à la fin de l\'étape'"
         >
-          {{ album.km_total }}<small>km</small>
+          {{ Math.round(album.km_total) }}
+          <small>km</small>
           <map-marker-check-icon />
         </div>
       </div>

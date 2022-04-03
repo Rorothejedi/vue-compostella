@@ -43,12 +43,13 @@
               placeholder="Kilomètres de l'étape"
               min="0"
               max="100"
+              step="0.1"
             />
           </div>
           <div class="flex-form-input mt-1">
             <div>Km total parcouru jusqu'a cette étape:</div>
             <div v-if="albums.length > 0" class="bold">
-              {{ albums[0].km_total_max + km_step }} km
+              {{ total_km_traveled }} km
             </div>
           </div>
         </div>
@@ -110,9 +111,12 @@ export default {
   computed: {
     ...mapState("album", ["albums", "albums_meta"]),
 
-    km_total() {
+    total_km_traveled() {
       if (this.albums[0] === undefined) return 0;
-      return this.albums[0].km_total + this.km_step;
+
+      const result = this.albums[0].km_total_max + this.km_step;
+
+      return Math.round(result * 10) / 10;
     },
   },
 

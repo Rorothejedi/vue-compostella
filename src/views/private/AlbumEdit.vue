@@ -114,7 +114,7 @@ export default {
   border: 1px dashed grey;
   border-radius: 4px;
   padding: 20px;
-  margin: 10px auto;
+  margin-top: 10px;
 }
 
 .date {

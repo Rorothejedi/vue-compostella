@@ -1,6 +1,6 @@
 TODO (priorité haute)
 
-- Voir pour les étapes avec kilometres avec des virgules
+- Gérer le cas où il n'y a pas encore d'album (avec responsive)
 
 ------------
 
@@ -8,8 +8,6 @@ TODO (priorité moyenne)
 
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
-
-- Gérer le cas où il n'y a pas encore d'album (avec responsive)
 
 - Gérer au niveau du front un truc pour les jours de repos (si la destination est la même que l'arrivé et que l'étape est à 0) indiqué 'repos' à la place des kilomètres et n'afficher qu'une ville et pas deux fois la même.
 - Gérer le cas ou je ne ferais pas d'album pour toutes les étapes (possibilité de sauté une étape ?) (a réfléchir)
@@ -147,3 +145,4 @@ DONE
 - Intégrer recaptcha pour les likes et les signalements public (avec mixin)
 - Modifier la couleur du disabled (made-up-input) et onclick (made-up-button) (même couleur que le button)
 - Gérer les cas où il n'y a pas de texte, pas de vidéos ou pas d'images (mise en forme et sécurité)
+- Voir pour les étapes avec kilometres avec des virgules

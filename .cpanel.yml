@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/xgul4921/compostella.rodolphe-cabotiau.com/
-    - /bin/cp -R * $DEPLOYPATH
+    - export DEPLOYPATH=/home/xgul4921/compostella.rodolphe-cabotiau.com/public_html/
+    - /bin/cp -R dist $DEPLOYPATH

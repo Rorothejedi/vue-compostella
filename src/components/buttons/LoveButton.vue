@@ -50,6 +50,12 @@ export default {
     this.getCommentsLiked();
   },
 
+  errorCaptured() {
+    if (this.loading) this.loading = false;
+
+    return false;
+  },
+
   methods: {
     ...mapActions("comment", ["loveComment", "unloveComment"]),
     ...mapActions("album", ["loadAlbum"]),

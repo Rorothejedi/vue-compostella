@@ -1,12 +1,14 @@
 TODO (priorité haute)
 
-- Mettre le site en https
+Bug :
+- Bouton de changement de visibilité
+    - Ne fonctionne pas
+    - Tous caché alors que non dans la bdd
 
 ------------
 
 TODO (priorité moyenne)
 
-- Mettre la collection postman sur github
 
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur
@@ -30,11 +32,19 @@ TODO - A la fin
 
 TODO - Bug
 
+- Animation cover sur la home
+    - Laiser finir l'animation pour le tri avant de lancer l'animation d'après
+
+- Upload d'image
+    - Problème avec le storage sur le serveur
 - Tableau albums-manage
     - issue : Quand on est page 2 et qu'on demande de voir 20 éléments, le tableau est vide
     - solve : Reset la page à 1 quand on change le nombre d'élements par page.
+- Sur mobile Menu avec la line sur la home : 
+    - issue : On ne voit pas le bas
 - Transition trop rapide sur le kilometersLine
 - Pas de transition à part sur une des icone du home
+- Faire un debug sur mobile (https://stackoverflow.com/questions/37256331/is-it-possible-to-open-developer-tools-console-in-chrome-on-android-phone)
 
 ------------
 
@@ -154,17 +164,24 @@ DONE
 - Gérer les cas où il n'y a pas de texte, pas de vidéos ou pas d'images (mise en forme et sécurité)
 - Voir pour les étapes avec kilometres avec des virgules
 - Gérer le cas où il n'y a pas encore d'album (avec responsive)
-
 - Mise en ligne de l'api
 - Gérer les clés recaptcha sur l'hébergement final
 - Mise en ligne du build vue
+- Mettre le site en https
+- Mettre la collection postman sur github
+- Fix cas d'erreur avec les likes/dislikes
 
+DEBUG
+
+- 
+
+-----------------
 
 Deployment
 
 API
 
-- Deploy git head commit (Git™ Version Control on cPanel)
+- Deploy HEAD commit (Git™ Version Control on cPanel)
 - `composer update` (with terminal on cPanel)
 - `composer install` (with terminal on cPanel)
 - Update `.env` informations (db, host)
@@ -173,4 +190,5 @@ Vue
 
 - `npm run build` (with latest version in local)
 - `git push` (still in local)
-- Deploy git head commit (Git™ Version Control on cPanel)
+- Update from Remote (Git™ Version Control on cPanel)
+- Deploy HEAD commit (Git™ Version Control on cPanel)

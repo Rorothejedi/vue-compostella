@@ -10,7 +10,15 @@ export default {
         async recaptcha() {
             await this.$recaptchaLoaded();
 
-            this.recaptcha_token = await this.$recaptcha("login");
+            await this.$recaptcha('login')
+                .then((token) => {
+                    this.recaptcha_token = token
+                })
+                .catch((error) => {
+                    this.recaptcha_token = ''
+
+                    throw new Error('Recaptcha has encoutered an error...', error)
+                })
         },
     }
 }

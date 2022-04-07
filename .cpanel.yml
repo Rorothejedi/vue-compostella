@@ -3,4 +3,3 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/xgul4921/compostella.rodolphe-cabotiau.com/public_html
     - /bin/cp -R * $DEPLOYPATH
-    - /bin/npm run build

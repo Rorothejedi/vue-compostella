@@ -1,6 +1,6 @@
 TODO (priorité haute)
 
-- Mise en ligne du build vue
+- Mettre le site en https
 
 ------------
 
@@ -24,8 +24,17 @@ TODO (priorité basse)
 
 TODO - A la fin
 
-- Gérer les clés recaptcha sur l'hébergement final
 - Changer les mots de passe (admin)
+
+------------
+
+TODO - Bug
+
+- Tableau albums-manage
+    - issue : Quand on est page 2 et qu'on demande de voir 20 éléments, le tableau est vide
+    - solve : Reset la page à 1 quand on change le nombre d'élements par page.
+- Transition trop rapide sur le kilometersLine
+- Pas de transition à part sur une des icone du home
 
 ------------
 
@@ -147,3 +156,21 @@ DONE
 - Gérer le cas où il n'y a pas encore d'album (avec responsive)
 
 - Mise en ligne de l'api
+- Gérer les clés recaptcha sur l'hébergement final
+- Mise en ligne du build vue
+
+
+Deployment
+
+API
+
+- Deploy git head commit (Git™ Version Control on cPanel)
+- `composer update` (with terminal on cPanel)
+- `composer install` (with terminal on cPanel)
+- Update `.env` informations (db, host)
+
+Vue
+
+- `npm run build` (with latest version in local)
+- `git push` (still in local)
+- Deploy git head commit (Git™ Version Control on cPanel)

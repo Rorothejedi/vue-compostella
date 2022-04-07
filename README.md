@@ -1,33 +1,31 @@
 TODO (priorité haute)
 
-- Gérer le cas ou je ne ferais pas d'album pour toutes les étapes (possibilité de sauté une étape ?) (a réfléchir)
+- Mise en ligne du build vue
 
 ------------
 
 TODO (priorité moyenne)
 
-- Gérer correctement les jours de repos
+- Mettre la collection postman sur github
+
+- Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
+- Uniformiser les variables de font et de couleur
+
+------------
+
+TODO (priorité basse)
+
+- Test avec des données réel (étapes prévue en france et espagne)
 
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
 
 ------------
 
-TODO (priorité basse)
-
-- Uniformiser les variables de font et de couleur
-- Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
-- Test avec des données réel (étapes prévue en france et espagne)
-
-------------
-
 TODO - A la fin
 
-- Mettre la collection postman sur github
-- Mise en ligne de l'api
-- Mise en ligne du build vue
 - Gérer les clés recaptcha sur l'hébergement final
-- Changer les mots de passe (admin et bdd)
+- Changer les mots de passe (admin)
 
 ------------
 
@@ -142,9 +140,10 @@ DONE
     - pour le login
     - pour la modif d'album
 - Fix le loading sur l'accueil
-
 - Intégrer recaptcha pour les likes et les signalements public (avec mixin)
 - Modifier la couleur du disabled (made-up-input) et onclick (made-up-button) (même couleur que le button)
 - Gérer les cas où il n'y a pas de texte, pas de vidéos ou pas d'images (mise en forme et sécurité)
 - Voir pour les étapes avec kilometres avec des virgules
 - Gérer le cas où il n'y a pas encore d'album (avec responsive)
+
+- Mise en ligne de l'api

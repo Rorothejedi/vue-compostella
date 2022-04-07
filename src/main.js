@@ -17,7 +17,7 @@ import {
 /* Recaptcha */
 
 const recaptcha_option = {
-    siteKey: '6LciLlUfAAAAADxPuOQI5MQJFPt_GFWM1J3q0h1d',
+    siteKey: process.env.VUE_APP_RECAPTCHA_SITEKEY,
     loaderOptions: {
         autoHideBadge: true,
     }

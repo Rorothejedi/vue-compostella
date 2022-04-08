@@ -1,8 +1,8 @@
 TODO (priorité haute)
 
-- Finaliser la partie video youtube (manage album)
-
 Bug :
+- Animation cover sur la home
+    - Laiser finir l'animation pour le tri avant de lancer l'animation d'après
 
 ------------
 
@@ -32,8 +32,6 @@ TODO - A la fin
 
 TODO - Bug
 
-- Animation cover sur la home
-    - Laiser finir l'animation pour le tri avant de lancer l'animation d'après
 - Sur mobile Menu avec la line sur la home : 
     - issue : On ne voit pas le bas
 - Transition trop rapide sur le kilometersLine
@@ -167,6 +165,7 @@ DONE
 
 - Refato avec la logique async/await 
 - Finaliser la partie upload d'image (manage album)
+- Finaliser la partie video youtube (manage album)
 
 DEBUG
 

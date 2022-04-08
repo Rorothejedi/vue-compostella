@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title">Edition d'image</h3>
+    <h3 class="title">Edition image</h3>
 
     <image-edit-grid
       :loading_delete="loading_delete"

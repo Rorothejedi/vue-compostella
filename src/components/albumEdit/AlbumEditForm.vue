@@ -11,7 +11,7 @@
       <label for="place_departure">Ville de départ : </label>
       <made-up-input
         v-model="place_departure"
-        placeholder="Ville de départ"
+        placeholder="ex: Toulon"
         id="place_departure"
         :disabled="loading"
       />
@@ -21,7 +21,7 @@
       <label for="place_arrival">Ville d'arrivée : </label>
       <made-up-input
         v-model="place_arrival"
-        placeholder="Ville d'arrivée"
+        placeholder="ex: Santiago"
         id="place_arrival"
         :disabled="loading"
       />
@@ -38,6 +38,7 @@
         :disabled="loading"
         :min="0"
         :max="100"
+        stepper
       />
     </div>
 
@@ -201,12 +202,12 @@ export default {
       if (!isHide) await this.clearAlbumsInfinite();
       if (!isHide) await this.clearAlbumsSimple();
 
+      this.loading_update = false;
+
       this.valid({
         icon: "success",
         html: "Les informations de l'album ont été mises à jour avec succès !",
       });
-
-      this.loading_update = false;
     },
 
     setAlbumValues() {
@@ -244,5 +245,8 @@ label {
 .km-total {
   font-family: var(--subtitle-font-family);
   border-bottom: 1px solid grey;
+}
+.step {
+  margin: auto 2px;
 }
 </style>

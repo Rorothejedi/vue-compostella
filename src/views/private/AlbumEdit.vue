@@ -41,8 +41,11 @@
       <images-edit />
     </div>
 
-    <video-new :loading="loading" />
-    <video-edit />
+    <div class="videos">
+      <video-new :loading="loading" />
+      <div class="separator"></div>
+      <video-edit />
+    </div>
 
     <br />
     <p v-if="loading">Loading...</p>
@@ -141,7 +144,8 @@ export default {
   flex-wrap: wrap;
 }
 
-.images {
+.images,
+.videos {
   border: 1px dashed grey;
   border-radius: 4px;
   padding: 20px;

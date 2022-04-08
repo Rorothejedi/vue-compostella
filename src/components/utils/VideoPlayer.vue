@@ -35,7 +35,7 @@ export default {
 .title {
   font-family: var(--subtitle-font-family);
   font-weight: 400;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 .player {

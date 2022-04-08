@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title">Ajout d'image</h3>
+    <h3 class="title">Ajout image</h3>
 
     <input
       type="file"

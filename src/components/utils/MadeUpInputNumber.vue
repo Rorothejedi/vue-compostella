@@ -1,22 +1,49 @@
 <template>
-  <input
-    type="number"
-    :value="modelValue"
-    @input="
-      (event) => $emit('update:modelValue', parseFloat(event.target.value))
-    "
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :min="min"
-    :max="max"
-    :style="`width: ${width}px`"
-    :step="step"
-  />
+  <div class="made-up-input-number">
+    <made-up-button
+      small
+      icon
+      circle
+      @click="less()"
+      class="stepper"
+      v-if="stepper"
+    >
+      <minus-icon :size="18" />
+    </made-up-button>
+    <input
+      type="number"
+      :value="modelValue"
+      @input="
+        (event) => $emit('update:modelValue', parseFloat(event.target.value))
+      "
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :min="min"
+      :max="max"
+      :style="`width: ${width}px`"
+      :step="step"
+    />
+    <made-up-button
+      small
+      icon
+      circle
+      @click="more()"
+      class="stepper"
+      v-if="stepper"
+    >
+      <plus-icon :size="18" />
+    </made-up-button>
+  </div>
 </template>
 
 <script>
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import MinusIcon from "vue-material-design-icons/Minus.vue";
+import PlusIcon from "vue-material-design-icons/Plus.vue";
+
 export default {
   name: "MadeUpInputNumber",
+  components: { MadeUpButton, MinusIcon, PlusIcon },
   props: {
     modelValue: {
       type: Number,
@@ -50,6 +77,30 @@ export default {
       required: false,
       default: "0.1",
     },
+    stepper: {
+      type: Boolean,
+      required: false,
+    },
+  },
+
+  methods: {
+    less() {
+      if (this.modelValue === this.min) return;
+
+      let calc = this.modelValue - parseFloat(this.step);
+      calc = calc.toFixed(1);
+
+      this.$emit("update:modelValue", parseFloat(calc));
+    },
+
+    more() {
+      if (this.modelValue === this.max) return;
+
+      let calc = this.modelValue + parseFloat(this.step);
+      calc = calc.toFixed(1);
+
+      this.$emit("update:modelValue", parseFloat(calc));
+    },
   },
 };
 </script>
@@ -73,5 +124,14 @@ input:disabled {
 }
 input:disabled::placeholder {
   color: rgba(3, 3, 3, 0.35);
+}
+
+.made-up-input-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stepper {
+  margin: auto 2px;
 }
 </style>

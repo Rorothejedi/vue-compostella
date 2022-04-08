@@ -80,6 +80,17 @@ export default {
     ...mapState("user", ["token"]),
   },
 
+  errorCaptured() {
+    if (this.loading) this.loading = false;
+
+    this.valid({
+      icon: "error",
+      html: "Une error est survenue...",
+    });
+
+    return false;
+  },
+
   methods: {
     ...mapActions("user", ["login"]),
     ...mapActions("comment", ["loadReportedComments"]),
@@ -97,14 +108,16 @@ export default {
         "g-recaptcha-response": this.recaptcha_token,
       };
 
-      this.login(params).then(() => {
-        if (this.token === null) return this.errorLogin();
+      await this.login(params);
 
-        axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
-        this.loadReportedComments();
-        this.$router.push("/");
-        this.resetForm();
-      });
+      if (this.token === null) return this.errorLogin();
+      axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
+
+      await this.loadReportedComments();
+
+      this.resetForm();
+
+      this.$router.push("/");
     },
 
     errorLogin() {

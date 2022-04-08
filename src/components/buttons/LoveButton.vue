@@ -21,13 +21,14 @@
 
 <script>
 import { mapActions } from "vuex";
+import alert from "@/mixins/alert.js";
 import recaptcha from "@/mixins/recaptcha.js";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import HeartIcon from "vue-material-design-icons/Heart.vue";
 
 export default {
   name: "LoveButton",
-  mixins: [recaptcha],
+  mixins: [alert, recaptcha],
   components: {
     MadeUpButton,
     HeartIcon,
@@ -52,6 +53,11 @@ export default {
 
   errorCaptured() {
     if (this.loading) this.loading = false;
+
+    this.valid({
+      icon: "error",
+      html: "Une error est survenue...",
+    });
 
     return false;
   },

@@ -1,9 +1,9 @@
 TODO (priorité haute)
 
 Bug :
-- Bouton de changement de visibilité
-    - Ne fonctionne pas
-    - Tous caché alors que non dans la bdd
+- Tableau albums-manage
+    - issue : Quand on est page 2 et qu'on demande de voir 20 éléments, le tableau est vide
+    - solve : Reset la page à 1 quand on change le nombre d'élements par page.
 
 ------------
 
@@ -26,6 +26,7 @@ TODO (priorité basse)
 
 TODO - A la fin
 
+- Remettre les validation recaptcha (auth/ laravel)
 - Changer les mots de passe (admin)
 
 ------------
@@ -34,12 +35,6 @@ TODO - Bug
 
 - Animation cover sur la home
     - Laiser finir l'animation pour le tri avant de lancer l'animation d'après
-
-- Upload d'image
-    - Problème avec le storage sur le serveur
-- Tableau albums-manage
-    - issue : Quand on est page 2 et qu'on demande de voir 20 éléments, le tableau est vide
-    - solve : Reset la page à 1 quand on change le nombre d'élements par page.
 - Sur mobile Menu avec la line sur la home : 
     - issue : On ne voit pas le bas
 - Transition trop rapide sur le kilometersLine
@@ -173,7 +168,8 @@ DONE
 
 DEBUG
 
-- 
+- Bouton de changement de visibilité
+- Problème avec le storage sur le serveur (upload d'image)
 
 -----------------
 
@@ -185,6 +181,7 @@ API
 - `composer update` (with terminal on cPanel)
 - `composer install` (with terminal on cPanel)
 - Update `.env` informations (db, host)
+- `php artisan storage:link` (for create symbolic link to public storage)
 
 Vue
 

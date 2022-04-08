@@ -1,15 +1,14 @@
 TODO (priorité haute)
 
 Bug :
-- Tableau albums-manage
-    - issue : Quand on est page 2 et qu'on demande de voir 20 éléments, le tableau est vide
-    - solve : Reset la page à 1 quand on change le nombre d'élements par page.
 
 ------------
 
 TODO (priorité moyenne)
 
-
+- Mettre error sur tous les recaptcha (login ok, love ok, report ko, comment ko)
+- Finaliser la partie upload d'image (manage album)
+- Finaliser la partie video youtube (manage album)
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur
 
@@ -170,6 +169,7 @@ DEBUG
 
 - Bouton de changement de visibilité
 - Problème avec le storage sur le serveur (upload d'image)
+- Tableau albums-manage (nombre d'élement par page / page suivante)
 
 -----------------
 
@@ -181,7 +181,7 @@ API
 - `composer update` (with terminal on cPanel)
 - `composer install` (with terminal on cPanel)
 - Update `.env` informations (db, host)
-- `php artisan storage:link` (for create symbolic link to public storage)
+- `php artisan storage:link` (for create symbolic link to public storage) (need for images)
 
 Vue
 

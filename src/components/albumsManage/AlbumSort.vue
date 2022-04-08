@@ -60,7 +60,7 @@ export default {
   methods: {
     ...mapActions("album", ["loadAlbums"]),
 
-    sortAlbums() {
+    async sortAlbums() {
       if (this.loading_sort || this.loading_per_page) return;
 
       this.loading_sort = true;
@@ -73,25 +73,31 @@ export default {
         sort_by: this.albums_sort,
       };
 
-      this.loadAlbums(params).then(() => {
-        this.loading_sort = false;
-      });
+      await this.loadAlbums(params);
+
+      this.loading_sort = false;
     },
 
-    perPageAlbums() {
+    async perPageAlbums() {
       if (this.loading_sort || this.loading_per_page) return;
 
       this.loading_per_page = true;
 
+      store.commit("album/SET_ALBUMS_META", {
+        current_page: 1,
+        last_page: 1,
+        per_page: this.per_page,
+      });
+
       const params = {
         page: this.albums_meta.current_page,
-        per_page: this.per_page,
+        per_page: this.albums_meta.per_page,
         sort_by: this.albums_sort,
       };
 
-      this.loadAlbums(params).then(() => {
-        this.loading_per_page = false;
-      });
+      await this.loadAlbums(params);
+
+      this.loading_per_page = false;
     },
   },
 };

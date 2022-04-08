@@ -96,7 +96,7 @@ export default {
   methods: {
     ...mapActions("album", ["loadAlbums"]),
 
-    fetchAlbums() {
+    async fetchAlbums() {
       if (this.loading) return;
 
       this.loading = true;
@@ -107,23 +107,23 @@ export default {
         sort_by: this.albums_sort,
       };
 
-      this.loadAlbums(params).then(() => {
-        this.page = this.albums_meta.current_page;
-        this.loading = false;
-      });
+      await this.loadAlbums(params);
+
+      this.page = this.albums_meta.current_page;
+      this.loading = false;
     },
 
     previousPage() {
       if (this.loading) return;
 
-      this.page--;
+      this.page = this.albums_meta.current_page - 1;
       this.fetchAlbums();
     },
 
     nextPage() {
       if (this.loading) return;
 
-      this.page++;
+      this.page = this.albums_meta.current_page + 1;
       this.fetchAlbums();
     },
   },

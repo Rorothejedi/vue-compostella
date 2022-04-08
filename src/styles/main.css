@@ -74,6 +74,7 @@ html {
     transform: translateX(100px);
 }
 
+
 .slide-right-enter-active,
 .slide-left-enter-active {
     transition: all 0.3s ease-out;
@@ -101,6 +102,17 @@ html {
 .fade-2-leave-to,
 .fade-3-leave-to {
     opacity: 0;
+}
+
+.fade-enter-to,
+.fade-1-enter-to,
+.fade-2-enter-to,
+.fade-3-enter-to,
+.fade-leave-from,
+.fade-1-leave-from,
+.fade-2-leave-from,
+.fade-3-leave-from {
+    opacity: 1;
 }
 
 .fade-enter-active,

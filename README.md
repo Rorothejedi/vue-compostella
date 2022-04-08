@@ -1,14 +1,15 @@
 TODO (priorité haute)
 
+- Mettre error sur tous les recaptcha (login ok, love ok, report ko, comment ko)
+- report wip
+
 Bug :
-- Animation cover sur la home
-    - Laiser finir l'animation pour le tri avant de lancer l'animation d'après
+
 
 ------------
 
 TODO (priorité moyenne)
 
-- Mettre error sur tous les recaptcha (login ok, love ok, report ko, comment ko)
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur
 
@@ -166,12 +167,14 @@ DONE
 - Refato avec la logique async/await 
 - Finaliser la partie upload d'image (manage album)
 - Finaliser la partie video youtube (manage album)
+- Transition sur la admin navbar
 
 DEBUG
 
 - Bouton de changement de visibilité
 - Problème avec le storage sur le serveur (upload d'image)
 - Tableau albums-manage (nombre d'élement par page / page suivante)
+- Animation cover sur la home (tri/infinite)
 
 -----------------
 

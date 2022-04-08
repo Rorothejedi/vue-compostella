@@ -121,6 +121,7 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
+import utils from "@/mixins/utils.js";
 import CoverList from "@/components/home/CoverList.vue";
 import PathLine from "@/components/home/PathLine.vue";
 import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
@@ -135,6 +136,7 @@ import store from "../store";
 
 export default {
   name: "Home",
+  mixins: [utils],
   components: {
     CoverList,
     PathLine,
@@ -173,7 +175,12 @@ export default {
     ...mapActions("album", ["sortAlbumsInfinite"]),
 
     async sortAlbums() {
+      const albums_count =
+        this.albums_infinite.length >= 12 ? 12 : this.albums_infinite.length;
+      const sleep_time = (albums_count + 3) * 80;
+
       await this.sortAlbumsInfinite();
+      await this.sleep(sleep_time);
 
       this.$refs.cover_list.page = 1;
       this.$refs.cover_list.fetchAlbums();

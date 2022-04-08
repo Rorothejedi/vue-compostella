@@ -1,36 +1,46 @@
 <template>
-  <div class="admin-navbar" v-if="isAuthenticated">
-    <div class="container admin-navbar-content">
-      <div>
+  <transition name="slide-down">
+    <div class="admin-navbar" v-if="isAuthenticated">
+      <div class="container admin-navbar-content">
+        <div>
+          <router-link to="/">
+            <made-up-button title="Accueil" small>
+              <home-icon />
+            </made-up-button>
+          </router-link>
+          <router-link to="/albums-manage" class="space">
+            <made-up-button small> Gérer les albums </made-up-button>
+          </router-link>
+          <router-link to="/comments-report" class="space">
+            <made-up-button
+              title="Commentaires signalés"
+              class="icon-cart"
+              small
+            >
+              <comment-alert-icon />
+              <span class="count">{{ reportedComments.length }}</span>
+            </made-up-button>
+          </router-link>
+        </div>
+
         <router-link to="/">
-          <made-up-button title="Accueil" small>
-            <home-icon />
-          </made-up-button>
-        </router-link>
-        <router-link to="/albums-manage" class="space">
-          <made-up-button small> Gérer les albums </made-up-button>
-        </router-link>
-        <router-link to="/comments-report" class="space">
-          <made-up-button title="Commentaires signalés" class="icon-cart" small>
-            <comment-alert-icon />
-            <span class="count">{{ reportedComments.length }}</span>
+          <made-up-button
+            @click="logoutWithLoading()"
+            :loading="loading_logout"
+            title="Déconnexion"
+            icon
+            small
+          >
+            <power-icon />
           </made-up-button>
         </router-link>
       </div>
-
-      <router-link to="/">
-        <made-up-button
-          @click="logoutWithLoading()"
-          :loading="loading_logout"
-          title="Déconnexion"
-          icon
-          small
-        >
-          <power-icon />
-        </made-up-button>
-      </router-link>
     </div>
-  </div>
+  </transition>
+
+  <!-- <div>
+    <button @click="test = !test">test</button>
+  </div> -->
 
   <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition || 'fade'" mode="out-in">
@@ -62,6 +72,7 @@ export default {
   data() {
     return {
       loading_logout: false,
+      test: false,
     };
   },
 
@@ -136,6 +147,20 @@ export default {
 }
 .space {
   margin-left: 5px;
+}
+
+/* admin navbar transition */
+
+.slide-down-leave-to,
+.slide-down-enter-from {
+  margin-bottom: -50px;
+  transform: translateY(-100px);
+}
+.slide-down-enter-active {
+  transition: all 0.4s ease-out 1.8s;
+}
+.slide-down-leave-active {
+  transition: all 0.4s ease-in;
 }
 </style>
 

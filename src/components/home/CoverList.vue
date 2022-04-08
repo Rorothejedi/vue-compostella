@@ -4,6 +4,7 @@
       name="staggered-fade"
       @before-enter="beforeEnter"
       @enter="enter"
+      @after-enter="afterEnter"
       @leave="leave"
     >
       <router-link
@@ -12,6 +13,7 @@
         :to="`/album/${album.id}`"
         :data-index-asc="key"
         :data-index-desc="albums_infinite.length - key - 1"
+        :data-index-test="11 - key"
         class="box"
       >
         <div class="resp-point"></div>
@@ -59,7 +61,7 @@
       <div v-if="loading" class="see-more-spacer"></div>
     </div>
 
-    <transition name="fade">
+    <!-- <transition name="fade-3">
       <div v-if="!loading && albums_infinite.length === 0" class="empty-home">
         <p>
           Vous êtes un peu en avance, je n'ai rien à vous montrer pour le moment
@@ -68,7 +70,7 @@
           Revenez plus tard !
         </p>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -90,10 +92,11 @@ export default {
     return {
       loading: false,
       page: 1,
-      el_by_row: 3,
-
       img_load: 0,
       is_mounted: false,
+
+      enter_elements: 0,
+      is_enter: false,
     };
   },
 
@@ -150,15 +153,16 @@ export default {
 
     getNextAlbums() {
       window.onscroll = () => {
-        const window_bottom =
-          document.documentElement.scrollTop + window.innerHeight >=
-          document.documentElement.offsetHeight - 500;
+        const total_page_height = document.body.scrollHeight - 300;
+        const scroll_point = window.scrollY + window.innerHeight;
+        const window_bottom = scroll_point >= total_page_height;
 
         if (
           !window_bottom ||
           this.loading ||
           this.albums_infinite_meta.current_page ===
-            this.albums_infinite_meta.last_page
+            this.albums_infinite_meta.last_page ||
+          this.enter_elements === 0
         )
           return;
 
@@ -173,6 +177,7 @@ export default {
 
     beforeEnter(el) {
       el.style.opacity = 0;
+      this.enter_elements = 0;
     },
 
     async enter(el, done) {
@@ -186,17 +191,21 @@ export default {
 
         gsap.to(el, {
           opacity: 1,
-          delay: calc_delay * 0.15,
+          delay: calc_delay * 0.12,
           onComplete: done,
         });
       }
+    },
+
+    afterEnter() {
+      this.enter_elements++;
     },
 
     leave(el, done) {
       gsap.to(el, {
         opacity: 0,
         delay:
-          parseInt(el.dataset.indexAsc) < 12 ? el.dataset.indexDesc * 0.08 : 0,
+          parseInt(el.dataset.indexAsc) < 12 ? el.dataset.indexTest * 0.08 : 0,
         onComplete: done,
       });
     },

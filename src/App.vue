@@ -84,12 +84,14 @@ export default {
 
     /* Auth methods */
 
-    logoutWithLoading() {
+    async logoutWithLoading() {
+      if (this.loading_logout) return;
+
       this.loading_logout = true;
 
-      this.logout().then(() => {
-        this.loading_logout = false;
-      });
+      await this.logout();
+
+      this.loading_logout = false;
     },
 
     logoutWhenUnauthenticatedResponse() {

@@ -49,20 +49,19 @@ export default {
       this.image_to_edit = image;
     },
 
-    removeImage(image_id) {
+    async removeImage(image_id) {
       if (this.loading_delete[image_id]) return;
 
       this.loading_delete[image_id] = true;
 
-      this.deleteImage(image_id).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          if (this.show_modal) {
-            this.show_modal = false;
-            this.image_to_edit = {};
-          }
-          this.loading_delete[image_id] = false;
-        });
-      });
+      await this.deleteImage(image_id);
+      await this.loadAlbum(this.album.id);
+
+      if (this.show_modal) {
+        this.show_modal = false;
+        this.image_to_edit = {};
+      }
+      this.loading_delete[image_id] = false;
     },
   },
 };

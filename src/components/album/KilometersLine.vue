@@ -68,10 +68,6 @@ export default {
     },
   },
 
-  data() {
-    return {};
-  },
-
   computed: {
     start_km() {
       return this.album.km_total - this.album.km_step;

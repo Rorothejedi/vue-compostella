@@ -125,7 +125,7 @@ export default {
 }
 .comment:hover {
   transition: background-color 0.3s ease;
-  background-color: rgb(243, 243, 243);
+  background-color: #f3f3f3;
 }
 .comment-header {
   display: flex;

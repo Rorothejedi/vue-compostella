@@ -69,7 +69,7 @@ export default {
       this.images_files.splice(key, 1);
     },
 
-    upload() {
+    async upload() {
       if (this.loading || this.images_files.length === 0) return;
 
       this.loading = true;
@@ -82,15 +82,13 @@ export default {
 
       formData.append("album_id", this.album.id);
 
-      this.uploadImages(formData).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          this.images_preview_url = [];
-          this.images_files = [];
-          this.$refs.inputFile.value = null;
+      await this.uploadImages(formData);
+      await this.loadAlbum(this.album.id);
 
-          this.loading = false;
-        });
-      });
+      this.images_preview_url = [];
+      this.images_files = [];
+      this.$refs.inputFile.value = null;
+      this.loading = false;
     },
   },
 };

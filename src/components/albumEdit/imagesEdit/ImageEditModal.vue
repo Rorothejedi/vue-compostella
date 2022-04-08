@@ -106,7 +106,7 @@ export default {
     ...mapActions("image", ["editImage"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    updateImage() {
+    async updateImage() {
       if (this.loading_edit) return;
 
       this.loading_edit = true;
@@ -116,13 +116,12 @@ export default {
         main_album_image: this.image_to_edit.main_album_image,
       };
 
-      this.editImage([this.image_to_edit.id, payload]).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          this.modal = false;
-          this.image = {};
-          this.loading_edit = false;
-        });
-      });
+      await this.editImage([this.image_to_edit.id, payload]);
+      await this.loadAlbum(this.album.id);
+
+      this.modal = false;
+      this.image = {};
+      this.loading_edit = false;
     },
   },
 };

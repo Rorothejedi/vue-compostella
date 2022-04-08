@@ -172,15 +172,15 @@ export default {
   methods: {
     ...mapActions("album", ["sortAlbumsInfinite"]),
 
-    sortAlbums() {
-      this.sortAlbumsInfinite().then(() => {
-        this.$refs.cover_list.page = 1;
-        this.$refs.cover_list.fetchAlbums();
-      });
+    async sortAlbums() {
+      await this.sortAlbumsInfinite();
+
+      this.$refs.cover_list.page = 1;
+      this.$refs.cover_list.fetchAlbums();
     },
 
     switchTheme() {
-      alert("switch theme");
+      alert("coming soon");
     },
 
     switchRespMenu() {

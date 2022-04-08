@@ -114,31 +114,31 @@ export default {
         "g-recaptcha-response": this.recaptcha_token,
       };
 
-      this.createComment(params).then((result) => {
-        if (result === undefined) {
-          this.valid(
-            {
-              icon: "error",
-              html: "Une erreur s'est produite...<br />Merci de vérifier que les informations sont correctement remplies.<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
-            },
-            6000
-          );
-          this.loading = false;
-          return;
-        }
+      const result = await this.createComment(params);
 
-        this.loadAlbum(this.$route.params.id).then(() => {
-          this.valid({
-            icon: "success",
-            html: "Votre commentaire a été posté avec succès !<br />Merci de votre participation !",
-          });
+      if (result === undefined) {
+        this.valid(
+          {
+            icon: "error",
+            html: "Une erreur s'est produite...<br />Merci de vérifier que les informations sont correctement remplies.<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
+          },
+          6000
+        );
+        this.loading = false;
+        return;
+      }
 
-          this.author = "";
-          this.text = "";
-          this.loading = false;
-          this.randomAuthorPlaceholder();
-        });
+      await this.loadAlbum(this.$route.params.id);
+
+      this.valid({
+        icon: "success",
+        html: "Votre commentaire a été posté avec succès !<br />Merci de votre participation !",
       });
+
+      this.author = "";
+      this.text = "";
+      this.loading = false;
+      this.randomAuthorPlaceholder();
     },
 
     randomAuthorPlaceholder() {

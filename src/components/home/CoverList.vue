@@ -130,7 +130,7 @@ export default {
   methods: {
     ...mapActions("album", ["loadAlbumsInfinite"]),
 
-    fetchAlbums() {
+    async fetchAlbums() {
       if (this.loading) return;
 
       this.loading = true;
@@ -141,9 +141,9 @@ export default {
         sort_by: this.albums_infinite_sort,
       };
 
-      this.loadAlbumsInfinite(params).then(() => {
-        this.loading = false;
-      });
+      await this.loadAlbumsInfinite(params);
+
+      this.loading = false;
     },
 
     /* Infinite scroll */

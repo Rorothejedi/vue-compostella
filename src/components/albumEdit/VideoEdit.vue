@@ -83,7 +83,9 @@ export default {
     ...mapActions("video", ["editVideo", "deleteVideo"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    updateVideo(id) {
+    async updateVideo(id) {
+      if (this.loading_edit[id]) return;
+
       this.loading_edit[id] = true;
 
       let params = {
@@ -92,21 +94,21 @@ export default {
         link: this.links[id],
       };
 
-      this.editVideo([id, params]).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          this.loading_edit[id] = false;
-        });
-      });
+      await this.editVideo([id, params]);
+      await this.loadAlbum(this.album.id);
+
+      this.loading_edit[id] = false;
     },
 
-    removeVideo(id) {
+    async removeVideo(id) {
+      if (this.loading_delete[id]) return;
+
       this.loading_delete[id] = true;
 
-      this.deleteVideo(id).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          this.loading_delete[id] = false;
-        });
-      });
+      await this.deleteVideo(id);
+      await this.loadAlbum(this.album.id);
+
+      this.loading_delete[id] = false;
     },
   },
 };

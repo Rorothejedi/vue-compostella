@@ -120,7 +120,7 @@ export default {
       this.$router.push("/");
     },
 
-    errorLogin() {
+    async errorLogin() {
       this.valid(
         {
           icon: "error",
@@ -129,7 +129,10 @@ export default {
         5000
       );
       this.resetForm();
-      this.$nextTick(() => this.$refs.email.$el.focus());
+
+      await this.$nextTick();
+
+      this.$refs.email.$el.focus();
 
       return;
     },

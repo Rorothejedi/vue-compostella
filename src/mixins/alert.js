@@ -1,7 +1,5 @@
 export default {
-
     methods: {
-
         confirm(options, callback, callback_params = null, options_alert_after = null) {
             const full_options = {
                 ...options,

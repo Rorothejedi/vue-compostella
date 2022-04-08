@@ -1,5 +1,7 @@
 TODO (priorité haute)
 
+- Finaliser la partie upload d'image (manage album)
+
 Bug :
 
 ------------
@@ -7,7 +9,6 @@ Bug :
 TODO (priorité moyenne)
 
 - Mettre error sur tous les recaptcha (login ok, love ok, report ko, comment ko)
-- Finaliser la partie upload d'image (manage album)
 - Finaliser la partie video youtube (manage album)
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur

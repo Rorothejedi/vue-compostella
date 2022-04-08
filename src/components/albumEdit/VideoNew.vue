@@ -52,9 +52,9 @@ export default {
 
   data() {
     return {
+      loading_create: false,
       title: "",
       link: "",
-      loading_create: false,
     };
   },
 
@@ -66,7 +66,9 @@ export default {
     ...mapActions("video", ["createVideo"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    addVideo() {
+    async addVideo() {
+      if (this.loading_create) return;
+
       this.loading_create = true;
 
       let params = {};
@@ -75,13 +77,12 @@ export default {
       params.album_id = this.album.id;
       if (this.title !== "") params.title = this.title;
 
-      this.createVideo(params).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          this.title = "";
-          this.link = "";
-          this.loading_create = false;
-        });
-      });
+      await this.createVideo(params);
+      await this.loadAlbum(this.album.id);
+
+      this.title = "";
+      this.link = "";
+      this.loading_create = false;
     },
   },
 };

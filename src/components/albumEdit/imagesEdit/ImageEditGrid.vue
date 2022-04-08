@@ -68,7 +68,7 @@ export default {
     ...mapActions("album", ["loadAlbum"]),
     ...mapActions("image", ["editImage"]),
 
-    moveImageToLeft(image_id, key) {
+    async moveImageToLeft(image_id, key) {
       if (this.loading_move_left[image_id]) return;
 
       this.loading_move_left[image_id] = true;
@@ -77,14 +77,13 @@ export default {
         album_order: key - 1,
       };
 
-      this.editImage([image_id, payload]).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          this.loading_move_left[image_id] = false;
-        });
-      });
+      await this.editImage([image_id, payload]);
+      await this.loadAlbum(this.album.id);
+
+      this.loading_move_left[image_id] = false;
     },
 
-    moveImageToRight(image_id, key) {
+    async moveImageToRight(image_id, key) {
       if (this.loading_move_right[image_id]) return;
 
       this.loading_move_right[image_id] = true;
@@ -93,11 +92,10 @@ export default {
         album_order: key + 1,
       };
 
-      this.editImage([image_id, payload]).then(() => {
-        this.loadAlbum(this.album.id).then(() => {
-          this.loading_move_right[image_id] = false;
-        });
-      });
+      await this.editImage([image_id, payload]);
+      await this.loadAlbum(this.album.id);
+
+      this.loading_move_right[image_id] = false;
     },
   },
 };

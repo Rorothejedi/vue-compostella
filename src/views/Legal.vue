@@ -615,7 +615,7 @@ export default {
 
   data() {
     return {
-      url: "compostelle.rodolphe-cabotiau.com",
+      url: "compostella.rodolphe-cabotiau.com",
     };
   },
 };

@@ -101,12 +101,12 @@ export default {
   methods: {
     ...mapActions("album", ["loadAlbum", "clearAlbum"]),
 
-    fetchAlbum() {
+    async fetchAlbum() {
       this.loading = true;
 
-      this.loadAlbum(this.$route.params.id).then(() => {
-        this.loading = false;
-      });
+      await this.loadAlbum(this.$route.params.id);
+
+      this.loading = false;
     },
   },
 };

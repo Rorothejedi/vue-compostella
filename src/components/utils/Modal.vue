@@ -42,7 +42,7 @@ export default {
 
   methods: {
     close() {
-      this.$emit("update:modelValue", false); // previously was `this.$emit('input', title)`
+      this.$emit("update:modelValue", false);
     },
   },
 };

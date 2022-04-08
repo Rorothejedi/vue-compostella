@@ -32,6 +32,7 @@ export default {
             return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/report`, payload)
                 .catch(error => {
                     console.log('Comment report failed: ', error)
+                    throw new Error('Comment report failed', error)
                 })
         },
         loveComment(store, [id, payload]) {

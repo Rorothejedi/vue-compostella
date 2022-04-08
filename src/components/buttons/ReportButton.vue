@@ -56,11 +56,22 @@ export default {
     this.getCommentsReported();
   },
 
+  errorCaptured() {
+    if (this.loading) this.loading = false;
+
+    this.valid({
+      icon: "error",
+      html: "Une error est survenue...",
+    });
+
+    return false;
+  },
+
   methods: {
     ...mapActions("comment", ["reportComment"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    confirmReportsComment() {
+    async confirmReportsComment() {
       if (this.loading) return;
 
       let options = {
@@ -69,12 +80,9 @@ export default {
         confirmButtonText: "Signaler",
       };
 
-      let options_alert_after = {
-        icon: "success",
-        text: `Merci pour votre signalement et votre vigilance !`,
-      };
+      if (!(await this.confirm(options))) return;
 
-      this.confirm(options, this.reportsComment, null, options_alert_after);
+      await this.reportsComment();
     },
 
     async reportsComment() {
@@ -90,6 +98,11 @@ export default {
       this.addCommentsReported(this.comment.id);
 
       this.loading = false;
+
+      this.valid({
+        icon: "success",
+        text: `Merci pour votre signalement et votre vigilance !`,
+      });
     },
 
     /* LocalStorage for comments_reported */

@@ -1,7 +1,7 @@
 TODO (priorité haute)
 
-- Mettre error sur tous les recaptcha (login ok, love ok, report ko, comment ko)
-- report wip
+- Mettre error sur tous les recaptcha (login ok, love ok, report ok, comment ko)
+- Fix toutes les alerts confirm avec la nouvelle façon de faire
 
 Bug :
 
@@ -19,8 +19,8 @@ TODO (priorité basse)
 
 - Test avec des données réel (étapes prévue en france et espagne)
 
-- Intégrer les composant d'input partout
-- Intégrer le composant de bouton partout
+- Intégrer les composant d'input partout (creer album)
+- Intégrer le composant de bouton partout (creer album)
 
 ------------
 

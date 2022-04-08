@@ -12,8 +12,7 @@
         :key="album.id"
         :to="`/album/${album.id}`"
         :data-index-asc="key"
-        :data-index-desc="albums_infinite.length - key - 1"
-        :data-index-test="11 - key"
+        :data-index-desc="11 - key"
         class="box"
       >
         <div class="resp-point"></div>
@@ -205,7 +204,7 @@ export default {
       gsap.to(el, {
         opacity: 0,
         delay:
-          parseInt(el.dataset.indexAsc) < 12 ? el.dataset.indexTest * 0.08 : 0,
+          parseInt(el.dataset.indexAsc) < 12 ? el.dataset.indexDesc * 0.08 : 0,
         onComplete: done,
       });
     },

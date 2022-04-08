@@ -71,6 +71,7 @@
         :disabled="loading"
         @click="confirmUpdateAlbum()"
         :loading="loading_update"
+        small
       >
         Modifier
       </made-up-button>

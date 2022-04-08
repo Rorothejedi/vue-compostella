@@ -1,6 +1,6 @@
 TODO (priorité haute)
 
-- Finaliser la partie upload d'image (manage album)
+- Finaliser la partie video youtube (manage album)
 
 Bug :
 
@@ -9,7 +9,6 @@ Bug :
 TODO (priorité moyenne)
 
 - Mettre error sur tous les recaptcha (login ok, love ok, report ko, comment ko)
-- Finaliser la partie video youtube (manage album)
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur
 
@@ -165,6 +164,9 @@ DONE
 - Mettre le site en https
 - Mettre la collection postman sur github
 - Fix cas d'erreur avec les likes/dislikes
+
+- Refato avec la logique async/await 
+- Finaliser la partie upload d'image (manage album)
 
 DEBUG
 

@@ -6,7 +6,9 @@
           <div class="modal-header-slot">
             {{ title }}
           </div>
-          <button class="modal-default-button" @click="close()">Fermer</button>
+          <made-up-button @click="close()" icon circle small>
+            <close-icon :size="18" />
+          </made-up-button>
         </header>
 
         <div class="separator"></div>
@@ -26,8 +28,12 @@
 </template>
 
 <script>
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
+
 export default {
   name: "Modal",
+  components: { MadeUpButton, CloseIcon },
   props: {
     modelValue: {
       type: Boolean,
@@ -100,7 +106,7 @@ export default {
 /* utils */
 
 .separator {
-  background-color: var(--dark-text-color);
+  background-color: grey;
   width: 100%;
   height: 1px;
   margin-top: 15px;

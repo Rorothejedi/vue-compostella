@@ -1,24 +1,23 @@
 <template>
   <div>
-    <p>Edition d'image</p>
+    <h3 class="title">Edition d'image</h3>
 
     <image-edit-grid
       :loading_delete="loading_delete"
-      @remove-image="removeImage"
+      @remove-image="confirmRemoveImage"
       @open-modal="openEditImageModal"
     />
 
     <image-edit-modal
       v-model:show_modal="show_modal"
       v-model:image_to_edit="image_to_edit"
-      :loading_delete="loading_delete[image_to_edit.id]"
-      @remove-image="removeImage"
     />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import alert from "@/mixins/alert";
 import date from "@/mixins/date";
 import ImageEditGrid from "@/components/albumEdit/imagesEdit/ImageEditGrid.vue";
 import ImageEditModal from "@/components/albumEdit/imagesEdit/ImageEditModal.vue";
@@ -26,7 +25,7 @@ import ImageEditModal from "@/components/albumEdit/imagesEdit/ImageEditModal.vue
 export default {
   name: "ImagesEdit",
   components: { ImageEditGrid, ImageEditModal },
-  mixins: [date],
+  mixins: [alert, date],
 
   data() {
     return {
@@ -49,9 +48,19 @@ export default {
       this.image_to_edit = image;
     },
 
-    async removeImage(image_id) {
+    confirmRemoveImage(image_id) {
       if (this.loading_delete[image_id]) return;
 
+      let options = {
+        icon: "warning",
+        html: `Voulez-vous vraiment supprimer cette image ?<br />`,
+        confirmButtonText: "Supprimer",
+      };
+
+      this.confirm(options, this.removeImage, image_id);
+    },
+
+    async removeImage(image_id) {
       this.loading_delete[image_id] = true;
 
       await this.deleteImage(image_id);
@@ -68,4 +77,7 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  font-family: var(--subtitle-font-family);
+}
 </style>

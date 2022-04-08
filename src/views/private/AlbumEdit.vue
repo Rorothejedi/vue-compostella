@@ -35,8 +35,9 @@
 
     <album-edit-form :loading="loading" />
 
-    <div v-if="!loading">
+    <div v-if="!loading" class="images">
       <image-new />
+      <div class="separator"></div>
       <images-edit />
     </div>
 
@@ -138,5 +139,16 @@ export default {
   align-items: center;
   margin-top: 10px;
   flex-wrap: wrap;
+}
+
+.images {
+  border: 1px dashed grey;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 10px;
+}
+.separator {
+  border-bottom: 1px dashed grey;
+  margin: 20px -20px;
 }
 </style>

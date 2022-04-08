@@ -7,43 +7,72 @@
         :class="{ 'main-image': image.main_album_image }"
         @click="$emit('openModal', image)"
       />
-      <span
+      <made-up-button
         v-if="key !== 0"
         class="arrow-left"
         @click="moveImageToLeft(image.id, key)"
+        :loading="loading_move_left[image.id]"
+        small
+        circle
       >
-        ← <span v-if="loading_move_left[image.id]">loading...</span>
-      </span>
-      <span
+        <arrow-left-icon :size="18" />
+      </made-up-button>
+
+      <made-up-button
         v-if="key !== album.images.length - 1"
         class="arrow-right"
         @click="moveImageToRight(image.id, key)"
+        :loading="loading_move_right[image.id]"
+        small
+        circle
       >
-        → <span v-if="loading_move_right[image.id]">loading...</span>
-      </span>
+        <arrow-right-icon :size="18" />
+      </made-up-button>
       <span
         v-if="image.text !== null"
         class="with-text"
-        title="Contient du texte"
+        v-tooltip="'Contient du texte'"
       >
-        🖹
+        <note-text-outline-icon :size="18" />
       </span>
-      <span
+
+      <made-up-button
         class="image-delete"
-        title="Supprimer l'image"
+        v-tooltip="'Supprimer l\'image'"
         @click="$emit('removeImage', image.id)"
+        small
+        circle
+        :loading="loading_delete[image.id]"
       >
-        ✖ <span v-if="loading_delete[image.id]">loading...</span>
-      </span>
+        <close-icon :size="18" />
+      </made-up-button>
     </div>
+    <p
+      v-if="album.images !== undefined && album.images.length === 0"
+      class="no-image"
+    >
+      Pas d'image
+    </p>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
+import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
+import ArrowRightIcon from "vue-material-design-icons/ArrowRight.vue";
+import NoteTextOutlineIcon from "vue-material-design-icons/NoteTextOutline.vue";
+
 export default {
   name: "ImageEditGrid",
-
+  components: {
+    MadeUpButton,
+    CloseIcon,
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    NoteTextOutlineIcon,
+  },
   props: {
     loading_delete: {
       type: Array,
@@ -103,16 +132,15 @@ export default {
 
 <style scoped>
 .images {
-  max-width: 100%;
   width: auto;
+  max-width: 100%;
   height: 250px;
-
-  padding: 2.5px 5px;
   cursor: pointer;
 }
 .main-image {
   background-color: white;
-  border-radius: 5px;
+  border: 1px solid white;
+  height: 248px;
 }
 
 /* image */
@@ -123,6 +151,7 @@ export default {
 }
 .image-content {
   position: relative;
+  margin: 0px 2px;
 }
 
 /* image icons */
@@ -130,39 +159,32 @@ export default {
 .arrow-left,
 .arrow-right {
   position: absolute;
-  cursor: pointer;
-  top: 47%;
-  background-color: white;
-  color: black;
-  padding: 5px 7px;
-  margin: 0 7px;
-  border-radius: 15px;
+  top: calc(50% - 14px);
 }
 .arrow-left {
-  left: 0;
+  left: 2px;
 }
 .arrow-right {
-  right: 0;
+  right: 2px;
 }
 .with-text {
   position: absolute;
   background-color: white;
-  color: black;
+  cursor: default;
+  color: var(--main-text-color);
   top: 0;
   left: 0;
-  padding: 5px 7px;
-  margin: 3px 5px;
-  border-radius: 0 0 5px 0;
+  padding: 5px 4px 1px 4px;
+  border-radius: 0 0 4px 0;
 }
 .image-delete {
   position: absolute;
-  cursor: pointer;
-  color: black;
-  background-color: white;
-  border-radius: 15px;
-  padding: 5px 8px;
-  margin: 5px 7px;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 2px;
+}
+
+.no-image {
+  font-style: italic;
+  font-size: 0.9rem;
 }
 </style>

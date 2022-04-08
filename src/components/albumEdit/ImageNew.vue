@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Ajout d'image</p>
+    <h3 class="title">Ajout d'image</h3>
 
     <input
       type="file"
@@ -17,29 +17,41 @@
         class="preview-content"
       >
         <img :src="image_url" class="preview-img" />
-        <span
+        <made-up-button
           class="preview-close"
           title="Retirer cette image"
           @click="removePreview(key)"
+          circle
+          small
+          :disabled="loading"
         >
-          ✖
-        </span>
+          <close-icon :size="18" />
+        </made-up-button>
       </div>
+      <p v-if="images_preview_url.length === 0" class="no-preview">
+        Pas de preview
+      </p>
     </div>
 
-    <br /><br />
-
-    <button @click="upload()" :disabled="images_files.length === 0">
-      Upload <span v-if="loading">loading...</span>
-    </button>
+    <made-up-button
+      @click="upload()"
+      :disabled="images_files.length === 0"
+      :loading="loading"
+      small
+    >
+      Upload
+    </made-up-button>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
 
 export default {
   name: "ImageNew",
+  components: { MadeUpButton, CloseIcon },
 
   data() {
     return {
@@ -67,6 +79,9 @@ export default {
     removePreview(key) {
       this.images_preview_url.splice(key, 1);
       this.images_files.splice(key, 1);
+
+      if (this.images_preview_url.length === 0)
+        this.$refs.inputFile.value = null;
     },
 
     async upload() {
@@ -95,13 +110,19 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  margin-top: 0;
+  font-family: var(--subtitle-font-family);
+}
 .preview-box {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .preview-content {
   position: relative;
-  margin: 5px;
+  margin: 0px 2px;
 }
 .preview-img {
   max-width: 100%;
@@ -110,13 +131,11 @@ export default {
 }
 .preview-close {
   position: absolute;
-  top: 0;
-  right: 0;
-  color: black;
-  cursor: pointer;
-  background-color: white;
-  padding: 5px 7px;
-  margin: 3px;
-  border-radius: 15px;
+  top: 2px;
+  right: 2px;
+}
+.no-preview {
+  font-style: italic;
+  font-size: 0.9rem;
 }
 </style>

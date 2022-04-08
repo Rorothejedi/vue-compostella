@@ -2,45 +2,30 @@
   <div>
     <modal
       v-model="modal"
-      :title="`ID : ${image_to_edit.id} | Image : ${image_to_edit.path}`"
+      :title="`ID : ${image_to_edit.id} | ${image_to_edit.path}`"
     >
       <template v-slot:default>
-        <p class="modal-date">
-          Créer le {{ formatDatetime(image_to_edit.created_at) }} <br />
-          <span v-if="image_to_edit.updated_at">
-            Dernière modification le
-            {{ formatDatetime(image_to_edit.updated_at) }}
-          </span>
-        </p>
-
         <div class="modal-content-image">
           <img :src="`${host}/${image_to_edit.path}`" class="modal-image" />
         </div>
 
-        <label for="image_text">Texte:</label>
-        <textarea
-          v-model="image.text"
-          id="image_text"
-          type="text"
-          placeholder="ex: blabla"
-        ></textarea>
+        <br />
 
-        <input
-          v-model="image.main_album_image"
-          type="checkbox"
-          id="image_main"
-        />
+        <label for="image_text">Texte:</label>
+        <made-up-textarea
+          v-model="text"
+          id="image_text"
+          placeholder="ex: blabla"
+        ></made-up-textarea>
+
+        <input v-model="main_album_image" type="checkbox" id="image_main" />
         <label for="image_main"> Image principale de l'album</label>
       </template>
 
       <template v-slot:footer>
-        <button type="button" @click="updateImage()">
-          Modifier <span v-if="loading_edit">loading...</span>
-        </button>
-        <button type="button" @click="$emit('removeImage', image_to_edit.id)">
-          Supprimer
-          <span v-if="loading_delete">loading...</span>
-        </button>
+        <made-up-button @click="updateImage()" :loading="loading_edit" small>
+          Modifier
+        </made-up-button>
       </template>
     </modal>
   </div>
@@ -48,14 +33,13 @@
 
 <script>
 import Modal from "@/components/utils/Modal.vue";
-import date from "@/mixins/date";
 import { mapActions, mapGetters, mapState } from "vuex";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
 
 export default {
   name: "ImageEditModal",
-  components: { Modal },
-  mixins: [date],
-
+  components: { Modal, MadeUpButton, MadeUpTextarea },
   props: {
     show_modal: {
       type: Boolean,
@@ -67,16 +51,13 @@ export default {
       default: () => {},
       required: true,
     },
-    loading_delete: {
-      type: Boolean,
-      default: false,
-      required: true,
-    },
   },
 
   data() {
     return {
       loading_edit: false,
+      text: "",
+      main_album_image: null,
     };
   },
 
@@ -102,6 +83,13 @@ export default {
     },
   },
 
+  watch: {
+    image_to_edit() {
+      this.text = this.image_to_edit.text;
+      this.main_album_image = this.image_to_edit.main_album_image;
+    },
+  },
+
   methods: {
     ...mapActions("image", ["editImage"]),
     ...mapActions("album", ["loadAlbum"]),
@@ -112,8 +100,8 @@ export default {
       this.loading_edit = true;
 
       const payload = {
-        text: this.image_to_edit.text,
-        main_album_image: this.image_to_edit.main_album_image,
+        text: this.text,
+        main_album_image: this.main_album_image,
       };
 
       await this.editImage([this.image_to_edit.id, payload]);
@@ -133,10 +121,8 @@ export default {
   font-style: italic;
 }
 #image_text {
-  width: 100%;
-  height: 100px;
+  margin-bottom: 10px;
 }
-
 .modal-content-image {
   display: flex;
   justify-content: center;

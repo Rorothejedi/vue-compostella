@@ -8,27 +8,35 @@
       <template v-slot:default>
         <div class="form-input flex-form-input">
           <label for="date">Date : </label>
-          <input v-model="date" id="date" type="date" />
+          <made-up-input
+            v-model="date"
+            type="date"
+            id="date"
+            :disabled="loading"
+            :width="200"
+          />
         </div>
 
         <div class="form-input">
           <div class="flex-form-input">
             <label for="place_departure">Ville de départ : </label>
-            <input
+            <made-up-input
               v-model="place_departure"
               id="place_departure"
-              type="text"
               placeholder="ex: Toulon"
+              :disabled="loading"
+              :width="200"
             />
           </div>
 
           <div class="flex-form-input mt-1">
             <label for="place_arrival">Ville d'arrivée : </label>
-            <input
+            <made-up-input
               v-model="place_arrival"
               id="place_arrival"
-              type="text"
-              placeholder="ex: Cahors"
+              placeholder="ex: Santiago"
+              :disabled="loading"
+              :width="200"
             />
           </div>
         </div>
@@ -36,7 +44,7 @@
         <div class="form-input">
           <div class="flex-form-input">
             <label for="km_step">Km étape : </label>
-            <input
+            <!-- <input
               v-model="km_step"
               id="km_step"
               type="number"
@@ -44,6 +52,16 @@
               min="0"
               max="100"
               step="0.1"
+            /> -->
+            <made-up-input-number
+              v-model="km_step"
+              id="km_step"
+              placeholder="..."
+              :disabled="loading"
+              :width="50"
+              :min="0"
+              :max="100"
+              stepper
             />
           </div>
           <div class="flex-form-input mt-1">
@@ -57,12 +75,7 @@
         <div class="form-input">
           <label for="text">Texte : </label>
           <br />
-          <textarea
-            v-model="text"
-            id="text"
-            type="text"
-            placeholder="ex: blabla"
-          />
+          <made-up-textarea v-model="text" id="text" placeholder="ex: blabla" />
         </div>
 
         <div class="error">
@@ -70,16 +83,18 @@
         </div>
       </template>
       <template v-slot:footer>
-        <div class="footer-buttons">
-          <button
-            type="button"
-            @click="addAlbum()"
-            :disabled="this.albums[0] === undefined"
-          >
-            Ajouter <span v-if="loading">loading...</span>
-          </button>
-          <button type="button" @click="resetLocalState()">Annuler</button>
-        </div>
+        <made-up-button
+          @click="addAlbum()"
+          :loading="loading"
+          :disabled="this.albums[0] === undefined"
+          small
+        >
+          Ajouter
+        </made-up-button>
+
+        <made-up-button @click="resetLocalState()" small>
+          Annuler
+        </made-up-button>
       </template>
     </modal>
   </div>
@@ -89,10 +104,19 @@
 import { mapActions, mapState } from "vuex";
 import Modal from "@/components/utils/Modal.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
+import MadeUpInput from "@/components/utils/MadeUpInput.vue";
+import MadeUpInputNumber from "@/components/utils/MadeUpInputNumber.vue";
+import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
 
 export default {
   name: "AlbumNew",
-  components: { Modal, MadeUpButton },
+  components: {
+    Modal,
+    MadeUpButton,
+    MadeUpTextarea,
+    MadeUpInput,
+    MadeUpInputNumber,
+  },
 
   data() {
     return {
@@ -188,19 +212,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-textarea {
-  width: 98.5%;
-  height: 100px;
-  resize: vertical;
+  flex-wrap: wrap;
 }
 .error {
   color: var(--secondary-text-color);
-}
-
-/* Modal footer */
-.footer-buttons {
-  display: flex;
-  justify-content: space-between;
 }
 </style>

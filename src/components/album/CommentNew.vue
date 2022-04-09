@@ -30,18 +30,23 @@
       <br /><br />
 
       <div class="comment-submit-wrapper">
-        <made-up-button
-          :loading="loading"
-          :disabled="!canPublished"
-          @click="postComment()"
-          :title="
+        <div
+          v-tooltip="
             !canPublished
               ? 'Vous devez remplir les champs ci-dessus pour pouvoir poster un commentaire'
               : ''
           "
         >
-          Poster le commentaire
-        </made-up-button>
+          <made-up-button
+            :loading="loading"
+            :disabled="!canPublished"
+            @click="postComment()"
+            color="grey"
+          >
+            Poster le commentaire
+          </made-up-button>
+        </div>
+
         <shield-check-icon
           class="shield-icon"
           v-tooltip.right="'Protégé avec Google reCAPTCHA v3'"
@@ -96,6 +101,20 @@ export default {
     this.randomAuthorPlaceholder();
   },
 
+  errorCaptured() {
+    if (this.loading) this.loading = false;
+
+    this.valid(
+      {
+        icon: "error",
+        html: "Une erreur s'est produite...<br />Merci de vérifier que les informations sont correctement remplies.<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
+      },
+      6000
+    );
+
+    return false;
+  },
+
   methods: {
     ...mapActions("comment", ["createComment"]),
     ...mapActions("album", ["loadAlbum"]),
@@ -114,30 +133,18 @@ export default {
         "g-recaptcha-response": this.recaptcha_token,
       };
 
-      const result = await this.createComment(params);
-
-      if (result === undefined) {
-        this.valid(
-          {
-            icon: "error",
-            html: "Une erreur s'est produite...<br />Merci de vérifier que les informations sont correctement remplies.<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
-          },
-          6000
-        );
-        this.loading = false;
-        return;
-      }
-
+      await this.createComment(params);
       await this.loadAlbum(this.$route.params.id);
+
+      this.author = "";
+      this.text = "";
+      this.loading = false;
 
       this.valid({
         icon: "success",
         html: "Votre commentaire a été posté avec succès !<br />Merci de votre participation !",
       });
 
-      this.author = "";
-      this.text = "";
-      this.loading = false;
       this.randomAuthorPlaceholder();
     },
 

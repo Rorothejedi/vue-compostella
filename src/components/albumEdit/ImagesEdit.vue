@@ -48,7 +48,7 @@ export default {
       this.image_to_edit = image;
     },
 
-    confirmRemoveImage(image_id) {
+    async confirmRemoveImage(image_id) {
       if (this.loading_delete[image_id]) return;
 
       let options = {
@@ -57,7 +57,9 @@ export default {
         confirmButtonText: "Supprimer",
       };
 
-      this.confirm(options, this.removeImage, image_id);
+      if (!(await this.confirm(options))) return;
+
+      this.removeImage(image_id);
     },
 
     async removeImage(image_id) {

@@ -77,7 +77,7 @@ export default {
   },
 
   computed: {
-    ...mapState("user", ["token"]),
+    ...mapState("auth", ["token"]),
   },
 
   errorCaptured() {
@@ -85,14 +85,16 @@ export default {
 
     this.valid({
       icon: "error",
-      html: "Une error est survenue...",
+      html: "Une erreur s'est produite...<br />Merci de vérifier que les informations sont correctement remplies.<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
     });
+
+    this.resetForm();
 
     return false;
   },
 
   methods: {
-    ...mapActions("user", ["login"]),
+    ...mapActions("auth", ["login"]),
     ...mapActions("comment", ["loadReportedComments"]),
 
     async submitLogin() {
@@ -110,7 +112,6 @@ export default {
 
       await this.login(params);
 
-      if (this.token === null) return this.errorLogin();
       axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;
 
       await this.loadReportedComments();
@@ -118,23 +119,6 @@ export default {
       this.resetForm();
 
       this.$router.push("/");
-    },
-
-    async errorLogin() {
-      this.valid(
-        {
-          icon: "error",
-          html: "Identifiants incorrects...<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
-        },
-        5000
-      );
-      this.resetForm();
-
-      await this.$nextTick();
-
-      this.$refs.email.$el.focus();
-
-      return;
     },
 
     resetForm() {

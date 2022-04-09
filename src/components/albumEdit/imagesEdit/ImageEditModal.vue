@@ -16,16 +16,17 @@
           v-model="text"
           id="image_text"
           placeholder="ex: blabla"
-        ></made-up-textarea>
+        />
 
         <input v-model="main_album_image" type="checkbox" id="image_main" />
-        <label for="image_main"> Image principale de l'album</label>
+        <label for="image_main">Image principale de l'album</label>
       </template>
 
       <template v-slot:footer>
         <made-up-button @click="updateImage()" :loading="loading_edit" small>
           Modifier
         </made-up-button>
+        <made-up-button @click="cancel()" small>Annuler</made-up-button>
       </template>
     </modal>
   </div>
@@ -85,8 +86,7 @@ export default {
 
   watch: {
     image_to_edit() {
-      this.text = this.image_to_edit.text;
-      this.main_album_image = this.image_to_edit.main_album_image;
+      this.setState();
     },
   },
 
@@ -110,6 +110,16 @@ export default {
       this.modal = false;
       this.image = {};
       this.loading_edit = false;
+    },
+
+    setState() {
+      this.text = this.image_to_edit.text;
+      this.main_album_image = this.image_to_edit.main_album_image;
+    },
+
+    cancel() {
+      this.setState();
+      this.modal = false;
     },
   },
 };

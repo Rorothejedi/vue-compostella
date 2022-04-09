@@ -11,13 +11,14 @@
       disabled: disabled,
     }"
     :disabled="disabled"
-    :style="color ? `color: ${color}` : ''"
+    :style="color && !disabled ? `color: ${color}` : ''"
   >
     <span v-if="!loading">
       <slot></slot>
     </span>
     <div v-else class="loading-wrapper">
-      <sync-icon class="loading-icon" />
+      <sync-icon v-if="color" class="loading-icon" :fillColor="color" />
+      <sync-icon v-else class="loading-icon" />
     </div>
   </button>
 </template>

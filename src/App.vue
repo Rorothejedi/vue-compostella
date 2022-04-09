@@ -90,7 +90,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("user", ["logout"]),
+    ...mapActions("auth", ["logout"]),
     ...mapActions("comment", ["loadReportedComments"]),
 
     /* Auth methods */
@@ -112,7 +112,7 @@ export default {
         },
         function (error) {
           if (error.response.status === 401) {
-            store.commit("user/LOG_ERROR");
+            store.commit("auth/LOG_ERROR");
             router.push("/admin");
           }
           return Promise.reject(error);

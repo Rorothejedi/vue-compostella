@@ -50,7 +50,7 @@ export default {
                 ...options, // icon, html or text
                 ...this.options_valid,
                 ...this.options_animated,
-                delay: delay,
+                timer: delay,
             }
 
             this.$swal(full_options)

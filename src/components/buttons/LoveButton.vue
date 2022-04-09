@@ -4,7 +4,7 @@
       icon
       flat
       :loading="loading"
-      color="#aaa"
+      color="grey"
       @click="
         isLiked(comment.id)
           ? unlikeComment(comment.id)
@@ -56,7 +56,7 @@ export default {
 
     this.valid({
       icon: "error",
-      html: "Une error est survenue...",
+      html: "Une erreur s'est produite...<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
     });
 
     return false;

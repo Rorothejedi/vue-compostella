@@ -61,7 +61,7 @@ export default {
 
     this.valid({
       icon: "error",
-      html: "Une error est survenue...",
+      html: "Une erreur s'est produite...<br/><br/><small><i>Ou peut-être êtes-vous un robot ?!</i></small>",
     });
 
     return false;
@@ -82,7 +82,7 @@ export default {
 
       if (!(await this.confirm(options))) return;
 
-      await this.reportsComment();
+      this.reportsComment();
     },
 
     async reportsComment() {

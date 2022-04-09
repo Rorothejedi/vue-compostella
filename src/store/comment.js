@@ -19,7 +19,7 @@ export default {
         createComment(store, payload) {
             return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment`, payload)
                 .catch(error => {
-                    console.log('Comment creation failed: ', error)
+                    throw new Error('Comment creation failed', error)
                 })
         },
         updateComment(store, [id, payload]) {
@@ -31,21 +31,21 @@ export default {
         reportComment(store, [id, payload]) {
             return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/report`, payload)
                 .catch(error => {
-                    console.log('Comment report failed: ', error)
                     throw new Error('Comment report failed', error)
                 })
         },
         loveComment(store, [id, payload]) {
             return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/love`, payload)
                 .catch((error) => {
-                    console.log('Comment love failed: ', error)
+                    console.log(error)
                     throw new Error('Comment love failed', error)
                 })
         },
         unloveComment(store, [id, payload]) {
             return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/unlove`, payload)
                 .catch(error => {
-                    console.log('Comment unlove failed: ', error)
+                    console.log(error)
+
                     throw new Error('Comment unlove failed', error)
                 })
         },

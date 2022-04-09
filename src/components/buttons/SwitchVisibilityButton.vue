@@ -3,7 +3,6 @@
     @click="confirmSwitchVisible()"
     :loading="loading"
     v-bind="$props"
-    :title="isHide ? 'Dévoiler ' : 'Cacher'"
   >
     <span v-if="full">Changer la visibilité</span>
     <eye-icon v-else-if="isHide" :size="18" />
@@ -57,7 +56,7 @@ export default {
       "clearAlbumsSimple",
     ]),
 
-    confirmSwitchVisible() {
+    async confirmSwitchVisible() {
       if (this.loading) return;
 
       let options = {
@@ -66,7 +65,9 @@ export default {
         confirmButtonText: "Changer visibilité",
       };
 
-      this.confirm(options, this.switchVisible);
+      if (!(await this.confirm(options))) return;
+
+      this.switchVisible();
     },
 
     async switchVisible() {

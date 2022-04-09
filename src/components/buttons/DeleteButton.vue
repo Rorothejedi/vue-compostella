@@ -1,10 +1,5 @@
 <template>
-  <made-up-button
-    @click="confirmRemove()"
-    :loading="loading"
-    v-bind="$props"
-    title="Supprimer"
-  >
+  <made-up-button @click="confirmRemove()" :loading="loading" v-bind="$props">
     <span v-if="full">Supprimer l'album</span>
     <close-icon v-else :size="18" />
   </made-up-button>
@@ -53,7 +48,7 @@ export default {
       "clearAlbumsSimple",
     ]),
 
-    confirmRemove() {
+    async confirmRemove() {
       if (this.loading) return;
 
       let options = {
@@ -65,7 +60,9 @@ export default {
         confirmButtonText: "Supprimer",
       };
 
-      this.confirm(options, this.removeAlbum);
+      if (!(await this.confirm(options))) return;
+
+      this.removeAlbum();
     },
 
     async removeAlbum() {

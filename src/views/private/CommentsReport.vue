@@ -107,7 +107,7 @@ export default {
       "deleteComment",
     ]),
 
-    confirmResetReport(id) {
+    async confirmResetReport(id) {
       if (this.loading_reset[id]) return;
 
       let options = {
@@ -116,20 +116,21 @@ export default {
         confirmButtonText: "Valider",
       };
 
-      this.confirm(options, this.resetReport, id);
+      if (!(await this.confirm(options))) return;
+
+      this.resetReport(id);
     },
 
-    resetReport(id) {
+    async resetReport(id) {
       this.loading_reset[id] = true;
 
-      this.resetReportedComment(id).then(() => {
-        this.loadReportedComments().then(() => {
-          this.loading_reset[id] = false;
-        });
-      });
+      await this.resetReportedComment(id);
+      await this.loadReportedComments();
+
+      this.loading_reset[id] = false;
     },
 
-    confirmRemoveComment(id) {
+    async confirmRemoveComment(id) {
       if (this.loading_delete[id]) return;
 
       let options = {
@@ -138,17 +139,18 @@ export default {
         confirmButtonText: "Supprimer",
       };
 
-      this.confirm(options, this.resetReport, id);
+      if (!(await this.confirm(options))) return;
+
+      this.removeComment(id);
     },
 
-    removeComment(id) {
+    async removeComment(id) {
       this.loading_delete[id] = true;
 
-      this.deleteComment(id).then(() => {
-        this.loadReportedComments().then(() => {
-          this.loading_delete[id] = false;
-        });
-      });
+      await this.deleteComment(id);
+      await this.loadReportedComments();
+
+      this.loading_delete[id] = false;
     },
   },
 };

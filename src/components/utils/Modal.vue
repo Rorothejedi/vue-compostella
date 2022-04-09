@@ -103,6 +103,11 @@ export default {
   opacity: 0;
 }
 
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* utils */
 
 .separator {

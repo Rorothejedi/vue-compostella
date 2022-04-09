@@ -27,7 +27,7 @@ export default {
                 })
                 .catch(error => {
                     store.commit('LOG_ERROR')
-                    console.log('Login failed: ', error)
+                    throw new Error('Login failed: ', error)
                 })
         },
         logout(store) {

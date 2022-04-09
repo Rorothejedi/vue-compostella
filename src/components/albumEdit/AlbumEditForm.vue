@@ -155,7 +155,7 @@ export default {
       "clearAlbumsSimple",
     ]),
 
-    confirmUpdateAlbum() {
+    async confirmUpdateAlbum() {
       if (this.loading_update) return;
 
       let options = {
@@ -164,7 +164,9 @@ export default {
         confirmButtonText: "Modifier",
       };
 
-      this.confirm(options, this.updateAlbum);
+      if (!(await this.confirm(options))) return;
+
+      this.updateAlbum();
     },
 
     async updateAlbum() {

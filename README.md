@@ -1,15 +1,16 @@
 TODO (priorité haute)
 
-- Mettre error sur tous les recaptcha (login ok, love ok, report ok, comment ko)
-- Fix toutes les alerts confirm avec la nouvelle façon de faire
+- Intégrer les composant d'input partout (creer album)
+- Intégrer le composant de bouton partout (creer album)
 
 Bug :
-
+ - warning (NaN) quand le stepper input number est vide
 
 ------------
 
 TODO (priorité moyenne)
 
+- Test responsive avec les modals (new album / edit image infos)
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur
 
@@ -19,20 +20,19 @@ TODO (priorité basse)
 
 - Test avec des données réel (étapes prévue en france et espagne)
 
-- Intégrer les composant d'input partout (creer album)
-- Intégrer le composant de bouton partout (creer album)
-
 ------------
 
 TODO - A la fin
 
-- Remettre les validation recaptcha (auth/ laravel)
+- Test sur autre navigateurs que chrome
+- Remettre les validation recaptcha (auth/ comment/  laravel)
 - Changer les mots de passe (admin)
 
 ------------
 
 TODO - Bug
 
+- error cors
 - Sur mobile Menu avec la line sur la home : 
     - issue : On ne voit pas le bas
 - Transition trop rapide sur le kilometersLine
@@ -44,21 +44,10 @@ TODO - Bug
 Optionnel
 
 - Faire un dark theme publique
-- Mettre la confirmation sur
-    - Suppression photo
-    - Modification photo
-    - Suppression lien vidéo
-    - Modification lien vidéo
 - Refacto row du tableau pour la page album-manage
 - Intégrer un coeur pour les likes comme ceux de twitter
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
 - Faire des onglets (infos, photos, videos) pour album manage
-
-------------
-
-Full bonus
-
-- Faire une intégration du konami code
 
 --------------------------------------------------------
 
@@ -163,11 +152,12 @@ DONE
 - Mettre le site en https
 - Mettre la collection postman sur github
 - Fix cas d'erreur avec les likes/dislikes
-
 - Refato avec la logique async/await 
 - Finaliser la partie upload d'image (manage album)
 - Finaliser la partie video youtube (manage album)
 - Transition sur la admin navbar
+- Mettre error sur tous les recaptcha (login ok, love ok, report ok, comment ok)
+- Fix toutes les alerts confirm avec la nouvelle façon de faire
 
 DEBUG
 
@@ -175,6 +165,7 @@ DEBUG
 - Problème avec le storage sur le serveur (upload d'image)
 - Tableau albums-manage (nombre d'élement par page / page suivante)
 - Animation cover sur la home (tri/infinite)
+- Fix recaptcha problème
 
 -----------------
 

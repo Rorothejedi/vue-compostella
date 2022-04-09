@@ -97,7 +97,7 @@ export default {
     ...mapActions("video", ["editVideo", "deleteVideo"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    confirmUpdateVideo(id) {
+    async confirmUpdateVideo(id) {
       if (this.loading_edit[id]) return;
 
       let options = {
@@ -106,7 +106,9 @@ export default {
         confirmButtonText: "Modifier",
       };
 
-      this.confirm(options, this.updateVideo, id);
+      if (!(await this.confirm(options))) return;
+
+      this.updateVideo(id);
     },
 
     async updateVideo(id) {
@@ -129,7 +131,7 @@ export default {
       });
     },
 
-    confirmRemoveVideo(id) {
+    async confirmRemoveVideo(id) {
       if (this.loading_delete[id]) return;
 
       let options = {
@@ -138,7 +140,9 @@ export default {
         confirmButtonText: "Supprimer",
       };
 
-      this.confirm(options, this.removeVideo, id);
+      if (!(await this.confirm(options))) return;
+
+      this.removeVideo(id);
     },
 
     async removeVideo(id) {
@@ -148,6 +152,11 @@ export default {
       await this.loadAlbum(this.album.id);
 
       this.loading_delete[id] = false;
+
+      this.valid({
+        icon: "success",
+        html: "La vidéo a été supprimée avec succès !",
+      });
     },
   },
 };

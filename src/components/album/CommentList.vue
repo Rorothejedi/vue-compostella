@@ -25,6 +25,7 @@
             :loading="loading_delete[comment.id]"
             @click="confirmRemoveComment(comment.id)"
             title="Supprimer ce commentaire"
+            color="grey"
           >
             <close-icon fillColor="gray" />
           </made-up-button>
@@ -92,7 +93,7 @@ export default {
     ...mapActions("comment", ["reportComment", "deleteComment"]),
     ...mapActions("album", ["loadAlbum"]),
 
-    confirmRemoveComment(comment_id) {
+    async confirmRemoveComment(comment_id) {
       if (this.loading_delete[comment_id]) return;
 
       let options = {
@@ -101,7 +102,9 @@ export default {
         confirmButtonText: "Supprimer",
       };
 
-      this.confirm(options, this.removeComment, comment_id);
+      if (!(await this.confirm(options))) return;
+
+      this.removeComment(comment_id);
     },
 
     async removeComment(comment_id) {
@@ -111,6 +114,11 @@ export default {
       await this.loadAlbum(this.$route.params.id);
 
       this.loading_delete[comment_id] = false;
+
+      this.valid({
+        icon: "success",
+        html: "Le commentaire a été supprimé avec succès !",
+      });
     },
   },
 };

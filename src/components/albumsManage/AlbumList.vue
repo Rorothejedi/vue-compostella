@@ -18,7 +18,7 @@
 
           <div>Le {{ formatDate(album.date) }}</div>
         </router-link>
-        <div>
+        <div class="button-wrapper">
           <switch-visibility-button
             :album="album"
             class="action-button"
@@ -153,7 +153,9 @@ export default {
 .header {
   display: flex;
 }
-
+.button-wrapper {
+  min-width: 60px;
+}
 .action-button {
   margin-right: 3px;
 }

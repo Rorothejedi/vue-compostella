@@ -56,7 +56,6 @@
             <made-up-input-number
               v-model="km_step"
               id="km_step"
-              placeholder="..."
               :disabled="loading"
               :width="50"
               :min="0"
@@ -76,10 +75,6 @@
           <label for="text">Texte : </label>
           <br />
           <made-up-textarea v-model="text" id="text" placeholder="ex: blabla" />
-        </div>
-
-        <div class="error">
-          {{ error }}
         </div>
       </template>
       <template v-slot:footer>
@@ -102,6 +97,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import alert from "@/mixins/alert.js";
 import Modal from "@/components/utils/Modal.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import MadeUpInput from "@/components/utils/MadeUpInput.vue";
@@ -110,6 +106,7 @@ import MadeUpTextarea from "@/components/utils/MadeUpTextarea.vue";
 
 export default {
   name: "AlbumNew",
+  mixins: [alert],
   components: {
     Modal,
     MadeUpButton,
@@ -125,7 +122,6 @@ export default {
       place_departure: "",
       place_arrival: "",
       km_step: 0,
-      error: null,
 
       loading: false,
       show_modal: false,
@@ -137,8 +133,9 @@ export default {
 
     total_km_traveled() {
       if (this.albums[0] === undefined) return 0;
+      if (isNaN(this.km_step)) return this.albums[0].km_total_max;
 
-      const result = this.albums[0].km_total_max + this.km_step;
+      let result = this.albums[0].km_total_max + this.km_step;
 
       return Math.round(result * 10) / 10;
     },
@@ -153,24 +150,21 @@ export default {
       const { text, date, place_departure, place_arrival, km_step } = this;
 
       if (!date) {
-        this.error = "Le champ 'date' est requis";
-        return;
+        return this.errorAlert("Le champ 'date' est requis");
       }
       if (!place_departure) {
-        this.error = "Le champ 'ville de départ' est requis";
-        return;
+        return this.errorAlert("Le champ 'ville de départ' est requis");
       }
       if (!place_arrival) {
-        this.error = "Le champ 'ville d'arrivé' est requis";
-        return;
+        return this.errorAlert("Le champ 'ville d'arrivé' est requis");
       }
       if (km_step < 0) {
-        this.error = "Le champ 'km étape' doit être supérieur ou égal à 0";
-        return;
+        return this.errorAlert(
+          "Le champ 'km étape' doit être supérieur ou égal à 0"
+        );
       }
 
       this.loading = true;
-      this.error = null;
 
       const params = {
         text,
@@ -193,8 +187,19 @@ export default {
       this.place_departure = "";
       this.place_arrival = "";
       this.km_step = 0;
-      this.error = null;
       this.show_modal = false;
+    },
+
+    errorAlert(error) {
+      this.valid(
+        {
+          icon: "error",
+          html: error,
+        },
+        2000
+      );
+
+      return;
     },
   },
 };
@@ -213,8 +218,5 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-}
-.error {
-  color: var(--secondary-text-color);
 }
 </style>

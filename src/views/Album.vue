@@ -53,6 +53,7 @@
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
 import PencilIcon from "vue-material-design-icons/Pencil.vue";
+import title from "@/mixins/title.js";
 import date from "@/mixins/date.js";
 import { mapActions, mapGetters, mapState } from "vuex";
 import Divider from "@/components/utils/Divider.vue";
@@ -65,6 +66,8 @@ import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
 
 export default {
   name: "Album",
+  title: "Album d'étape | Sur les chemins de Compostelle",
+  mixins: [title, date],
   components: {
     MadeUpButton,
     ArrowLeftIcon,
@@ -77,7 +80,6 @@ export default {
     VideoPlayer,
     BackToTopButton,
   },
-  mixins: [date],
 
   data() {
     return {

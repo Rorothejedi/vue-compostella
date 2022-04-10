@@ -46,6 +46,28 @@ export default {
   },
   emits: ["update:modelValue"],
 
+  data() {
+    return {
+      scroll_y: 0,
+    };
+  },
+
+  watch: {
+    modelValue(value) {
+      if (value) {
+        this.scroll_y = window.scrollY;
+        document.body.classList.add("show-modal");
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${this.scroll_y}px`;
+      } else {
+        document.body.classList.remove("show-modal");
+        document.body.style.position = "";
+        document.body.style.top = "";
+        window.scrollTo(0, this.scroll_y);
+      }
+    },
+  },
+
   methods: {
     close() {
       this.$emit("update:modelValue", false);
@@ -54,10 +76,17 @@ export default {
 };
 </script>
 
+<style>
+.show-modal {
+  overflow: hidden;
+  width: -webkit-fill-available;
+}
+</style>
+
 <style scoped>
 .modal-wrapper {
   position: fixed;
-  z-index: 9998;
+  z-index: 100;
   top: 0;
   left: 0;
   width: 100%;
@@ -66,7 +95,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   transition: opacity 0.3s ease;
+
+  overflow: auto;
 }
 
 .modal-container {

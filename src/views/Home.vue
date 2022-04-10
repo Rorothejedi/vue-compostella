@@ -121,6 +121,7 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
+import title from "@/mixins/title.js";
 import utils from "@/mixins/utils.js";
 import CoverList from "@/components/home/CoverList.vue";
 import PathLine from "@/components/home/PathLine.vue";
@@ -136,7 +137,8 @@ import store from "../store";
 
 export default {
   name: "Home",
-  mixins: [utils],
+  title: "Sur les chemins de Compostelle",
+  mixins: [title, utils],
   components: {
     CoverList,
     PathLine,

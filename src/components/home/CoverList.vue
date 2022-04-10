@@ -17,7 +17,7 @@
       >
         <div class="resp-point"></div>
         <div class="resp-text">
-          <div class="km">{{ album.km_total }} km</div>
+          <div class="km">{{ Math.round(album.km_total) }} km</div>
           <div class="date">le {{ formatDate(album.date) }}</div>
         </div>
         <Cover

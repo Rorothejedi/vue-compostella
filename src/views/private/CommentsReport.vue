@@ -64,6 +64,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import title from "@/mixins/title.js";
 import alert from "@/mixins/alert.js";
 import TitleLine from "@/components/utils/TitleLine.vue";
 import Divider from "@/components/utils/Divider.vue";
@@ -73,7 +74,8 @@ import CloseIcon from "vue-material-design-icons/Close.vue";
 
 export default {
   name: "CommentsReport",
-  mixins: [alert],
+  title: "Commentaires signalés | Sur les chemins de Compostelle",
+  mixins: [title, alert],
   components: { TitleLine, Divider, MadeUpButton, CheckIcon, CloseIcon },
 
   data() {

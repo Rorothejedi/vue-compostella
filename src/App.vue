@@ -38,10 +38,6 @@
     </div>
   </transition>
 
-  <!-- <div>
-    <button @click="test = !test">test</button>
-  </div> -->
-
   <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition || 'fade'" mode="out-in">
       <component :is="Component" />
@@ -72,7 +68,6 @@ export default {
   data() {
     return {
       loading_logout: false,
-      test: false,
     };
   },
 

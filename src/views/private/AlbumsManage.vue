@@ -9,12 +9,15 @@
 </template>
 
 <script>
+import title from "@/mixins/title.js";
 import AlbumSort from "@/components/albumsManage/AlbumSort.vue";
 import AlbumNew from "@/components/albumsManage/AlbumNew.vue";
 import AlbumList from "@/components/albumsManage/AlbumList.vue";
 
 export default {
   name: "AlbumsManage",
+  title: "Gestion des albums | Sur les chemins de Compostelle",
+  mixins: [title],
   components: {
     AlbumSort,
     AlbumNew,

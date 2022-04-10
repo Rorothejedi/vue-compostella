@@ -1,18 +1,19 @@
 <template>
   <div class="made-up-input-number">
     <made-up-button
+      v-if="stepper"
+      class="stepper"
       small
       icon
       circle
-      @click="less()"
-      class="stepper"
-      v-if="stepper"
+      @mousedown="startLess()"
+      @mouseup="stopLess()"
     >
       <minus-icon :size="18" />
     </made-up-button>
     <input
       type="number"
-      :value="modelValue"
+      :value="isNaN(modelValue) ? 0 : modelValue"
       @input="
         (event) => $emit('update:modelValue', parseFloat(event.target.value))
       "
@@ -24,12 +25,13 @@
       :step="step"
     />
     <made-up-button
+      v-if="stepper"
+      class="stepper"
       small
       icon
       circle
-      @click="more()"
-      class="stepper"
-      v-if="stepper"
+      @mousedown="startMore()"
+      @mouseup="stopMore()"
     >
       <plus-icon :size="18" />
     </made-up-button>
@@ -83,6 +85,13 @@ export default {
     },
   },
 
+  data() {
+    return {
+      less_interval: null,
+      more_interval: null,
+    };
+  },
+
   methods: {
     less() {
       if (this.modelValue === this.min) return;
@@ -92,6 +101,13 @@ export default {
 
       this.$emit("update:modelValue", parseFloat(calc));
     },
+    startLess() {
+      this.less();
+      this.less_interval = setInterval(this.less, 1000 / 5);
+    },
+    stopLess() {
+      clearInterval(this.less_interval);
+    },
 
     more() {
       if (this.modelValue === this.max) return;
@@ -100,6 +116,13 @@ export default {
       calc = calc.toFixed(1);
 
       this.$emit("update:modelValue", parseFloat(calc));
+    },
+    startMore() {
+      this.more();
+      this.more_interval = setInterval(this.more, 1000 / 5);
+    },
+    stopMore() {
+      clearInterval(this.more_interval);
     },
   },
 };

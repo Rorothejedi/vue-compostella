@@ -603,11 +603,14 @@
 </template>
 
 <script>
+import title from "@/mixins/title.js";
 import BackToHomeHeader from "@/components/utils/BackToHomeHeader.vue";
 import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
 
 export default {
   name: "Legal",
+  title: "Mentions légales | Sur les chemins de Compostelle",
+  mixins: [title],
   components: {
     BackToHomeHeader,
     BackToTopButton,

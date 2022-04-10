@@ -121,6 +121,8 @@ export default {
     ...mapState("album", ["album", "albums_meta", "albums_sort"]),
 
     total_km_traveled() {
+      if (isNaN(this.km_step)) return this.album.km_total;
+
       const result =
         parseFloat(this.album.km_total) -
         parseFloat(this.album.km_step) +

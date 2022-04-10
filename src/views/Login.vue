@@ -51,6 +51,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import axios from "axios";
+import title from "@/mixins/title.js";
 import alert from "@/mixins/alert.js";
 import recaptcha from "@/mixins/recaptcha.js";
 import BackToHomeHeader from "@/components/utils/BackToHomeHeader.vue";
@@ -60,7 +61,8 @@ import ShieldCheckIcon from "vue-material-design-icons/ShieldCheck.vue";
 
 export default {
   name: "Login",
-  mixins: [alert, recaptcha],
+  title: "Espace admin | Sur les chemins de Compostelle",
+  mixins: [title, alert, recaptcha],
   components: {
     BackToHomeHeader,
     MadeUpInput,

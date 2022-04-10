@@ -36,7 +36,7 @@ const routes = [{
     path: '/',
     component: Home,
     meta: {
-      transition: 'slide-left'
+      transition: 'slide-left',
     },
     props: {
       darkTheme: false

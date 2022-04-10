@@ -19,7 +19,7 @@
         />
 
         <input v-model="main_album_image" type="checkbox" id="image_main" />
-        <label for="image_main">Image principale de l'album</label>
+        <label for="image_main"> Image principale de l'album</label>
       </template>
 
       <template v-slot:footer>

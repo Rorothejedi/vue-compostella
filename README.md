@@ -1,16 +1,11 @@
 TODO (priorité haute)
 
-- Intégrer les composant d'input partout (creer album)
-- Intégrer le composant de bouton partout (creer album)
-
 Bug :
- - warning (NaN) quand le stepper input number est vide
 
 ------------
 
 TODO (priorité moyenne)
 
-- Test responsive avec les modals (new album / edit image infos)
 - Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur
 
@@ -32,7 +27,6 @@ TODO - A la fin
 
 TODO - Bug
 
-- error cors
 - Sur mobile Menu avec la line sur la home : 
     - issue : On ne voit pas le bas
 - Transition trop rapide sur le kilometersLine
@@ -158,6 +152,9 @@ DONE
 - Transition sur la admin navbar
 - Mettre error sur tous les recaptcha (login ok, love ok, report ok, comment ok)
 - Fix toutes les alerts confirm avec la nouvelle façon de faire
+- Intégrer les composant d'input partout
+- Intégrer le composant de bouton partout
+- Ajout du title de chaque page
 
 DEBUG
 
@@ -166,6 +163,8 @@ DEBUG
 - Tableau albums-manage (nombre d'élement par page / page suivante)
 - Animation cover sur la home (tri/infinite)
 - Fix recaptcha problème
+- warning (NaN) quand le stepper input number est vide
+- Fix scroll issue on modal
 
 -----------------
 

@@ -54,6 +54,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import title from "@/mixins/title.js";
 import date from "@/mixins/date.js";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
@@ -67,6 +68,8 @@ import VideoEdit from "@/components/albumEdit/VideoEdit.vue";
 
 export default {
   name: "AlbumEdit",
+  title: "Edition album d'étape | Sur les chemins de Compostelle",
+  mixins: [title, date],
   components: {
     MadeUpButton,
     ArrowLeftIcon,
@@ -78,7 +81,6 @@ export default {
     VideoNew,
     VideoEdit,
   },
-  mixins: [date],
 
   data() {
     return {

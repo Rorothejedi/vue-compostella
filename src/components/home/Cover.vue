@@ -21,13 +21,14 @@
         </div>
       </div>
       <div class="km-wrapper mobile-hidden" title="Kilomètres totaux parcourus">
-        <span class="util">{{ km_round }} <span class="km-unit">KM</span></span>
-        <span class="km-main"
-          >{{ km_round }} <span class="km-unit">KM</span></span
-        >
+        <span class="util">
+          {{ km_round }} <span class="km-unit">KM</span>
+        </span>
+        <span class="km-main">
+          {{ km_round }} <span class="km-unit">KM</span>
+        </span>
         <span class="km-secondary">
-          {{ km_round }}
-          <span class="km-unit">KM</span>
+          {{ km_round }} <span class="km-unit">KM</span>
         </span>
       </div>
     </div>

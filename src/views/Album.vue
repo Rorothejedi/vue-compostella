@@ -7,7 +7,7 @@
             <arrow-left-icon />
           </made-up-button>
         </router-link>
-        <transition-group name="fade">
+        <transition-group name="transition-title">
           <divider v-if="!loading" />
           <h2 v-if="!loading" class="places">
             Etape du {{ formatDate(album.date) }}
@@ -28,13 +28,13 @@
 
     <kilometers-line :loading="loading" :album="album" />
 
-    <transition name="fade-1">
+    <transition name="transition-text">
       <p class="story" v-if="!loading && album.text !== null">
         {{ album.text }}
       </p>
     </transition>
 
-    <transition-group name="fade-2">
+    <transition-group name="transition-other">
       <gallery :images="album.images" v-if="!loading" />
 
       <div v-for="video in album.videos" :key="video.id">
@@ -50,12 +50,11 @@
 </template>
 
 <script>
-import MadeUpButton from "@/components/utils/MadeUpButton.vue";
-import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
-import PencilIcon from "vue-material-design-icons/Pencil.vue";
+import { mapActions, mapGetters, mapState } from "vuex";
 import title from "@/mixins/title.js";
 import date from "@/mixins/date.js";
-import { mapActions, mapGetters, mapState } from "vuex";
+import ArrowLeftIcon from "vue-material-design-icons/ArrowLeft.vue";
+import PencilIcon from "vue-material-design-icons/Pencil.vue";
 import Divider from "@/components/utils/Divider.vue";
 import KilometersLine from "@/components/album/KilometersLine.vue";
 import Gallery from "@/components/album/Gallery.vue";
@@ -63,6 +62,7 @@ import CommentList from "@/components/album/CommentList.vue";
 import CommentNew from "@/components/album/CommentNew.vue";
 import VideoPlayer from "@/components/utils/VideoPlayer.vue";
 import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 
 export default {
   name: "Album",
@@ -149,5 +149,25 @@ export default {
   text-transform: uppercase;
   font-size: 2.5em;
   font-weight: bold;
+}
+
+/* Transitions */
+.transition-title-enter-active {
+  transition: all 1s ease;
+}
+.transition-text-enter-active {
+  transition: all 0.6s ease 0.4s;
+}
+.transition-other-enter-active {
+  transition: all 0.6s ease 0.8s;
+}
+
+.transition-title-enter-from,
+.transition-text-enter-from {
+  opacity: 0;
+}
+.transition-other-enter-from {
+  transform: translateY(50px);
+  opacity: 0;
 }
 </style>

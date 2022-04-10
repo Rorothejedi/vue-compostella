@@ -1,6 +1,8 @@
 TODO (priorité haute)
 
+
 Bug :
+    - Infinite scroll cassé quand on va sur un album et qu'on revient sur la home
 
 ------------
 
@@ -27,11 +29,11 @@ TODO - A la fin
 
 TODO - Bug
 
+- Pas de transition à part sur une des icone du home
+
+- Faire un debug sur mobile (https://stackoverflow.com/questions/37256331/is-it-possible-to-open-developer-tools-console-in-chrome-on-android-phone)
 - Sur mobile Menu avec la line sur la home : 
     - issue : On ne voit pas le bas
-- Transition trop rapide sur le kilometersLine
-- Pas de transition à part sur une des icone du home
-- Faire un debug sur mobile (https://stackoverflow.com/questions/37256331/is-it-possible-to-open-developer-tools-console-in-chrome-on-android-phone)
 
 ------------
 
@@ -165,6 +167,8 @@ DEBUG
 - Fix recaptcha problème
 - warning (NaN) quand le stepper input number est vide
 - Fix scroll issue on modal
+- Transition trop rapide sur le kilometersLine
+- Position scroll entre home et album
 
 -----------------
 

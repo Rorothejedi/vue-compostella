@@ -22,7 +22,7 @@
         </router-link>
       </div>
       <div class="path-line">
-        <path-line v-if="resp_menu" />
+        <path-line v-if="resp_menu" @save-top="saveTop()" />
       </div>
       <div class="overlay-resp-close-button">
         <made-up-button icon large @click="resp_menu = false">
@@ -36,7 +36,7 @@
         class="path-line"
         :style="`top: ${isAuthenticated ? '20px' : '50px'}`"
       >
-        <path-line v-if="!resp_menu" />
+        <path-line v-if="!resp_menu" @save-top="saveTop()" />
       </div>
     </div>
 
@@ -112,7 +112,7 @@
         </div>
       </div>
 
-      <cover-list ref="cover_list" />
+      <cover-list ref="cover_list" @save-top="saveTop()" />
     </div>
 
     <back-to-top-button />
@@ -160,9 +160,15 @@ export default {
   },
 
   computed: {
-    ...mapState("nav", ["first_view"]),
+    ...mapState("nav", ["first_view", "top_home"]),
     ...mapState("album", ["albums_infinite", "albums_infinite_sort"]),
     ...mapGetters(["isAuthenticated"]),
+  },
+
+  async created() {
+    await this.$nextTick();
+
+    window.scrollTo({ top: this.top_home });
   },
 
   mounted() {
@@ -175,6 +181,7 @@ export default {
 
   methods: {
     ...mapActions("album", ["sortAlbumsInfinite"]),
+    ...mapActions("nav", ["changeTopHome"]),
 
     async sortAlbums() {
       const albums_count =
@@ -194,6 +201,12 @@ export default {
 
     switchRespMenu() {
       this.resp_menu = !this.resp_menu;
+    },
+
+    saveTop() {
+      const top = window.scrollY;
+      // console.log(top);
+      this.changeTopHome(top);
     },
   },
 };

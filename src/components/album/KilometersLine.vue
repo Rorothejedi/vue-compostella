@@ -1,27 +1,37 @@
 <template>
   <div class="kilometers-line">
     <div class="header">
-      <div class="place" :title="album.place_departure">
-        <transition name="fade">
-          <span v-if="!loading">{{ album.place_departure }}</span>
-        </transition>
-      </div>
+      <transition name="transition-departure">
+        <div v-if="!loading" class="place" :title="album.place_departure">
+          <span>
+            {{ album.place_departure }}
+          </span>
+        </div>
+      </transition>
 
       <div class="hiker-wrapper" title="Ça use, ça use !">
-        <img src="@/assets/hiker.gif" alt="Pélerin animé" class="hiker" />
-      </div>
-
-      <div class="place" :title="album.place_arrival">
         <transition name="fade">
-          <span v-if="!loading">
-            {{ album.place_arrival }}
-          </span>
+          <img
+            v-show="hiker_is_load"
+            src="@/assets/hiker.gif"
+            alt="Pélerin animé"
+            class="hiker"
+            @load="hiker_is_load = true"
+          />
         </transition>
       </div>
+
+      <transition name="transition-arrival">
+        <div v-if="!loading" class="place" :title="album.place_arrival">
+          <span>
+            {{ album.place_arrival }}
+          </span>
+        </div>
+      </transition>
     </div>
     <div class="line"></div>
 
-    <transition name="fade">
+    <transition name="transition-km">
       <div class="footer" v-if="!loading">
         <div
           class="footer-km"
@@ -68,6 +78,12 @@ export default {
     },
   },
 
+  data() {
+    return {
+      hiker_is_load: false,
+    };
+  },
+
   computed: {
     start_km() {
       return this.album.km_total - this.album.km_step;
@@ -82,11 +98,17 @@ export default {
   padding-bottom: 60px;
 }
 /* Text */
+.header {
+  height: 45px;
+  align-items: flex-end;
+}
+.footer {
+  align-items: center;
+}
 .header,
 .footer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   position: relative;
   margin-bottom: 5px;
   font-family: var(--subtitle-font-family);
@@ -96,6 +118,7 @@ export default {
   justify-content: center;
   position: relative;
   width: 100%;
+  height: 35px;
 }
 .hiker {
   position: absolute;
@@ -134,5 +157,24 @@ export default {
 .footer-km {
   display: flex;
   align-items: center;
+}
+
+/* Transitions */
+.transition-km-enter-active,
+.transition-departure-enter-active,
+.transition-arrival-enter-active {
+  transition: all 1s ease;
+}
+.transition-km-enter-from {
+  opacity: 0;
+  transform: translateY(50px);
+}
+.transition-departure-enter-from {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+.transition-arrival-enter-from {
+  opacity: 0;
+  transform: translateX(50px);
 }
 </style>

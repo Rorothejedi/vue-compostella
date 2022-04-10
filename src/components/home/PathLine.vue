@@ -6,6 +6,7 @@
         :key="km.km_total"
         :to="`/album/${km.id}`"
         class="point-wrapper"
+        @click="$emit('saveTop')"
       >
         <map-marker-outline-icon
           class="departure-icon"

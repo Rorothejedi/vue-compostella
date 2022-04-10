@@ -50,7 +50,7 @@ const routes = [{
     },
     props: {
       darkTheme: false
-    }
+    },
   },
   {
     path: '/legal',
@@ -108,9 +108,24 @@ const routes = [{
   }
 ]
 
+const scrollBehavior = (to, from, savedPosition) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (savedPosition) {
+        resolve(savedPosition)
+      } else {
+        resolve({
+          top: 0
+        })
+      }
+    }, 300)
+  })
+}
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior,
 })
 
 router.afterEach((to) => {

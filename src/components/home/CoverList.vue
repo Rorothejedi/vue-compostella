@@ -28,6 +28,7 @@
           :km="album.km_total"
           @img-load="img_load++"
           @img-unload="img_load--"
+          @click="$emit('saveTop')"
           class="cover"
         />
       </router-link>
@@ -86,6 +87,7 @@ export default {
   name: "CoverList",
   mixins: [utils, date],
   components: { Cover, SyncIcon },
+  emits: ["saveTop"],
 
   data() {
     return {

@@ -37,15 +37,12 @@ export default {
         loveComment(store, [id, payload]) {
             return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/love`, payload)
                 .catch((error) => {
-                    console.log(error)
                     throw new Error('Comment love failed', error)
                 })
         },
         unloveComment(store, [id, payload]) {
             return axios.post(`${process.env.VUE_APP_BASE_URL}/api/comment/${id}/unlove`, payload)
                 .catch(error => {
-                    console.log(error)
-
                     throw new Error('Comment unlove failed', error)
                 })
         },

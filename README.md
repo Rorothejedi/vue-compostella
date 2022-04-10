@@ -1,20 +1,21 @@
 TODO (priorité haute)
 
+- Pas de transition à part sur une des icone du home
+    - Finir transition resp (icons)
 
 Bug :
-    - Infinite scroll cassé quand on va sur un album et qu'on revient sur la home
 
 ------------
 
 TODO (priorité moyenne)
 
-- Finaliser les transitions sympa entre les pages (dont arrivé sur le site)
 - Uniformiser les variables de font et de couleur
 
 ------------
 
 TODO (priorité basse)
 
+- Faire un dark theme publique
 - Test avec des données réel (étapes prévue en france et espagne)
 
 ------------
@@ -29,8 +30,6 @@ TODO - A la fin
 
 TODO - Bug
 
-- Pas de transition à part sur une des icone du home
-
 - Faire un debug sur mobile (https://stackoverflow.com/questions/37256331/is-it-possible-to-open-developer-tools-console-in-chrome-on-android-phone)
 - Sur mobile Menu avec la line sur la home : 
     - issue : On ne voit pas le bas
@@ -39,7 +38,6 @@ TODO - Bug
 
 Optionnel
 
-- Faire un dark theme publique
 - Refacto row du tableau pour la page album-manage
 - Intégrer un coeur pour les likes comme ceux de twitter
 - Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
@@ -169,6 +167,7 @@ DEBUG
 - Fix scroll issue on modal
 - Transition trop rapide sur le kilometersLine
 - Position scroll entre home et album
+- Infinite scroll cassé quand on va sur un album et qu'on revient sur la home
 
 -----------------
 

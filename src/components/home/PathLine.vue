@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-left">
+  <transition name="transition-path-line">
     <div id="line" v-show="!loading && albums_simple.length > 1">
       <router-link
         v-for="(km, index) in albums_simple"
@@ -128,7 +128,7 @@ export default {
   border: 2px solid white;
   border-radius: 50%;
   background-color: var(--secondary-text-color);
-  transition: all 0.3s;
+  transition: all 0.5s ease;
 }
 .point:hover,
 .point-wrapper:hover .point {
@@ -171,5 +171,14 @@ export default {
   width: 50px;
   z-index: 10;
   transition: left 0.3s;
+}
+
+/* Transition */
+.transition-path-line-enter-active {
+  transition: all 0.5s ease 1.4s;
+}
+.transition-path-line-enter-from {
+  opacity: 0;
+  transform: translateX(-50px);
 }
 </style>

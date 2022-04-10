@@ -4,7 +4,6 @@
       name="staggered-fade"
       @before-enter="beforeEnter"
       @enter="enter"
-      @after-enter="afterEnter"
       @leave="leave"
     >
       <router-link
@@ -76,7 +75,6 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import store from "../../store";
 import gsap from "gsap";
 import utils from "@/mixins/utils.js";
 import date from "@/mixins/date.js";
@@ -95,8 +93,6 @@ export default {
       page: 1,
       img_load: 0,
       is_mounted: false,
-
-      enter_elements: 0,
       is_enter: false,
     };
   },
@@ -133,6 +129,7 @@ export default {
 
   methods: {
     ...mapActions("album", ["loadAlbumsInfinite"]),
+    ...mapActions("nav", ["firstViewSeen"]),
 
     async fetchAlbums() {
       if (this.loading) return;
@@ -162,12 +159,11 @@ export default {
           !window_bottom ||
           this.loading ||
           this.albums_infinite_meta.current_page ===
-            this.albums_infinite_meta.last_page ||
-          this.enter_elements === 0
+            this.albums_infinite_meta.last_page
         )
           return;
 
-        if (this.first_view) store.commit("nav/FIRST_VIEW_SEEN");
+        if (this.first_view) this.firstViewSeen();
 
         this.page++;
         this.fetchAlbums();
@@ -178,7 +174,6 @@ export default {
 
     beforeEnter(el) {
       el.style.opacity = 0;
-      this.enter_elements = 0;
     },
 
     async enter(el, done) {
@@ -196,10 +191,6 @@ export default {
           onComplete: done,
         });
       }
-    },
-
-    afterEnter() {
-      this.enter_elements++;
     },
 
     leave(el, done) {
@@ -247,16 +238,23 @@ export default {
     overflow: initial;
     margin-left: 2vw;
   }
+  .box:last-child::before,
   .box:first-child::before {
     content: "";
     display: block;
     position: absolute;
-    bottom: 0;
     left: 0;
     height: 50%;
     border-left: 1px dashed grey;
   }
-  .box:not(.box:first-child) {
+  .box:first-child::before {
+    bottom: 0;
+  }
+  .box:last-child::before {
+    top: 0;
+  }
+
+  .box:not(.box:first-child):not(.box:last-child) {
     border-left: 1px dashed grey;
   }
   .cover {
@@ -269,11 +267,12 @@ export default {
     display: block;
     position: absolute;
     margin-top: 5px;
-    left: -5px;
+    left: -7px;
     width: 10px;
     height: 10px;
     background-color: var(--secondary-text-color);
     border-radius: 50%;
+    border: 2px solid white;
   }
   .km {
     font-family: var(--title-font-family-solid);

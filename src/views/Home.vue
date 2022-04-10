@@ -49,7 +49,7 @@
         </transition>
 
         <div class="buttons-wrapper">
-          <transition :name="first_view ? 'fade-2' : 'none'">
+          <transition :name="first_view ? 'transition-button-1' : 'none'">
             <div v-if="isMount">
               <made-up-button
                 @click="sortAlbums()"
@@ -67,7 +67,7 @@
           </transition>
 
           <transition
-            :name="first_view ? 'fade-3' : 'none'"
+            :name="first_view ? 'transition-button-2' : 'none'"
             class="mobile-hidden"
           >
             <div v-if="isMount">
@@ -83,7 +83,7 @@
           </transition>
 
           <transition
-            :name="first_view ? 'fade-3' : 'none'"
+            :name="first_view ? 'transition-button-3' : 'none'"
             class="mobile-hidden"
           >
             <div v-if="isMount">
@@ -133,7 +133,6 @@ import ThemeLightDarkIcon from "vue-material-design-icons/ThemeLightDark.vue";
 import ScaleBalanceIcon from "vue-material-design-icons/ScaleBalance.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
 import MenuIcon from "vue-material-design-icons/Menu.vue";
-import store from "../store";
 
 export default {
   name: "Home",
@@ -176,12 +175,12 @@ export default {
   },
 
   unmounted() {
-    store.commit("nav/FIRST_VIEW_SEEN");
+    this.firstViewSeen();
   },
 
   methods: {
     ...mapActions("album", ["sortAlbumsInfinite"]),
-    ...mapActions("nav", ["changeTopHome"]),
+    ...mapActions("nav", ["firstViewSeen", "changeTopHome"]),
 
     async sortAlbums() {
       const albums_count =
@@ -204,9 +203,7 @@ export default {
     },
 
     saveTop() {
-      const top = window.scrollY;
-      // console.log(top);
-      this.changeTopHome(top);
+      this.changeTopHome(window.scrollY);
     },
   },
 };
@@ -329,5 +326,22 @@ export default {
   .desktop-hidden {
     display: block;
   }
+}
+
+/* Transition */
+.transition-button-1-enter-active {
+  transition: all 0.5s ease 1s;
+}
+.transition-button-2-enter-active {
+  transition: all 0.5s ease 1.2s;
+}
+.transition-button-3-enter-active {
+  transition: all 0.5s ease 1.4s;
+}
+.transition-button-1-enter-from,
+.transition-button-2-enter-from,
+.transition-button-3-enter-from {
+  opacity: 0;
+  transform: translateY(-50px);
 }
 </style>

@@ -7,8 +7,8 @@ export default {
     },
 
     mutations: {
-        FIRST_VIEW_SEEN(state) {
-            state.first_view = false
+        SET_FIRST_VIEW(state, payload) {
+            state.first_view = payload
         },
         SET_TOP_HOME(state, payload) {
             state.top_home = payload
@@ -16,6 +16,9 @@ export default {
     },
 
     actions: {
+        firstViewSeen(store) {
+            store.commit('SET_FIRST_VIEW', false)
+        },
         changeTopHome(store, value) {
             store.commit('SET_TOP_HOME', value)
         }

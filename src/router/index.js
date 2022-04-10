@@ -108,16 +108,12 @@ const routes = [{
   }
 ]
 
-const scrollBehavior = (to, from, savedPosition) => {
+const scrollBehavior = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      if (savedPosition) {
-        resolve(savedPosition)
-      } else {
-        resolve({
-          top: 0
-        })
-      }
+      resolve({
+        top: 0
+      })
     }, 300)
   })
 }

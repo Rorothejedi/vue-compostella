@@ -2,7 +2,7 @@ TODO (priorité haute)
 
 Bug :
     - transition kilometerLine quand top !== 0
-    - resp menu disparition brutal
+    
 ------------
 
 TODO (priorité moyenne)
@@ -11,7 +11,7 @@ TODO (priorité moyenne)
 
 TODO - A la fin
 
-- Test sur autre navigateurs que chrome
+- Test sur autre navigateurs que chrome 
 - Remettre les validation recaptcha (auth/ comment/  laravel)
 - Changer les mots de passe (admin)
 
@@ -160,6 +160,7 @@ DEBUG
 - Position scroll entre home et album
 - Infinite scroll cassé quand on va sur un album et qu'on revient sur la home
 - crash sur firefox (vuepictureswipe)
+- resp menu disparition brutal
 
 -----------------
 

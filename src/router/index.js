@@ -14,6 +14,7 @@ import CommentsReport from '@/views/private/CommentsReport.vue'
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
     next('/')
+    alert('Vous êtes déjà authentifié')
 
     return
   }

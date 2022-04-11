@@ -15,7 +15,7 @@ body {
     --main-text-color: #3b3b3b;
     --secondary-text-color: lightcoral;
     --third-text-color: #cccccc;
-    
+
     --grey-color: #efefef;
 
     --admin-top-color: var(--secondary-text-color);
@@ -42,6 +42,9 @@ body.dark-theme {
 .bold {
     font-weight: bold;
 }
+.fixed {
+    position: fixed;
+  }
 
 /* Selected */
 ::-moz-selection {

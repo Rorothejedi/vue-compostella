@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div class="container home-container">
+    <div class="container home-container" :class="{ fixed: resp_menu }">
       <div class="header">
         <div class="spacer"></div>
 
@@ -275,7 +275,7 @@ export default {
 }
 .path-line-wrapper {
   position: fixed;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   width: calc(50vw - 570px);
@@ -301,13 +301,13 @@ export default {
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .path-line-wrapper {
-    width: calc(50vw - 360px);
+    width: calc(48vw - 360px);
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1600px) {
   .path-line-wrapper {
-    width: calc(50vw - 480px);
+    width: calc(48vw - 480px);
   }
 }
 

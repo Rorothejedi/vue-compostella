@@ -19,6 +19,7 @@
           :title="item.title"
         >
           <img
+            class="image-resize"
             :src="item.thumbnail"
             :alt="item.alt"
             itemprop="thumbnail"
@@ -438,18 +439,8 @@ export default {
         line_width += image_figcaption.offsetWidth;
 
         if (line_width >= gallery_width) {
-          let height = new_div.offsetHeight;
-
-          while (new_div.offsetWidth > gallery_width) {
-            new_div.style.display = "flex";
-            new_div.style.height = `${--height}px`;
-            // eslint-disable-next-line no-unused-vars
-            const unused_variable = new_div.offsetHeight;
-            new_div.style.display = "inline-flex";
-          }
-
           new_div.style.display = "flex";
-          new_div.style.justifyContent = "space-between";
+          new_div.style.marginBottom = "-5px";
 
           new_div = document.createElement("div");
           line_width = 0;
@@ -461,6 +452,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .pswp__top-bar {
   text-align: right;
@@ -483,6 +475,11 @@ export default {
 }
 .gallery-thumbnail a img {
   height: -webkit-fill-available;
+}
+
+.image-resize {
+  width: 100%;
+  height: auto;
 }
 </style>
 

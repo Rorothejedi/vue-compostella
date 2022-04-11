@@ -2,11 +2,10 @@ TODO (priorité haute)
 
 Bug :
     - transition kilometerLine quand top !== 0
+    
 ------------
 
 TODO (priorité moyenne)
-
-- Test avec des données réel (étapes prévue en france et espagne)
 
 ------------
 
@@ -160,6 +159,7 @@ DEBUG
 - Transition trop rapide sur le kilometersLine
 - Position scroll entre home et album
 - Infinite scroll cassé quand on va sur un album et qu'on revient sur la home
+- crash sur firefox (vuepictureswipe)
 
 -----------------
 

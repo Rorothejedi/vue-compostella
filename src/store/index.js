@@ -4,6 +4,7 @@ import {
 import createPersistedState from "vuex-persistedstate"
 import auth from './auth.js'
 import theme from './theme.js'
+import browser from './browser.js'
 import album from './album.js'
 import comment from './comment.js'
 import image from './image.js'
@@ -20,13 +21,14 @@ export default createStore({
 
   plugins: [
     createPersistedState({
-      paths: ['auth', 'theme']
+      paths: ['auth', 'theme', 'browser']
     })
   ],
 
   modules: {
     auth,
     theme,
+    browser,
     album,
     comment,
     image,

@@ -100,7 +100,7 @@
           </transition>
 
           <transition
-            :name="first_view ? 'fade-3' : 'none'"
+            :name="first_view ? 'transition-button-2' : 'none'"
             class="desktop-hidden"
           >
             <div v-if="isMount">

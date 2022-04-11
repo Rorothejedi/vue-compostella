@@ -1,7 +1,7 @@
 TODO (priorité haute)
 
-- Pas de transition à part sur une des icone du home
-    - Finir transition resp (icons)
+- Uniformiser les variables de font et de couleur
+- Faire un dark theme publique
 
 Bug :
 
@@ -9,13 +9,11 @@ Bug :
 
 TODO (priorité moyenne)
 
-- Uniformiser les variables de font et de couleur
 
 ------------
 
 TODO (priorité basse)
 
-- Faire un dark theme publique
 - Test avec des données réel (étapes prévue en france et espagne)
 
 ------------
@@ -40,8 +38,6 @@ Optionnel
 
 - Refacto row du tableau pour la page album-manage
 - Intégrer un coeur pour les likes comme ceux de twitter
-- Transition entre l'accueil et les albums avec un transition qui comporte le nom de la ville de départ et d'arrivé
-- Faire des onglets (infos, photos, videos) pour album manage
 
 --------------------------------------------------------
 
@@ -155,6 +151,7 @@ DONE
 - Intégrer les composant d'input partout
 - Intégrer le composant de bouton partout
 - Ajout du title de chaque page
+- Transitionsur les icons (home)
 
 DEBUG
 

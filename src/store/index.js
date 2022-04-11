@@ -2,8 +2,9 @@ import {
   createStore
 } from 'vuex'
 import createPersistedState from "vuex-persistedstate"
-import album from './album.js'
 import auth from './auth.js'
+import theme from './theme.js'
+import album from './album.js'
 import comment from './comment.js'
 import image from './image.js'
 import video from './video.js'
@@ -14,17 +15,19 @@ export default createStore({
     token: state => state.auth.token,
     isAuthenticated: state => !!state.auth.token,
     host: () => process.env.VUE_APP_BASE_URL,
+    darkTheme: state => state.theme.dark,
   },
 
   plugins: [
     createPersistedState({
-      paths: ['auth']
+      paths: ['auth', 'theme']
     })
   ],
 
   modules: {
-    album,
     auth,
+    theme,
+    album,
     comment,
     image,
     video,

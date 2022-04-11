@@ -133,7 +133,7 @@ export default {
 }
 .comment:hover {
   transition: background-color 0.3s ease;
-  background-color: #f3f3f3;
+  background-color: var(--main-bg-hv-color);
 }
 .comment-header {
   display: flex;

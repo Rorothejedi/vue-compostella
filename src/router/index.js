@@ -39,7 +39,7 @@ const routes = [{
       transition: 'slide-left',
     },
     props: {
-      darkTheme: false
+      admin: false
     }
   },
   {
@@ -49,7 +49,7 @@ const routes = [{
       transition: 'slide-right'
     },
     props: {
-      darkTheme: false
+      admin: false
     },
   },
   {
@@ -59,7 +59,7 @@ const routes = [{
       transition: 'slide-right'
     },
     props: {
-      darkTheme: false
+      admin: false
     }
   },
   {
@@ -70,7 +70,7 @@ const routes = [{
       transition: 'slide-right'
     },
     props: {
-      darkTheme: true
+      admin: true
     }
   },
   {
@@ -81,7 +81,7 @@ const routes = [{
       transition: 'slide-right'
     },
     props: {
-      darkTheme: true
+      admin: true
     },
   },
   {
@@ -92,7 +92,7 @@ const routes = [{
       transition: 'slide-right'
     },
     props: {
-      darkTheme: true
+      admin: true
     },
   },
   {
@@ -103,7 +103,7 @@ const routes = [{
       transition: 'slide-right'
     },
     props: {
-      darkTheme: true
+      admin: true
     },
   }
 ]
@@ -125,11 +125,12 @@ const router = createRouter({
 })
 
 router.afterEach((to) => {
-  const darkTheme = to.matched[0].props.default.darkTheme
-
-  document.body.style.backgroundColor = darkTheme ?
-    "var(--dark-bg-color)" :
-    "var(--main-bg-color)";
+  if (store.getters.darkTheme || to.matched[0].props.default.admin) {
+    document.body.classList.add("dark-theme");
+  }
+  if (!store.getters.darkTheme && !to.matched[0].props.default.admin) {
+    document.body.classList.remove("dark-theme");
+  }
 });
 
 export default router

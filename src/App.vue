@@ -131,7 +131,7 @@ export default {
   height: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: var(--dark-top-color);
+  background-color: var(--admin-top-color);
   display: flex;
   align-items: center;
 }

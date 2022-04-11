@@ -9,7 +9,7 @@
         </div>
       </transition>
 
-      <div class="hiker-wrapper" title="Ça use, ça use !">
+      <div class="hiker-wrapper" v-tooltip="'Ça use, ça use !'">
         <transition name="fade">
           <img
             v-show="hiker_is_load"
@@ -118,13 +118,13 @@ export default {
   justify-content: center;
   position: relative;
   width: 100%;
-  height: 35px;
+  height: 90px;
 }
 .hiker {
   position: absolute;
   bottom: -10px;
   width: 100px;
-  filter: grayscale(70%);
+  filter: grayscale(60%);
 }
 .place {
   font-family: var(--title-font-family-solid);

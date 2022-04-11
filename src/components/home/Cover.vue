@@ -188,9 +188,8 @@ img {
 /* kilometers */
 
 .km-wrapper {
-  font-family: "Londrina Outline", cursive;
+  font-family: var(--title-font-family-outline);
   font-size: 60px;
-  /* margin-bottom: -15px; */
   position: relative;
 }
 .km-unit {
@@ -209,11 +208,11 @@ img {
   transition: opacity 0.3s ease;
 }
 .km-main {
-  font-family: "Londrina Outline", cursive;
+  font-family: var(--title-font-family-outline);
   opacity: 1;
 }
 .km-secondary {
-  font-family: "Londrina Solid", cursive;
+  font-family: var(--title-font-family-solid);
   opacity: 0;
 }
 .box:hover .km-main {

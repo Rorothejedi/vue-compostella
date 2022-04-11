@@ -105,7 +105,7 @@ export default {
   width: 400px;
   margin: 0px auto;
   padding: 20px 30px;
-  background-color: var(--dark-bg-color);
+  background-color: var(--main-bg-color);
   border-radius: 3px;
 }
 

@@ -1,18 +1,10 @@
 TODO (priorité haute)
 
-- Uniformiser les variables de font et de couleur
-- Faire un dark theme publique
-
 Bug :
-
+    - transition kilometerLine quand top !== 0
 ------------
 
 TODO (priorité moyenne)
-
-
-------------
-
-TODO (priorité basse)
 
 - Test avec des données réel (étapes prévue en france et espagne)
 
@@ -152,6 +144,9 @@ DONE
 - Intégrer le composant de bouton partout
 - Ajout du title de chaque page
 - Transitionsur les icons (home)
+- Faire un dark theme publique
+- Uniformiser les dark theme public et privé
+- Uniformiser les variables de font et de couleur
 
 DEBUG
 

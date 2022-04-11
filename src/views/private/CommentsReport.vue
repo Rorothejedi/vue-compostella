@@ -1,7 +1,7 @@
 <template>
-  <div class="container dark-theme">
+  <div class="container">
     <div v-if="!loading">
-      <title-line :title="formattedCommentTitle" dark />
+      <title-line :title="formattedCommentTitle" />
 
       <div
         v-for="comment in reportedComments"
@@ -167,7 +167,7 @@ export default {
 }
 .comment:hover {
   transition: background-color 0.3s ease;
-  background-color: var(--main-text-color);
+  background-color: var(--main-bg-hv-color);
 }
 
 .header,

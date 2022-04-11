@@ -1,5 +1,5 @@
 <template>
-  <div class="container dark-theme">
+  <div class="container">
     <br />
 
     <div class="buttons-wrapper">

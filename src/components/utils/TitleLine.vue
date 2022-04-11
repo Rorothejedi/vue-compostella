@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>
-      <span :class="{ dark: dark }">{{ title }}</span>
+      <span>{{ title }}</span>
     </h2>
   </div>
 </template>
@@ -14,10 +14,6 @@ export default {
       type: String,
       required: true,
       default: "",
-    },
-    dark: {
-      type: Boolean,
-      default: false,
     },
   },
 };
@@ -36,10 +32,5 @@ h2 {
 span {
   padding: 0 30px;
   background-color: var(--main-bg-color);
-}
-
-.dark {
-  background-color: var(--dark-bg-color);
-  transition: background-color 0.3s ease;
 }
 </style>

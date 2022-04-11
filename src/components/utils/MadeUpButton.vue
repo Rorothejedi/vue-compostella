@@ -74,6 +74,19 @@ export default {
 };
 </script>
 
+<style>
+body {
+  --button-bg-color: #efefef;
+  --button-bg-hv-color: #e2e2e2;
+  --button-bg-act-color: #d1d1d1;
+}
+body.dark-theme {
+  --button-bg-color: #3f3f3f;
+  --button-bg-hv-color: #4f4f4f;
+  --button-bg-act-color: #5e5e5e;
+}
+</style>
+
 <style scoped>
 /* Common for button */
 button {
@@ -93,15 +106,16 @@ button {
   min-width: 64px;
   padding: 0 16px;
   color: var(--main-text-color);
+  background-color: var(--button-bg-color);
   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.6, 1);
 }
 button:hover:not(.loading):not(.disabled) {
   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.6, 1);
-  background-color: rgb(226, 226, 226);
+  background-color: var(--button-bg-hv-color);
 }
 button:active:not(.loading):not(.disabled) {
   transition: background-color 0.05s cubic-bezier(0.4, 0, 0.6, 1);
-  background-color: rgb(209, 209, 209);
+  background-color: var(--button-bg-act-color);
 }
 
 /* Flat (no background) */
@@ -172,8 +186,8 @@ button:active:not(.loading):not(.disabled) {
 
 /* Disabled */
 .disabled {
-  cursor: initial;
-  color: rgba(3, 3, 3, 0.35);
+  cursor: not-allowed;
+  opacity: 0.3;
 }
 </style>
 

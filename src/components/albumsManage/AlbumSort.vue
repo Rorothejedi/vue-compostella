@@ -111,5 +111,6 @@ export default {
   border-radius: 4px;
   border-style: none;
   color: var(--main-text-color);
+  background-color: var(--button-bg-color);
 }
 </style>

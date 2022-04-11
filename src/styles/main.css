@@ -5,35 +5,36 @@
 /* Commons */
 
 body {
+    transition: background-color 0.3s ease-in;
+    color: var(--main-text-color);
+    background-color: var(--main-bg-color);
+    font-family: var(--text-font-family);
+
     --main-bg-color: white;
+    --main-bg-hv-color: #f3f3f3;
     --main-text-color: #3b3b3b;
     --secondary-text-color: lightcoral;
     --third-text-color: #cccccc;
+    
     --grey-color: #efefef;
 
-    --dark-bg-color: #222;
-    --dark-top-color: var(--main-text-color);
-    --dark-text-color: var(--third-text-color);
+    --admin-top-color: var(--secondary-text-color);
 
     --title-font-family-solid: 'Londrina Solid', cursive;
     --title-font-family-outline: 'Londrina Outline', cursive;
     --subtitle-font-family: 'Fira Sans', sans-serif;
     --text-font-family: 'Hind Madurai', sans-serif;
 
-    transition: background-color 0.3s ease;
-    color: var(--main-text-color);
-    background-color: var(--main-bg-color);
-    font-family: var(--text-font-family);
-
-
     --sm-portrait-size: 576px;
     --sm-landscape-size: 768px;
 }
 
-/* Dark theme */
-
-.dark-theme {
-    color: var(--dark-text-color);
+body.dark-theme {
+    --main-bg-color: #222;
+    --main-bg-hv-color: #2d2d2d;
+    --main-text-color: #ccc;
+    --secondary-text-color: #009f8f;
+    --third-text-color: #7c7c7c;
 }
 
 /* Helpers */
@@ -90,57 +91,23 @@ html {
     transition: all 0.3s ease-in;
 }
 
-/* All transitions */
+/* Common transitions */
 
 .fade-enter-from,
-.fade-1-enter-from,
-.fade-2-enter-from,
-.fade-3-enter-from,
-.fade-leave-to,
-.fade-1-leave-to,
-.fade-2-leave-to,
-.fade-3-leave-to {
+.fade-leave-to {
     opacity: 0;
 }
-
 .fade-enter-to,
-.fade-1-enter-to,
-.fade-2-enter-to,
-.fade-3-enter-to,
-.fade-leave-from,
-.fade-1-leave-from,
-.fade-2-leave-from,
-.fade-3-leave-from {
+.fade-leave-from {
     opacity: 1;
 }
-
 .fade-enter-active,
-.fade-leave-active,
-.fade-1-leave-active,
-.fade-1-enter-active,
-.fade-2-leave-active,
-.fade-2-enter-active,
-.fade-3-leave-active,
-.fade-3-enter-active {
+.fade-leave-active {
     transition: opacity 0.3s ease;
 }
 
-.fade-1-leave-active,
-.fade-1-enter-active {
-    transition-delay: 0.5s;
-}
-
-.fade-2-leave-active,
-.fade-2-enter-active {
-    transition-delay: 1s;
-}
-
-.fade-3-leave-active,
-.fade-3-enter-active {
-    transition-delay: 1.5s;
-}
-
 /* Animation for spin loading */
+
 @keyframes spin {
     from {
         transform: rotate(360deg);
@@ -152,6 +119,7 @@ html {
 }
 
 /* Container style */
+
 .container {
     padding-right: 15px;
     padding-left: 15px;

@@ -5,21 +5,26 @@
       :class="{ 'overlay-resp-active': resp_menu }"
     >
       <div class="overlay-resp-menu">
-        <made-up-button
-          @click="switchTheme()"
-          icon
-          large
-          v-tooltip="'Thème sombre'"
-          class="overlay-resp-menu-button"
-        >
-          <theme-light-dark-icon />
-        </made-up-button>
-
-        <router-link :to="'/legal'">
-          <made-up-button icon large v-tooltip="'Mentions légales'">
-            <scale-balance-icon />
+        <transition name="transition-resp-button-1">
+          <made-up-button
+            v-if="resp_menu"
+            @click="switchTheme()"
+            icon
+            large
+            v-tooltip="'Thème sombre'"
+            class="overlay-resp-menu-button"
+          >
+            <theme-light-dark-icon />
           </made-up-button>
-        </router-link>
+        </transition>
+
+        <transition name="transition-resp-button-2">
+          <router-link :to="'/legal'" v-if="resp_menu">
+            <made-up-button icon large v-tooltip="'Mentions légales'">
+              <scale-balance-icon />
+            </made-up-button>
+          </router-link>
+        </transition>
       </div>
       <div class="path-line">
         <path-line v-if="resp_menu" @save-top="saveTop()" />
@@ -44,7 +49,7 @@
       <div class="header">
         <div class="spacer"></div>
 
-        <transition :name="first_view ? 'fade-1' : 'none'">
+        <transition :name="first_view ? 'transition-title' : 'none'">
           <h1 class="title" v-if="isMount">Sur les chemins de Compostelle</h1>
         </transition>
 
@@ -159,6 +164,7 @@ export default {
   },
 
   computed: {
+    ...mapState("theme", ["dark"]),
     ...mapState("nav", ["first_view", "top_home"]),
     ...mapState("album", ["albums_infinite", "albums_infinite_sort"]),
     ...mapGetters(["isAuthenticated"]),
@@ -179,6 +185,7 @@ export default {
   },
 
   methods: {
+    ...mapActions("theme", ["switchDarkTheme"]),
     ...mapActions("album", ["sortAlbumsInfinite"]),
     ...mapActions("nav", ["firstViewSeen", "changeTopHome"]),
 
@@ -195,7 +202,8 @@ export default {
     },
 
     switchTheme() {
-      alert("coming soon");
+      this.switchDarkTheme();
+      document.body.classList.toggle("dark-theme");
     },
 
     switchRespMenu() {
@@ -220,7 +228,7 @@ export default {
 }
 .title {
   font-size: 37px;
-  font-family: "Londrina Outline", cursive;
+  font-family: var(--title-font-family-outline);
   margin: 15px auto;
 }
 .buttons-wrapper {
@@ -284,7 +292,7 @@ export default {
   height: 100%;
   opacity: 0;
   z-index: -1;
-  background-color: white;
+  background-color: var(--main-gb-color);
   transition: all 0.3s ease;
 }
 .overlay-resp-active {
@@ -329,6 +337,10 @@ export default {
 }
 
 /* Transition */
+
+.transition-title-enter-active {
+  transition: all 2s ease 0.3s;
+}
 .transition-button-1-enter-active {
   transition: all 0.5s ease 1s;
 }
@@ -338,10 +350,29 @@ export default {
 .transition-button-3-enter-active {
   transition: all 0.5s ease 1.4s;
 }
+
+.transition-title-enter-from {
+  opacity: 0;
+}
 .transition-button-1-enter-from,
 .transition-button-2-enter-from,
 .transition-button-3-enter-from {
   opacity: 0;
   transform: translateY(-50px);
+}
+
+/* Transition responsive */
+
+.transition-resp-button-1-enter-active {
+  transition: all 0.5s ease 0.1s;
+}
+.transition-resp-button-2-enter-active {
+  transition: all 0.5s ease 0.2s;
+}
+
+.transition-resp-button-1-enter-from,
+.transition-resp-button-2-enter-from {
+  opacity: 0;
+  transform: translateX(-50px);
 }
 </style>

@@ -16,10 +16,10 @@
       </div>
       <div>
         <router-link
-          v-if="this.isAuthenticated"
+          v-if="this.isAuthenticated && this.album.id !== undefined"
           :to="`/album-edit/${album.id}`"
         >
-          <made-up-button icon title="Gérer l'album">
+          <made-up-button icon title="Edition album">
             <pencil-icon />
           </made-up-button>
         </router-link>

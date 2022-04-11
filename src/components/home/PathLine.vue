@@ -115,31 +115,30 @@ export default {
 <style scoped>
 #line {
   height: calc(100vh - 100px);
-  border-left: 1px dashed lightgray;
+  border-left: 1px dashed var(--third-text-color);
 }
-
-/** ------- points ----- */
-
 .point {
+  z-index: 1;
   position: absolute;
   left: -5px;
   width: 7px;
   height: 7px;
-  border: 2px solid white;
+  border: 2px solid var(--main-bg-color);
   border-radius: 50%;
   background-color: var(--secondary-text-color);
-  transition: all 0.5s ease;
+  transition: all 0.3s ease, border-color 0.3s ease-in;
 }
 .point:hover,
 .point-wrapper:hover .point {
+  z-index: 2;
   display: flex;
   align-items: center;
   left: -13px;
   margin-top: -5px;
   padding: 8px;
-  background-color: white;
+  background-color: var(--main-bg-color);
   border: 2px solid var(--secondary-text-color);
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .point-wrapper:hover .departure-icon,

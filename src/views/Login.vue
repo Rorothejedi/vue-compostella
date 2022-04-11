@@ -1,5 +1,5 @@
 <template>
-  <div class="container dark-theme">
+  <div class="container">
     <back-to-home-header title="Espace admin" />
 
     <div class="login-wrapper">

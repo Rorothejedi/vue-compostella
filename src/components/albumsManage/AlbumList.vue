@@ -140,7 +140,7 @@ export default {
   transition: background-color 0.3s ease;
 }
 .album:hover {
-  background-color: var(--main-text-color);
+  background-color: var(--main-bg-hv-color);
   transition: background-color 0.3s ease;
 }
 .album-hide {
@@ -148,7 +148,7 @@ export default {
 }
 .album-link {
   text-decoration: none;
-  color: var(--dark-text-color);
+  color: var(--main-text-color);
 }
 .header {
   display: flex;

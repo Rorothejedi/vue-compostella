@@ -60,7 +60,7 @@
       <div v-if="loading" class="see-more-spacer"></div>
     </div>
 
-    <!-- <transition name="fade-3">
+    <!-- <transition name="fade">
       <div v-if="!loading && albums_infinite.length === 0" class="empty-home">
         <p>
           Vous êtes un peu en avance, je n'ai rien à vous montrer pour le moment
@@ -233,7 +233,7 @@ export default {
     padding-left: 10px;
     color: var(--main-text-color);
     position: relative;
-    background-color: white;
+    background-color: var(--main-bg-color);
     height: auto;
     overflow: initial;
     margin-left: 2vw;
@@ -272,7 +272,7 @@ export default {
     height: 10px;
     background-color: var(--secondary-text-color);
     border-radius: 50%;
-    border: 2px solid white;
+    border: 2px solid var(--main-bg-color);
   }
   .km {
     font-family: var(--title-font-family-solid);

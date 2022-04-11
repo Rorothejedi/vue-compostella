@@ -2,7 +2,7 @@ TODO (priorité haute)
 
 Bug :
     - transition kilometerLine quand top !== 0
-    
+    - resp menu disparition brutal
 ------------
 
 TODO (priorité moyenne)

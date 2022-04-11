@@ -27,12 +27,14 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+import utils from "@/mixins/utils.js";
 import MapMarkerOutlineIcon from "vue-material-design-icons/MapMarkerOutline.vue";
 import MapMarkerCheckIcon from "vue-material-design-icons/MapMarkerCheck.vue";
-import { mapActions, mapState } from "vuex";
 
 export default {
   name: "PathLine",
+  mixins: [utils],
   components: {
     MapMarkerOutlineIcon,
     MapMarkerCheckIcon,
@@ -41,7 +43,6 @@ export default {
   data() {
     return {
       loading: false,
-      is_mounted: false,
       line_height: 0,
     };
   },
@@ -76,6 +77,7 @@ export default {
       const max = this.albums_simple[this.albums_simple.length - 1].km_total;
 
       [...points].forEach((element, i) => {
+        if (this.albums_simple[i] === undefined) return;
         let margin =
           (this.line_height / max) * this.albums_simple[i].km_total + "px";
 

@@ -1,51 +1,54 @@
 <template>
   <div>
-    <div
-      class="overlay-resp-wrapper"
-      :class="{ 'overlay-resp-active': resp_menu }"
-    >
-      <div class="overlay-resp-menu">
-        <transition name="transition-resp-button-1">
-          <made-up-button
-            v-if="resp_menu"
-            @click="switchTheme()"
-            icon
-            large
-            v-tooltip="dark ? 'Thème clair' : 'Thème sombre'"
-            class="overlay-resp-menu-button"
-          >
-            <theme-light-dark-icon />
-          </made-up-button>
-        </transition>
-
-        <transition name="transition-resp-button-2">
-          <router-link :to="'/legal'" v-if="resp_menu">
-            <made-up-button icon large v-tooltip="'Mentions légales'">
-              <scale-balance-icon />
+    <transition name="transition-resp-menu">
+      <div v-if="big_resp_menu" class="overlay-resp-wrapper">
+        <div class="overlay-resp-menu">
+          <transition name="transition-resp-button-1" appear>
+            <made-up-button
+              v-if="resp_menu"
+              @click="switchTheme()"
+              icon
+              large
+              v-tooltip="dark ? 'Thème clair' : 'Thème sombre'"
+              class="overlay-resp-menu-button"
+            >
+              <theme-light-dark-icon />
             </made-up-button>
-          </router-link>
+          </transition>
+
+          <transition name="transition-resp-button-2" appear>
+            <router-link :to="'/legal'" v-if="resp_menu">
+              <made-up-button icon large v-tooltip="'Mentions légales'">
+                <scale-balance-icon />
+              </made-up-button>
+            </router-link>
+          </transition>
+        </div>
+        <transition name="transition-resp-path-line" appear>
+          <div class="path-line" v-if="resp_menu">
+            <path-line @save-top="saveTop()" />
+          </div>
+        </transition>
+        <transition name="transition-resp-close-button" appear>
+          <div class="overlay-resp-close-button" v-if="resp_menu">
+            <made-up-button icon large @click="resp_menu = false">
+              <close-icon />
+            </made-up-button>
+          </div>
         </transition>
       </div>
-      <div class="path-line">
-        <path-line v-if="resp_menu" @save-top="saveTop()" />
-      </div>
-      <div class="overlay-resp-close-button">
-        <made-up-button icon large @click="resp_menu = false">
-          <close-icon />
-        </made-up-button>
-      </div>
-    </div>
+    </transition>
 
     <div class="path-line-wrapper">
       <div
         class="path-line"
         :style="`top: ${isAuthenticated ? '20px' : '50px'}`"
       >
-        <path-line v-if="!resp_menu" @save-top="saveTop()" />
+        <path-line @save-top="saveTop()" />
       </div>
     </div>
 
-    <div class="container home-container" v-if="!resp_menu">
+    <div class="container home-container">
       <div class="header">
         <div class="spacer"></div>
 
@@ -160,7 +163,15 @@ export default {
     return {
       isMount: false,
       resp_menu: false,
+      big_resp_menu: false,
     };
+  },
+
+  watch: {
+    async resp_menu(value) {
+      if (!value) await this.sleep(100);
+      this.big_resp_menu = value;
+    },
   },
 
   computed: {
@@ -309,15 +320,9 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  z-index: -1;
-  background-color: var(--main-gb-color);
-  transition: all 0.3s ease;
-}
-.overlay-resp-active {
-  opacity: 1;
-  z-index: 2;
-  transition: all 0.5s ease;
+  z-index: 999;
+  background-color: var(--main-bg-color);
+  transition: all 0.3s ease-in;
 }
 
 .overlay-resp-close-button {
@@ -377,21 +382,66 @@ export default {
 .transition-button-2-enter-from,
 .transition-button-3-enter-from {
   opacity: 0;
-  transform: translateY(-50px);
+  transform: translateY(-25px);
 }
 
 /* Transition responsive */
 
 .transition-resp-button-1-enter-active {
-  transition: all 0.5s ease 0.1s;
-}
-.transition-resp-button-2-enter-active {
   transition: all 0.5s ease 0.2s;
+}
+.transition-resp-button-1-leave-active {
+  transition: all 0.5s ease;
+}
+
+.transition-resp-button-2-enter-active {
+  transition: all 0.5s ease 0.3s;
+}
+.transition-resp-button-2-leave-active {
+  transition: all 0.5s ease;
+}
+
+.transition-resp-close-button-enter-active {
+  transition: all 0.5s ease 0.2s;
+}
+.transition-resp-close-button-leave-active {
+  transition: all 0.5s ease;
+}
+
+.transition-resp-path-line-enter-active {
+  transition: all 0.5s ease 0.2s;
+}
+.transition-resp-path-line-leave-active {
+  transition: all 0.5s ease;
 }
 
 .transition-resp-button-1-enter-from,
-.transition-resp-button-2-enter-from {
+.transition-resp-button-1-leave-to,
+.transition-resp-button-2-enter-from,
+.transition-resp-button-2-leave-to {
   opacity: 0;
   transform: translateX(-50px);
+}
+.transition-resp-close-button-enter-from,
+.transition-resp-close-button-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
+.transition-resp-path-line-enter-from,
+.transition-resp-path-line-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.transition-resp-menu-enter-active {
+  transition: all 0.3s ease;
+}
+.transition-resp-menu-leave-active {
+  transition: all 0.3s ease 0.2s;
+}
+.transition-resp-menu-enter-from,
+.transition-resp-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-50px);
 }
 </style>

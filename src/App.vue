@@ -43,6 +43,8 @@
       <component :is="Component" />
     </transition>
   </router-view>
+
+  <back-to-top-button />
 </template>
 
 <script>
@@ -54,6 +56,7 @@ import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import HomeIcon from "vue-material-design-icons/Home.vue";
 import PowerIcon from "vue-material-design-icons/Power.vue";
 import CommentAlertIcon from "vue-material-design-icons/CommentAlert.vue";
+import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
 
 import "floating-vue/dist/style.css";
 
@@ -63,6 +66,7 @@ export default {
     HomeIcon,
     CommentAlertIcon,
     PowerIcon,
+    BackToTopButton,
   },
 
   data() {

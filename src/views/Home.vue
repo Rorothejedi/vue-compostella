@@ -122,8 +122,6 @@
 
       <cover-list ref="cover_list" @save-top="saveTop()" />
     </div>
-
-    <back-to-top-button />
   </div>
 </template>
 
@@ -133,7 +131,6 @@ import title from "@/mixins/title.js";
 import utils from "@/mixins/utils.js";
 import CoverList from "@/components/home/CoverList.vue";
 import PathLine from "@/components/home/PathLine.vue";
-import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import SortAscendingIcon from "vue-material-design-icons/SortAscending.vue";
 import SortDescendingIcon from "vue-material-design-icons/SortDescending.vue";
@@ -149,7 +146,6 @@ export default {
   components: {
     CoverList,
     PathLine,
-    BackToTopButton,
     MadeUpButton,
     SortAscendingIcon,
     SortDescendingIcon,
@@ -249,7 +245,7 @@ export default {
 
 <style scoped>
 .home-container {
-  height: 70vh;
+  min-height: 70vh;
 }
 .header {
   display: flex;
@@ -274,8 +270,10 @@ export default {
   position: relative;
 }
 .path-line-wrapper {
-  position: fixed;
-  height: 100vh;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  height: 0px;
   display: flex;
   justify-content: center;
   width: calc(50vw - 570px);

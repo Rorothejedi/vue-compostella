@@ -1,7 +1,7 @@
 <template>
   <div class="back-to-top-wrapper">
     <transition name="slide-top">
-      <div v-if="scroll_y > 600">
+      <div v-if="!changing_page && scroll_y > 600">
         <made-up-button
           @click="backToTopScroll()"
           icon
@@ -19,8 +19,11 @@
 import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 import ArrowCollapseUpIcon from "vue-material-design-icons/ArrowCollapseUp.vue";
 
+import utils from "@/mixins/utils.js";
+
 export default {
   name: "BackToTopButton",
+  mixins: [utils],
   components: {
     MadeUpButton,
     ArrowCollapseUpIcon,
@@ -30,7 +33,19 @@ export default {
     return {
       scroll_timer: 0,
       scroll_y: 0,
+
+      changing_page: false,
     };
+  },
+
+  watch: {
+    async $route() {
+      this.changing_page = true;
+
+      await this.sleep(500);
+
+      this.changing_page = false;
+    },
   },
 
   mounted() {

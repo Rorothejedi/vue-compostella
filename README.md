@@ -1,17 +1,21 @@
-TODO (priorité haute)
+TODO (en cours)
 
 Bug :
-    - transition kilometerLine quand top !== 0
+
     
 ------------
 
-TODO (priorité moyenne)
+TODO list
+
+- Changer le favicon (vuejs actuellement)
+- Mettre lien vers album suivant/ precedent sur chaque album
+- Mettre tooltip date/arriv/dest sur le pathline en desktop
+- Ajouter bouton fixed menu (on mobile)
 
 ------------
 
 TODO - A la fin
 
-- Test sur autre navigateurs que chrome 
 - Remettre les validation recaptcha (auth/ comment/  laravel)
 - Changer les mots de passe (admin)
 
@@ -22,6 +26,11 @@ TODO - Bug
 - Faire un debug sur mobile (https://stackoverflow.com/questions/37256331/is-it-possible-to-open-developer-tools-console-in-chrome-on-android-phone)
 - Sur mobile Menu avec la line sur la home : 
     - issue : On ne voit pas le bas
+- voir pour le chargement des pages (jusqu'a page 13 avec data vide (fetch albums (home))) (plsueirs appel de 289km à 0 en boucle)
+    (report by lolo)
+- voir chargement gallery quand mauvaise connexion
+    - attendre le onload de toutes les images avant d'afficher
+- tressautement icons sur pathline (icon haut et bas)
 
 ------------
 
@@ -161,6 +170,8 @@ DEBUG
 - Infinite scroll cassé quand on va sur un album et qu'on revient sur la home
 - crash sur firefox (vuepictureswipe)
 - resp menu disparition brutal
+- transition kilometerLine quand top !== 0
+- transition goToTop quand change de page
 
 -----------------
 

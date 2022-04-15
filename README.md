@@ -6,21 +6,11 @@ Bug :
 
 TODO list
 
-
-------------
-
-TODO - A la fin
-
-- Remettre les validation recaptcha (auth/ comment/  laravel)
-- Changer les mots de passe (admin)
-
 ------------
 
 TODO - Bug
 
-- voir chargement gallery quand mauvaise connexion
-    - attendre le onload de toutes les images avant d'afficher
-- tressautement icons sur pathline (icon haut et bas)
+- tressautement des icones sur pathline (icon haut et bas)
 
 --------------------------------------------------------
 

@@ -1,6 +1,10 @@
 <template>
   <transition name="transition-path-line">
-    <div id="line" v-show="!loading && albums_simple.length > 1">
+    <div
+      id="line"
+      :style="`height: ${line_height}px`"
+      v-show="!loading && albums_simple.length > 1"
+    >
       <router-link
         v-for="(km, index) in albums_simple"
         :key="km.km_total"
@@ -69,7 +73,7 @@ export default {
     initLine() {
       if (this.albums_simple.length <= 0) return;
 
-      this.line_height = document.getElementById("line").clientHeight;
+      this.line_height = window.innerHeight - 80;
 
       const points = document.getElementsByClassName("point");
       const texts = document.getElementsByClassName("text");
@@ -116,7 +120,6 @@ export default {
 
 <style scoped>
 #line {
-  height: calc(100vh - 100px);
   border-left: 1px dashed var(--third-text-color);
 }
 .point {

@@ -42,9 +42,6 @@ body.dark-theme {
 .bold {
     font-weight: bold;
 }
-.fixed {
-    position: fixed;
-  }
 
 /* Selected */
 ::-moz-selection {

@@ -39,16 +39,16 @@
       </div>
     </transition>
 
-    <div class="path-line-wrapper">
+    <div class="path-line-wrapper" v-if="!resp_menu">
       <div
         class="path-line"
-        :style="`top: ${isAuthenticated ? '20px' : '50px'}`"
+        :style="`top: ${isAuthenticated ? '20px' : '40px'}`"
       >
         <path-line @save-top="saveTop()" />
       </div>
     </div>
 
-    <div class="container home-container" :class="{ fixed: resp_menu }">
+    <div class="container home-container" :class="{ fixed: to_fixed }">
       <div class="header">
         <div class="spacer"></div>
 
@@ -160,6 +160,7 @@ export default {
       isMount: false,
       resp_menu: false,
       big_resp_menu: false,
+      to_fixed: false,
     };
   },
 
@@ -167,6 +168,16 @@ export default {
     async resp_menu(value) {
       if (!value) await this.sleep(100);
       this.big_resp_menu = value;
+
+      if (value) await this.sleep(400);
+      this.to_fixed = value;
+
+      if (!value) {
+        await this.$nextTick();
+        window.scrollTo({ top: this.top_home });
+      } else {
+        this.saveTop();
+      }
     },
   },
 
@@ -309,6 +320,18 @@ export default {
   }
 }
 
+/* Fixed helper */
+
+.fixed {
+  position: fixed;
+}
+@media (min-width: 577px) and (max-width: 991px) {
+  .fixed {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 /* With full Pathline */
 
 .overlay-resp-wrapper {
@@ -317,7 +340,7 @@ export default {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 999;
   background-color: var(--main-bg-color);
   transition: all 0.3s ease-in;

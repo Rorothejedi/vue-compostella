@@ -1,15 +1,15 @@
 TODO (en cours)
 
+- Ajouter bouton fixed menu (on mobile)
+
 Bug :
-- tressautement icons sur pathline (icon haut et bas)
 
 ------------
 
 TODO list
 
-- Mettre lien vers album suivant/ precedent sur chaque album
+- Mettre lien vers album suivant / precedent sur chaque album
 - Mettre tooltip date/arriv/dest sur le pathline en desktop
-- Ajouter bouton fixed menu (on mobile)
 
 ------------
 
@@ -22,14 +22,11 @@ TODO - A la fin
 
 TODO - Bug
 
-- Faire un debug sur mobile (https://stackoverflow.com/questions/37256331/is-it-possible-to-open-developer-tools-console-in-chrome-on-android-phone)
-- Sur mobile Menu avec la line sur la home : 
-    - issue : On ne voit pas le bas
 - voir pour le chargement des pages (jusqu'a page 13 avec data vide (fetch albums (home))) (plsueirs appel de 289km à 0 en boucle)
     (report by lolo)
 - voir chargement gallery quand mauvaise connexion
     - attendre le onload de toutes les images avant d'afficher
-- voir upload certaines images sur mobile
+- tressautement icons sur pathline (icon haut et bas)
 
 --------------------------------------------------------
 
@@ -165,6 +162,8 @@ DEBUG
 - resp menu disparition brutal
 - transition kilometerLine quand top !== 0
 - transition goToTop quand change de page
+- Sur mobile Menu avec la line sur la home (On ne voit pas le bas)
+- Régler le scroll dans le resp menu
 
 -----------------
 

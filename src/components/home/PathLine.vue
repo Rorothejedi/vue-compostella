@@ -84,11 +84,11 @@ export default {
         element.style.top = margin;
         texts[i].style.marginTop = margin;
 
-        /* A partir de 35 points, seulement 1 point sur 4 est affiché directement */
+        /* A partir de 35 points, seulement 1 point sur 3 est affiché directement */
         if (
           i !== 0 &&
           i !== points.length - 1 &&
-          i % 4 !== 0 &&
+          i % 3 !== 0 &&
           points.length > 35
         )
           texts[i].style.opacity = 0;

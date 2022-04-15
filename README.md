@@ -1,13 +1,12 @@
 TODO (en cours)
 
 Bug :
+- tressautement icons sur pathline (icon haut et bas)
 
-    
 ------------
 
 TODO list
 
-- Changer le favicon (vuejs actuellement)
 - Mettre lien vers album suivant/ precedent sur chaque album
 - Mettre tooltip date/arriv/dest sur le pathline en desktop
 - Ajouter bouton fixed menu (on mobile)
@@ -30,14 +29,7 @@ TODO - Bug
     (report by lolo)
 - voir chargement gallery quand mauvaise connexion
     - attendre le onload de toutes les images avant d'afficher
-- tressautement icons sur pathline (icon haut et bas)
-
-------------
-
-Optionnel
-
-- Refacto row du tableau pour la page album-manage
-- Intégrer un coeur pour les likes comme ceux de twitter
+- voir upload certaines images sur mobile
 
 --------------------------------------------------------
 
@@ -155,6 +147,7 @@ DONE
 - Faire un dark theme publique
 - Uniformiser les dark theme public et privé
 - Uniformiser les variables de font et de couleur
+- Changer le favicon
 
 DEBUG
 

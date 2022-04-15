@@ -33,7 +33,6 @@ export default {
     return {
       scroll_timer: 0,
       scroll_y: 0,
-
       changing_page: false,
     };
   },

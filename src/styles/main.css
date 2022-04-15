@@ -43,6 +43,18 @@ body.dark-theme {
     font-weight: bold;
 }
 
+/* Fixed helper */
+
+.fixed {
+    position: fixed;
+  }
+  @media (min-width: 577px) and (max-width: 991px) {
+    .fixed {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
 /* Selected */
 ::-moz-selection {
     color: var(--main-bg-color);

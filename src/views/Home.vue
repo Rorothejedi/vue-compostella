@@ -1,44 +1,5 @@
 <template>
   <div>
-    <transition name="transition-resp-menu">
-      <div v-if="big_resp_menu" class="overlay-resp-wrapper">
-        <div class="overlay-resp-menu">
-          <transition name="transition-resp-button-1" appear>
-            <made-up-button
-              v-if="resp_menu"
-              @click="switchTheme()"
-              icon
-              large
-              v-tooltip="dark ? 'Thème clair' : 'Thème sombre'"
-              class="overlay-resp-menu-button"
-            >
-              <theme-light-dark-icon />
-            </made-up-button>
-          </transition>
-
-          <transition name="transition-resp-button-2" appear>
-            <router-link :to="'/legal'" v-if="resp_menu">
-              <made-up-button icon large v-tooltip="'Mentions légales'">
-                <scale-balance-icon />
-              </made-up-button>
-            </router-link>
-          </transition>
-        </div>
-        <transition name="transition-resp-path-line" appear>
-          <div class="path-line" v-if="resp_menu">
-            <path-line @save-top="saveTop()" />
-          </div>
-        </transition>
-        <transition name="transition-resp-close-button" appear>
-          <div class="overlay-resp-close-button" v-if="resp_menu">
-            <made-up-button icon large @click="resp_menu = false">
-              <close-icon />
-            </made-up-button>
-          </div>
-        </transition>
-      </div>
-    </transition>
-
     <div class="path-line-wrapper" v-if="!resp_menu">
       <div
         class="path-line"
@@ -48,7 +9,7 @@
       </div>
     </div>
 
-    <div class="container home-container" :class="{ fixed: to_fixed }">
+    <div class="container home-container">
       <div class="header">
         <div class="spacer"></div>
 
@@ -106,17 +67,6 @@
               </router-link>
             </div>
           </transition>
-
-          <transition
-            :name="first_view ? 'transition-button-2' : 'none'"
-            class="desktop-hidden"
-          >
-            <div v-if="isMount">
-              <made-up-button icon v-tooltip="'Menu'" @click="switchRespMenu()">
-                <menu-icon />
-              </made-up-button>
-            </div>
-          </transition>
         </div>
       </div>
 
@@ -136,8 +86,6 @@ import SortAscendingIcon from "vue-material-design-icons/SortAscending.vue";
 import SortDescendingIcon from "vue-material-design-icons/SortDescending.vue";
 import ThemeLightDarkIcon from "vue-material-design-icons/ThemeLightDark.vue";
 import ScaleBalanceIcon from "vue-material-design-icons/ScaleBalance.vue";
-import CloseIcon from "vue-material-design-icons/Close.vue";
-import MenuIcon from "vue-material-design-icons/Menu.vue";
 
 export default {
   name: "Home",
@@ -151,40 +99,18 @@ export default {
     SortDescendingIcon,
     ThemeLightDarkIcon,
     ScaleBalanceIcon,
-    MenuIcon,
-    CloseIcon,
   },
 
   data() {
     return {
       isMount: false,
-      resp_menu: false,
-      big_resp_menu: false,
-      to_fixed: false,
     };
-  },
-
-  watch: {
-    async resp_menu(value) {
-      if (!value) await this.sleep(100);
-      this.big_resp_menu = value;
-
-      if (value) await this.sleep(400);
-      this.to_fixed = value;
-
-      if (!value) {
-        await this.$nextTick();
-        window.scrollTo({ top: this.top_home });
-      } else {
-        this.saveTop();
-      }
-    },
   },
 
   computed: {
     ...mapState("theme", ["dark"]),
     ...mapState("browser", ["firefox"]),
-    ...mapState("nav", ["first_view", "top_home"]),
+    ...mapState("nav", ["first_view", "top_home", "resp_menu"]),
     ...mapState("album", ["albums_infinite", "albums_infinite_sort"]),
     ...mapGetters(["isAuthenticated"]),
   },
@@ -225,10 +151,6 @@ export default {
     switchTheme() {
       this.switchDarkTheme();
       document.body.classList.toggle("dark-theme");
-    },
-
-    switchRespMenu() {
-      this.resp_menu = !this.resp_menu;
     },
 
     saveTop() {
@@ -332,52 +254,14 @@ export default {
   }
 }
 
-/* With full Pathline */
-
-.overlay-resp-wrapper {
-  padding-top: 40px;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  z-index: 999;
-  background-color: var(--main-bg-color);
-  transition: all 0.3s ease-in;
-}
-
-.overlay-resp-close-button {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-}
-.overlay-resp-menu {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  display: flex;
-  flex-direction: column;
-}
-.overlay-resp-menu-button {
-  margin-bottom: 10px;
-}
-
 /* Helper responsive */
 .mobile-hidden {
   display: block;
 }
 
-.desktop-hidden {
-  display: none;
-}
-
 @media (max-width: 991px) {
   .mobile-hidden {
     display: none;
-  }
-
-  .desktop-hidden {
-    display: block;
   }
 }
 
@@ -404,65 +288,5 @@ export default {
 .transition-button-3-enter-from {
   opacity: 0;
   transform: translateY(-25px);
-}
-
-/* Transition responsive */
-
-.transition-resp-button-1-enter-active {
-  transition: all 0.5s ease 0.2s;
-}
-.transition-resp-button-1-leave-active {
-  transition: all 0.5s ease;
-}
-
-.transition-resp-button-2-enter-active {
-  transition: all 0.5s ease 0.3s;
-}
-.transition-resp-button-2-leave-active {
-  transition: all 0.5s ease;
-}
-
-.transition-resp-close-button-enter-active {
-  transition: all 0.5s ease 0.2s;
-}
-.transition-resp-close-button-leave-active {
-  transition: all 0.5s ease;
-}
-
-.transition-resp-path-line-enter-active {
-  transition: all 0.5s ease 0.2s;
-}
-.transition-resp-path-line-leave-active {
-  transition: all 0.5s ease;
-}
-
-.transition-resp-button-1-enter-from,
-.transition-resp-button-1-leave-to,
-.transition-resp-button-2-enter-from,
-.transition-resp-button-2-leave-to {
-  opacity: 0;
-  transform: translateX(-50px);
-}
-.transition-resp-close-button-enter-from,
-.transition-resp-close-button-leave-to {
-  opacity: 0;
-  transform: translateX(50px);
-}
-.transition-resp-path-line-enter-from,
-.transition-resp-path-line-leave-to {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.transition-resp-menu-enter-active {
-  transition: all 0.3s ease;
-}
-.transition-resp-menu-leave-active {
-  transition: all 0.3s ease 0.2s;
-}
-.transition-resp-menu-enter-from,
-.transition-resp-menu-leave-to {
-  opacity: 0;
-  transform: translateY(-50px);
 }
 </style>

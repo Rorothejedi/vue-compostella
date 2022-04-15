@@ -1,8 +1,9 @@
 TODO (en cours)
 
-- Ajouter bouton fixed menu (on mobile)
-
 Bug :
+- voir pour le chargement des pages (jusqu'a page 13 avec data vide (fetch albums (home))) (plusieurs appel de 289km à 0 en boucle)
+    (report by lolo)
+    - OK le soucis via de la data albums_infite_meta qui est reinistialiser quand un commentaire est posté
 
 ------------
 
@@ -22,8 +23,6 @@ TODO - A la fin
 
 TODO - Bug
 
-- voir pour le chargement des pages (jusqu'a page 13 avec data vide (fetch albums (home))) (plsueirs appel de 289km à 0 en boucle)
-    (report by lolo)
 - voir chargement gallery quand mauvaise connexion
     - attendre le onload de toutes les images avant d'afficher
 - tressautement icons sur pathline (icon haut et bas)
@@ -145,6 +144,7 @@ DONE
 - Uniformiser les dark theme public et privé
 - Uniformiser les variables de font et de couleur
 - Changer le favicon
+- Ajouter bouton fixed menu (on mobile)
 
 DEBUG
 

@@ -35,6 +35,7 @@ const routes = [{
   },
   {
     path: '/',
+    name: 'home',
     component: Home,
     meta: {
       transition: 'slide-left',
@@ -45,6 +46,7 @@ const routes = [{
   },
   {
     path: '/album/:id',
+    name: 'album',
     component: Album,
     meta: {
       transition: 'slide-right'
@@ -55,6 +57,7 @@ const routes = [{
   },
   {
     path: '/legal',
+    name: 'legal',
     component: Legal,
     meta: {
       transition: 'slide-right'

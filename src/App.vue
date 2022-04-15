@@ -40,11 +40,12 @@
 
   <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition || 'fade'" mode="out-in">
-      <component :is="Component" />
+      <component :is="Component" :key="$route.fullPath" />
     </transition>
   </router-view>
 
   <back-to-top-button />
+  <resp-menu />
 </template>
 
 <script>
@@ -57,6 +58,7 @@ import HomeIcon from "vue-material-design-icons/Home.vue";
 import PowerIcon from "vue-material-design-icons/Power.vue";
 import CommentAlertIcon from "vue-material-design-icons/CommentAlert.vue";
 import BackToTopButton from "@/components/buttons/BackToTopButton.vue";
+import RespMenu from "@/components/utils/RespMenu.vue";
 
 import "floating-vue/dist/style.css";
 
@@ -67,6 +69,7 @@ export default {
     CommentAlertIcon,
     PowerIcon,
     BackToTopButton,
+    RespMenu,
   },
 
   data() {

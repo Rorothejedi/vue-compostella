@@ -444,6 +444,18 @@ export default {
 
           new_div = document.createElement("div");
           line_width = 0;
+        } else if (
+          image_figcaption.offsetWidth + 100 >= gallery_width &&
+          image_figcaption.offsetWidth > image_figcaption.offsetHeight
+        ) {
+          new_div.style.width = gallery_width + "px";
+          image_figcaption.style.width = "100%";
+
+          new_div.style.display = "flex";
+          new_div.style.marginBottom = "-5px";
+
+          new_div = document.createElement("div");
+          line_width = 0;
         }
       }
 

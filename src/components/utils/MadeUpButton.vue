@@ -4,6 +4,7 @@
     :class="{
       flat: flat,
       large: large,
+      big: big,
       small: small,
       icon: icon,
       circle: circle,
@@ -11,7 +12,12 @@
       disabled: disabled,
     }"
     :disabled="disabled"
-    :style="color && !disabled ? `color: ${color}` : ''"
+    :style="[
+      color && !disabled ? `color: ${color}` : '',
+      secondaryBgColor
+        ? 'background-color: var(--secondary-text-color); color: white;'
+        : 'background-color: var(--button-bg-color)',
+    ]"
   >
     <span v-if="!loading">
       <slot></slot>
@@ -36,6 +42,11 @@ export default {
       default: false,
     },
     large: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    big: {
       type: Boolean,
       required: false,
       default: false,
@@ -69,6 +80,11 @@ export default {
       type: String,
       required: false,
       default: "",
+    },
+    secondaryBgColor: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 };
@@ -120,7 +136,7 @@ button:active:not(.loading):not(.disabled) {
 
 /* Flat (no background) */
 .flat {
-  background-color: initial;
+  background-color: initial !important;
 }
 
 /* Large size */
@@ -132,6 +148,17 @@ button:active:not(.loading):not(.disabled) {
 .large.icon {
   height: 44px;
   width: 44px;
+}
+
+/* Big size (very large) */
+.big {
+  height: 56px;
+  min-width: 78px;
+  padding: 0 19.5555555556px;
+}
+.big.icon {
+  height: 56px;
+  width: 56px;
 }
 
 /* Small size */

@@ -8,7 +8,7 @@
       <router-link
         v-for="(km, index) in albums_simple"
         :key="km.km_total"
-        :to="`/album/${km.id}`"
+        :to="{ name: 'album', params: { id: km.id } }"
         class="point-wrapper"
         @click="$emit('saveTop')"
       >
@@ -23,8 +23,8 @@
           :style="`margin-top: ${line_height}px`"
           v-if="index === albums_simple.length - 1"
         />
-        <div class="point"></div>
-        <div class="text">{{ Math.round(km.km_total) }} km</div>
+        <div class="pl-point"></div>
+        <div class="pl-text">{{ Math.round(km.km_total) }} km</div>
       </router-link>
     </div>
   </transition>
@@ -75,8 +75,8 @@ export default {
 
       this.line_height = window.innerHeight - 80;
 
-      const points = document.getElementsByClassName("point");
-      const texts = document.getElementsByClassName("text");
+      const points = document.getElementsByClassName("pl-point");
+      const texts = document.getElementsByClassName("pl-text");
 
       const max = this.albums_simple[this.albums_simple.length - 1].km_total;
 
@@ -122,7 +122,7 @@ export default {
 #line {
   border-left: 1px dashed var(--third-text-color);
 }
-.point {
+.pl-point {
   z-index: 1;
   position: absolute;
   left: -5px;
@@ -133,8 +133,8 @@ export default {
   background-color: var(--secondary-text-color);
   transition: all 0.3s ease, border-color 0.3s ease-in;
 }
-.point:hover,
-.point-wrapper:hover .point {
+.pl-point:hover,
+.point-wrapper:hover .pl-point {
   z-index: 2;
   display: flex;
   align-items: center;
@@ -152,13 +152,13 @@ export default {
   transition: left 0.3s;
 }
 
-.point-wrapper:hover .text {
+.point-wrapper:hover .pl-text {
   width: 80px;
   opacity: 1 !important;
   transition: width 0.3s ease, opacity 0.3s ease;
 }
 
-.text {
+.pl-text {
   color: var(--main-text-color);
   width: 60px;
   position: absolute;

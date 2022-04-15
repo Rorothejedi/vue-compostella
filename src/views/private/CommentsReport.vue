@@ -93,7 +93,7 @@ export default {
     },
 
     formattedCommentTitle() {
-      if (this.commentsCount === 0) return "Pas de commentaires signalés";
+      if (this.commentsCount === 0) return "Aucun signalement";
       return this.commentsCount + " commentaires signalés";
     },
 

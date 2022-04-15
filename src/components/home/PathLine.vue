@@ -153,18 +153,19 @@ export default {
 }
 
 .point-wrapper:hover .pl-text {
-  width: 80px;
+  padding-left: 21px;
   opacity: 1 !important;
-  transition: width 0.3s ease, opacity 0.3s ease;
+  transition: padding-left 0.3s ease, opacity 0.3s ease;
 }
 
 .pl-text {
   color: var(--main-text-color);
-  width: 60px;
+  width: max-content;
+  padding-left: 13px;
   position: absolute;
   font-size: 0.8rem;
-  text-align: center;
-  transition: width 0.3s ease, opacity 0.3s ease;
+  text-align: left;
+  transition: padding-left 0.3s ease, opacity 0.3s ease;
 }
 
 .departure-icon,

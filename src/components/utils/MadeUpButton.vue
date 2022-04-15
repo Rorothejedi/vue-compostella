@@ -16,7 +16,7 @@
       color && !disabled ? `color: ${color}` : '',
       secondaryBgColor
         ? 'background-color: var(--secondary-text-color); color: white;'
-        : 'background-color: var(--button-bg-color)',
+        : '',
     ]"
   >
     <span v-if="!loading">
@@ -94,12 +94,10 @@ export default {
 body {
   --button-bg-color: #efefef;
   --button-bg-hv-color: #e2e2e2;
-  --button-bg-act-color: #d1d1d1;
 }
 body.dark-theme {
   --button-bg-color: #3f3f3f;
   --button-bg-hv-color: #4f4f4f;
-  --button-bg-act-color: #5e5e5e;
 }
 </style>
 
@@ -131,7 +129,8 @@ button:hover:not(.loading):not(.disabled) {
 }
 button:active:not(.loading):not(.disabled) {
   transition: background-color 0.05s cubic-bezier(0.4, 0, 0.6, 1);
-  background-color: var(--button-bg-act-color);
+  background-color: var(--button-bg-hv-color);
+  filter: brightness(95%);
 }
 
 /* Flat (no background) */

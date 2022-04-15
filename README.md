@@ -1,16 +1,11 @@
 TODO (en cours)
 
 Bug :
-- voir pour le chargement des pages (jusqu'a page 13 avec data vide (fetch albums (home))) (plusieurs appel de 289km à 0 en boucle)
-    (report by lolo)
-    - OK le soucis via de la data albums_infite_meta qui est reinistialiser quand un commentaire est posté
 
 ------------
 
 TODO list
 
-- Mettre lien vers album suivant / precedent sur chaque album
-- Mettre tooltip date/arriv/dest sur le pathline en desktop
 
 ------------
 
@@ -164,6 +159,7 @@ DEBUG
 - transition goToTop quand change de page
 - Sur mobile Menu avec la line sur la home (On ne voit pas le bas)
 - Régler le scroll dans le resp menu
+- Fix problème sur le infinite album
 
 -----------------
 

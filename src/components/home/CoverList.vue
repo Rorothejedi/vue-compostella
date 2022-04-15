@@ -93,7 +93,6 @@ export default {
       page: 1,
       img_load: 0,
       is_mounted: false,
-      is_enter: false,
     };
   },
 
@@ -123,8 +122,12 @@ export default {
   },
 
   mounted() {
-    this.getNextAlbums();
+    window.addEventListener("scroll", this.getNextAlbums);
     this.is_mounted = true;
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.getNextAlbums);
   },
 
   methods: {
@@ -150,24 +153,22 @@ export default {
     /* Infinite scroll */
 
     getNextAlbums() {
-      window.onscroll = () => {
-        const total_page_height = document.body.scrollHeight - 300;
-        const scroll_point = window.scrollY + window.innerHeight;
-        const window_bottom = scroll_point >= total_page_height;
+      const total_page_height = document.body.scrollHeight - 300;
+      const scroll_point = window.scrollY + window.innerHeight;
+      const window_bottom = scroll_point >= total_page_height;
 
-        if (
-          !window_bottom ||
-          this.loading ||
-          this.albums_infinite_meta.current_page ===
-            this.albums_infinite_meta.last_page
-        )
-          return;
+      if (
+        !window_bottom ||
+        this.loading ||
+        this.albums_infinite_meta.current_page ===
+          this.albums_infinite_meta.last_page
+      )
+        return;
 
-        if (this.first_view) this.firstViewSeen();
+      if (this.first_view) this.firstViewSeen();
 
-        this.page++;
-        this.fetchAlbums();
-      };
+      this.page++;
+      this.fetchAlbums();
     },
 
     /* Enter and leave box transition */

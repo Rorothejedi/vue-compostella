@@ -155,6 +155,7 @@ export default {
   opacity: 1 !important;
 }
 .opacify-points {
+  z-index: 0;
   opacity: 0.4;
   width: 5px;
   height: 5px;

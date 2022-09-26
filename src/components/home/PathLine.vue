@@ -48,11 +48,16 @@ export default {
     return {
       loading: false,
       line_height: 0,
+      window_width: window.innerWidth,
     };
   },
 
   computed: {
     ...mapState("album", ["albums_simple"]),
+
+    resp() {
+      return this.window_width < 992;
+    },
   },
 
   mounted() {
@@ -79,6 +84,7 @@ export default {
       const texts = document.getElementsByClassName("pl-text");
 
       const max = this.albums_simple[this.albums_simple.length - 1].km_total;
+      const divider = this.resp ? 5 : 4;
 
       [...points].forEach((element, i) => {
         if (this.albums_simple[i] === undefined) return;
@@ -92,10 +98,12 @@ export default {
         if (
           i !== 0 &&
           i !== points.length - 1 &&
-          i % 3 !== 0 &&
+          i % divider !== 0 &&
           points.length > 35
-        )
+        ) {
+          points[i].classList.add("opacify-points");
           texts[i].style.opacity = 0;
+        }
       });
 
       window.addEventListener("resize", this.initLine);
@@ -144,6 +152,16 @@ export default {
   background-color: var(--main-bg-color);
   border: 2px solid var(--secondary-text-color);
   transition: all 0.3s ease;
+  opacity: 1 !important;
+}
+.opacify-points {
+  opacity: 0.4;
+  width: 5px;
+  height: 5px;
+  left: -4px;
+}
+.opacify-points:hover {
+  left: -12px !important;
 }
 
 .point-wrapper:hover .departure-icon,

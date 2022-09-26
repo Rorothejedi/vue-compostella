@@ -56,16 +56,47 @@
         </div>
       </div>
     </transition>
+
+    <transition name="transition-km">
+      <div class="step-nav" v-if="!loading">
+        <router-link
+          v-if="this.album.previous_album !== null"
+          :to="`/album/${album.previous_album.id}`"
+        >
+          <made-up-button small v-tooltip.right="'Etape précédente'">
+            <skip-previous-icon />
+          </made-up-button>
+        </router-link>
+
+        <router-link
+          v-if="this.album.next_album !== null"
+          :to="`/album/${album.next_album.id}`"
+        >
+          <made-up-button small v-tooltip.left="'Etape suivante'">
+            <skip-next-icon />
+          </made-up-button>
+        </router-link>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import MapMarkerOutlineIcon from "vue-material-design-icons/MapMarkerOutline.vue";
 import MapMarkerCheckIcon from "vue-material-design-icons/MapMarkerCheck.vue";
+import SkipPreviousIcon from "vue-material-design-icons/SkipPrevious.vue";
+import SkipNextIcon from "vue-material-design-icons/SkipNext.vue";
+import MadeUpButton from "@/components/utils/MadeUpButton.vue";
 
 export default {
   name: "KilometersLine",
-  components: { MapMarkerOutlineIcon, MapMarkerCheckIcon },
+  components: {
+    MapMarkerOutlineIcon,
+    MapMarkerCheckIcon,
+    SkipPreviousIcon,
+    SkipNextIcon,
+    MadeUpButton,
+  },
   props: {
     album: {
       type: Object,
@@ -95,7 +126,7 @@ export default {
 <style scoped>
 .kilometers-line {
   padding-top: 75px;
-  padding-bottom: 60px;
+  padding-bottom: 5px;
 }
 /* Text */
 .header {
@@ -137,6 +168,11 @@ export default {
 }
 .place:last-child {
   text-align: right;
+}
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 60px;
 }
 
 /* Line */

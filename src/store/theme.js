@@ -2,7 +2,7 @@ export default {
     namespaced: true,
 
     state: {
-        dark: false,
+        dark: true,
         admin_dark: false,
     },
 

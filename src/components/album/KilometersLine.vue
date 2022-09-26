@@ -67,6 +67,7 @@
             <skip-previous-icon />
           </made-up-button>
         </router-link>
+        <div v-else></div>
 
         <router-link
           v-if="this.album.next_album !== null"

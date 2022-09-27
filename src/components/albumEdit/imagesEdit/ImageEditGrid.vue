@@ -10,7 +10,7 @@
       <made-up-button
         v-if="key !== 0"
         class="arrow-left"
-        @click="moveImageToLeft(image.id, key)"
+        @click="moveImageToLeft(image.id, key + 1)"
         :loading="loading_move_left[image.id]"
         small
         circle
@@ -21,7 +21,7 @@
       <made-up-button
         v-if="key !== album.images.length - 1"
         class="arrow-right"
-        @click="moveImageToRight(image.id, key)"
+        @click="moveImageToRight(image.id, key + 1)"
         :loading="loading_move_right[image.id]"
         small
         circle

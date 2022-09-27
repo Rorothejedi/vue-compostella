@@ -17,6 +17,7 @@ Vue
 
 Improvments possible
 
+- Ajout d'une carte (openStreetMap) avec la trace GPS pour chaque étape
 - Like par l'admin visible par tous (comme les likes youtube)
 - Réponses aux commentaires
 - Modification des commentaires dans un laps de temps par son auteur

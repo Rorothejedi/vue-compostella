@@ -485,9 +485,6 @@ export default {
 .gallery-thumbnail {
   margin: 3px;
 }
-.gallery-thumbnail a img {
-  height: -webkit-fill-available;
-}
 
 .image-resize {
   width: 100%;

@@ -109,7 +109,6 @@ export default {
 
   computed: {
     ...mapState("theme", ["dark"]),
-    ...mapState("browser", ["firefox"]),
     ...mapState("nav", ["first_view", "top_home", "resp_menu"]),
     ...mapState("album", ["albums_infinite", "albums_infinite_sort"]),
     ...mapGetters(["isAuthenticated"]),
@@ -123,7 +122,6 @@ export default {
 
   mounted() {
     this.isMount = true;
-    this.browserAlert();
   },
 
   unmounted() {
@@ -132,7 +130,6 @@ export default {
 
   methods: {
     ...mapActions("theme", ["switchDarkTheme"]),
-    ...mapActions("browser", ["alertSentToFirefox"]),
     ...mapActions("album", ["sortAlbumsInfinite"]),
     ...mapActions("nav", ["firstViewSeen", "changeTopHome"]),
 
@@ -155,22 +152,6 @@ export default {
 
     saveTop() {
       this.changeTopHome(window.scrollY);
-    },
-
-    browserAlert() {
-      if (
-        this.first_view &&
-        !this.firefox &&
-        navigator.userAgent.toLowerCase().indexOf("firefox") > -1
-      ) {
-        alert(
-          "Chez utilisateur de Firefox !\n" +
-            "Ce site vous offrira son plein potentiel avec le navigateur Google Chrome.\n" +
-            "Je vous conseil donc d'utiliser ce dernier même si le tout reste consultable sur votre navigateur actuel.\n" +
-            "Merci !"
-        );
-        this.alertSentToFirefox();
-      }
     },
   },
 };

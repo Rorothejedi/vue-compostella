@@ -1,11 +1,14 @@
 <template>
-  <div class="back-to-top-wrapper">
+  <div v-if="displayed" class="back-to-top-wrapper">
     <transition name="slide-top">
       <div v-if="!changing_page && scroll_y > 600">
         <made-up-button
+          class="back-to-top-button"
           @click="backToTopScroll()"
           icon
-          large
+          :large="!isMobile"
+          :big="isMobile"
+          :secondaryBgColor="isMobile"
           title="Retour haut de page"
         >
           <arrow-collapse-up-icon :size="20" />
@@ -34,7 +37,21 @@ export default {
       scroll_timer: 0,
       scroll_y: 0,
       changing_page: false,
+      window_width: window.innerWidth,
     };
+  },
+
+  computed: {
+    isMobile() {
+      return this.window_width < 992;
+    },
+    displayed() {
+      return (
+        this.$route.name === "home" ||
+        this.$route.name === "album" ||
+        this.$route.name === "legal"
+      );
+    },
   },
 
   watch: {
@@ -47,12 +64,17 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
     window.addEventListener("scroll", this.handleScroll);
+
+    await this.$nextTick();
+
+    window.addEventListener("resize", this.onResize);
   },
 
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.onResize);
   },
 
   methods: {
@@ -69,26 +91,40 @@ export default {
         this.scroll_timer = 0;
       }, 100);
     },
+
+    onResize() {
+      this.window_width = window.innerWidth;
+    },
   },
 };
 </script>
 
 <style scoped>
 .back-to-top-wrapper {
+  z-index: 997;
   position: fixed;
-  bottom: calc(50vh - 22px);
-  right: calc(calc(calc(50vw - 570px) / 2) - 22px);
+  bottom: 80px;
+  right: 25px;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .back-to-top-wrapper {
+    bottom: calc(50vh - 22px);
     right: calc(calc(calc(50vw - 360px) / 2) - 22px);
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1600px) {
   .back-to-top-wrapper {
+    bottom: calc(50vh - 22px);
     right: calc(calc(calc(50vw - 480px) / 2) - 22px);
+  }
+}
+
+@media (min-width: 1601px) {
+  .back-to-top-wrapper {
+    bottom: calc(50vh - 22px);
+    right: calc(calc(calc(50vw - 570px) / 2) - 22px);
   }
 }
 

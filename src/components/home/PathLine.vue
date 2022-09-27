@@ -55,7 +55,7 @@ export default {
   computed: {
     ...mapState("album", ["albums_simple"]),
 
-    resp() {
+    isMobile() {
       return this.window_width < 992;
     },
   },
@@ -84,7 +84,7 @@ export default {
       const texts = document.getElementsByClassName("pl-text");
 
       const max = this.albums_simple[this.albums_simple.length - 1].km_total;
-      const divider = this.resp ? 5 : 4;
+      const divider = this.isMobile ? 5 : 4;
 
       [...points].forEach((element, i) => {
         if (this.albums_simple[i] === undefined) return;
